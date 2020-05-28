@@ -1,5 +1,5 @@
 import axios from 'axios'
-const server=process.env.REACT_APP_API_URL
+const server="http://localhost"
 
 
 export const pb_artigo_publicado = (user) => axios

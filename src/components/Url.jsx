@@ -20,6 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
+const server="http://localhost"
 
 
 
@@ -99,7 +100,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
       }
     };
 
-    xhr.open('POST',process.env.REACT_APP_API_URL+ `/api/setUrl.php?url=${url}&id=${id}&table=${table}`, true);
+    xhr.open('POST',server+ `/api/setUrl.php?url=${url}&id=${id}&table=${table}`, true);
     xhr.send();
   }else{
     setInputPlaceholder("URL Invalida! Tente Outra");

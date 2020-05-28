@@ -5,6 +5,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import './ImportXML.css';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+const server="http://localhost"
+
 
 function ImportXML() {
 
@@ -22,7 +24,7 @@ function ImportXML() {
 
     };
 
-    xhr.open('POST', process.env.REACT_APP_API_URL+'/api/importxml.php?user=11962413683', true);
+    xhr.open('POST', server+'/api/importxml.php?user=11962413683', true);
     xhr.send(fd);
   }
 
