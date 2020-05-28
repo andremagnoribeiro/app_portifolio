@@ -59,11 +59,7 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
       margin: 20
     }}>
       <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+      
         title="Capitulo de Livros Publicado"
         subheader={"publicado em: " + item.ano}
 

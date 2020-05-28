@@ -83,14 +83,19 @@ function Search({ getSearch }) {
   const [arrayFim, setArrayFim] = useState([]);
   const [tipoD, setTipoD] = useState("");
  
-
-
   const onChangeInput = (event) => {
     setTextsearch(event.target.value);
+
+  };
+
+  const onChangeEnter = (event) => {
+    
+    if(event.key==="Enter"){
+      getSearch(textsearch, selectedInicio, selectedFim, tipoD);
+    }
   };
   const btnClick = () => {
-    getSearch(textsearch, selectedInicio, selectedFim, tipoD);getSearch(textsearch, selectedInicio, selectedFim, tipoD);
-
+    getSearch(textsearch, selectedInicio, selectedFim, tipoD);
   }
 
   const handleChangeSelectInicio = (event) => {
@@ -126,6 +131,13 @@ function Search({ getSearch }) {
     setAnoInicio(arrayDate(1950, data.getFullYear()));
   }, []);
 
+  const runScript=(e)=> {
+    console.log("aaaaa>>",e);
+    if (e.target.keyCode === 13) {
+        getSearch(textsearch, selectedInicio, selectedFim, tipoD);
+        return false;
+    }
+  }
 
   return (
     <div>
@@ -152,13 +164,14 @@ function Search({ getSearch }) {
                         input: classes.inputInput,
                       }}
                       inputProps={{ 'aria-label': 'search' }}
+                      onKeyPress={onChangeEnter}
                       onChange={onChangeInput}
                     />
                   </Card>
                 </CardContent>
               </div>
               <div style={{
-                width: 200, margin: 15
+                width: 200, margin: 18
               }}>
                 <Button onClick={btnClick} variant="contained" style={{ width: 120, height: 35, marginLeft: 1, backgroundColor: "secondary" }} color="primary" disableElevation>
                   <SearchIcon />Filtrar

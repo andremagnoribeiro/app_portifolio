@@ -40,11 +40,6 @@ export const ArtigoPublicado = (item) => {
     }}>
       
       <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         title="Artigo Publicado"
         subheader={"publicado em: " + item.ano_do_artigo}
       />
