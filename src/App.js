@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import HeaderMenu from './containers/HeaderMenu'
-import {Portifolio} from './containers/Portifolio'
+import {Portifolio_Lattes} from './containers/Portifolio_Lattes'
 import ImportXML from './containers/ImportXML'
 
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -16,7 +16,7 @@ class App extends Component {
         <HeaderMenu/>
         <Switch>
            
-            <Route exact path="/" component={Portifolio} /> 
+            <Route exact path="/" component={Portifolio_Lattes} /> 
 
             <Route path="/importxml" component={ImportXML} /> 
         </Switch>

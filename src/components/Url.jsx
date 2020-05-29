@@ -29,7 +29,7 @@ const server="http://localhost"
 export const Url = ({ id, table, doi, home_page, external_url }) => {
 
   const [url, setUrl] = useState("");
-  const [viewVisualizar, setViewVisualizar] = useState(false);
+  const [viewVisualizar, setViewVisualizar] = useState(true);
   const [viewAdicionar, setViewAdicionar] = useState(false);
 
   const [urlExternal, setUrlExternal] = useState("");
@@ -61,17 +61,18 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
   }
 
   var urlClean = "";
-  if (home_page !== "NULL") {
+  console.log("OOOOO",home_page,urlClean)
+   if (home_page !== "NULL") {
   
-    urlClean = home_page;
-    urlClean = urlClean.replace("[", "");
-    urlClean = urlClean.replace("]", "");
-    urlClean = urlClean.replace("http://", "");
-    urlClean = urlClean.replace("https://", "");
-    urlClean = "http://" + urlClean;
+     urlClean = home_page;
+     urlClean = urlClean.replace("[", "");
+     urlClean = urlClean.replace("]", "");
+     urlClean = urlClean.replace("http://", "");
+     urlClean = urlClean.replace("https://", "");
+     urlClean = "http://" + urlClean;
   
-    setUrlHomePage(urlClean);
-  }
+     setUrlHomePage(urlClean);
+   }
 
   if (home_page === "NULL" && doi === "NULL" && !external_url) {
     setViewAdicionar(true);
@@ -155,7 +156,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
 
               <IconButton
       
-         onClick={()=>{setExpanded(!expanded);;setViewAdicionar(!viewAdicionar);}}
+         onClick={()=>{setExpanded(!expanded);setViewAdicionar(!viewAdicionar);}}
          aria-expanded={expanded}
          aria-label="show more"
          size='small'

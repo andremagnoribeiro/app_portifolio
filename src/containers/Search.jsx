@@ -141,7 +141,7 @@ function Search({ getSearch }) {
 
   return (
     <div>
-      <Card style={{ backgroundColor: "#E6E6FA", margin: 5 }}>
+      <Card style={{ backgroundColor: "#E6E6FA", margin: 20 }}>
         <div style={{ justifyContent: "center" }}>
           <Box alignItems="left">
             <div style={{
@@ -184,7 +184,7 @@ function Search({ getSearch }) {
 
         <Box textAlign="left" >
 
-          
+        
 
 
             <div style={{
