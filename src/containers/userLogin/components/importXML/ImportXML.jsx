@@ -1,18 +1,20 @@
 import React from 'react'
-import img_exportXML from '../img/exportXML.png'; 
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import './ImportXML.css';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
+import './ImportXML.css';
+import img_exportXML from './img/exportXML.png'; 
 
 const server="http://localhost"
 
+//Class
 
-function ImportXML({update}) {
+export const ImportXML=({update})=> {
 
 
   const onChange = (e) => {
@@ -61,7 +63,6 @@ function ImportXML({update}) {
   );
 }
 
-export default ImportXML
 
 
 

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 const server = "http://localhost";
 
 
+
 export const DeleteTable = ({ name, nameTableSql, user,update }) => {
 
   const deleteTable = () => {
@@ -14,7 +15,7 @@ export const DeleteTable = ({ name, nameTableSql, user,update }) => {
     let xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
-      if(xhr.status===200&&xhr.responseText=='true'){
+      if(xhr.status===200&&xhr.responseText==='true'){
         document.getElementById("menseger"+nameTableSql).innerHTML = "Arquivos deletados com sucesso! ";
         update();
       }

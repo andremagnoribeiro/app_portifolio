@@ -43,7 +43,6 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
 
 
   useEffect(() => {
-
     Clean();
   },[]);
 
@@ -56,14 +55,11 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
   }
 
   if (doi !== "NULL") {
-   
     setUrlDoi("http://doi.org/" + doi);
   }
 
   var urlClean = "";
-  console.log("OOOOO",home_page,urlClean)
-   if (home_page !== "NULL") {
-  
+   if (home_page) {
      urlClean = home_page;
      urlClean = urlClean.replace("[", "");
      urlClean = urlClean.replace("]", "");
