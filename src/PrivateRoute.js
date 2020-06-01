@@ -2,12 +2,10 @@ import React from 'react';
 import { Route , Redirect} from 'react-router-dom';
 
 
-export const PrivateRoute = ({componentPrivate: ComponentPrivate, componentPublic: ComponentPublic, ...rest}) => {
-
-  
+export const PrivateRoute = ({url,componentPrivate: ComponentPrivate, componentPublic: ComponentPublic, ...rest}) => {
+ 
     return (
-
-       
+        
         <Route {...rest} render={props => (
             isLogin() ?
                 <ComponentPrivate {...props} />

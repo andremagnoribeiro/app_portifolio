@@ -38,9 +38,21 @@ export const deleteUser = (user_name) =>{
   `/api/deleteUser.php/?user_name=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
   
   xhr.send();
-
-
 } 
+
+export const siga_disciplinas = (user) => axios
+  .get(`${server}/api/getTable.php?user=${user}&name=siga_disciplinas`)
+  .then(({ data }) => {
+    console.log("siga_disciplinas", data);
+    return data;
+})
+
+export const siga_projetos = (user) => axios
+.get(`${server}/api/getTable.php?user=${user}&name=siga_projetos`)
+.then(({ data }) => {
+  console.log("siga_projetos", data);
+  return data;
+})
 
 
 

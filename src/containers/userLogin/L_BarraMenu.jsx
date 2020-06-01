@@ -88,7 +88,7 @@ export const L_BarraMenu = props => {
        
      
         <Button color="textPrimary" onClick={handleClickPortifolio_Lattes} >
-            PORTIFÓLIO
+            Editar PORTIFÓLIO
           </Button>
            
           <IconButton edge="start"  aria-label="menu">
@@ -101,8 +101,8 @@ export const L_BarraMenu = props => {
             onClose={handleClosePortifolio_Lattes}
           >
            
-            <MenuItem onClick={handleClosePortifolio_Lattes}><Typography onClick={()=>href(`/portifoliosiga/${JSON.parse(localStorage.getItem("user")).user_name}`)}>SIGA</Typography></MenuItem>
-            <MenuItem onClick={handleClosePortifolio_Lattes}><Typography onClick={()=>href(`/portifoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>Lattes</Typography></MenuItem>
+            <MenuItem onClick={handleClosePortifolio_Lattes}><Typography onClick={()=>href(`/portifoliosiga/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>SIGA</Typography></MenuItem>
+            <MenuItem onClick={handleClosePortifolio_Lattes}><Typography onClick={()=>href(`/portifoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>Lattes</Typography></MenuItem>
           </Menu>
         </IconButton>
          

@@ -35,10 +35,14 @@ class App extends Component {
            
             <Route exact path="/"  component={Home} /> 
             <Route exact path="/createuser"  component={CreateUser} /> 
+            <Route  exact path="/portifoliolattes/:user"  component={P_Portifolio_Lattes} />
+            <Route  exact path="/portifoliosiga/:user"  component={P_Portifolio_Siga} />
+           
+            <PrivateRoute exact path="/portifoliolattes/login/:user"  componentPrivate={L_Portifolio_Lattes} componentPublic={Home}  />
+            <PrivateRoute exact path="/portifoliosiga/login/:user"  componentPrivate={L_Portifolio_Siga} componentPublic={Home}/>
+          
             <PrivateRoute  exact path='/editUser'  componentPrivate={L_EditUser} componentPublic={FormLogin}/>
             <PrivateRoute  exact path='/formlogin'  componentPrivate={Home} componentPublic={FormLogin}/>
-            <PrivateRoute  exact path="/portifoliolattes/:user"  componentPrivate={L_Portifolio_Lattes} componentPublic={P_Portifolio_Lattes} />
-            <PrivateRoute  exact path="/portifoliosiga/:user"  componentPrivate={L_Portifolio_Siga} componentPublic={P_Portifolio_Siga}/>
             
         </Switch>
       </div>
