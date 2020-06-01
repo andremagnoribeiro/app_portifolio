@@ -30,7 +30,7 @@ export const ImportXML=({update})=> {
       update();
     };
 
-    xhr.open('POST', server+'/api/importxml.php?user=11962413683', true);
+    xhr.open('POST', server+`/api/importxml.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
     xhr.send(fd);
   }
 

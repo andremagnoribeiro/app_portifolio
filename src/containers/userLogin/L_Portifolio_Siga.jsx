@@ -25,7 +25,9 @@ import { ArtigoPublicado } from "./components/itens/ArtigoPublicado";
 
 //
 
-export const L_Portifolio_Siga = ({ seach }) => {
+export const L_Portifolio_Siga = (props) => {
+
+  const user = props.match.params.user;
 
   const [artigoPublicado, setArtigoPublicado] = useState([]);
   const [capituloLivroPublicadoOrganizado, setCapituloLivroPublicadoOrganizado] = useState([]);

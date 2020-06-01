@@ -50,9 +50,9 @@ export const L_Portifolio_Lattes = (props) => {
   };
 
   useEffect(() => {
-    pb_artigo_publicado("11962413683")
+    pb_artigo_publicado(user)
       .then(data => setArtigoPublicado(data));
-    pb_capitulo_livro_publicado_organizado("11962413683")
+    pb_capitulo_livro_publicado_organizado(user)
       .then(dat => setCapituloLivroPublicadoOrganizado(dat));
     setAnoFilter(arrayDate(2020, 1950))
 

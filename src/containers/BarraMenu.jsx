@@ -65,20 +65,7 @@ export const BarraMenu = props => {
 
     <AppBar position="relative" style={{ width: "100%" }} >
       <Toolbar>
-        {/* <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon style={{ display: String(menuIcon) }} onClick={handleClick} />
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-           
-            <MenuItem onClick={handleClose}><Link component={Typography} to={`/`}>Trabalhos Realizados</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link component={Typography} to={`/importxml`}>Import XML</Link></MenuItem>
-          </Menu>
-        </IconButton> */}
+
        
         <img  alt="logo ufjf" style={{height:40, margin:10}} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
          

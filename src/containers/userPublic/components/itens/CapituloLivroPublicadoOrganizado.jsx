@@ -12,11 +12,12 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-
+import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { ItemCard } from '../ItemCard';
 import {Url} from '../Url'
+
 
 const table="pb_capitulo_livro_publicado_organizado";
 const useStyles = makeStyles((theme) => ({
@@ -82,16 +83,15 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
     
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+      <IconButton
+         
+         onClick={handleExpandClick}
+         aria-expanded={expanded}
+         aria-label="show more"
+       >
+         {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+       
+       </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent style={{ backgroundColor: "#363636" }}>

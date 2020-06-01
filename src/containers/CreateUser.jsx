@@ -17,54 +17,77 @@ import {login} from "../PrivateRoute"
 import md5 from 'md5';
 const server="http://localhost"
 
-export const FormLogin = () => {
+export const CreateUser = () => {
 
   const classes = useStyles();
 
-  const [textEmail,setTextEmail]= useState("");
-  const [textPassWord,setTextPassWord]= useState("");
-  const [foco,setFoco]= useState(false);
+  const [name,setName]=useState("");
+  const [nameUser,setNameUser]=useState("");
+  const [CPF,setCPF]=useState("");
+  const [email,setEmail]=useState("");
+  const [passWord,setPassWord]=useState("");
 
- 
- 
 
-  const loginForm = () => {
-    
-    let xhr = new XMLHttpRequest();
+  const createUser = () => {
+    if(name==""||nameUser==""||CPF==""||email==""||passWord==""){
+      document.getElementById("msg").innerText="Verificar, campo obrigatorio em branco."
+    }else{
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        if(xhr.responseText=="true"){
+          window.location.href ="/login";
+        }else if(xhr.responseText=="cpf"){
+          document.getElementById("msg").innerText="CPF já Existente!"
+        }else if(xhr.responseText=="username"){
+          document.getElementById("msg").innerText="Escolher outro nome de Usuário"
+        }
+      };
+  
+      xhr.open('POST', server+
+      `/api/createUser.php/?name=${name}&nameUser=${nameUser}&`+
+      `cpf=${CPF}&email=${email}&password=${md5(passWord)}`, true);
+      xhr.send();
 
-    xhr.onload = function () {
-      if(xhr.responseText=="false"){
-        
-        document.getElementById("msg").style.display="block";
-      }else{
-        const user=JSON.parse(xhr.responseText);
-        localStorage.setItem("user",JSON.stringify(user));
-        window.location.href ="/";
-      }
-    };
-
-    xhr.open('GET', server+`/api/login.php/?user=${textEmail}&password=${md5(textPassWord)}`, true);
-    xhr.send();
-
+    }
+   
   }
+
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-       
-        <form className={classes.form} noValidate>
-        <Typography id="msg" component="span" color="secondary" variant="p" style={{display:"none"}}>
-          email ou senha incorreto
-        </Typography>
+      <h1>Criar Usuário</h1>
           <TextField
-            
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Nome Completo"
+            name="Nome"
+            autoFocus
+            onChange={e=>setName(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Nome do Usuário"
+            name="Nome do Usuário"
+            autoFocus
+            onChange={e=>setNameUser(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="CPF"
+            name="CPF"
+            autoFocus
+            onChange={e=>setCPF(e.target.value)}
+          />
+
+          <TextField
             variant="outlined"
             margin="normal"
             required
@@ -74,9 +97,9 @@ export const FormLogin = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={e=>setTextEmail(e.target.value)}
+            onChange={e=>setEmail(e.target.value)}
           />
-          
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -87,38 +110,19 @@ export const FormLogin = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={e=>setTextPassWord(e.target.value)}
+            onChange={e=>setPassWord(e.target.value)}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <div id="msg"></div>
           <Button
-            onClick={loginForm}
+            onClick={createUser}
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
           >
-            Sign In
+           Criar User
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <a href="/createuser" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </a>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
+       
     </Container>
   );
 

@@ -17,3 +17,30 @@ export const pb_capitulo_livro_publicado_organizado = (user, search_word) => axi
   })
 
 
+export const getUsers = () => axios
+  .get(`${server}/api/getUsers.php`)
+  .then(({ data }) => {
+    console.log("users", data);
+    return data;
+  })
+
+export const getUserId = (user_name) => axios
+.get(`${server}/api/getUserId.php?username=${user_name}`)
+.then(({ data }) => {
+  console.log("userid", data);
+  return data;
+})
+
+export const deleteUser = (user_name) =>{
+  let xhr = new XMLHttpRequest();
+  
+  xhr.open('POST', server+
+  `/api/deleteUser.php/?user_name=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
+  
+  xhr.send();
+
+
+} 
+
+
+

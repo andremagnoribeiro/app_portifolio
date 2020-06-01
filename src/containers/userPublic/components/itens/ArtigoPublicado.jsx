@@ -23,10 +23,9 @@ const table = "pb_artigo_publicado";
 
 export const ArtigoPublicado = (item) => {
   
+  
   const [expanded, setExpanded] = useState(false);
   
-  
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };

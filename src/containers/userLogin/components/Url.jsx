@@ -17,12 +17,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
-
-
-
 const server="http://localhost"
-
-
 
 
 
