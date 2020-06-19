@@ -72,13 +72,7 @@ export const Search = ({ getSearch }) => {
     setAnoInicio(arrayDate(1950, data.getFullYear()));
   }, []);
 
-  const runScript=(e)=> {
-    console.log("aaaaa>>",e);
-    if (e.target.keyCode === 13) {
-        getSearch(textsearch, selectedInicio, selectedFim, tipoD);
-        return false;
-    }
-  }
+  
 
   return (
     <div>

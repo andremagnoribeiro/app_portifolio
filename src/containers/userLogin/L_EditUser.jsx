@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Avatar from '@material-ui/core/Avatar';
+
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {getUserId} from "../../api/serverAPI";
 import {logout} from '../../PrivateRoute';
 
-import md5 from 'md5';
 const server="http://localhost"
 
 export const L_EditUser = () => {
@@ -38,23 +32,23 @@ export const L_EditUser = () => {
 
 
   const createUser = () => {
-    if(name==""||user_name==""||email==""){
+    if(name===""||user_name===""||email===""){
       document.getElementById("msg").innerText="Verificar, campo obrigatorio em branco."
     }else{
       let xhr = new XMLHttpRequest();
       xhr.onload = function () {
-        if(xhr.responseText=="true"){
+        if(xhr.responseText==="true"){
           logout();
-          window.location.href ="/formlogin";
-        }else if(xhr.responseText=="cpf"){
+          window.location.href ="/ufjfportfolioprofissional/build/formlogin";
+        }else if(xhr.responseText==="cpf"){
           document.getElementById("msg").innerText="CPF já Existente!"
-        }else if(xhr.responseText=="username"){
+        }else if(xhr.responseText==="username"){
           document.getElementById("msg").innerText="Escolher outro nome de Usuário"
         }
       };
   
       xhr.open('POST', server+
-      `/api/editUser.php/?user_name=${
+      `/ufjfportfolioprofissional/api/editUser.php/?user_name=${
         JSON.parse(localStorage.getItem("user")).user_name
       }&update_user_name=${user_name}&update_email=${email}&update_name=${name}`, true);
 
@@ -123,18 +117,6 @@ export const L_EditUser = () => {
 }
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {

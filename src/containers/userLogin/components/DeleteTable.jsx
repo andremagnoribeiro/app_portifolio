@@ -21,7 +21,7 @@ export const DeleteTable = ({ name, nameTableSql, user,update }) => {
       }
     };
 
-    xhr.open('POST', server + `/api/delete.php?user=${user}&table=${nameTableSql}`,true);
+    xhr.open('POST', server + `/ufjfportfolioprofissional/api/delete.php?user=${user}&table=${nameTableSql}`,true);
     xhr.send();
   }
 

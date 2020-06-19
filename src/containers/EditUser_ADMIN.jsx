@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -47,7 +47,7 @@ export const CreateUser = () => {
       let xhr = new XMLHttpRequest();
       xhr.onload = function () {
         if(xhr.responseText=="true"){
-          window.location.href ="/login";
+          window.location.href ="/ufjfportfolioprofissional/build/formlogin";
         }else if(xhr.responseText=="cpf"){
           document.getElementById("msg").innerText="CPF já Existente!"
         }else if(xhr.responseText=="username"){
@@ -56,7 +56,7 @@ export const CreateUser = () => {
       };
   
       xhr.open('POST', server+
-      `/api/createUser.php/?name=${name}&nameUser=${nameUser}&`+
+      `/ufjfportfolioprofissional/api/createUser.php/?name=${name}&nameUser=${nameUser}&`+
       `cpf=${CPF}&email=${email}&password=${md5(passWord)}`, true);
       xhr.send();
     }
@@ -141,18 +141,7 @@ export const CreateUser = () => {
 }
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {

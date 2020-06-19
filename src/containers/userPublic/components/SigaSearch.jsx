@@ -15,7 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 
-export const SIGA_Search = ({ getSearch }) => {
+export const SigaSearch = ({ getSearch }) => {
   const classes = useStyles();
   const [textsearch, setTextsearch] = useState('');
   const [selectedFim, setSelectedFim] = useState("Fim");
@@ -26,7 +26,6 @@ export const SIGA_Search = ({ getSearch }) => {
  
   const onChangeInput = (event) => {
     setTextsearch(event.target.value);
-
   };
 
   const onChangeEnter = (event) => {
@@ -40,12 +39,12 @@ export const SIGA_Search = ({ getSearch }) => {
   }
 
   const handleChangeSelectInicio = (event) => {
+    var data = new Date();
     if(event.target.value){
-      var data = new Date();
+      
       setArrayFim(arrayDate(Number(event.target.value), data.getFullYear()));
       setSelectedInicio(Number(event.target.value));
     }else{
-      var data = new Date();
       setArrayFim(arrayDate(1970, data.getFullYear()));
       setSelectedInicio(Number(event.target.value));
     }
@@ -54,13 +53,10 @@ export const SIGA_Search = ({ getSearch }) => {
   }
 
   const handleChangeSelectFim = (event) => {
-
+    var data = new Date();
     if(event.target.value){
-      var data = new Date();
       setAnoInicio(arrayDate( 1970,Number(event.target.value)));
-  
     }else{
-      var data = new Date();
       setAnoInicio(arrayDate(1970, data.getFullYear()));
     }
     setSelectedFim(Number(event.target.value));
@@ -89,13 +85,7 @@ export const SIGA_Search = ({ getSearch }) => {
     setArrayFim(arrayDate(1970, data.getFullYear()));
   }, []);
 
-  const runScript=(e)=> {
-    console.log("aaaaa>>",e);
-    if (e.target.keyCode === 13) {
-        getSearch(textsearch, selectedInicio, selectedFim, tipoD);
-        return false;
-    }
-  }
+  
 
   return (
     <div>
@@ -156,7 +146,7 @@ export const SIGA_Search = ({ getSearch }) => {
               }}>
                 <CardContent>
 
-                  <Typography  style={{ marginTop: 5, marginLeft: 15 }} variant="h10" color="textSecondary" component="p">
+                  <Typography  style={{ marginTop: 5, marginLeft: 15 }}  color="textSecondary" component="p">
                     Ano 
           </Typography>
 
@@ -170,7 +160,7 @@ export const SIGA_Search = ({ getSearch }) => {
                       <option value={null} >Início</option>
                       {anoInicio.map(ano => {
 
-                        return <option value={ano} >{ano}</option>
+                        return <option key={ano} value={ano} >{ano}</option>
                       })}
                     </Select>
                   </FormControl>
@@ -184,7 +174,7 @@ export const SIGA_Search = ({ getSearch }) => {
                       <option value={null}>Fim</option>
                       {arrayFim.map(ano => {
                        
-                        return <option value={ano}>{ano}</option>
+                        return <option key={ano} value={ano}>{ano}</option>
                       })}
                     </Select>
                   </FormControl>
@@ -196,7 +186,7 @@ export const SIGA_Search = ({ getSearch }) => {
                 width: "calc((100% / 2) )"
               }}>
               <CardContent>
-                <Typography style={{  marginTop: 5, marginLeft: 15  }} variant="h10" color="textSecondary" component="p">
+                <Typography style={{  marginTop: 5, marginLeft: 15  }}  color="textSecondary" component="p">
                   Tipo
                 </Typography>
                 <FormControl className={classes.formControl}>

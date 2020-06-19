@@ -8,29 +8,44 @@ import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
+
+
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 import Chip from '@material-ui/core/Chip';
 
 import { Search } from './components/Search';
-import { pb_artigo_publicado, pb_capitulo_livro_publicado_organizado } from "../../api/serverAPI";
+import {
+  pb_artigo_publicado,
+  pb_capitulo_livro_publicado_organizado,
+  pb_livro_publicado_organizado
+} from "../../api/serverAPI";
 import { ImportXML } from "./components/importXML/ImportXML";
 import { DeleteTable } from "./components/DeleteTable"
 import { CapituloLivroPublicadoOrganizado } from "./components/itens/CapituloLivroPublicadoOrganizado";
 import { ArtigoPublicado } from "./components/itens/ArtigoPublicado";
+import { LivroPublicadoOrganizado } from "./components/itens/LivroPublicadoOrganizado";
 
 //
 
-export const L_Portifolio_Lattes = (props) => {
+export const L_Portfolio_Lattes = (props) => {
+
+
 
   const user = props.match.params.user;
- 
+
 
   const [artigoPublicado, setArtigoPublicado] = useState([]);
   const [capituloLivroPublicadoOrganizado, setCapituloLivroPublicadoOrganizado] = useState([]);
+  const [livroPublicadoOrganizado, setLivroPublicadoOrganizado] = useState([]);
+  /*
+   const [livroPublicadoOrganizado, setLivroPublicadoOrganizado] = useState([]);
+ 
+  */
+
+
+
   const [search, setSearch] = useState("");
   const [filtroSearch, setFiltroSearch] = useState("");
   const [anoFilter, setAnoFilter] = useState([]);
@@ -51,13 +66,17 @@ export const L_Portifolio_Lattes = (props) => {
   };
 
   useEffect(() => {
-    pb_artigo_publicado(user)
-      .then(data => setArtigoPublicado(data));
-    pb_capitulo_livro_publicado_organizado(user)
-      .then(dat => setCapituloLivroPublicadoOrganizado(dat));
+    pb_artigo_publicado(user).then(data => setArtigoPublicado(data));
+    pb_capitulo_livro_publicado_organizado(user).then(dat => setCapituloLivroPublicadoOrganizado(dat));
+    pb_livro_publicado_organizado(user).then(dataa => setLivroPublicadoOrganizado(dataa));
+    /*pb_livro_publicado_organizado(user)
+     .then(data => setLivroPublicadoOrganizado(data));
+ */
+
+
     setAnoFilter(arrayDate(2020, 1950))
 
-  }, [update]);
+  }, [update,user]);
 
 
   const arrayDate = (ini, fim) => {
@@ -69,27 +88,29 @@ export const L_Portifolio_Lattes = (props) => {
     }
     return dates;
   }
+
+
   const getSearch = (busca, anoInicio, anoFinal, tipo_) => {
 
     setTipo(tipo_);
 
     setFiltroSearch(busca);
 
-    //filtro search
+
     setSearch("");
     var stringsearch = "";
     if (busca !== "") {
-      stringsearch = stringsearch + busca + " / ";
+      stringsearch = " / " + stringsearch;
     }
     var date = new Date();
-    if (anoInicio !== "Início") {
-      if (anoFinal === "Fim") {
+    if (anoInicio) {
+      if (!anoFinal) {
         stringsearch += "";
-        arrayDate(date.getFullYear(), anoInicio).map((ano) => stringsearch += ano + " /");
+        stringsearch += "(" + anoInicio + " - " + date.getFullYear() + ")";
         setAnoFilter(arrayDate(date.getFullYear(), anoInicio));
       } else {
         stringsearch += "";
-        arrayDate(anoFinal, anoInicio).map((ano) => stringsearch += ano + " /");
+        stringsearch += "(" + anoInicio + " - " + anoFinal + ")";
         setAnoFilter(arrayDate(anoFinal, anoInicio));
       }
     }
@@ -97,13 +118,12 @@ export const L_Portifolio_Lattes = (props) => {
   };
 
 
+
+  //aplicando os filtros
   const artigosPublicados = (i) => artigoPublicado.map(function (item) {
-
     if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
-
       if (item.ano_do_artigo === i) {
         return <ArtigoPublicado key={item.id} {...item} />
-
       }
     } return null;
   })
@@ -117,9 +137,30 @@ export const L_Portifolio_Lattes = (props) => {
     } return null;
   })
 
+  const livroPublicadoOrganizados = (i) => livroPublicadoOrganizado.map(function (item) {
+    if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
+
+      if (item.ano === i) {
+        return <LivroPublicadoOrganizado key={item.id} {...item} />
+      }
+    } return null;
+  })
+
+  /*
+    const livroPublicadoOrganizados = (i) => livroPublicadoOrganizado.map(function (item) {
+      if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
+  
+        if (item.ano === i) {
+          return <LivroPublicadoOrganizado key={item.id} {...item} />
+        }
+      } return null;
+    })
+  */
+
+
   const allTipo = (i) => [
     capitulosLivrosPublicadosOrganizados(i),
-    artigosPublicados(i)
+    artigosPublicados(i), livroPublicadoOrganizados(i) /*livroPublicadoOrganizados(i) */
   ]
 
   const update_f = () => { setUpdate(!update) }
@@ -128,46 +169,56 @@ export const L_Portifolio_Lattes = (props) => {
     if (tipo !== "") {
       if (tipo === "artigo_publicado") {
         return artigosPublicados(i);
-      } else if (tipo === "capitulo_de_livros_publicado")
+      } else if (tipo === "capitulo_de_livros_publicado") {
         return capitulosLivrosPublicadosOrganizados(i);
+      } else if (tipo === "livro_publicado") {
+        return livroPublicadoOrganizados(i);
+      } /*else if (tipo === "capitulo_de_livros_publicado"){
+        return capitulosLivrosPublicadosOrganizados(i);
+      } else if (tipo === "capitulo_de_livros_publicado"){
+        return capitulosLivrosPublicadosOrganizados(i);
+      } else if (tipo === "capitulo_de_livros_publicado"){
+        return capitulosLivrosPublicadosOrganizados(i);
+      } else if (tipo === "capitulo_de_livros_publicado"){
+        return capitulosLivrosPublicadosOrganizados(i);
+      }*/
+
     } else {
       return allTipo(i)
     }
     return allTipo(i)
   })
 
-
+  /////
 
   return (
-    <div>
 
-      <div>
-        <Card >
+      <Card  key="12223453">
 
-          <CardHeader
-            
-            title={"Portifólio Privado - " + user}
-            subheader={"Currículo Lattes CNPQ "}
-          />
-<div>
-<IconButton
-             
-              onClick={handleExpandClickImport}
-              aria-expanded={expandedImport}
-              aria-label="show more"
-              size="small"
-            >
-              {!expandedImport ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Importar Dados 
+        <CardHeader
+
+          title={"Portfólio Privado - " + user}
+          subheader={"Currículo Lattes CNPQ "}
+        />
+        <div>
+          <IconButton
+
+            onClick={handleExpandClickImport}
+            aria-expanded={expandedImport}
+            aria-label="show more"
+            size="small"
+          >
+            {!expandedImport ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Importar Dados
 
           </IconButton>
           <Collapse in={expandedImport} timeout="auto" unmountOnExit>
             <div style={{ margin: 20 }}>
-              <ImportXML update={update_f} />
+              <ImportXML update={update_f} fechar={handleExpandClickImport} />
             </div>
 
           </Collapse>
-</div> 
-<div>
+        </div>
+        <div>
           <IconButton
 
             onClick={handleExpandClickDelete}
@@ -177,26 +228,29 @@ export const L_Portifolio_Lattes = (props) => {
           >
             {!expandedDelete ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Limpar Dados
 
-</IconButton>
+            </IconButton>
           <Collapse in={expandedDelete} timeout="auto" unmountOnExit>
-          
+
             <div style={{ margin: 20 }}>
-              <DeleteTable key={4567357} name={"Artigos Publicados"} nameTableSql={"pb_artigo_publicado"} user={"11962413683"} update={update_f} />
-              <DeleteTable key={487987557} name={"Capitulo de Livros Publicado"} nameTableSql={"pb_capitulo_livro_publicado_organizado"} user={"11962413683"} update={update_f} />
+              <DeleteTable key={4567357} name={"Artigos Publicados"} nameTableSql={"pb_artigo_publicado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} />
+              <DeleteTable key={487987557} name={"Capitulo de Livros Publicado"} nameTableSql={"pb_capitulo_livro_publicado_organizado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} />
+              <DeleteTable key={487987557} name={"Livro Publicado Organizados"} nameTableSql={"pb_livro_publicado_organizado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} />
+              {/* <DeleteTable key={487987557} name={"Livro Publicado Organizados"} nameTableSql={"pb_livro_publicado_organizado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} /> */}
 
             </div>
-           
+
           </Collapse>
-          </div>
-          <Search key="1" getSearch={getSearch} />
-
-          {search ? <StyledBreadcrumb onClick={() => { setFiltroSearch(""); setSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + search + filtroSearch + tipo + "   (x)"} /> : <div />}
+        </div>
+        <Search getSearch={getSearch} />
 
 
-          {ordemAno()}
-        </Card>
-      </div>
-    </div>
+        {search ? <StyledBreadcrumb onClick={() => { setFiltroSearch(""); setSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + search + filtroSearch + tipo + "   (x)"} /> : <div />}
+
+       
+          {ordemAno()}  
+      </Card>
+  
+
 
 
   );

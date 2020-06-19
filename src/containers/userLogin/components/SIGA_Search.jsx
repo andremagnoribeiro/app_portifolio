@@ -90,7 +90,6 @@ export const SIGA_Search = ({ getSearch }) => {
   }, []);
 
   const runScript=(e)=> {
-    console.log("aaaaa>>",e);
     if (e.target.keyCode === 13) {
         getSearch(textsearch, selectedInicio, selectedFim, tipoD);
         return false;

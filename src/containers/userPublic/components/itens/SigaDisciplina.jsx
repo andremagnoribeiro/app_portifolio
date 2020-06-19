@@ -1,34 +1,21 @@
-import React, {  useState} from 'react';
+import React from 'react';
 
-import Collapse from '@material-ui/core/Collapse';
 
-import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 
 import Typography from '@material-ui/core/Typography';
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { ItemCard } from '../ItemCard';
-
-import { Url } from '../Url';
 
 
-const table = "siga_disciplinas";
 
 
-export const SIGA_Disciplina = (item) => {
+
+export const SigaDisciplina = (item) => {
   
   
-  const [expanded, setExpanded] = useState(false);
   
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
 
   return (

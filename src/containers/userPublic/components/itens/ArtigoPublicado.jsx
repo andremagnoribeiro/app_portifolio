@@ -12,7 +12,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 import { ItemCard } from '../ItemCard';
 
 import { Url } from '../Url';
@@ -48,15 +48,17 @@ export const ArtigoPublicado = (item) => {
        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_artigo}  </Typography>
       
       
-       <Typography component={'span'} variant="h6" color="textSecondary" gutterBottom>
-         Palavras Chaves:
-            {item.palavra_chave_1!=="NULL" &&item.palavra_chave_1? " " + item.palavra_chave_1 : undefined}
-            {item.palavra_chave_2!=="NULL" &&item.palavra_chave_1? ", " + item.palavra_chave_2 : undefined}
-            {item.palavra_chave_3!=="NULL" &&item.palavra_chave_1? ", " + item.palavra_chave_3 : undefined}
-            {item.palavra_chave_4!=="NULL" &&item.palavra_chave_1? ", " + item.palavra_chave_4 : undefined}
-            {item.palavra_chave_5!=="NULL" &&item.palavra_chave_1? ", " + item.palavra_chave_5 : undefined}
-            {item.palavra_chave_6!=="NULL" &&item.palavra_chave_1? ", " + item.palavra_chave_6 : undefined}
-       </Typography>
+       <Typography color="textSecondary" >
+          
+          {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? "Palavras Chaves:": undefined}
+         
+          {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? " " + item.palavra_chave_1 : undefined}
+          {item.palavra_chave_2 !== "NULL" && item.palavra_chave_2 ? ", " + item.palavra_chave_2 : undefined}
+          {item.palavra_chave_3 !== "NULL" && item.palavra_chave_3 ? ", " + item.palavra_chave_3 : undefined}
+          {item.palavra_chave_4 !== "NULL" && item.palavra_chave_4 ? ", " + item.palavra_chave_4 : undefined}
+          {item.palavra_chave_5 !== "NULL" && item.palavra_chave_5 ? ", " + item.palavra_chave_5 : undefined}
+          {item.palavra_chave_6 !== "NULL" && item.palavra_chave_6 ? ", " + item.palavra_chave_6 : undefined}
+        </Typography>
  
        <Url key={item.id} doi={item.doi} table={table} id={item.id} home_page={item.home_page_do_trabalho} external_url={item.external_url} />
       

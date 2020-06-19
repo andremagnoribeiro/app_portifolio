@@ -1,60 +1,43 @@
 import React, { useEffect, useState } from 'react'
 
-
 import { emphasize, withStyles } from '@material-ui/core/styles';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Chip from '@material-ui/core/Chip';
 
+import { SigaSearch } from './components/SigaSearch';
+import { siga_disciplinas, siga_projetos } from "../../api/serverAPI";
 
-import { Search } from './components/Search';
-import { pb_artigo_publicado, pb_capitulo_livro_publicado_organizado } from "../../api/serverAPI";
-import { CapituloLivroPublicadoOrganizado } from "./components/itens/CapituloLivroPublicadoOrganizado";
-import { ArtigoPublicado } from "./components/itens/ArtigoPublicado";
+import { SigaDisciplina } from "./components/itens/SigaDisciplina";
+import { SigaProjeto } from "./components/itens/SigaProjeto";
 
-//
 
-export const P_Portifolio_Lattes = props => {
+
+export const P_Portfolio_Siga = (props) => {
+
   const user = props.match.params.user;
 
-  
-  const [artigoPublicado, setArtigoPublicado] = useState([]);
-  const [capituloLivroPublicadoOrganizado, setCapituloLivroPublicadoOrganizado] = useState([]);
+  const [projetos, setProjetos] = useState([]);
+  const [disciplinas, setDisciplinas] = useState([]);
   const [search, setSearch] = useState("");
   const [filtroSearch, setFiltroSearch] = useState("");
   const [anoFilter, setAnoFilter] = useState([]);
-  const [update, setUpdate] = useState("");
+  
   const [tipo, setTipo] = useState("");
 
   ////////////////////////////////////////////////////////////////////
 
-  const [expandedImport, setExpandedImport] = useState(false);
-  const [expandedDelete, setExpandedDelete] = useState(false);
-
-
-  const handleExpandClickImport = () => {
-    setExpandedImport(!expandedImport);
-  };
-  const handleExpandClickDelete = () => {
-    setExpandedDelete(!expandedDelete);
-  };
+ 
+ 
 
   useEffect(() => {
-    pb_artigo_publicado(user)
-      .then(data => setArtigoPublicado(data));
-    pb_capitulo_livro_publicado_organizado(user)
-      .then(dat => setCapituloLivroPublicadoOrganizado(dat));
+    siga_projetos(user)
+      .then(data => setProjetos(data));
+      siga_disciplinas(user)
+      .then(dat => setDisciplinas(dat));
     setAnoFilter(arrayDate(2020, 1950))
 
-  }, [update]);
+  }, [user]);
 
 
   const arrayDate = (ini, fim) => {
@@ -76,7 +59,7 @@ export const P_Portifolio_Lattes = props => {
     setSearch("");
     var stringsearch = "";
     if (busca !== "") {
-      stringsearch = stringsearch + busca + " / ";
+      stringsearch = stringsearch  + " / ";
     }
     var date = new Date();
     if (anoInicio !== "Início") {
@@ -94,39 +77,37 @@ export const P_Portifolio_Lattes = props => {
   };
 
 
-  const artigosPublicados = (i) => artigoPublicado.map(function (item) {
+  const f_projetos = (i) => projetos.map(function (item) {
 
     if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
 
-      if (item.ano_do_artigo === i) {
-        return <ArtigoPublicado key={item.id} {...item} />
-
+      if (item.ANO === i) {
+        return <SigaProjeto key={item.id} {...item} />
       }
     } return null;
   })
 
-  const capitulosLivrosPublicadosOrganizados = (i) => capituloLivroPublicadoOrganizado.map(function (item) {
+  const f_disciplinas = (i) => disciplinas.map(function (item) {
     if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
 
-      if (item.ano === i) {
-        return <CapituloLivroPublicadoOrganizado key={item.id} {...item} />
+      if (item.ANO === i) {
+        return <SigaDisciplina key={item.id} {...item} />
       }
     } return null;
   })
 
   const allTipo = (i) => [
-    capitulosLivrosPublicadosOrganizados(i),
-    artigosPublicados(i)
+    f_projetos(i),
+    f_disciplinas(i)
   ]
 
-  const update_f = () => { setUpdate(!update) }
-
+  
   const ordemAno = () => anoFilter.map((i) => {
     if (tipo !== "") {
-      if (tipo === "artigo_publicado") {
-        return artigosPublicados(i);
-      } else if (tipo === "capitulo_de_livros_publicado")
-        return capitulosLivrosPublicadosOrganizados(i);
+      if (tipo === "projeto") {
+        return f_projetos(i);
+      } else if (tipo === "disciplina")
+        return f_disciplinas(i);
     } else {
       return allTipo(i)
     }
@@ -142,11 +123,15 @@ export const P_Portifolio_Lattes = props => {
         <Card >
 
           <CardHeader
-            title={"Portifólio Publico - "+user}
-            subheader={"Currículo Lattes CNPQ "}
+           
+            title="Portfólio Publico "
+            subheader={"Siga"}
           />
 
-          <Search key="1" getSearch={getSearch} />
+
+     
+
+          <SigaSearch getSearch={getSearch} />
 
           {search ? <StyledBreadcrumb onClick={() => { setFiltroSearch(""); setSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + search + filtroSearch + tipo + "   (x)"} /> : <div />}
 

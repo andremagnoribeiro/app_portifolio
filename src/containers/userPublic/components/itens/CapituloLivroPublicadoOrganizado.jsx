@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 
@@ -11,42 +10,18 @@ import Collapse from '@material-ui/core/Collapse';
 
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { ItemCard } from '../ItemCard';
 import {Url} from '../Url'
 
 
 const table="pb_capitulo_livro_publicado_organizado";
-const useStyles = makeStyles((theme) => ({
-  root: {
 
-
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-}));
 
 
 export const CapituloLivroPublicadoOrganizado = (item) => {
-  const classes = useStyles();
+  
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -70,15 +45,18 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
         <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_livro}  </Typography>
        
        
-        <Typography component={'span'} variant="h6" color="textSecondary" gutterBottom>
-          Palavras Chaves:
-            {item.palavra_chave_1!=="NULL" ? " " + item.palavra_chave_1 : undefined}
-          {item.palavra_chave_2 !=="NULL"? ", " + item.palavra_chave_2 : undefined}
-          {item.palavra_chave_3 !=="NULL"? ", " + item.palavra_chave_3 : undefined}
-          {item.palavra_chave_4 !=="NULL"? ", " + item.palavra_chave_4 : undefined}
-          {item.palavra_chave_5 !=="NULL"? ", " + item.palavra_chave_5 : undefined}
-          {item.palavra_chave_6 !=="NULL"? ", " + item.palavra_chave_6 : undefined}
+        <Typography color="textSecondary" >
+          
+          {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? "Palavras Chaves:": undefined}
+         
+          {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? " " + item.palavra_chave_1 : undefined}
+          {item.palavra_chave_2 !== "NULL" && item.palavra_chave_2 ? ", " + item.palavra_chave_2 : undefined}
+          {item.palavra_chave_3 !== "NULL" && item.palavra_chave_3 ? ", " + item.palavra_chave_3 : undefined}
+          {item.palavra_chave_4 !== "NULL" && item.palavra_chave_4 ? ", " + item.palavra_chave_4 : undefined}
+          {item.palavra_chave_5 !== "NULL" && item.palavra_chave_5 ? ", " + item.palavra_chave_5 : undefined}
+          {item.palavra_chave_6 !== "NULL" && item.palavra_chave_6 ? ", " + item.palavra_chave_6 : undefined}
         </Typography>
+
         <Url key={item.id} doi={item.doi} table={table} id={item.id} home_page={item.home_page_do_trabalho} external_url={item.external_url} />
     
       </CardContent>

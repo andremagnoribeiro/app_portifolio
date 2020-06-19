@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -13,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import {login} from "../PrivateRoute"
 import md5 from 'md5';
 const server="http://localhost"
 
@@ -23,7 +21,7 @@ export const FormLogin = () => {
 
   const [textEmail,setTextEmail]= useState("");
   const [textPassWord,setTextPassWord]= useState("");
-  const [foco,setFoco]= useState(false);
+ 
 
  
  
@@ -33,17 +31,17 @@ export const FormLogin = () => {
     let xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
-      if(xhr.responseText=="false"){
+      if(xhr.responseText==="false"){
         
         document.getElementById("msg").style.display="block";
       }else{
         const user=JSON.parse(xhr.responseText);
         localStorage.setItem("user",JSON.stringify(user));
-        window.location.href ="/";
+        window.location.href ="/ufjfportfolioprofissional/build/";
       }
     };
 
-    xhr.open('GET', server+`/api/login.php/?user=${textEmail}&password=${md5(textPassWord)}`, true);
+    xhr.open('GET', server+`/ufjfportfolioprofissional/api/login.php/?user=${textEmail}&password=${md5(textPassWord)}`, true);
     xhr.send();
 
   }
@@ -70,7 +68,7 @@ export const FormLogin = () => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="CPF"
             name="email"
             autoComplete="email"
             autoFocus
@@ -89,10 +87,7 @@ export const FormLogin = () => {
             autoComplete="current-password"
             onChange={e=>setTextPassWord(e.target.value)}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+        
           <Button
             onClick={loginForm}
             fullWidth
@@ -103,14 +98,14 @@ export const FormLogin = () => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
-              <a href="/createuser" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <a href="/ufjfportfolioprofissional/build/createuser" variant="body2">
+                {"Criar uma Usuário"}
               </a>
             </Grid>
           </Grid>
