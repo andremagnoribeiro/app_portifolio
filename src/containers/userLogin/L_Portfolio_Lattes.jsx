@@ -270,8 +270,7 @@ export const L_Portfolio_Lattes = (props) => {
 
       <LimparDados update={update_f} />
       <Search getSearch={getSearch} />
-      {stringSearch ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + stringSearch + "   (x)"} /> : <div />}
-
+    
 
       {(artigoPublicado_T &&
         livroPublicadoOrganizado_T &&
@@ -286,6 +285,8 @@ export const L_Portfolio_Lattes = (props) => {
           trabalhoEvento_Q={trabalhoEvento_Q}
           livroPublicadoOrganizado_Q={livroPublicadoOrganizado_Q}
         />}
+          {stringSearch ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + stringSearch + "   (x)"} /> : <div />}
+
       {(artigoPublicado_T &&
         livroPublicadoOrganizado_T &&
         trabalhoEvento_T &&

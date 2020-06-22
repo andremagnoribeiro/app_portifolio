@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Chip from '@material-ui/core/Chip';
 import { SigaSearch } from './components/SigaSearch';
-import { siga_disciplinas, siga_projetos } from "../../api/serverAPI";
+import { siga_disciplinas, siga_projetos, getUserId } from "../../api/serverAPI";
 
 import { SigaDisciplina } from "./components/itens/SigaDisciplina";
 import { SigaProjeto } from "./components/itens/SigaProjeto";
@@ -15,6 +15,8 @@ import { SigaResumo } from "./SigaResumo";
 export const P_Portfolio_Siga = (props) => {
 
   const user = props.match.params.user;
+  
+  const [userInfo, setUserInfo] = useState([]);
 
   const [projetos, setProjetos] = useState([]);
   const [disciplinas, setDisciplinas] = useState([]);
@@ -33,6 +35,7 @@ export const P_Portfolio_Siga = (props) => {
 
 
   useEffect(() => {
+    getUserId(user).then(data=>setUserInfo(data));
     siga_projetos(user)
       .then(data => {
         setProjetos(data);
@@ -136,7 +139,7 @@ export const P_Portfolio_Siga = (props) => {
 
           <CardHeader
 
-            title="Portfólio Publico "
+            title={"Portfólio - " + userInfo.name}
             subheader={"Siga"}
           />
 

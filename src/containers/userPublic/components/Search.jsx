@@ -131,7 +131,7 @@ export const Search = ({ getSearch }) => {
                 <CardContent>
 
                   <Typography  style={{ marginTop: 5, marginLeft: 5 }}  color="textSecondary" component="p">
-                    Ano de Publicação(início/fim)
+                    Ano de Publicação (início/fim)
                   </Typography>
 
                   <FormControl className={classes.formControl}>

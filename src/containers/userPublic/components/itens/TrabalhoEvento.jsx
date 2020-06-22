@@ -37,7 +37,7 @@ export const TrabalhoEvento = (item) => {
     }}>
 
       <CardHeader
-        title={"Trabalho de Evento"}
+        title={"Trabalho em Evento"}
         subheader={"Ano: " + item.ano_do_trabalho }
       />
  

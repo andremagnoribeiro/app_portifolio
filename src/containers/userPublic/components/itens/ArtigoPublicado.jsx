@@ -100,23 +100,15 @@ export const ArtigoPublicado = (item) => {
             {ItemCard("Idioma:", item.idioma)}
             {ItemCard("ISBN:", item.isbn)}
             {ItemCard("Meio de Divulgacão:", item.meio_de_divulgacao)}
-
             {ItemCard("Número da Edicao Revisão:", item.numero_da_edicao_revisao)}
             {ItemCard("Número da Série:", item.numero_da_serie)}
             {ItemCard("Número de Volumes:", item.numero_de_volumes)}
-
-
             {ItemCard("Organizadores:", item.organizadores)}
             {ItemCard("Página Final:", item.pagina_final)}
             {ItemCard("Página Inicial:", item.pagina_inicial)}
             {ItemCard("País de Publicacão:", item.pais_de_publicacao)}
-
             {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
-            {ItemCard("doi:", item.doi)}
-            {ItemCard("external_url:", item.external_url)}
-            {ItemCard("Home_page_do_trabalho:", item.home_page_do_trabalho)}
-            {ItemCard("id:", item.id)}
-
+       
           </Card>
           <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             <CardHeader

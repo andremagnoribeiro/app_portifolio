@@ -13,7 +13,8 @@ import {
   pb_capitulo_livro_publicado_organizado,
   pb_livro_publicado_organizado,
   pb_texto_jornal_revista,
-  pb_trabalho_evento
+  pb_trabalho_evento,
+  getUserId
 } from "../../api/serverAPI";
 import { CapituloLivroPublicadoOrganizado } from "./components/itens/CapituloLivroPublicadoOrganizado";
 import { ArtigoPublicado } from "./components/itens/ArtigoPublicado";
@@ -29,6 +30,8 @@ export const P_Portfolio_Lattes = (props) => {
 
 
   const user = props.match.params.user;
+  
+  const [userInfo, setUserInfo] = useState([]);
 
   const [artigoPublicado_T, setArtigoPublicado_T] = useState([]);
   const [capituloLivroPublicadoOrganizado_T, setCapituloLivroPublicadoOrganizado_T] = useState([]);
@@ -66,6 +69,7 @@ export const P_Portfolio_Lattes = (props) => {
 
 
   useEffect(() => {
+    getUserId(user).then(data=>setUserInfo(data));
     pb_artigo_publicado(user).then(data => {
       setArtigoPublicado_Q(data.length);
       setArtigoPublicado(data);
@@ -95,7 +99,7 @@ export const P_Portfolio_Lattes = (props) => {
     .then(data => setLivroPublicadoOrganizado(data));
     */
 
-    setAnoFilter(arrayDate(2020, 1950))
+    setAnoFilter(arrayDate(2020, 2010))
 
 
   }, [update, user]);
@@ -260,13 +264,12 @@ export const P_Portfolio_Lattes = (props) => {
   return (
     <div  >
       <CardHeader
-        title={"Portfólio  - " + user}
+        title={"Portfólio - " + userInfo.name}
         subheader={"Currículo Lattes CNPQ "}
       />
 
       <Search getSearch={getSearch} />
-      {stringSearch ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + stringSearch + "   (x)"} /> : <div />}
-
+    
 
       {(artigoPublicado_T &&
         livroPublicadoOrganizado_T &&
@@ -281,6 +284,9 @@ export const P_Portfolio_Lattes = (props) => {
           trabalhoEvento_Q={trabalhoEvento_Q}
           livroPublicadoOrganizado_Q={livroPublicadoOrganizado_Q}
         />}
+          {stringSearch ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 5 }} component="a" href="#" label={"Busca: " + stringSearch + "   (x)" }  /> : <div />}
+          {tipo ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 5 }} component="a" href="#" label={tipo?"Busca: "+tipo + "  (x)":undefined }  /> : <div />}
+
       {(artigoPublicado_T &&
         livroPublicadoOrganizado_T &&
         trabalhoEvento_T &&

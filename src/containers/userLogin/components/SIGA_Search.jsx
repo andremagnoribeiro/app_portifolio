@@ -205,7 +205,7 @@ export const SIGA_Search = ({ getSearch }) => {
                   value={tipoD}
                   input={<Input id="demo-dialog-native" />}
                 >
-                  <option value="" >Todos</option>
+                  <option value={null} >Todos</option>
                   <option value="projeto" >Projetos</option>
                   <option value="disciplina" >Disciplinas</option>
                 </Select>

@@ -79,14 +79,13 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
               subheader=""
             />
             {ItemCard("Titulo do Capítulo do Livro:", item.titulo_do_capitulo_do_livro)}
-            {ItemCard("Titulo do Livro:", item.titulo_do_livro)}
             {ItemCard("Tipo:", item.tipo)}
             {ItemCard("Natureza:", item.natureza)}
            
             {item.titulo_do_capitulo_do_livro_ingles === '' ? ItemCard("Ingles:", item.titulo_do_capitulo_do_livro_ingles) : undefined}
            
             {ItemCard("Cidade da Editora:", item.cidade_da_editora)}
-            {ItemCard("Informacoes Adicionais (Ingles):", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingle)}
+            {ItemCard("País de Publicacão:", item.pais_de_publicacao)}
             {ItemCard("Flag Divulgacão cientifica:", item.flag_divulgacao_cientifica)}
             {ItemCard("Flag Relevancia:", item.flag_relevancia)}
 
@@ -97,18 +96,15 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
             {ItemCard("Número da Edicao Revisão:", item.numero_da_edicao_revisao)}
             {ItemCard("Número da Série:", item.numero_da_serie)}
             {ItemCard("Número de Volumes:", item.numero_de_volumes)}
+            {ItemCard("Página Inicial:", item.pagina_inicial)}
+            {ItemCard("Página Final:", item.pagina_final)}
 
 
             {ItemCard("Organizadores:", item.organizadores)}
-            {ItemCard("Página Final:", item.pagina_final)}
-            {ItemCard("Página Inicial:", item.pagina_inicial)}
-            {ItemCard("País de Publicacão:", item.pais_de_publicacao)}
 
             {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
-            {ItemCard("doi:", item.doi)}
-            {ItemCard("external_url:", item.external_url)}
-            {ItemCard("Home_page_do_trabalho:", item.home_page_do_trabalho)}
-            {ItemCard("id:", item.id)}
+            
+            {ItemCard("Informacoes Adicionais (Ingles):", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingle)}
 
           </Card>
 

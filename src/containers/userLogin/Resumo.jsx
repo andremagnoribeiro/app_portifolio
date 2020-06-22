@@ -23,7 +23,7 @@ export const Resumo = ({ setTipo,artigoPublicado_Q,capituloLivroPublicadoOrganiz
   
   
   return (
-    <Card style={{ marginTop: 3, marginLeft: 20, marginRight: 20, paddingLeft: 20, paddingRigth: 20, backgroundColor: "#DCDCDC" }}>
+    <Card style={{ marginTop: 3, marginLeft: 20, marginRight: 20, paddingLeft: 20, paddingRigth: 20, backgroundColor: "rgb(241, 255, 243)" }}>
       <CardHeader
         title={"Resumo "}
       />

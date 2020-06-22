@@ -41,7 +41,7 @@ export const L_BarraMenu = props => {
 
   window.addEventListener('resize', function () {
 
-    if (window.innerWidth >= 1000) {
+    if (window.innerWidth >= 1200) {
       setEncolher(false);
     } else {
       setEncolher(true);
@@ -49,7 +49,7 @@ export const L_BarraMenu = props => {
   });
 
   useEffect(() => {
-    if (window.innerWidth >= 1000) {
+    if (window.innerWidth >= 1200) {
       setEncolher(false);
     } else {
       setEncolher(true);
@@ -175,7 +175,7 @@ export const L_BarraMenu = props => {
             <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
 
 
-            <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).name}</Typography><ExpandMoreIcon />
+            <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
           </Button>
           <Popper style={{ zIndex:3 }} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({ TransitionProps, placement }) => (
@@ -255,7 +255,7 @@ export const L_BarraMenu = props => {
                   <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
 
 
-                  <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).name}</Typography><ExpandMoreIcon />
+                  <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
                 </Button>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                   {({ TransitionProps, placement }) => (
@@ -290,10 +290,11 @@ export const L_BarraMenu = props => {
         keepMounted
         open={Boolean(anchorEla)}
         onClose={handleClosea}
+        color="primary"
       >
-        <MenuItem>
+        <MenuItem >
 
-          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href("/")} >Home</Button>
+          <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => href("/")} >Home</Button>
         </MenuItem>
         <MenuItem>
           
@@ -309,7 +310,7 @@ export const L_BarraMenu = props => {
                 ref={anchorRefp}
                 aria-controls={openP ? 'menu-list-growp' : undefined}
                 aria-haspopup="true"
-
+                    
                 style={{ width: '100%' }} variant="outlined"  >
                 MEU PORTIFÓLIO LATTES
           </Button>

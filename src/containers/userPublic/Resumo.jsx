@@ -23,13 +23,12 @@ export const Resumo = ({ setTipo,artigoPublicado_Q,capituloLivroPublicadoOrganiz
   
   
   return (
-    <Card style={{ marginTop: 3, marginLeft: 20, marginRight: 20, paddingLeft: 20, paddingRigth: 20, backgroundColor: "#DCDCDC" }}>
+    <Card style={{ marginTop: 3, marginLeft: 20, marginRight: 20, paddingLeft: 20, paddingRigth: 20, backgroundColor: "rgb(241, 255, 243)" }}>
       <CardHeader
         title={"Resumo "}
       />
      
      
-      <CardContent  >
       <Backdrop style={{zIndex:3}}  open={(artigoPublicado_Q === -1 ||
           capituloLivroPublicadoOrganizado_Q===-1||
           textoJornalRevista_Q===-1||
@@ -39,23 +38,23 @@ export const Resumo = ({ setTipo,artigoPublicado_Q,capituloLivroPublicadoOrganiz
         <CircularProgress color="inherit" />
       </Backdrop>
 
-      {artigoPublicado_Q !== -1 ?<Button style={{width:'50%'}} onClick={()=>setTipo("artigoPublicado")} variant="outlined" >
+      {artigoPublicado_Q !== -1 ?<Button   color="primary" style={{margin:10,width:250 , height:80}} onClick={()=>setTipo("artigoPublicado")} variant="outlined" >
           Artigos Publicados: {artigoPublicado_Q}
         </Button>:undefined}
-       { capituloLivroPublicadoOrganizado_Q!==-1&&<Button style={{width:'50%'}} onClick={()=>setTipo("capituloLivroPublicadoOrganizado")} variant="outlined" >
+       { capituloLivroPublicadoOrganizado_Q!==-1&&<Button     color="primary"style={{margin:10,width:250, height:80}} onClick={()=>setTipo("capituloLivroPublicadoOrganizado")} variant="outlined" >
          Capítulo Livro Publicado Organizado: {capituloLivroPublicadoOrganizado_Q}
         </Button>}
-        { textoJornalRevista_Q!==-1&&<Button style={{width:'50%'}} onClick={()=>setTipo("textoJornalRevista")} variant="outlined" >
+        { textoJornalRevista_Q!==-1&&<Button   color="primary" style={{margin:10,width:250, height:80}} onClick={()=>setTipo("textoJornalRevista")} variant="outlined" >
         Texto Jornal Revista: {textoJornalRevista_Q}
         </Button>}
-        { livroPublicadoOrganizado_Q!==-1&&<Button style={{width:'50%'}} onClick={()=>setTipo("livroPublicadoOrganizado")} variant="outlined" >
+        { livroPublicadoOrganizado_Q!==-1&&<Button  color="primary" style={{margin:10,width:250, height:80}} onClick={()=>setTipo("livroPublicadoOrganizado")} variant="outlined" >
         Livro Publicado Organizado: {livroPublicadoOrganizado_Q}
         </Button>}
-        { trabalhoEvento_Q!==-1&&<Button style={{width:'50%'}} onClick={()=>setTipo("trabalhoEvento")} variant="outlined" >
-        Trabalho Evento: {trabalhoEvento_Q}
+        { trabalhoEvento_Q!==-1&&<Button   color="primary" style={{margin:10,width:250, height:80}} onClick={()=>setTipo("trabalhoEvento")} variant="outlined" >
+        Trabalho em' Evento: {trabalhoEvento_Q}
         </Button>}
         
-      </CardContent>
+     
     </Card>
   );
 }
