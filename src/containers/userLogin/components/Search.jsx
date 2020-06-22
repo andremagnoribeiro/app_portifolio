@@ -17,12 +17,12 @@ import CardContent from '@material-ui/core/CardContent';
 
 export const Search = ({ getSearch }) => {
   const classes = useStyles();
-  const [textsearch, setTextsearch] = useState('');
+  const [textsearch, setTextsearch] = useState(null);
   const [selectedFim, setSelectedFim] = useState(null);
   const [selectedInicio, setSelectedInicio] = useState(null);
   const [anoInicio, setAnoInicio] = useState([]);
   const [arrayFim, setArrayFim] = useState([]);
-  const [tipoD, setTipoD] = useState("");
+  const [tipoD, setTipoD] = useState(null);
  
   const onChangeInput = (event) => {
     setTextsearch(event.target.value);
@@ -43,18 +43,15 @@ export const Search = ({ getSearch }) => {
     var data = new Date();
     setArrayFim(arrayDate(Number(event.target.value), data.getFullYear()));
     setSelectedInicio(Number(event.target.value));
-    getSearch(textsearch, Number(event.target.value), selectedFim, tipoD);
+   
   }
 
   const handleChangeSelectFim = (event) => {
     setSelectedFim(Number(event.target.value));
-    getSearch(textsearch, selectedInicio, Number(event.target.value), tipoD);
   };
 
   const handleChangeSelectTipo = (event) => {
     setTipoD(event.target.value);
-    getSearch(textsearch, selectedInicio, selectedFim, event.target.value);
-
   }
 
 
@@ -177,7 +174,7 @@ export const Search = ({ getSearch }) => {
                 width: "calc((100% / 2) )"
               }}>
               <CardContent>
-                <Typography style={{ marginTop: 5, marginLeft: 15 }}  color="textSecondary" component="p">
+                <Typography style={{ marginTop: 5, marginLeft: 5 }}  color="textSecondary" component="p">
                   Tipo
           </Typography>
                 <Select
@@ -186,10 +183,14 @@ export const Search = ({ getSearch }) => {
                   value={tipoD}
                   input={<Input id="demo-dialog-native" />}
                 >
-                  <option value="" >Todos</option>
+                  <option value={null}>Todos</option>
                   <option value="artigo_publicado" >Artigo Publicado</option>
-                  <option value="capitulo_de_livros_publicado" >Capitulo de Livro Publicado</option>
+                  <option value="capitulo_de_livros_publicado" >Capítulo de Livro Publicado</option>
                   <option value="livro_publicado" >Livro Publicado Organizado</option>
+                  <option value="trabalhoEvento" >Trabalho Evento</option>
+                  <option value="textoJornalRevista" >Texto Jornal Revista</option>
+                  
+                  
                   {/* <option value="capitulo_de_livros_publicado" >Capitulo de Livros Publicado</option> */}
                 </Select>
               </CardContent>

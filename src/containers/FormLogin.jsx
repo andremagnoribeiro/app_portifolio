@@ -11,9 +11,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {server} from '../var';
 import md5 from 'md5';
-const server="http://localhost"
 
 export const FormLogin = () => {
 
@@ -98,11 +97,6 @@ export const FormLogin = () => {
             Sign In
           </Button>
           <Grid container>
-            {/* <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
             <Grid item>
               <a href="/ufjfportfolioprofissional/build/createuser" variant="body2">
                 {"Criar uma Usuário"}

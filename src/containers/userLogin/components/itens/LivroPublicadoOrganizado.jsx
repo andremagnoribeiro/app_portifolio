@@ -8,6 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import { Autores } from '../Autores';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -31,7 +32,7 @@ export const LivroPublicadoOrganizado = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#fff22f",
+      backgroundColor: "rgb(255, 238, 218)",
       maxWidth: 2000,
       margin: 20
     }}>
@@ -97,46 +98,14 @@ export const LivroPublicadoOrganizado = (item) => {
            { ItemCard("Número de Serie", item.numero_da_serie)}                          
            { ItemCard("Número da Edição Revisão", item.numero_da_edicao_revisao)}                          
           
-           { ItemCard("Flag de divulgação", item.flag_divulgacao_cientifica)}                          
-           { ItemCard("Flag de revevancia", item.flag_relevancia)}                          
+           { ItemCard("Flag de Divulgação Científica", item.flag_divulgacao_cientifica)}                          
+           { ItemCard("Flag de Relevancia", item.flag_relevancia)}                          
            { ItemCard("Titulo em Ingles", item.titulo_do_livro_ingles)}                          
-           { ItemCard("Informações adicionais", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingles)}                          
+           { ItemCard("Informações Adicionais", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingles)}                          
 
           </Card>
 
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
-            <CardHeader
-              title="Autores"
-              subheader=""
-            />
-
-            {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
-              if(item[`nome_completo_do_autor_${i}`] && item[`nome_completo_do_autor_${i}`] !=="NULL"){
-              return (<Card key={item.id} style={{ margin:10}}>
-                <CardContent>
-                  <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom>
-                    Nome Completo: {item[`nome_completo_do_autor_${i}`]}
-                  </Typography >
-                  <Typography component={'span'} variant="body1" >
-                    Nome para Citação: {item[`nome_para_citacao_${i}`]}
-                  </Typography>
-                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                    CPF: {item[`cpf_${i}`]}
-                  </Typography>
-                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                    ID CNPQ: {item[`nro_id_cnpq_${i}`]}
-                  </Typography>
-                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                    Ordem de Autoria: {item[`ordem_de_autoria_${i}`]}
-                  </Typography>
-                </CardContent>
-              </Card>)
-              }
-              return undefined;
-              
-            })}
-
-          </Card>
+          <Autores item={item}/>
           {item.nome_grande_area_do_conhecimento_1 && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             <CardHeader
               title="Area de Conhecimento"

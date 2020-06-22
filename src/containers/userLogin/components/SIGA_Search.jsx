@@ -155,7 +155,7 @@ export const SIGA_Search = ({ getSearch }) => {
               }}>
                 <CardContent>
 
-                  <Typography  style={{ marginTop: 5, marginLeft: 15 }} variant="h10" color="textSecondary" component="p">
+                  <Typography  style={{ marginTop: 5, marginLeft: 5 }} variant="h10" color="textSecondary" component="p">
                     Ano 
           </Typography>
 
@@ -195,7 +195,7 @@ export const SIGA_Search = ({ getSearch }) => {
                 width: "calc((100% / 2) )"
               }}>
               <CardContent>
-                <Typography style={{  marginTop: 5, marginLeft: 15  }} variant="h10" color="textSecondary" component="p">
+                <Typography style={{  marginTop: 5, marginLeft: 5  }} variant="h10" color="textSecondary" component="p">
                   Tipo
                 </Typography>
                 <FormControl className={classes.formControl}>

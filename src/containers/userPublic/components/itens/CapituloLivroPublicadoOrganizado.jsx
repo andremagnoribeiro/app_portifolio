@@ -36,7 +36,7 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
     }}>
       <CardHeader
       
-        title="Capitulo de Livros Publicado"
+        title="Capítulo de Livros Publicado"
         subheader={"publicado em: " + item.ano}
 
       />
@@ -78,7 +78,7 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
               title="Dados Gerais"
               subheader=""
             />
-            {ItemCard("Titulo do Capitulo do Livro:", item.titulo_do_capitulo_do_livro)}
+            {ItemCard("Titulo do Capítulo do Livro:", item.titulo_do_capitulo_do_livro)}
             {ItemCard("Titulo do Livro:", item.titulo_do_livro)}
             {ItemCard("Tipo:", item.tipo)}
             {ItemCard("Natureza:", item.natureza)}
@@ -118,18 +118,33 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
               title="Autores"
               subheader=""
             />
-            {item.nome_completo_do_autor_1 ? ItemCard("Autor 1:", item.nome_completo_do_autor_1, item.cpf_1, item.nome_para_citacao_1 ? "[" + item.nome_para_citacao_1 + "]" : 'NULL') : undefined}
 
-            {item.nome_completo_do_autor_2 ? ItemCard("Autor 2:", item.nome_completo_do_autor_2, item.cpf_2, item.nome_para_citacao_2 ? "[" + item.nome_para_citacao_2 + "]" : 'NULL') : undefined}
-
-            {item.nome_completo_do_autor_3 ? ItemCard("Autor 3:", item.nome_completo_do_autor_3, item.cpf_3, item.nome_para_citacao_3 ? "[" + item.nome_para_citacao_3 + "]" : 'NULL') : undefined}
-
-            {item.nome_completo_do_autor_4 ? ItemCard("Autor 4:", item.nome_completo_do_autor_4, item.cpf_4, item.nome_para_citacao_4 ? "[" + item.nome_para_citacao_4 + "]" : 'NULL') : undefined}
-
-
+{[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+              if(item[`nome_completo_do_autor_${i}`] && item[`nome_completo_do_autor_${i}`] !=="NULL"){
+              return (<Card key={item.id} style={{ margin:10, backgroundColor: "#d3d3d3"}}>
+                <CardContent>
+                  <Typography >
+                    Nome Completo: {item[`nome_completo_do_autor_${i}`]}
+                  </Typography >
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    Nome para Citação: {item[`nome_para_citacao_${i}`]}
+                  </Typography>
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    CPF: {item[`cpf_${i}`]}
+                  </Typography>
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    ID CNPQ: {item[`nro_id_cnpq_${i}`]}
+                  </Typography>
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    Ordem de Autoria: {item[`ordem_de_autoria_${i}`]}
+                  </Typography>
+                </CardContent>
+              </Card>)
+              }
+              return undefined;
+              
+            })}
           </Card>
-
-
 
           <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             <CardHeader

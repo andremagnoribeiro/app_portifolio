@@ -14,46 +14,42 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { ItemCard } from '../ItemCard';
-import { Autores } from '../Autores';
 
 import { Url } from '../Url';
 
 
-const table = "pb_artigo_publicado";
+const table = "pb_livro_publicado_organizado";
 
 
-export const ArtigoPublicado = (item) => {
+export const LivroPublicadoOrganizado = (item) => {
 
   const [expanded, setExpanded] = useState(false);
-
-
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-
   return (
     <Card style={{
-      backgroundColor: "rgb(208, 255, 212)",
+      backgroundColor: "rgb(255, 238, 218)",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
-        title="Artigo Publicado"
-        subheader={"publicado em: " + item.ano_do_artigo}
+        title="Livro Publicado Organizado"
+        subheader={"publicado em: " + item.ano}
       />
 
       <CardContent>
 
-        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_artigo}  </Typography>
+        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_livro}  </Typography>
 
 
-        <Typography color="textSecondary" >
-          
-          {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? "Palavras Chaves:": undefined}
-         
+        <Typography  component={'span'} variant="h5" color="textSecondary" gutterBottom >
+
+          {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? "Palavras Chaves:" : undefined}
+
           {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? " " + item.palavra_chave_1 : undefined}
           {item.palavra_chave_2 !== "NULL" && item.palavra_chave_2 ? ", " + item.palavra_chave_2 : undefined}
           {item.palavra_chave_3 !== "NULL" && item.palavra_chave_3 ? ", " + item.palavra_chave_3 : undefined}
@@ -87,39 +83,61 @@ export const ArtigoPublicado = (item) => {
               title="Dados Gerais"
               subheader=""
             />
-            {ItemCard("Titulo do Capítulo do Livro:", item.titulo_do_capitulo_do_livro)}
-            {ItemCard("Titulo do Livro:", item.titulo_do_livro)}
-            {ItemCard("Tipo:", item.tipo)}
-            {ItemCard("Natureza:", item.natureza)}
-
-            {item.titulo_do_capitulo_do_livro_ingles === '' ? ItemCard("Ingles:", item.titulo_do_capitulo_do_livro_ingles) : undefined}
-
-            {ItemCard("Cidade da Editora:", item.cidade_da_editora)}
-            {ItemCard("Informacoes Adicionais (Ingles):", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingle)}
-            {ItemCard("Flag Divulgacão cientifica:", item.flag_divulgacao_cientifica)}
-            {ItemCard("Flag Relevancia:", item.flag_relevancia)}
-
-            {ItemCard("Idioma:", item.idioma)}
-            {ItemCard("ISBN:", item.isbn)}
-            {ItemCard("Meio de Divulgacão:", item.meio_de_divulgacao)}
-
-            {ItemCard("Número da Edicao Revisão:", item.numero_da_edicao_revisao)}
-            {ItemCard("Número da Série:", item.numero_da_serie)}
-            {ItemCard("Número de Volumes:", item.numero_de_volumes)}
-
-
-            {ItemCard("Organizadores:", item.organizadores)}
-            {ItemCard("Página Final:", item.pagina_final)}
-            {ItemCard("Página Inicial:", item.pagina_inicial)}
-            {ItemCard("País de Publicacão:", item.pais_de_publicacao)}
-
-            {ItemCard("Setor de Atividade:", item.setor_de_atividade_1, item.setor_de_atividade_2, item.setor_de_atividade_3)}
+           
+           { ItemCard("Tipo", item.tipo)}                          
+           { ItemCard("Pais de Publicação", item.pais_de_publicacao)}                          
+           { ItemCard("Cidade da Editora", item.cidade_da_editora)}                          
+           { ItemCard("Natureza", item.natureza)}                          
+           { ItemCard("ISBN", item.isbn)}                          
+           { ItemCard("Meio de Divulgação", item.meio_de_divulgacao)}                          
+           { ItemCard("Idioma", item.idioma)}                          
+          
+           { ItemCard("volumes", item.numero_de_volumes)}                          
+           { ItemCard("Número de paginas", item.numero_de_paginas)}                          
+           { ItemCard("Número de Serie", item.numero_da_serie)}                          
+           { ItemCard("Número da Edição Revisão", item.numero_da_edicao_revisao)}                          
+          
+           { ItemCard("Flag de Divulgação Científica", item.flag_divulgacao_cientifica)}                          
+           { ItemCard("Flag de Relevancia", item.flag_relevancia)}                          
+           { ItemCard("Titulo em Ingles", item.titulo_do_livro_ingles)}                          
+           { ItemCard("Informações Adicionais", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingles)}                          
 
           </Card>
 
-        
-          <Autores item={item}/>
           <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+            <CardHeader
+              title="Autores"
+              subheader=""
+            />
+
+{[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+              if(item[`nome_completo_do_autor_${i}`] && item[`nome_completo_do_autor_${i}`] !=="NULL"){
+              return (<Card key={item.id} style={{ margin:10, backgroundColor: "#d3d3d3"}}>
+                <CardContent>
+                  <Typography >
+                    Nome Completo: {item[`nome_completo_do_autor_${i}`]}
+                  </Typography >
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    Nome para Citação: {item[`nome_para_citacao_${i}`]}
+                  </Typography>
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    CPF: {item[`cpf_${i}`]}
+                  </Typography>
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    ID CNPQ: {item[`nro_id_cnpq_${i}`]}
+                  </Typography>
+                  <Typography style={{ fontSize: 16, width: '100%' }} gutterBottom>
+                    Ordem de Autoria: {item[`ordem_de_autoria_${i}`]}
+                  </Typography>
+                </CardContent>
+              </Card>)
+              }
+              return undefined;
+              
+            })}
+
+          </Card>
+          {item.nome_grande_area_do_conhecimento_1 && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             <CardHeader
               title="Area de Conhecimento"
               subheader=""
@@ -145,7 +163,7 @@ export const ArtigoPublicado = (item) => {
               {ItemCard("Nome da sub area do conhecimento:", item.nome_da_sub_area_do_conhecimento_3)}
               {ItemCard("Ordem de Autoria:", item.ordem_de_autoria_3)}
             </Card> : undefined}
-          </Card>
+          </Card>}
         </CardContent>
       </Collapse>
 
@@ -153,3 +171,4 @@ export const ArtigoPublicado = (item) => {
   );
 
 }
+

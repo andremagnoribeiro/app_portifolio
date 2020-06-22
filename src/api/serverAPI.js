@@ -1,5 +1,6 @@
-import axios from 'axios'
-const server="http://localhost"
+import axios from 'axios';
+
+import {server} from '../var';
 
 
 export const pb_artigo_publicado = (user) => axios
@@ -63,3 +64,16 @@ export const pb_livro_publicado_organizado = (user) => axios
 })
                
 
+export const pb_texto_jornal_revista = (user) => axios
+.get(`${server}/ufjfportfolioprofissional/api/getTable.php?user=${user}&name=pb_texto_jornal_revista`)
+.then(({ data }) => {
+  console.log("API_pb_texto_jornal_revista", data);
+  return data;
+})
+
+export const pb_trabalho_evento = (user) => axios
+.get(`${server}/ufjfportfolioprofissional/api/getTable.php?user=${user}&name=pb_trabalho_evento`)
+.then(({ data }) => {
+  console.log("API_pb_trabalho_evento", data);
+  return data;
+})

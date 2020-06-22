@@ -4,9 +4,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {server} from '../var';
 import md5 from 'md5';
-const server="http://localhost"
 
 export const CreateUser = () => {
 
@@ -35,8 +34,12 @@ export const CreateUser = () => {
       };
   
       xhr.open('POST', server+
-      `/ufjfportfolioprofissional/api/createUser.php/?name=${name}&nameUser=${nameUser}&`+
-      `cpf=${CPF}&email=${email}&password=${md5(passWord)}`, true);
+      `/ufjfportfolioprofissional/api/createUser.php/?
+      name=${name}&
+      nameUser=${nameUser}&`+
+      `cpf=${CPF}&
+      email=${email}&
+      password=${md5(passWord)}`, true);
       xhr.send();
 
     }

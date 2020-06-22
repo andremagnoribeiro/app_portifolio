@@ -7,16 +7,28 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './ImportXML.css';
 import img_exportXML from './img/exportXML.png';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
+import ExpandMoreIcon from '@material-ui/icons/ExpandLessOutlined';
 
-const server = "http://localhost"
+import Collapse from '@material-ui/core/Collapse';
+import {server} from '../../../../var';
+
+
 
 //Class
 
-export const ImportXML = ({ update ,fechar}) => {
+export const ImportXML = ({ update}) => {
 
   const [info, setInfo] = useState({});
   const [filee, setFilee] = useState({});
- 
+  const [expandedImport, setExpandedImport] = useState(false);
+  
+
+  const handleExpandClickImport = () => {
+    setExpandedImport(!expandedImport);
+  };
+  
   useEffect(() => {
 
 
@@ -64,7 +76,18 @@ export const ImportXML = ({ update ,fechar}) => {
   }
 
   return (
+    <div>
 
+    <IconButton
+      onClick={handleExpandClickImport}
+      aria-expanded={expandedImport}
+      aria-label="show more"
+      size="small"
+    >
+      {!expandedImport ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Importar Dados
+      </IconButton>
+    <Collapse in={expandedImport} timeout="auto" unmountOnExit>
+      <div style={{ margin: 20 }}>
 
     <Card >
 
@@ -96,12 +119,14 @@ export const ImportXML = ({ update ,fechar}) => {
         <Typography >Última atualização: {info.horaAtualizacao} </Typography>
         <Button id="importarDados" style={{margin:20}} variant="contained" color="primary" onClick={()=>onChange2()}>Importar Dados</Button>
         <div className="msg" id="menseger"></div>
-        <Button id="fechar" style={{margin:20, display:'none'}} variant="contained" color="primary" onClick={fechar}>Fechar</Button>
+        <Button id="fechar" style={{margin:20, display:'none'}} variant="contained" color="primary" onClick={handleExpandClickImport}>Fechar</Button>
      
       </Box>
      
     </Card>
-
+    </div>
+        </Collapse>
+      </div>
   );
 }
 

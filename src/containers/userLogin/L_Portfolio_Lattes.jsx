@@ -3,15 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 
 import { emphasize, withStyles } from '@material-ui/core/styles';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
-
-
-
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Chip from '@material-ui/core/Chip';
 
@@ -19,13 +11,18 @@ import { Search } from './components/Search';
 import {
   pb_artigo_publicado,
   pb_capitulo_livro_publicado_organizado,
-  pb_livro_publicado_organizado
+  pb_livro_publicado_organizado,
+  pb_texto_jornal_revista,
+  pb_trabalho_evento
 } from "../../api/serverAPI";
 import { ImportXML } from "./components/importXML/ImportXML";
-import { DeleteTable } from "./components/DeleteTable"
 import { CapituloLivroPublicadoOrganizado } from "./components/itens/CapituloLivroPublicadoOrganizado";
 import { ArtigoPublicado } from "./components/itens/ArtigoPublicado";
 import { LivroPublicadoOrganizado } from "./components/itens/LivroPublicadoOrganizado";
+import { TextoJornalRevista } from "./components/itens/TextoJornalRevista";
+import { TrabalhoEvento } from "./components/itens/TrabalhoEvento";
+import { Resumo } from "./Resumo";
+import { LimparDados } from "./components/LimparDados";
 
 //
 
@@ -35,18 +32,31 @@ export const L_Portfolio_Lattes = (props) => {
 
   const user = props.match.params.user;
 
+  const [artigoPublicado_T, setArtigoPublicado_T] = useState([]);
+  const [capituloLivroPublicadoOrganizado_T, setCapituloLivroPublicadoOrganizado_T] = useState([]);
+  const [livroPublicadoOrganizado_T, setLivroPublicadoOrganizado_T] = useState([]);
+  const [textoJornalRevista_T, setTextoJornalRevista_T] = useState([]);
+  const [trabalhoEvento_T, setTrabalhoEvento_T] = useState([]);
 
   const [artigoPublicado, setArtigoPublicado] = useState([]);
   const [capituloLivroPublicadoOrganizado, setCapituloLivroPublicadoOrganizado] = useState([]);
   const [livroPublicadoOrganizado, setLivroPublicadoOrganizado] = useState([]);
+  const [textoJornalRevista, setTextoJornalRevista] = useState([]);
+  const [trabalhoEvento, setTrabalhoEvento] = useState([]);
+
+  const [artigoPublicado_Q, setArtigoPublicado_Q] = useState(-1);
+  const [capituloLivroPublicadoOrganizado_Q, setCapituloLivroPublicadoOrganizado_Q] = useState(-1);
+  const [livroPublicadoOrganizado_Q, setLivroPublicadoOrganizado_Q] = useState(-1);
+  const [trabalhoEvento_Q, setTrabalhoEvento_Q] = useState(-1);
+  const [textoJornalRevista_Q, setTextoJornalRevista_Q] = useState(-1);
+
   /*
    const [livroPublicadoOrganizado, setLivroPublicadoOrganizado] = useState([]);
  
   */
 
 
-
-  const [search, setSearch] = useState("");
+  const [stringSearch, setStringSearch] = useState("");
   const [filtroSearch, setFiltroSearch] = useState("");
   const [anoFilter, setAnoFilter] = useState([]);
   const [update, setUpdate] = useState("");
@@ -54,29 +64,43 @@ export const L_Portfolio_Lattes = (props) => {
 
   ////////////////////////////////////////////////////////////////////
 
-  const [expandedImport, setExpandedImport] = useState(false);
-  const [expandedDelete, setExpandedDelete] = useState(false);
 
 
-  const handleExpandClickImport = () => {
-    setExpandedImport(!expandedImport);
-  };
-  const handleExpandClickDelete = () => {
-    setExpandedDelete(!expandedDelete);
-  };
 
   useEffect(() => {
-    pb_artigo_publicado(user).then(data => setArtigoPublicado(data));
-    pb_capitulo_livro_publicado_organizado(user).then(dat => setCapituloLivroPublicadoOrganizado(dat));
-    pb_livro_publicado_organizado(user).then(dataa => setLivroPublicadoOrganizado(dataa));
+    pb_artigo_publicado(user).then(data => {
+      setArtigoPublicado_Q(data.length);
+      setArtigoPublicado(data);
+      setArtigoPublicado_T(true);
+    });
+    pb_capitulo_livro_publicado_organizado(user).then(data => {
+      setCapituloLivroPublicadoOrganizado_Q(data.length);
+      setCapituloLivroPublicadoOrganizado(data);
+      setCapituloLivroPublicadoOrganizado_T(true);
+    });
+    pb_livro_publicado_organizado(user).then(data => {
+      setLivroPublicadoOrganizado_Q(data.length);
+      setLivroPublicadoOrganizado(data);
+      setLivroPublicadoOrganizado_T(true);
+    });
+    pb_texto_jornal_revista(user).then(data => {
+      setTextoJornalRevista_Q(data.length);
+      setTextoJornalRevista(data);
+      setTextoJornalRevista_T(true);
+    });
+    pb_trabalho_evento(user).then(data => {
+      setTrabalhoEvento_Q(data.length);
+      setTrabalhoEvento(data);
+      setTrabalhoEvento_T(true);
+    });
     /*pb_livro_publicado_organizado(user)
-     .then(data => setLivroPublicadoOrganizado(data));
- */
-
+    .then(data => setLivroPublicadoOrganizado(data));
+    */
 
     setAnoFilter(arrayDate(2020, 1950))
 
-  }, [update,user]);
+
+  }, [update, user]);
 
 
   const arrayDate = (ini, fim) => {
@@ -92,56 +116,82 @@ export const L_Portfolio_Lattes = (props) => {
 
   const getSearch = (busca, anoInicio, anoFinal, tipo_) => {
 
-    setTipo(tipo_);
+    setStringSearch("");
+    let stringsearch = "";
 
-    setFiltroSearch(busca);
-
-
-    setSearch("");
-    var stringsearch = "";
-    if (busca !== "") {
-      stringsearch = " / " + stringsearch;
+    if (tipo_) {
+      stringsearch += " / " + tipo_;
+      setTipo(tipo_);
     }
+    if (busca) {
+      stringsearch += " / " + busca;
+      setFiltroSearch(busca);
+    }
+
     var date = new Date();
     if (anoInicio) {
       if (!anoFinal) {
-        stringsearch += "";
+        stringsearch += " / ";
         stringsearch += "(" + anoInicio + " - " + date.getFullYear() + ")";
         setAnoFilter(arrayDate(date.getFullYear(), anoInicio));
       } else {
-        stringsearch += "";
+        stringsearch += " / ";
         stringsearch += "(" + anoInicio + " - " + anoFinal + ")";
         setAnoFilter(arrayDate(anoFinal, anoInicio));
       }
     }
-    setSearch(stringsearch)
+    setStringSearch(stringsearch)
   };
-
 
 
   //aplicando os filtros
   const artigosPublicados = (i) => artigoPublicado.map(function (item) {
+
     if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
       if (item.ano_do_artigo === i) {
+
         return <ArtigoPublicado key={item.id} {...item} />
       }
     } return null;
   })
-
   const capitulosLivrosPublicadosOrganizados = (i) => capituloLivroPublicadoOrganizado.map(function (item) {
     if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
 
       if (item.ano === i) {
+
         return <CapituloLivroPublicadoOrganizado key={item.id} {...item} />
       }
     } return null;
   })
 
   const livroPublicadoOrganizados = (i) => livroPublicadoOrganizado.map(function (item) {
-    if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
 
+
+    if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
       if (item.ano === i) {
         return <LivroPublicadoOrganizado key={item.id} {...item} />
+      }
+    } return null;
+  })
+
+
+  const textoJornalRevistas = (i) => textoJornalRevista.map(function (item) {
+
+
+    if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
+      if (item.ano_do_texto === i) {
+        return <TextoJornalRevista key={item.id} {...item} />
+      }
+    } return null;
+  })
+
+  const trabalhoEventos = (i) => trabalhoEvento.map(function (item) {
+
+
+    if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
+
+      if (item.ano_de_realizacao === i) {
+        return <TrabalhoEvento key={item.id} {...item} />
       }
     } return null;
   })
@@ -160,99 +210,90 @@ export const L_Portfolio_Lattes = (props) => {
 
   const allTipo = (i) => [
     capitulosLivrosPublicadosOrganizados(i),
-    artigosPublicados(i), livroPublicadoOrganizados(i) /*livroPublicadoOrganizados(i) */
+    artigosPublicados(i),
+    livroPublicadoOrganizados(i),
+    trabalhoEventos(i),
+    textoJornalRevistas(i)/*livroPublicadoOrganizados(i) */
   ]
+
+  //   const allWorks = () => [
+  //     capitulosLivrosPublicadosOrganizado,
+  //     artigosPublicado,
+  //     livroPublicadoOrganizado,
+  //     trabalhoEvento,
+  //     textoJornalRevista
+  // ].filter(function (item) {
+  //   if ((new RegExp(filtroSearch, "i")).test(JSON.stringify(item))) {
+
+  //     if (item.ano_de_realizacao === i) {
+  //       return true;
+  //   } return true;
+  // })
 
   const update_f = () => { setUpdate(!update) }
 
   const ordemAno = () => anoFilter.map((i) => {
+
     if (tipo !== "") {
-      if (tipo === "artigo_publicado") {
+      if (tipo === "artigoPublicado") {
         return artigosPublicados(i);
-      } else if (tipo === "capitulo_de_livros_publicado") {
+      } else if (tipo === "capituloLivroPublicadoOrganizado") {
         return capitulosLivrosPublicadosOrganizados(i);
-      } else if (tipo === "livro_publicado") {
+      } else if (tipo === "livroPublicadoOrganizado") {
         return livroPublicadoOrganizados(i);
+      } else if (tipo === "textoJornalRevista") {
+        return textoJornalRevistas(i);
+      } else if (tipo === "trabalhoEvento") {
+        return trabalhoEventos(i);
       } /*else if (tipo === "capitulo_de_livros_publicado"){
-        return capitulosLivrosPublicadosOrganizados(i);
-      } else if (tipo === "capitulo_de_livros_publicado"){
-        return capitulosLivrosPublicadosOrganizados(i);
-      } else if (tipo === "capitulo_de_livros_publicado"){
         return capitulosLivrosPublicadosOrganizados(i);
       } else if (tipo === "capitulo_de_livros_publicado"){
         return capitulosLivrosPublicadosOrganizados(i);
       }*/
 
     } else {
-      return allTipo(i)
+      return allTipo(i);
     }
-    return allTipo(i)
+
   })
 
   /////
 
   return (
+    <div  >
+      <CardHeader
+        title={"Editar Portfólio  - " + user}
+        subheader={"Currículo Lattes CNPQ "}
+      />
 
-      <Card  key="12223453">
+      <ImportXML update={update_f}  />
 
-        <CardHeader
-
-          title={"Portfólio Privado - " + user}
-          subheader={"Currículo Lattes CNPQ "}
-        />
-        <div>
-          <IconButton
-
-            onClick={handleExpandClickImport}
-            aria-expanded={expandedImport}
-            aria-label="show more"
-            size="small"
-          >
-            {!expandedImport ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Importar Dados
-
-          </IconButton>
-          <Collapse in={expandedImport} timeout="auto" unmountOnExit>
-            <div style={{ margin: 20 }}>
-              <ImportXML update={update_f} fechar={handleExpandClickImport} />
-            </div>
-
-          </Collapse>
-        </div>
-        <div>
-          <IconButton
-
-            onClick={handleExpandClickDelete}
-            aria-expanded={expandedDelete}
-            aria-label="show more"
-            size="small"
-          >
-            {!expandedDelete ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Limpar Dados
-
-            </IconButton>
-          <Collapse in={expandedDelete} timeout="auto" unmountOnExit>
-
-            <div style={{ margin: 20 }}>
-              <DeleteTable key={4567357} name={"Artigos Publicados"} nameTableSql={"pb_artigo_publicado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} />
-              <DeleteTable key={487987557} name={"Capitulo de Livros Publicado"} nameTableSql={"pb_capitulo_livro_publicado_organizado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} />
-              <DeleteTable key={487987557} name={"Livro Publicado Organizados"} nameTableSql={"pb_livro_publicado_organizado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} />
-              {/* <DeleteTable key={487987557} name={"Livro Publicado Organizados"} nameTableSql={"pb_livro_publicado_organizado"} user={JSON.parse(localStorage.getItem("user")).user_name} update={update_f} /> */}
-
-            </div>
-
-          </Collapse>
-        </div>
-        <Search getSearch={getSearch} />
+      <LimparDados update={update_f} />
+      <Search getSearch={getSearch} />
+      {stringSearch ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + stringSearch + "   (x)"} /> : <div />}
 
 
-        {search ? <StyledBreadcrumb onClick={() => { setFiltroSearch(""); setSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + search + filtroSearch + tipo + "   (x)"} /> : <div />}
+      {(artigoPublicado_T &&
+        livroPublicadoOrganizado_T &&
+        trabalhoEvento_T &&
+        textoJornalRevista_T &&
+        capituloLivroPublicadoOrganizado_T) &&
+        <Resumo
+          setTipo={(i) => setTipo(i)}
+          artigoPublicado_Q={artigoPublicado_Q}
+          capituloLivroPublicadoOrganizado_Q={capituloLivroPublicadoOrganizado_Q}
+          textoJornalRevista_Q={textoJornalRevista_Q}
+          trabalhoEvento_Q={trabalhoEvento_Q}
+          livroPublicadoOrganizado_Q={livroPublicadoOrganizado_Q}
+        />}
+      {(artigoPublicado_T &&
+        livroPublicadoOrganizado_T &&
+        trabalhoEvento_T &&
+        textoJornalRevista_T &&
+        capituloLivroPublicadoOrganizado_T) && ordemAno()}
 
-       
-          {ordemAno()}  
-      </Card>
-  
 
-
-
+    </div>
   );
 }
 

@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -19,7 +19,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
+import Menu from '@material-ui/core/Menu';
 
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -27,13 +27,16 @@ import { logout } from '../../PrivateRoute';
 import { deleteUser } from "../../api/serverAPI";
 import Avatar from '@material-ui/core/Avatar';
 
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 
 export const L_BarraMenu = props => {
   const classes = useStyles();
 
 
- 
+
   const [encolher, setEncolher] = useState(false);
 
   window.addEventListener('resize', function () {
@@ -55,14 +58,14 @@ export const L_BarraMenu = props => {
   }, [])
 
 
- 
-  
 
-  
 
- 
 
- 
+
+
+
+
+
 
 
   const href = (href) => {
@@ -137,180 +140,224 @@ export const L_BarraMenu = props => {
 
 
 
+
+
+  const [anchorEla, setAnchorEla] = React.useState(null);
+
+  const handleClicka = (event) => {
+    setAnchorEla(event.currentTarget);
+  };
+
+  const handleClosea = () => {
+    setAnchorEla(null);
+  };
   return (
+    <div>
+      <AppBar position="static" style={{ width: "100%",zIndex:3 }} >
+        {encolher ? <Toolbar >
+          <IconButton
 
-    <AppBar position="static" style={{ width: "100%" }} >
-      {encolher ? <Toolbar >
-        <IconButton
-
-          onClick={handleExpandClickmenu}
-          aria-expanded={expandedmenu}
-          aria-label="show more"
-          size="small"
-        >
-          <MoreVertIcon />
-
-        </IconButton>
-        <Button ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}>
-
-          <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
-
-
-          <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).name}</Typography><ExpandMoreIcon />
-        </Button>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-
-                    <MenuItem onClick={()=>setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
-                    <MenuItem onClick={()=>setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
-                    <MenuItem onClick={()=>setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </Toolbar >
-        :
-        <Toolbar  >
-
-          <Grid
-            justify="space-between"
-            container
-            spacing={1}
+            onClick={handleClicka}
+            aria-expanded={expandedmenu}
+            aria-label="show more"
+            size="small"
           >
-            <Grid item>
-              {/* <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" /> */}
-              <Button variant="outlined" onClick={() => href("/")} >Home</Button>
+            <MoreVertIcon />
 
+          </IconButton>
+          <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
 
-              <Button
-                ref={anchorRefp}
-                aria-controls={openP ? 'menu-list-growp' : undefined}
-                aria-haspopup="true"
-                onClick ={handleToggleP}
-
-                style={{ marginLeft: 20 }} variant="outlined"  >
-                MEU PORTIFÓLIO LATTES
-</Button>
-
-
-              <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                  >
-                    <Paper>
-                      <ClickAwayListener onClickAway={handleCloseP}>
-                        <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
-
-                          <MenuItem onClick={()=>setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                          <MenuItem onClick={()=>setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
-              <Button style={{ marginLeft: 20 }} variant="outlined" onClick={() => href(`/portfoliosiga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
-
-            </Grid>
-
-            <Grid item>
-
-
-              <Button ref={anchorRef}
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
-                style={{ height: 40  }}>
-                <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
-
-
-                <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).name}</Typography><ExpandMoreIcon />
-              </Button>
-              <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                  >
-                    <Paper>
-                      <ClickAwayListener onClickAway={handleClose}>
-                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-
-                          <MenuItem onClick={()=>setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
-                          <MenuItem onClick={()=>setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
-                          <MenuItem onClick={()=>setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
-
-            </Grid>
-          </Grid>
-
-
-        </Toolbar>}
-      <Collapse in={expandedmenu} timeout="auto" unmountOnExit>
-        <Box textAlign="center" style={{ width: '100%' }}>
-
-
-
-
-
-
-
-          <Button variant="outlined" onClick={() => href("/")} >Home</Button>
-
-
-          <Button
-            ref={anchorRefp}
-            aria-controls={openP ? 'menu-list-growp' : undefined}
+          <Button ref={anchorRef}
+            aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
-            onClick={handleToggleP}
-
-            style={{ marginLeft: 20 }} variant="outlined"  >
-            Editar Meu PORTIFÓLIO
-        </Button>
+            onClick={handleToggle}
+            style={{ zIndex:3 }}>
+            <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
 
 
-          <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
+            <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).name}</Typography><ExpandMoreIcon />
+          </Button>
+          <Popper style={{ zIndex:3 }} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({ TransitionProps, placement }) => (
               <Grow
                 {...TransitionProps}
                 style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
               >
                 <Paper>
-                  <ClickAwayListener onClickAway={handleCloseP}>
-                    <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
-                      <MenuItem onClick={()=>setOpenP(false)}><Typography onClick={() => href(`/portfoliosiga/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>SIGA</Typography></MenuItem>
-                      <MenuItem onClick={()=>setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>Lattes</Typography></MenuItem>
+                      <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
+                      <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
+                      <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
               </Grow>
             )}
           </Popper>
-        </Box>
+        </Toolbar >
+          :
+          <Toolbar  >
+            <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
 
-      </Collapse>
-    </AppBar >
+            <Grid
+              justify="space-between"
+              container
+              spacing={1}
+            >
+              <Grid item>
+                <Button variant="outlined" onClick={() => href("/")} >Home</Button>
 
+
+                <Button
+                  ref={anchorRefp}
+                  aria-controls={openP ? 'menu-list-growp' : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggleP}
+
+                  style={{ marginLeft: 20 }} variant="outlined"  >
+                  MEU PORTIFÓLIO LATTES
+</Button>
+
+
+                <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleCloseP}>
+                          <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
+
+                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+                <Button style={{ marginLeft: 20 }} variant="outlined" onClick={() => href(`/portfoliosiga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
+                <Button style={{ marginLeft: 20, fontSize: 12 }} variant="outlined" onClick={() => href("/")} >Importação SIGA em desenvolvimento</Button>
+
+              </Grid>
+
+              <Grid item>
+
+
+                <Button ref={anchorRef}
+                  aria-controls={open ? 'menu-list-grow' : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                  style={{ height: 40 }}>
+                  <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
+
+
+                  <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).name}</Typography><ExpandMoreIcon />
+                </Button>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+
+                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+
+              </Grid>
+            </Grid>
+
+
+          </Toolbar>}
+
+      </AppBar >
+      <Menu
+        id="customized-menu"
+        anchorEl={anchorEla}
+        keepMounted
+        open={Boolean(anchorEla)}
+        onClose={handleClosea}
+      >
+        <MenuItem>
+
+          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href("/")} >Home</Button>
+        </MenuItem>
+        <MenuItem>
+          
+
+
+          <ExpansionPanel style={{ width: '100%' }}>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Button
+                ref={anchorRefp}
+                aria-controls={openP ? 'menu-list-growp' : undefined}
+                aria-haspopup="true"
+
+                style={{ width: '100%' }} variant="outlined"  >
+                MEU PORTIFÓLIO LATTES
+          </Button>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+
+              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }}  onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
+
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
+
+
+        </MenuItem>
+        <MenuItem>
+          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href(`/portfoliosiga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
+
+        </MenuItem>
+        <MenuItem>
+          <Button style={{ fontSize: 12, width: '100%' }} variant="outlined" onClick={() => href(`/`)} >Importação SIGA em desenvolvimento</Button>
+
+        </MenuItem>
+      </Menu>
+
+
+      <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleCloseP}>
+                <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
+
+                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+
+
+
+    </div>
   );
 }
 
@@ -333,7 +380,36 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
 
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
 
 
 

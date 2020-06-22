@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import { Autores } from '../Autores';
 
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -19,6 +20,7 @@ import { ItemCard } from '../ItemCard';
 import {Url} from '../Url'
 
 const table="pb_capitulo_livro_publicado_organizado";
+
 const useStyles = makeStyles((theme) => ({
   root: {
 
@@ -54,13 +56,13 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#4682B4",
+      backgroundColor: "rgb(255, 238, 218)",
       maxWidth: 2000,
       margin: 20
     }}>
       <CardHeader
       
-        title="Capitulo de Livros Publicado"
+        title="Capítulo de Livros Publicado"
         subheader={"publicado em: " + item.ano}
 
       />
@@ -104,7 +106,7 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
               title="Dados Gerais"
               subheader=""
             />
-            {ItemCard("Titulo do Capitulo do Livro:", item.titulo_do_capitulo_do_livro)}
+            {ItemCard("Titulo do Capítulo do Livro:", item.titulo_do_capitulo_do_livro)}
             {ItemCard("Titulo do Livro:", item.titulo_do_livro)}
             {ItemCard("Tipo:", item.tipo)}
             {ItemCard("Natureza:", item.natureza)}
@@ -138,23 +140,7 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
 
           </Card>
 
-
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
-            <CardHeader
-              title="Autores"
-              subheader=""
-            />
-            {item.nome_completo_do_autor_1 ? ItemCard("Autor 1:", item.nome_completo_do_autor_1, item.cpf_1, item.nome_para_citacao_1 ? "[" + item.nome_para_citacao_1 + "]" : 'NULL') : undefined}
-
-            {item.nome_completo_do_autor_2 ? ItemCard("Autor 2:", item.nome_completo_do_autor_2, item.cpf_2, item.nome_para_citacao_2 ? "[" + item.nome_para_citacao_2 + "]" : 'NULL') : undefined}
-
-            {item.nome_completo_do_autor_3 ? ItemCard("Autor 3:", item.nome_completo_do_autor_3, item.cpf_3, item.nome_para_citacao_3 ? "[" + item.nome_para_citacao_3 + "]" : 'NULL') : undefined}
-
-            {item.nome_completo_do_autor_4 ? ItemCard("Autor 4:", item.nome_completo_do_autor_4, item.cpf_4, item.nome_para_citacao_4 ? "[" + item.nome_para_citacao_4 + "]" : 'NULL') : undefined}
-
-
-          </Card>
-
+          <Autores item={item}/>
 
 
           <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>

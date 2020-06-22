@@ -30,6 +30,14 @@
 .main{
   margin-top: 20px;
   align-items: center;
+ 
+  background-color: rgb(250, 249, 209);
+  background-color: rgb(246, 247, 251);
+  background-color: rgb(255, 238, 218);
+  background-color: rgb(255, 225, 225);
+  background-color: rgb(208, 255, 212);
+
+  background-color: blue;
   background-color: blue;
 }
 

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 
 import Typography from '@material-ui/core/Typography';
@@ -17,15 +18,16 @@ import CardContent from '@material-ui/core/CardContent';
 
 export const SigaSearch = ({ getSearch }) => {
   const classes = useStyles();
-  const [textsearch, setTextsearch] = useState('');
-  const [selectedFim, setSelectedFim] = useState("Fim");
-  const [selectedInicio, setSelectedInicio] = useState("Início");
+  const [textsearch, setTextsearch] = useState(null);
+  const [selectedFim, setSelectedFim] = useState(null);
+  const [selectedInicio, setSelectedInicio] = useState(null);
   const [anoInicio, setAnoInicio] = useState([]);
   const [arrayFim, setArrayFim] = useState([]);
-  const [tipoD, setTipoD] = useState("");
+  const [tipoD, setTipoD] = useState(null);
  
   const onChangeInput = (event) => {
     setTextsearch(event.target.value);
+
   };
 
   const onChangeEnter = (event) => {
@@ -40,33 +42,17 @@ export const SigaSearch = ({ getSearch }) => {
 
   const handleChangeSelectInicio = (event) => {
     var data = new Date();
-    if(event.target.value){
-      
-      setArrayFim(arrayDate(Number(event.target.value), data.getFullYear()));
-      setSelectedInicio(Number(event.target.value));
-    }else{
-      setArrayFim(arrayDate(1970, data.getFullYear()));
-      setSelectedInicio(Number(event.target.value));
-    }
+    setArrayFim(arrayDate(Number(event.target.value), data.getFullYear()));
+    setSelectedInicio(Number(event.target.value));
    
-    //getSearch(textsearch, Number(event.target.value), selectedFim, tipoD);
   }
 
   const handleChangeSelectFim = (event) => {
-    var data = new Date();
-    if(event.target.value){
-      setAnoInicio(arrayDate( 1970,Number(event.target.value)));
-    }else{
-      setAnoInicio(arrayDate(1970, data.getFullYear()));
-    }
     setSelectedFim(Number(event.target.value));
-    //getSearch(textsearch, selectedInicio, Number(event.target.value), tipoD);
   };
 
   const handleChangeSelectTipo = (event) => {
     setTipoD(event.target.value);
-    //getSearch(textsearch, selectedInicio, selectedFim, event.target.value);
-
   }
 
 
@@ -81,11 +67,10 @@ export const SigaSearch = ({ getSearch }) => {
   }
   useEffect(() => {
     var data = new Date();
-    setAnoInicio(arrayDate(1970, data.getFullYear()));
-    setArrayFim(arrayDate(1970, data.getFullYear()));
+    setAnoInicio(arrayDate(1950, data.getFullYear()));
   }, []);
 
-  
+
 
   return (
     <div>
@@ -146,18 +131,19 @@ export const SigaSearch = ({ getSearch }) => {
               }}>
                 <CardContent>
 
-                  <Typography  style={{ marginTop: 5, marginLeft: 15 }}  color="textSecondary" component="p">
-                    Ano 
-          </Typography>
+                  <Typography  style={{ marginTop: 5, marginLeft: 5 }}  color="textSecondary" component="p">
+                    Ano de Publicação(início/fim)
+                  </Typography>
 
                   <FormControl className={classes.formControl}>
                     <Select
+                   
                       native
                       onChange={handleChangeSelectInicio}
-                      value={selectedInicio}
+                      value={selectedInicio||""}
                       input={<Input id="demo-dialog-native" />}
                     >
-                      <option value={null} >Início</option>
+                      <option value={null} >Todos</option>
                       {anoInicio.map(ano => {
 
                         return <option key={ano} value={ano} >{ano}</option>
@@ -166,15 +152,18 @@ export const SigaSearch = ({ getSearch }) => {
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <Select
+                   
                       native
                       onChange={handleChangeSelectFim}
-                      value={selectedFim}
+                      value={selectedFim||""}
                       input={<Input id="demo-dialog-native" />}
+                      placeholder="Fim"
+
                     >
-                      <option value={null}>Fim</option>
+                      <option value={null} >Todos</option>
                       {arrayFim.map(ano => {
                        
-                        return <option key={ano} value={ano}>{ano}</option>
+                        return <option value={ano}>{ano}</option>
                       })}
                     </Select>
                   </FormControl>
@@ -186,21 +175,22 @@ export const SigaSearch = ({ getSearch }) => {
                 width: "calc((100% / 2) )"
               }}>
               <CardContent>
-                <Typography style={{  marginTop: 5, marginLeft: 15  }}  color="textSecondary" component="p">
+                <Typography style={{ marginTop: 5, marginLeft: 5 }}  color="textSecondary" component="p">
                   Tipo
-                </Typography>
-                <FormControl className={classes.formControl}>
+          </Typography>
                 <Select
                   native
                   onChange={handleChangeSelectTipo}
                   value={tipoD}
                   input={<Input id="demo-dialog-native" />}
                 >
-                  <option value="" >Todos</option>
+                  <option value={null}>Todos</option>
                   <option value="projeto" >Projetos</option>
                   <option value="disciplina" >Disciplinas</option>
+
+                  
+                  {/* <option value="capitulo_de_livros_publicado" >Capitulo de Livros Publicado</option> */}
                 </Select>
-                </FormControl>
               </CardContent>
 </div>
 

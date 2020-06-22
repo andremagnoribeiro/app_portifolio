@@ -4,13 +4,12 @@ import { emphasize, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Chip from '@material-ui/core/Chip';
-
 import { SigaSearch } from './components/SigaSearch';
 import { siga_disciplinas, siga_projetos } from "../../api/serverAPI";
 
 import { SigaDisciplina } from "./components/itens/SigaDisciplina";
 import { SigaProjeto } from "./components/itens/SigaProjeto";
-
+import { SigaResumo } from "./SigaResumo";
 
 
 export const P_Portfolio_Siga = (props) => {
@@ -19,22 +18,31 @@ export const P_Portfolio_Siga = (props) => {
 
   const [projetos, setProjetos] = useState([]);
   const [disciplinas, setDisciplinas] = useState([]);
-  const [search, setSearch] = useState("");
+  
+  const [projetos_Q, setProjetos_Q] = useState(-1);
+  const [disciplinas_Q, setDisciplinas_Q] = useState(-1);
+  
+  const [stringSearch, setStringSearch] = useState("");
   const [filtroSearch, setFiltroSearch] = useState("");
   const [anoFilter, setAnoFilter] = useState([]);
-  
-  const [tipo, setTipo] = useState("");
 
+  const [tipo, setTipo] = useState("");
   ////////////////////////////////////////////////////////////////////
 
- 
- 
+
+
 
   useEffect(() => {
     siga_projetos(user)
-      .then(data => setProjetos(data));
-      siga_disciplinas(user)
-      .then(dat => setDisciplinas(dat));
+      .then(data => {
+        setProjetos(data);
+        setProjetos_Q(data.length)
+      });
+    siga_disciplinas(user)
+      .then(data =>{ 
+        setDisciplinas(data);
+        setDisciplinas_Q(data.length)
+    });
     setAnoFilter(arrayDate(2020, 1950))
 
   }, [user]);
@@ -49,31 +57,35 @@ export const P_Portfolio_Siga = (props) => {
     }
     return dates;
   }
+
+
   const getSearch = (busca, anoInicio, anoFinal, tipo_) => {
 
-    setTipo(tipo_);
+    setStringSearch("");
+    let stringsearch = "";
 
-    setFiltroSearch(busca);
-
-    //filtro search
-    setSearch("");
-    var stringsearch = "";
-    if (busca !== "") {
-      stringsearch = stringsearch  + " / ";
+    if (tipo_) {
+      stringsearch += " / " + tipo_;
+      setTipo(tipo_);
     }
+    if (busca) {
+      stringsearch += " / " + busca;
+      setFiltroSearch(busca);
+    }
+
     var date = new Date();
-    if (anoInicio !== "Início") {
-      if (anoFinal === "Fim") {
-        stringsearch += "";
-        arrayDate(date.getFullYear(), anoInicio).map((ano) => stringsearch += ano + " /");
+    if (anoInicio) {
+      if (!anoFinal) {
+        stringsearch += " / ";
+        stringsearch += "(" + anoInicio + " - " + date.getFullYear() + ")";
         setAnoFilter(arrayDate(date.getFullYear(), anoInicio));
       } else {
-        stringsearch += "";
-        arrayDate(anoFinal, anoInicio).map((ano) => stringsearch += ano + " /");
+        stringsearch += " / ";
+        stringsearch += "(" + anoInicio + " - " + anoFinal + ")";
         setAnoFilter(arrayDate(anoFinal, anoInicio));
       }
     }
-    setSearch(stringsearch)
+    setStringSearch(stringsearch)
   };
 
 
@@ -101,7 +113,7 @@ export const P_Portfolio_Siga = (props) => {
     f_disciplinas(i)
   ]
 
-  
+
   const ordemAno = () => anoFilter.map((i) => {
     if (tipo !== "") {
       if (tipo === "projeto") {
@@ -123,17 +135,21 @@ export const P_Portfolio_Siga = (props) => {
         <Card >
 
           <CardHeader
-           
+
             title="Portfólio Publico "
             subheader={"Siga"}
           />
 
 
-     
+
 
           <SigaSearch getSearch={getSearch} />
-
-          {search ? <StyledBreadcrumb onClick={() => { setFiltroSearch(""); setSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + search + filtroSearch + tipo + "   (x)"} /> : <div />}
+          <SigaResumo 
+            setTipo={(i) => setTipo(i)}
+            disciplinas_Q={disciplinas_Q}
+            projetos_Q={projetos_Q}
+          />
+          {stringSearch ? <StyledBreadcrumb onClick={() => { setTipo(""); setFiltroSearch(""); setStringSearch(""); }} style={{ margin: 20 }} component="a" href="#" label={"Busca: " + stringSearch + "   (x)"} /> : <div />}
 
           {ordemAno()}
         </Card>

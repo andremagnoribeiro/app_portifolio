@@ -10,7 +10,8 @@ import Container from '@material-ui/core/Container';
 import {getUserId} from "../../api/serverAPI";
 import {logout} from '../../PrivateRoute';
 
-const server="http://localhost"
+import {server} from '../../var';
+
 
 export const L_EditUser = () => {
 

@@ -2,9 +2,7 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import Button from '@material-ui/core/Button';
-
-
-const server = "http://localhost";
+import {server} from '../../../var';
 
 
 
