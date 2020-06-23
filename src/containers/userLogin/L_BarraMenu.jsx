@@ -24,6 +24,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { logout } from '../../PrivateRoute';
+import {DeleteUserDialogo}  from './components/DeleteUserDialogo';
 import { deleteUser } from "../../api/serverAPI";
 import Avatar from '@material-ui/core/Avatar';
 
@@ -35,9 +36,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 export const L_BarraMenu = props => {
   const classes = useStyles();
 
-
-
   const [encolher, setEncolher] = useState(false);
+  const [deleteDialog, setDeleteDialog] = useState(undefined);
 
   window.addEventListener('resize', function () {
 
@@ -61,25 +61,23 @@ export const L_BarraMenu = props => {
 
 
 
-
-
-
-
-
-
-
   const href = (href) => {
     window.location.href = "/ufjfportfolioprofissional/build" + href;
   }
 
   const delUser = () => {
-    deleteUser(JSON.parse(localStorage.getItem("user")).user_name);
-    window.location.href = "/ufjfportfolioprofissional/build";
-    logout();
+
+    setDeleteDialog(<DeleteUserDialogo  deletee={()=>
+      {
+        deleteUser(JSON.parse(localStorage.getItem("user")).user_name);
+        
+
+    }} fechar={
+      ()=>setDeleteDialog(undefined)
+    }/>);
+
+   
   }
-
-
-
 
 
 
@@ -153,6 +151,7 @@ export const L_BarraMenu = props => {
   };
   return (
     <div>
+      {deleteDialog}
       <AppBar position="static" style={{ width: "100%",zIndex:3 }} >
         {encolher ? <Toolbar >
           <IconButton
