@@ -103,11 +103,21 @@ export const FormLogin = () => {
               </a>
             </Grid>
           </Grid>
+          
         </form>
       </div>
       <Box mt={8}>
         <Copyright />
       </Box>
+      <div>insert into `bdPortfolio`.`user` (`cpf`, `name`, `email`,`password`,`user_name`) values
+('16284057830','Eduardo Barrere', 'eduardo.barrere@gmail.com', md5('1234'),'eduardobarrere');
+
+insert into `bdPortfolio`.`user` (`cpf`, `name`, `email`,`password`,`user_name`) values
+('11122233344','Amarildo Melchiades da Silva', 'amarildo@ufjf.com', md5('111'),'amarildoms');
+
+insert into `bdPortfolio`.`user` (`cpf`, `name`, `email`,`password`,`user_name`) values
+('44433322211','Rodrigo Weber dos Santos', 'Rodrigo@ufjf.com', md5('444'),'rodrigows');
+</div>
     </Container>
   );
 

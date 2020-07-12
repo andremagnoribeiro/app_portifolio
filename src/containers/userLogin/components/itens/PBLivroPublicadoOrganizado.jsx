@@ -10,19 +10,18 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
 import Typography from '@material-ui/core/Typography';
-import { Autores } from '../Autores';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import { ItemCard } from '../ItemCard';
-
-import { Url } from '../Url';
-
-
-const table = "pb_texto_jornal_revista";
+import { ItemCard } from './components/ItemCard';
+import { Autores } from './components/Autores';
+import { Url } from './components/Url';
 
 
-export const TextoJornalRevista = (item) => {
+const table = "pb_livro_publicado_organizado";
+
+
+export const PBLivroPublicadoOrganizado = (item) => {
 
   const [expanded, setExpanded] = useState(false);
 
@@ -32,25 +31,25 @@ export const TextoJornalRevista = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "rgb(26, 261, 100)",
+      backgroundColor: "rgb(255, 238, 218)",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
-        title="Texto Jornal Revista"
-        subheader={"publicado em: " + item.data_de_publicacao.slice(0,-6)+"/"+item.data_de_publicacao.slice(2,-4)+"/"+item.data_de_publicacao.slice(4)}
+        title="Livro Publicado Organizado"
+        subheader={"publicado em: " + item.ano}
       />
+
       <CardContent>
 
-        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_jornal_ou_revista}  </Typography>
-        <Typography variant="h6" color="textSecondary" gutterBottom> {item.titulo_do_texto}  </Typography>
+        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_livro}  </Typography>
 
 
-       
         <Typography  component={'span'} variant="h5" color="textSecondary" gutterBottom >
 
           {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? "Palavras Chaves:" : undefined}
+
           {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? " " + item.palavra_chave_1 : undefined}
           {item.palavra_chave_2 !== "NULL" && item.palavra_chave_2 ? ", " + item.palavra_chave_2 : undefined}
           {item.palavra_chave_3 !== "NULL" && item.palavra_chave_3 ? ", " + item.palavra_chave_3 : undefined}
@@ -73,6 +72,8 @@ export const TextoJornalRevista = (item) => {
           {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
 
         </IconButton>
+
+
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -82,35 +83,28 @@ export const TextoJornalRevista = (item) => {
               title="Dados Gerais"
               subheader=""
             />
-            {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
-            
-            { ItemCard("Cidade do Evento", item.cidade_do_evento)} 
-            { ItemCard("Classificação do Evento", item.cidade_do_evento)} 
-
-
-            { ItemCard("Pais da Publicação:", item.pais_de_publicacao)}                          
-            { ItemCard("Local de Publicação", item.local_de_publicacao)}                          
-            { ItemCard("Pagina Inicial", item.pagina_inicial)}                          
-              { ItemCard("Pagina Final", item.pagina_final)} 
-            { ItemCard("volumes", item.numero_de_volumes)}                          
-            { ItemCard("Natureza", item.natureza)}                          
-            { ItemCard("Meio de Divulgação", item.meio_de_divulgacao)}                          
-            { ItemCard("ISSN", item.issn)}                          
-            { ItemCard("Idioma", item.idioma)}                          
-          
-          
-
            
-
-
+           { ItemCard("Tipo", item.tipo)}                          
+           { ItemCard("Pais de Publicação", item.pais_de_publicacao)}                          
+           { ItemCard("Cidade da Editora", item.cidade_da_editora)}                          
+           { ItemCard("Natureza", item.natureza)}                          
+           { ItemCard("ISBN", item.isbn)}                          
+           { ItemCard("Meio de Divulgação", item.meio_de_divulgacao)}                          
+           { ItemCard("Idioma", item.idioma)}                          
+          
+           { ItemCard("volumes", item.numero_de_volumes)}                          
+           { ItemCard("Número de paginas", item.numero_de_paginas)}                          
+           { ItemCard("Número de Serie", item.numero_da_serie)}                          
+           { ItemCard("Número da Edição Revisão", item.numero_da_edicao_revisao)}                          
+          
            { ItemCard("Flag de Divulgação Científica", item.flag_divulgacao_cientifica)}                          
            { ItemCard("Flag de Relevancia", item.flag_relevancia)}                          
-           { ItemCard("Fasciculo", item.fasciculo)}                          
+           { ItemCard("Titulo em Ingles", item.titulo_do_livro_ingles)}                          
            { ItemCard("Informações Adicionais", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingles)}                          
 
-</Card>
+          </Card>
 
-<Autores item={item}/>
+          <Autores item={item}/>
           {item.nome_grande_area_do_conhecimento_1 && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             <CardHeader
               title="Area de Conhecimento"
@@ -140,7 +134,7 @@ export const TextoJornalRevista = (item) => {
           </Card>}
         </CardContent>
       </Collapse>
-          
+
     </Card>
   );
 

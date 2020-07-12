@@ -3,14 +3,16 @@ import './App.css';
 
 
 
-import {P_Portfolio_Lattes}  from './containers/userPublic/P_Portfolio_Lattes';
-import {P_Portfolio_Siga}  from './containers/userPublic/P_Portfolio_Siga';
+import {Portfolio}  from './containers/Portfolio';
 import {P_BarraMenu}  from './containers/userPublic/P_BarraMenu';
 
-import {L_Portfolio_Lattes}  from './containers/userLogin/L_Portfolio_Lattes';
 
+import {L_PortfolioEdit}  from './containers/userLogin/L_PortfolioEdit';
+import {L_ViewItem}  from './containers/userLogin/L_ViewItem';
 import {L_BarraMenu}  from './containers/userLogin/L_BarraMenu';
 import {L_EditUser}  from './containers/userLogin/L_EditUser';
+import {L_ApagarDados}  from './containers/userLogin/L_ApagarDados';
+import {L_ImportXML}  from './containers/userLogin/L_ImportXML';
 
 import {Home}  from './containers/Home';
 import {FormLogin}  from './containers/FormLogin';
@@ -36,12 +38,15 @@ class App extends Component {
            
             <Route exact path="/"  component={Home} /> 
             <Route exact path="/createuser"  component={CreateUser} /> 
-            <Route  exact path="/portfoliolattes/:user"  component={P_Portfolio_Lattes} />
-            <Route  exact path="/portfoliosiga/:user"  component={P_Portfolio_Siga} />
-           
-            <PrivateRoute exact path="/portfoliolattes/login/:user"  componentPrivate={L_Portfolio_Lattes} componentPublic={Home}  />
-           
+            <Route  exact path="/portfolio/:user"  component={Portfolio} />
+            <Route  exact path="/portfolio/:item/:user"  component={L_ViewItem} />
+            
+            
+            {/* <PrivateRoute  exact path="/portfolio/:item/:user"  component={L_ViewItem} /> */}
+            <PrivateRoute  exact path='/portfolioEdit/:user'  componentPrivate={L_PortfolioEdit} componentPublic={FormLogin}/>
             <PrivateRoute  exact path='/editUser'  componentPrivate={L_EditUser} componentPublic={FormLogin}/>
+            <PrivateRoute  exact path='/import'  componentPrivate={L_ImportXML} componentPublic={FormLogin}/>
+            <PrivateRoute  exact path='/apagar'  componentPrivate={L_ApagarDados} componentPublic={FormLogin}/>
             <PrivateRoute  exact path='/formlogin'  componentPrivate={Home} componentPublic={FormLogin}/>
             
         </Switch>

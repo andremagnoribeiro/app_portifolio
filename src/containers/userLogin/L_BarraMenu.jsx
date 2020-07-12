@@ -230,15 +230,15 @@ export const L_BarraMenu = props => {
                         <ClickAwayListener onClickAway={handleCloseP}>
                           <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
 
-                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>
                     </Grow>
                   )}
                 </Popper>
-                <Button style={{ marginLeft: 20 }} variant="outlined" onClick={() => href(`/portfoliosiga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
+                <Button style={{ marginLeft: 20 }} variant="outlined" onClick={() => href(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
                 <Button style={{ marginLeft: 20, fontSize: 12 }} variant="outlined" onClick={() => href("/")} >Importação SIGA em desenvolvimento</Button>
 
               </Grid>
@@ -292,13 +292,9 @@ export const L_BarraMenu = props => {
         color="primary"
       >
         <MenuItem >
-
           <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => href("/")} >Home</Button>
         </MenuItem>
         <MenuItem>
-          
-
-
           <ExpansionPanel style={{ width: '100%' }}>
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
@@ -316,8 +312,8 @@ export const L_BarraMenu = props => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
 
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
-              <Button variant="outlined" style={{ width: '100%' }}  onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }}  onClick={() => href(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
 
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -326,7 +322,7 @@ export const L_BarraMenu = props => {
 
         </MenuItem>
         <MenuItem>
-          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href(`/portfoliosiga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
+          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
 
         </MenuItem>
         <MenuItem>

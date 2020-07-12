@@ -8,21 +8,21 @@ import CardHeader from '@material-ui/core/CardHeader';
 import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import { Autores } from '../Autores';
+
 
 import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import { ItemCard } from '../ItemCard';
-
-import { Url } from '../Url';
-
-
-const table = "pb_livro_publicado_organizado";
+import { ItemCard } from './components/ItemCard';
+import { Autores } from './components/Autores';
+import { Url } from './components/Url';
 
 
-export const LivroPublicadoOrganizado = (item) => {
+const table = "pb_trabalho_evento";
+
+
+export const PBTrabalhosEvento = (item) => {
 
   const [expanded, setExpanded] = useState(false);
 
@@ -32,20 +32,21 @@ export const LivroPublicadoOrganizado = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "rgb(255, 238, 218)",
+      backgroundColor: "rgb(250, 249, 209)",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
-        title="Livro Publicado Organizado"
-        subheader={"publicado em: " + item.ano}
+        title={"Trabalho em Evento"}
+        subheader={"Ano: " + item.ano_do_trabalho }
       />
-
+ 
       <CardContent>
 
-        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_livro}  </Typography>
-
+       <Typography  variant="h6" color="textSecondary" > {item.titulo_do_trabalho}  </Typography>
+        {item.titulo_dos_anais_ou_proceedings && item.titulo_dos_anais_ou_proceedings !== "NULL"? <Typography component={'span'} variant="h5" color="textSecondary" > {item.titulo_dos_anais_ou_proceedings}  </Typography>:undefined}
+     
 
         <Typography  component={'span'} variant="h5" color="textSecondary" gutterBottom >
 
@@ -85,22 +86,31 @@ export const LivroPublicadoOrganizado = (item) => {
               subheader=""
             />
            
-           { ItemCard("Tipo", item.tipo)}                          
-           { ItemCard("Pais de Publicação", item.pais_de_publicacao)}                          
+          
+           { ItemCard("Pais do Evento", item.pais_do_evento)}                          
            { ItemCard("Cidade da Editora", item.cidade_da_editora)}                          
+           { ItemCard("Cidade do Evento", item.cidade_do_evento)} 
+           { ItemCard("Classificação do Evento", item.cidade_do_evento)} 
+
+
+           {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
+          
+          
+            { ItemCard("Pagina Inicial", item.pagina_inicial)}                          
+            { ItemCard("Pagina Final", item.pagina_final)} 
+            { ItemCard("Serie", item.serie)}                          
+
            { ItemCard("Natureza", item.natureza)}                          
            { ItemCard("ISBN", item.isbn)}                          
            { ItemCard("Meio de Divulgação", item.meio_de_divulgacao)}                          
            { ItemCard("Idioma", item.idioma)}                          
-          
            { ItemCard("volumes", item.numero_de_volumes)}                          
-           { ItemCard("Número de paginas", item.numero_de_paginas)}                          
-           { ItemCard("Número de Serie", item.numero_da_serie)}                          
-           { ItemCard("Número da Edição Revisão", item.numero_da_edicao_revisao)}                          
-          
+           
+           
+
            { ItemCard("Flag de Divulgação Científica", item.flag_divulgacao_cientifica)}                          
            { ItemCard("Flag de Relevancia", item.flag_relevancia)}                          
-           { ItemCard("Titulo em Ingles", item.titulo_do_livro_ingles)}                          
+           { ItemCard("Fasciculo", item.fasciculo)}                          
            { ItemCard("Informações Adicionais", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingles)}                          
 
           </Card>
@@ -134,7 +144,7 @@ export const LivroPublicadoOrganizado = (item) => {
             </Card> : undefined}
           </Card>}
         </CardContent>
-      </Collapse>
+      </Collapse> 
 
     </Card>
   );

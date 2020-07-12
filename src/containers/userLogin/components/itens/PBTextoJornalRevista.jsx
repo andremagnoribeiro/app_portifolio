@@ -8,21 +8,19 @@ import CardHeader from '@material-ui/core/CardHeader';
 import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import { Autores } from '../Autores';
 
 import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import { ItemCard } from '../ItemCard';
+import { ItemCard } from './components/ItemCard';
+import { Autores } from './components/Autores';
+import { Url } from './components/Url';
 
-import { Url } from '../Url';
+const table = "pb_texto_jornal_revista";
 
 
-const table = "pb_trabalho_evento";
-
-
-export const TrabalhoEvento = (item) => {
+export const PBTextoJornalRevista = (item) => {
 
   const [expanded, setExpanded] = useState(false);
 
@@ -32,26 +30,25 @@ export const TrabalhoEvento = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "rgb(250, 249, 209)",
+      backgroundColor: "rgb(26, 261, 100)",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
-        title={"Trabalho em Evento"}
-        subheader={"Ano: " + item.ano_do_trabalho }
+        title="Texto Jornal Revista"
+        subheader={"publicado em: " + item.data_de_publicacao.slice(0,-6)+"/"+item.data_de_publicacao.slice(2,-4)+"/"+item.data_de_publicacao.slice(4)}
       />
- 
       <CardContent>
 
-       <Typography  variant="h6" color="textSecondary" > {item.titulo_do_trabalho}  </Typography>
-        {item.titulo_dos_anais_ou_proceedings && item.titulo_dos_anais_ou_proceedings !== "NULL"? <Typography component={'span'} variant="h5" color="textSecondary" > {item.titulo_dos_anais_ou_proceedings}  </Typography>:undefined}
-     
+        <Typography component={'span'} variant="h5" color="textSecondary" gutterBottom> {item.titulo_do_jornal_ou_revista}  </Typography>
+        <Typography variant="h6" color="textSecondary" gutterBottom> {item.titulo_do_texto}  </Typography>
 
+
+       
         <Typography  component={'span'} variant="h5" color="textSecondary" gutterBottom >
 
           {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? "Palavras Chaves:" : undefined}
-
           {item.palavra_chave_1 !== "NULL" && item.palavra_chave_1 ? " " + item.palavra_chave_1 : undefined}
           {item.palavra_chave_2 !== "NULL" && item.palavra_chave_2 ? ", " + item.palavra_chave_2 : undefined}
           {item.palavra_chave_3 !== "NULL" && item.palavra_chave_3 ? ", " + item.palavra_chave_3 : undefined}
@@ -74,8 +71,6 @@ export const TrabalhoEvento = (item) => {
           {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
 
         </IconButton>
-
-
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -85,37 +80,35 @@ export const TrabalhoEvento = (item) => {
               title="Dados Gerais"
               subheader=""
             />
-           
-          
-           { ItemCard("Pais do Evento", item.pais_do_evento)}                          
-           { ItemCard("Cidade da Editora", item.cidade_da_editora)}                          
-           { ItemCard("Cidade do Evento", item.cidade_do_evento)} 
-           { ItemCard("Classificação do Evento", item.cidade_do_evento)} 
+            {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
+            
+            { ItemCard("Cidade do Evento", item.cidade_do_evento)} 
+            { ItemCard("Classificação do Evento", item.cidade_do_evento)} 
 
 
-           {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
-          
-          
+            { ItemCard("Pais da Publicação:", item.pais_de_publicacao)}                          
+            { ItemCard("Local de Publicação", item.local_de_publicacao)}                          
             { ItemCard("Pagina Inicial", item.pagina_inicial)}                          
-            { ItemCard("Pagina Final", item.pagina_final)} 
-            { ItemCard("Serie", item.serie)}                          
+              { ItemCard("Pagina Final", item.pagina_final)} 
+            { ItemCard("volumes", item.numero_de_volumes)}                          
+            { ItemCard("Natureza", item.natureza)}                          
+            { ItemCard("Meio de Divulgação", item.meio_de_divulgacao)}                          
+            { ItemCard("ISSN", item.issn)}                          
+            { ItemCard("Idioma", item.idioma)}                          
+          
+          
 
-           { ItemCard("Natureza", item.natureza)}                          
-           { ItemCard("ISBN", item.isbn)}                          
-           { ItemCard("Meio de Divulgação", item.meio_de_divulgacao)}                          
-           { ItemCard("Idioma", item.idioma)}                          
-           { ItemCard("volumes", item.numero_de_volumes)}                          
            
-           
+
 
            { ItemCard("Flag de Divulgação Científica", item.flag_divulgacao_cientifica)}                          
            { ItemCard("Flag de Relevancia", item.flag_relevancia)}                          
            { ItemCard("Fasciculo", item.fasciculo)}                          
            { ItemCard("Informações Adicionais", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingles)}                          
 
-          </Card>
+</Card>
 
-          <Autores item={item}/>
+<Autores item={item}/>
           {item.nome_grande_area_do_conhecimento_1 && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             <CardHeader
               title="Area de Conhecimento"
@@ -144,8 +137,8 @@ export const TrabalhoEvento = (item) => {
             </Card> : undefined}
           </Card>}
         </CardContent>
-      </Collapse> 
-
+      </Collapse>
+          
     </Card>
   );
 
