@@ -78,33 +78,33 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
               title="Dados Gerais"
               subheader=""
             />
-            {ItemCard("Titulo do Capítulo do Livro:", item.titulo_do_capitulo_do_livro)}
-            {ItemCard("Tipo:", item.tipo)}
-            {ItemCard("Natureza:", item.natureza)}
+            <ItemCard title={"Titulo do Capítulo do Livro:"} valor={item.titulo_do_capitulo_do_livro)}
+            <ItemCard title={"Tipo:"} valor={item.tipo)}
+            <ItemCard title={"Natureza:"} valor={item.natureza)}
            
-            {item.titulo_do_capitulo_do_livro_ingles === '' ? ItemCard("Ingles:", item.titulo_do_capitulo_do_livro_ingles) : undefined}
+            {item.titulo_do_capitulo_do_livro_ingles === '' ? ItemCard("Ingles:"} valor={item.titulo_do_capitulo_do_livro_ingles) : undefined}
            
-            {ItemCard("Cidade da Editora:", item.cidade_da_editora)}
-            {ItemCard("País de Publicacão:", item.pais_de_publicacao)}
-            {ItemCard("Flag Divulgacão cientifica:", item.flag_divulgacao_cientifica)}
-            {ItemCard("Flag Relevancia:", item.flag_relevancia)}
+            <ItemCard title={"Cidade da Editora:"} valor={item.cidade_da_editora)}
+            <ItemCard title={"País de Publicacão:"} valor={item.pais_de_publicacao)}
+            <ItemCard title={"Flag Divulgacão cientifica:"} valor={item.flag_divulgacao_cientifica)}
+            <ItemCard title={"Flag Relevancia:"} valor={item.flag_relevancia)}
 
-            {ItemCard("Idioma:", item.idioma)}
-            {ItemCard("ISBN:", item.isbn)}
-            {ItemCard("Meio de Divulgacão:", item.meio_de_divulgacao)}
+            <ItemCard title={"Idioma:"} valor={item.idioma)}
+            <ItemCard title={"ISBN:"} valor={item.isbn)}
+            <ItemCard title={"Meio de Divulgacão:"} valor={item.meio_de_divulgacao)}
 
-            {ItemCard("Número da Edicao Revisão:", item.numero_da_edicao_revisao)}
-            {ItemCard("Número da Série:", item.numero_da_serie)}
-            {ItemCard("Número de Volumes:", item.numero_de_volumes)}
-            {ItemCard("Página Inicial:", item.pagina_inicial)}
-            {ItemCard("Página Final:", item.pagina_final)}
+            <ItemCard title={"Número da Edicao Revisão:"} valor={item.numero_da_edicao_revisao)}
+            <ItemCard title={"Número da Série:"} valor={item.numero_da_serie)}
+            <ItemCard title={"Número de Volumes:"} valor={item.numero_de_volumes)}
+            <ItemCard title={"Página Inicial:"} valor={item.pagina_inicial)}
+            <ItemCard title={"Página Final:"} valor={item.pagina_final)}
 
 
-            {ItemCard("Organizadores:", item.organizadores)}
+            <ItemCard title={"Organizadores:"} valor={item.organizadores)}
 
-            {ItemCard("Setor de Atividade:", item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
+            <ItemCard title={"Setor de Atividade:"} valor={item.setor_de_atividade_1,item.setor_de_atividade_2,item.setor_de_atividade_3)}
             
-            {ItemCard("Informacoes Adicionais (Ingles):", item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingle)}
+            <ItemCard title={"Informacoes Adicionais (Ingles):"} valor={item.descricao_informacoes_adicionais, item.descricao_informacoes_adicionais_ingle)}
 
           </Card>
 
@@ -150,28 +150,28 @@ export const CapituloLivroPublicadoOrganizado = (item) => {
             {item.nome_grande_area_do_conhecimento_1 ? <Card style={{ margin: 20, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
               {<Typography component={'span'}  style={{ fontSize: 16 ,margin: 20}} >{item.nome_grande_area_do_conhecimento_1}</Typography >}
                 
-              {ItemCard("Nome da Area do Conhecimento:", item.nome_da_area_do_conhecimento_1)}
-              {ItemCard("Nome da Especialidade:", item.nome_da_especialidade_1)}
-              {ItemCard("Nome da sub area do conhecimento:", item.nome_da_sub_area_do_conhecimento_1)}
-              {ItemCard("Ordem de Autoria:", item.ordem_de_autoria_1)}
+              <ItemCard title={"Nome da Area do Conhecimento:"} valor={item.nome_da_area_do_conhecimento_1)}
+              <ItemCard title={"Nome da Especialidade:"} valor={item.nome_da_especialidade_1)}
+              <ItemCard title={"Nome da sub area do conhecimento:"} valor={item.nome_da_sub_area_do_conhecimento_1)}
+              <ItemCard title={"Ordem de Autoria:"} valor={item.ordem_de_autoria_1)}
             </Card> : undefined}
 
             {item.nome_grande_area_do_conhecimento_2 ? <Card style={{ margin: 20, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             {<Typography component={'span'}  style={{ marginLeft: 30,fontSize: 16,marginTop: 20 }} >{item.nome_grande_area_do_conhecimento_2}</Typography >}
             
-              {ItemCard("Nome da Area do Conhecimento:", item.nome_da_area_do_conhecimento_2)}
-              {ItemCard("Nome da Especialidade:", item.nome_da_especialidade_2)}
-              {ItemCard("Nome da sub area do conhecimento:", item.nome_da_sub_area_do_conhecimento_2)}
-              {ItemCard("Ordem de Autoria:", item.ordem_de_autoria_2)}
+              <ItemCard title={"Nome da Area do Conhecimento:"} valor={item.nome_da_area_do_conhecimento_2)}
+              <ItemCard title={"Nome da Especialidade:"} valor={item.nome_da_especialidade_2)}
+              <ItemCard title={"Nome da sub area do conhecimento:"} valor={item.nome_da_sub_area_do_conhecimento_2)}
+              <ItemCard title={"Ordem de Autoria:"} valor={item.ordem_de_autoria_2)}
             </Card> : undefined}
 
             {item.nome_grande_area_do_conhecimento_3 ? <Card style={{ margin: 20, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
             {<Typography component={'span'}  style={{ marginLeft: 30,fontSize: 16,marginTop: 20 }} >{item.nome_grande_area_do_conhecimento_3}</Typography >}
             
-              {ItemCard("Nome da Area do Conhecimento:", item.nome_da_area_do_conhecimento_3)}
-              {ItemCard("Nome da Especialidade:", item.nome_da_especialidade_3)}
-              {ItemCard("Nome da sub area do conhecimento:", item.nome_da_sub_area_do_conhecimento_3)}
-              {ItemCard("Ordem de Autoria:", item.ordem_de_autoria_3)}
+              <ItemCard title={"Nome da Area do Conhecimento:"} valor={item.nome_da_area_do_conhecimento_3)}
+              <ItemCard title={"Nome da Especialidade:"} valor={item.nome_da_especialidade_3)}
+              <ItemCard title={"Nome da sub area do conhecimento:"} valor={item.nome_da_sub_area_do_conhecimento_3)}
+              <ItemCard title={"Ordem de Autoria:"} valor={item.ordem_de_autoria_3)}
             </Card> : undefined}
           </Card>
 

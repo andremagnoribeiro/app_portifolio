@@ -31,7 +31,42 @@ import { PBTextoJornalRevista } from './components/itens/PBTextoJornalRevista';
 import { PBTrabalhosEvento } from './components/itens/PBTrabalhosEvento';
 import { SigaDisciplina } from './components/itens/SigaDisciplina';
 import { SigaProjeto } from './components/itens/SigaProjeto';
+import { APConselhoComissaoConsultoria } from './components/itens/APConselhoComissaoConsultoria';
 
+
+ /*import { APDirecaoAdministracao } from '/components/itens/APDirecaoAdministracao';
+  import { APPesquisaDesenvolvimento } from '/components/itens/APPesquisaDesenvolvimento';
+  import { APVinculo } from '/components/itens/APVinculo';
+  import { ATProjetoPesquisa } from '/components/itens/ATProjetoPesquisa';
+  import { FATDoutorado } from '/components/itens/FATDoutorado';
+  import { FATEspecializacao } from '/components/itens/FATEspecializacao';
+  import { FATGraduacao } from '/components/itens/FATGraduacao';
+  import { FATMestrado } from '/components/itens/FATMestrado';
+  import { OAAperfeicoamentoEspecializacao } from '/components/itens/OAAperfeicoamentoEspecializacao';
+  import { OADoutorado } from '/components/itens/OADoutorado';
+  import { OAGraduacao } from '/components/itens/OAGraduacao';
+  import { OAIniciacaoCientifica } from '/components/itens/OAIniciacaoCientifica';
+  import { OAMestrado } from '/components/itens/OAMestrado';
+  import { OAPosDoutorado } from '/components/itens/OAPosDoutorado';
+  import { PartBancaAperfeicoamentoEspecializacao } from '/components/itens/PartBancaAperfeicoamentoEspecializacao';
+  import { PartBancaDoutorado } from '/components/itens/PartBancaDoutorado';
+  import { PartBancaExameQualificacao } from '/components/itens/PartBancaExameQualificacao';
+  import { PartBancaGraduacao } from '/components/itens/PartBancaGraduacao';
+  import { PartBancaJulgadoraConcursoPublico } from '/components/itens/PartBancaJulgadoraConcursoPublico';
+  import { PartBancaJulgadoraOutra } from '/components/itens/PartBancaJulgadoraOutra';
+  import { PartBancaJulgadoraProfessorTitular } from '/components/itens/PartBancaJulgadoraProfessorTitular';
+  import { PartBancaMestrado } from '/components/itens/PartBancaMestrado';
+  import { PartCongresso } from '/components/itens/PartCongresso';
+  import { PartEncontro } from '/components/itens/PartEncontro';
+  import { PartOficina } from '/components/itens/PartOficina';
+  import { PartOutras } from '/components/itens/PartOutras';
+  import { PartSeminario } from '/components/itens/PartSeminario';
+  import { PartSimposio } from '/components/itens/PartSimposio';
+  import { PTPremioTitulo } from '/components/itens/PTPremioTitulo';
+  import { FCCursoCurtaDuracao } from '/components/itens/FCCursoCurtaDuracao';
+  import { SigaDisciplina } from '/components/itens/SigaDisciplina';
+  import { SigaProjeto } from '/components/itens/SigaProjeto';
+*/
 //Components
 import { PortfolioBusca } from '../../components/PortfolioBusca'
 import { SizeItem } from "../../components/SizeItem"
@@ -166,7 +201,7 @@ export const L_PortfolioEdit = (props) => {
   useEffect(() => {
     getUserId(userName).then(data => setUser(data));
 
-    getTable(userName, 'siga_disciplina').then((size) => { setSizeSigaDisciplina(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1).map((item) => <SigaDisciplina key={item.id} {...item} />)); }).then(() => { setAcabouSigaDisciplina(true) });
+  /*  getTable(userName, 'siga_disciplina').then((size) => { setSizeSigaDisciplina(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1).map((item) => <SigaDisciplina key={item.id} {...item} />)); }).then(() => { setAcabouSigaDisciplina(true) });
     getTable(userName, 'siga_projeto').then((size) => { setSizeSigaProjeto(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1).map((item) => <SigaProjeto key={item.id} {...item} />)); }).then(() => { setAcabouSigaProjeto(true) });
 
     getTable(userName, 'pb_artigo_publicado').then((size) => { setSizePBArtigoPublicado(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_artigo) !== -1).map((item) => <PBArtigoPublicado key={item.id} {...item} />)); }).then(() => { setAcabouPBArtigoPublicado(true) });
@@ -174,8 +209,10 @@ export const L_PortfolioEdit = (props) => {
     getTable(userName, 'pb_livro_publicado_organizado').then((size) => { setSizePBLivroPublicadoOrganizado(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1).map((item) => <PBLivroPublicadoOrganizado key={item.id} {...item} />)); }).then(() => { setAcabouPBLivroPublicadoOrganizado(true) });
     getTable(userName, 'pb_texto_jornal_revista').then((size) => { setSizePBTextoJornalRevista(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_texto) !== -1).map((item) => <PBTextoJornalRevista key={item.id} {...item} />)); }).then(() => { setAcabouPBTextoJornalRevista(true) });
     getTable(userName, 'pb_trabalho_evento').then((size) => { setSizePBTrabalhosEvento(size.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_trabalho) !== -1).map((item) => <PBTrabalhosEvento key={item.id} {...item} />)); }).then(() => { setAcabouPBTrabalhosEvento(true) });
-    /*getTable(userName, 'ap_conselho_comissao_consultoria').then((size) => { setSizeAPConselhoComissaoConsultoria(size.filter( (item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter( (item) => filterAno.indexOf(item.ano_inicio ) !== -1).map((item) => <APConselhoComissaoConsultoria key={item.id} {...item} />)); }) .then(() => { setAcabouAPConselhoComissaoConsultoria(true) });
+   */
   
+   getTable(userName, 'ap_conselho_comissao_consultoria').then((size) => { setSizeAPConselhoComissaoConsultoria(size.filter( (item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter( (item) => filterAno.indexOf(item.ano_inicio ) !== -1).map((item) => <APConselhoComissaoConsultoria key={item.id} {...item} />)); }) .then(() => { setAcabouAPConselhoComissaoConsultoria(true) });
+  /*
       getTable(userName, 'ap_direcao_administracao').then((size) => { setSizeAPDirecaoAdministracao(size.filter( (item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter( (item) => filterAno.indexOf(item.ano_de_inicio ) !== -1).map((item) => <APDirecaoAdministracao key={item.id} {...item} />)); }) .then(() => { setAcabouAPDirecaoAdministracao(true) });
       getTable(userName, 'ap_pesquisa_desenvolvimento').then((size) => { setSizeAPPesquisaDesenvolvimento(size.filter( (item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter( (item) => filterAno.indexOf(item.ano_inicio ) !== -1).map((item) => <APPesquisaDesenvolvimento key={item.id} {...item} />)); }) .then(() => { setAcabouAPPesquisaDesenvolvimento(true) });
       getTable(userName, 'ap_vinculo').then((size) => { setSizeAPVinculo(size.filter( (item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter( (item) => filterAno.indexOf(item.ano_inicio ) !== -1).map((item) => <APVinculo key={item.id} {...item} />)); }) .then(() => { setAcabouAPVinculo(true) });
@@ -482,29 +519,26 @@ export const L_PortfolioEdit = (props) => {
 
               </div>}
 
-            {(
-              (sizeAPConselhoComissaoConsultoria !== '0' && sizeAPConselhoComissaoConsultoria !== '') ||
-              (sizeAPDirecaoAdministracao !== '0' && sizeAPDirecaoAdministracao !== '') ||
-              (sizeAPPesquisaDesenvolvimento !== '0' && sizeAPPesquisaDesenvolvimento !== '') ||
-              (sizeATProjetoPesquisa !== '0' && sizeATProjetoPesquisa !== '') ||
-              (sizeAPVinculo !== '0' && sizeAPVinculo !== '')) && <div >
-                {(
-                  sizeAPConselhoComissaoConsultoria === '' ||
-                  sizeAPDirecaoAdministracao === '' ||
-                  sizeAPPesquisaDesenvolvimento === '' ||
-                  sizeATProjetoPesquisa === '' ||
-                  sizeAPVinculo === '') && <LinearProgress />}
+              {(
+                  (sizeAPConselhoComissaoConsultoria !== '0' && sizeAPConselhoComissaoConsultoria !== '') ||
+                  (sizeAPDirecaoAdministracao !== '0' && sizeAPDirecaoAdministracao !== '') ||
+                  (sizeAPPesquisaDesenvolvimento !== '0' && sizeAPPesquisaDesenvolvimento !== '') ||
+                  (sizeATProjetoPesquisa !== '0' && sizeATProjetoPesquisa !== '') ||
+                  (sizeAPVinculo !== '0' && sizeAPVinculo !== ''))
+                  
+                  &&
+
+                  <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                    <CardHeader title="Produção Bibliográfica" />
+
+                    <SizeItem user={user} heade={'Conselho Comissão Consultoria'} url={'APConselhoComissaoConsultoria'} num={sizeAPConselhoComissaoConsultoria} />
+                    <SizeItem user={user} heade={'Direção Administração'} url={'APDirecaoAdministracao'} num={sizeAPDirecaoAdministracao} />
+                    <SizeItem user={user} heade={'Pesquisa e Desenvolvimento'} url={'APPesquisaDesenvolvimento'} num={sizeAPPesquisaDesenvolvimento} />
+                    <SizeItem user={user} heade={'Vinculo'} url={'APVinculo'} num={sizeAPVinculo} />
+                    <SizeItem user={user} heade={'Projeto Pesquisa'} url={'ATProjetoPesquisa'} num={sizeATProjetoPesquisa} />
 
 
-
-                <SizeItem user={user} heade={'Conselho Comissão Consultoria'} url={'APConselhoComissaoConsultoria'} num={sizeAPConselhoComissaoConsultoria} />
-                <SizeItem user={user} heade={'Direção Administração'} url={'APDirecaoAdministracao'} num={sizeAPDirecaoAdministracao} />
-                <SizeItem user={user} heade={'Pesquisa e Desenvolvimento'} url={'APPesquisaDesenvolvimento'} num={sizeAPPesquisaDesenvolvimento} />
-                <SizeItem user={user} heade={'Vinculo'} url={'APVinculo'} num={sizeAPVinculo} />
-                <SizeItem user={user} heade={'Projeto Pesquisa'} url={'ATProjetoPesquisa'} num={sizeATProjetoPesquisa} />
-
-
-              </div>}
+                  </Card>}
             {(
               (sizePartBancaGraduacao !== '0' && sizePartBancaGraduacao !== '') ||
               (sizePartBancaMestrado !== '0' && sizePartBancaMestrado !== '') ||

@@ -3,8 +3,11 @@ import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import {ItemCard }from './ItemCard';
+import { ItemCard } from './ItemCard';
 import CardHeader from '@material-ui/core/CardHeader';
+import Box from '@material-ui/core/Box';
+
+
 export const Autores = ({ item }) => (
   <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
     <CardHeader
@@ -14,48 +17,35 @@ export const Autores = ({ item }) => (
 
     {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
       if (item[`nome_completo_do_autor_${i}`] && item[`nome_completo_do_autor_${i}`] !== "NULL") {
-        return (<Card key={item.id} style={{ margin: 10, backgroundColor: "#d3d388" }}>
-          <CardContent>
-            <ItemCard title={'Nome Completo:'} valor={item[`nome_completo_do_autor_${i}`]} />
-                
-            
-                
-            
-            <div style={{ marginLeft: 20 }}>
-              <Typography color={'textSecondary'} style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                Nome para Citação:
-              </Typography>
-              <Typography style={{ fontSize: 16, width: '100%', marginLeft: 10  }} gutterBottom>
-                {item[`nome_para_citacao_${i}`]}
-              </Typography>
-            </div>
-          {(item[`cpf_${i}`]!=='' && item[`cpf_${i}`]!=='NULL') &&  <div style={{ marginLeft: 20 }}>
-              <Typography color={'textSecondary'} style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                CPF:
-            </Typography>
-              <Typography style={{ fontSize: 16, width: '100%', marginLeft: 10 }} gutterBottom>
-                {item[`cpf_${i}`]}
-              </Typography>
-            </div>}
-            {(item[`ordem_de_autoria_${i}`]!=='' && item[`ordem_de_autoria_${i}`]!=='NULL') &&   <div style={{ marginLeft: 20 }}>
-              <Typography color={'textSecondary'} style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                Ordem de Autoria:
-            </Typography>
-              <Typography style={{ fontSize: 16, width: '100%', marginLeft: 10 }} gutterBottom>
-                {item[`ordem_de_autoria_${i}`]}
-              </Typography>
-            </div>}
-           {(item[`nro_id_cnpq_${i}`]!=='' && item[`nro_id_cnpq_${i}`]!=='NULL') &&   <div style={{ marginLeft: 20 }}>
-              <Typography color={'textSecondary'} style={{ fontSize: 16, width: '100%' }} gutterBottom>
-                ID CNPQ:
-        </Typography>
-              <Typography style={{ fontSize: 16, width: '100%', marginLeft: 10 }} gutterBottom>
-                {item[`nro_id_cnpq_${i}`]}
-              </Typography>
-            </div>}
+        return (
+          <Card key={item.id} style={{ margin: 10 }}>
+            <CardContent>
 
-          </CardContent>
-        </Card>)
+              <Typography fontWeight="fontWeightBold" >
+                <Box fontSize={16} m={1}>
+                  {item[`nome_completo_do_autor_${i}`]}
+                </Box>
+              </Typography >
+
+              <div style={{
+                marginLeft: 10, marginRight: 10,
+                borderStyle: ' none  none solid none ', borderWidth: 1
+              }}></div>
+
+              <ItemCard title={'Nome para Citação:'} valor={item[`nome_para_citacao_${i}`]} />
+
+              {(item[`cpf_${i}`] !== '' && item[`cpf_${i}`] !== 'NULL') &&
+                <ItemCard title={'CPF:'} valor={item[`cpf_${i}`]} />}
+
+              {(item[`ordem_de_autoria_${i}`] !== '' && item[`ordem_de_autoria_${i}`] !== 'NULL') &&
+
+                <ItemCard title={'Ordem de Autoria:'} valor={item[`ordem_de_autoria_${i}`]} />}
+
+              {(item[`nro_id_cnpq_${i}`] !== '' && item[`nro_id_cnpq_${i}`] !== 'NULL') &&
+                <ItemCard title={'ID CNPQ:'} valor={item[`nro_id_cnpq_${i}`]} />}
+
+            </CardContent>
+          </Card>)
       }
       return undefined;
 
