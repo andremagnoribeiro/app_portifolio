@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { ItemCard } from './ItemCard';
 import CardHeader from '@material-ui/core/CardHeader';
 import Box from '@material-ui/core/Box';
-
+import { TitleItem } from './TitleItem';
 
 export const Autores = ({ item }) => (
   <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
@@ -27,22 +27,17 @@ export const Autores = ({ item }) => (
                 </Box>
               </Typography >
 
-              <div style={{
-                marginLeft: 10, marginRight: 10,
-                borderStyle: ' none  none solid none ', borderWidth: 1
-              }}></div>
-
-              <ItemCard title={'Nome para Citação:'} valor={item[`nome_para_citacao_${i}`]} />
+              <TitleItem title={'Nome para Citação:'} valor={item[`nome_para_citacao_${i}`]} />
 
               {(item[`cpf_${i}`] !== '' && item[`cpf_${i}`] !== 'NULL') &&
-                <ItemCard title={'CPF:'} valor={item[`cpf_${i}`]} />}
+                <TitleItem title={'CPF:'} valor={item[`cpf_${i}`]} />}
 
               {(item[`ordem_de_autoria_${i}`] !== '' && item[`ordem_de_autoria_${i}`] !== 'NULL') &&
 
-                <ItemCard title={'Ordem de Autoria:'} valor={item[`ordem_de_autoria_${i}`]} />}
+                <TitleItem title={'Ordem de Autoria:'} valor={item[`ordem_de_autoria_${i}`]} />}
 
               {(item[`nro_id_cnpq_${i}`] !== '' && item[`nro_id_cnpq_${i}`] !== 'NULL') &&
-                <ItemCard title={'ID CNPQ:'} valor={item[`nro_id_cnpq_${i}`]} />}
+                <TitleItem title={'ID CNPQ:'} valor={item[`nro_id_cnpq_${i}`]} />}
 
             </CardContent>
           </Card>)

@@ -5,7 +5,7 @@
   background: #b5c8b9, 219, 221);
 }
 .main{
-  background: #9d98b3;
+  background: #d0ffd4;
 }
 .main{
   background: #aaaaaa;
@@ -48,7 +48,9 @@ Prêmios Títulos -pt
 
 
 
-
+.asdad{
+  back: ''
+}
 
 
 
@@ -1339,6 +1341,873 @@ const divMax = makeStyles((theme) => ({
 const divMaxMobile = makeStyles((theme) => ({
   root: {
     width: 350,
+  },
+}));
+
+const useStylesBackdrop = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+
+
+import React, { useState, useEffect } from 'react'
+
+
+//Material-UI
+import LinearProgress from '@material-ui/core/LinearProgress';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
+import ExpandMoreIcon from '@material-ui/icons/ExpandLessOutlined';
+import Menu from '@material-ui/core/Menu';
+import Collapse from '@material-ui/core/Collapse';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Backdrop from '@material-ui/core/Backdrop';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
+//Components/Itens
+
+
+
+
+
+import {
+  PBArtigoPublicado,
+  PBCapituloLivroPublicado,
+  PBLivroPublicadoOrganizado,
+  PBTextoJornalRevista,
+  PBTrabalhosEvento,
+  SigaDisciplina,
+  SigaProjeto,
+  APConselhoComissaoConsultoria,
+  APDirecaoAdministracao,
+  APPesquisaDesenvolvimento,
+  APVinculo,
+  ATProjetoPesquisa,
+  FATDoutorado,
+  FATEspecializacao,
+  FATGraduacao,
+  FATMestrado,
+  OAAperfeicoamentoEspecializacao,
+  OADoutorado,
+  OAGraduacao,
+  OAIniciacaoCientifica,
+  OAMestrado,
+  OAPosDoutorado,
+  PartBancaAperfeicoamentoEspecializacao,
+  PartBancaDoutorado,
+  PartBancaExameQualificacao,
+  PartBancaGraduacao,
+  PartBancaJulgadoraConcursoPublico,
+  PartBancaJulgadoraOutra,
+  PartBancaJulgadoraProfessorTitular,
+  PartBancaMestrado,
+  PartCongresso,
+  PartEncontro,
+  PartOficina,
+  PartOutras,
+  PartSeminario,
+  PartSimposio,
+  PTPremioTitulo,
+  FCCursoCurtaDuracao
+} from "./components/itens/Itens"
+
+
+
+
+//Components
+import { PortfolioBusca } from '../../components/PortfolioBusca'
+import { SizeItem } from "../../components/SizeItem"
+import Navegacao from "../../components/Navegacao"
+//API
+import { getTable } from "../../api/serverAPI";
+import { getUserId } from '../../api/serverAPI';
+
+const useStylesback = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+
+//Classe
+export const L_PortfolioEdit = (props) => {
+  const classesbackdrop = useStylesback();
+
+  const userName = props.match.params.user
+
+
+  const [user, setUser] = useState([]);
+
+  const [sizePBArtigoPublicado, setSizePBArtigoPublicado] = useState([]);
+  const [sizePBCapituloLivroPublicado, setSizePBCapituloLivroPublicado] = useState([]);
+  const [sizePBLivroPublicadoOrganizado, setSizePBLivroPublicadoOrganizado] = useState([]);
+  const [sizePBTextoJornalRevista, setSizePBTextoJornalRevista] = useState([]);
+  const [sizePBTrabalhosEvento, setSizePBTrabalhosEvento] = useState([]);
+  const [sizeAPConselhoComissaoConsultoria, setSizeAPConselhoComissaoConsultoria] = useState([]);
+  const [sizeAPDirecaoAdministracao, setSizeAPDirecaoAdministracao] = useState([]);
+  const [sizeAPPesquisaDesenvolvimento, setSizeAPPesquisaDesenvolvimento] = useState([]);
+  const [sizeAPVinculo, setSizeAPVinculo] = useState([]);
+  const [sizeFATDoutorado, setSizeFATDoutorado] = useState([]);
+  const [sizeFATEspecializacao, setSizeFATEspecializacao] = useState([]);
+  const [sizeFATGraduacao, setSizeFATGraduacao] = useState([]);
+  const [sizeFATMestrado, setSizeFATMestrado] = useState([]);
+  const [sizeOAAperfeicoamentoEspecializacao, setSizeOAAperfeicoamentoEspecializacao] = useState([]);
+  const [sizeOADoutorado, setSizeOADoutorado] = useState([]);
+  const [sizeOAGraduacao, setSizeOAGraduacao] = useState([]);
+  const [sizeOAIniciacaoCientifica, setSizeOAIniciacaoCientifica] = useState([]);
+  const [sizeOAMestrado, setSizeOAMestrado] = useState([]);
+  const [sizeOAPosDoutorado, setSizeOAPosDoutorado] = useState([]);
+  const [sizePartBancaAperfeicoamentoEspecializacao, setSizePartBancaAperfeicoamentoEspecializacao] = useState([]);
+  const [sizePartBancaDoutorado, setSizePartBancaDoutorado] = useState([]);
+  const [sizePartBancaExameQualificacao, setSizePartBancaExameQualificacao] = useState([]);
+  const [sizePartBancaGraduacao, setSizePartBancaGraduacao] = useState([]);
+  const [sizePartBancaJulgadoraConcursoPublico, setSizePartBancaJulgadoraConcursoPublico] = useState([]);
+  const [sizePartBancaJulgadoraOutra, setSizePartBancaJulgadoraOutra] = useState([]);
+  const [sizePartBancaJulgadoraProfessorTitular, setSizePartBancaJulgadoraProfessorTitular] = useState([]);
+  const [sizePartBancaMestrado, setSizePartBancaMestrado] = useState([]);
+  const [sizePartCongresso, setSizePartCongresso] = useState([]);
+  const [sizePartEncontro, setSizePartEncontro] = useState([]);
+  const [sizePartOficina, setSizePartOficina] = useState([]);
+  const [sizePartOutras, setSizePartOutras] = useState([]);
+  const [sizePartSeminario, setSizePartSeminario] = useState([]);
+  const [sizePartSimposio, setSizePartSimposio] = useState([]);
+  const [sizePTPremioTitulo, setSizePTPremioTitulo] = useState([]);
+  const [sizeATProjetoPesquisa, setSizeATProjetoPesquisa] = useState([]);
+  const [sizeFCCursoCurtaDuracao, setSizeFCCursoCurtaDuracao] = useState([]);
+  const [sizeSigaDisciplina, setSizeSigaDisciplina] = useState([]);
+  const [sizeSigaProjeto, setSizeSigaProjeto] = useState([]);
+
+
+
+
+  const [dataPBArtigoPublicado, setDataPBArtigoPublicado] = useState([]);
+  const [dataPBCapituloLivroPublicado, setDataPBCapituloLivroPublicado] = useState([]);
+  const [dataPBLivroPublicadoOrganizado, setDataPBLivroPublicadoOrganizado] = useState([]);
+  const [dataPBTextoJornalRevista, setDataPBTextoJornalRevista] = useState([]);
+  const [dataPBTrabalhosEvento, setDataPBTrabalhosEvento] = useState([]);
+  const [dataAPConselhoComissaoConsultoria, setDataAPConselhoComissaoConsultoria] = useState([]);
+  const [dataAPDirecaoAdministracao, setDataAPDirecaoAdministracao] = useState([]);
+  const [dataAPPesquisaDesenvolvimento, setDataAPPesquisaDesenvolvimento] = useState([]);
+  const [dataAPVinculo, setDataAPVinculo] = useState([]);
+  const [dataFATDoutorado, setDataFATDoutorado] = useState([]);
+  const [dataFATEspecializacao, setDataFATEspecializacao] = useState([]);
+  const [dataFATGraduacao, setDataFATGraduacao] = useState([]);
+  const [dataFATMestrado, setDataFATMestrado] = useState([]);
+  const [dataOAAperfeicoamentoEspecializacao, setDataOAAperfeicoamentoEspecializacao] = useState([]);
+  const [dataOADoutorado, setDataOADoutorado] = useState([]);
+  const [dataOAGraduacao, setDataOAGraduacao] = useState([]);
+  const [dataOAIniciacaoCientifica, setDataOAIniciacaoCientifica] = useState([]);
+  const [dataOAMestrado, setDataOAMestrado] = useState([]);
+  const [dataOAPosDoutorado, setDataOAPosDoutorado] = useState([]);
+  const [dataPartBancaAperfeicoamentoEspecializacao, setDataPartBancaAperfeicoamentoEspecializacao] = useState([]);
+  const [dataPartBancaDoutorado, setDataPartBancaDoutorado] = useState([]);
+  const [dataPartBancaExameQualificacao, setDataPartBancaExameQualificacao] = useState([]);
+  const [dataPartBancaGraduacao, setDataPartBancaGraduacao] = useState([]);
+  const [dataPartBancaJulgadoraConcursoPublico, setDataPartBancaJulgadoraConcursoPublico] = useState([]);
+  const [dataPartBancaJulgadoraOutra, setDataPartBancaJulgadoraOutra] = useState([]);
+  const [dataPartBancaJulgadoraProfessorTitular, setDataPartBancaJulgadoraProfessorTitular] = useState([]);
+  const [dataPartBancaMestrado, setDataPartBancaMestrado] = useState([]);
+  const [dataPartCongresso, setDataPartCongresso] = useState([]);
+  const [dataPartEncontro, setDataPartEncontro] = useState([]);
+  const [dataPartOficina, setDataPartOficina] = useState([]);
+  const [dataPartOutras, setDataPartOutras] = useState([]);
+  const [dataPartSeminario, setDataPartSeminario] = useState([]);
+  const [dataPartSimposio, setDataPartSimposio] = useState([]);
+  const [dataPTPremioTitulo, setDataPTPremioTitulo] = useState([]);
+  const [dataATProjetoPesquisa, setDataATProjetoPesquisa] = useState([]);
+  const [dataFCCursoCurtaDuracao, setDataFCCursoCurtaDuracao] = useState([]);
+  const [dataSigaDisciplina, setDataSigaDisciplina] = useState([]);
+  const [dataSigaProjeto, setDataSigaProjeto] = useState([]);
+
+
+
+
+
+
+
+
+
+
+  const [filterText, setFilterText] = useState('');
+  const [sliderMin, setSliderMin] = React.useState(1980);
+  const [sliderMax, setSliderMax] = React.useState(2020);
+  const [filterAno, setFilterAno] = useState(["2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991"]);
+
+
+  const [mobile, setMobile] = useState(false);
+
+  const classes = useStyles();
+  const classes2 = useStyles2();
+
+  const sizeDiv = mobile ? 320 : 1000;
+  const divMax_ = mobile ? divMaxMobile() : divMax();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+
+  const [acabouPBArtigoPublicado, setAcabouPBArtigoPublicado] = useState(false);
+  const [acabouPBCapituloLivroPublicado, setAcabouPBCapituloLivroPublicado] = useState(false);
+  const [acabouPBLivroPublicadoOrganizado, setAcabouPBLivroPublicadoOrganizado] = useState(false);
+  const [acabouPBTextoJornalRevista, setAcabouPBTextoJornalRevista] = useState(false);
+  const [acabouPBTrabalhosEvento, setAcabouPBTrabalhosEvento] = useState(false);
+  const [acabouAPConselhoComissaoConsultoria, setAcabouAPConselhoComissaoConsultoria] = useState(false);
+  const [acabouAPDirecaoAdministracao, setAcabouAPDirecaoAdministracao] = useState(false);
+  const [acabouAPPesquisaDesenvolvimento, setAcabouAPPesquisaDesenvolvimento] = useState(false);
+  const [acabouAPVinculo, setAcabouAPVinculo] = useState(false);
+  const [acabouATProjetoPesquisa, setAcabouATProjetoPesquisa] = useState(false);
+  const [acabouFATDoutorado, setAcabouFATDoutorado] = useState(false);
+  const [acabouFATEspecializacao, setAcabouFATEspecializacao] = useState(false);
+  const [acabouFATGraduacao, setAcabouFATGraduacao] = useState(false);
+  const [acabouFATMestrado, setAcabouFATMestrado] = useState(false);
+  const [acabouOAAperfeicoamentoEspecializacao, setAcabouOAAperfeicoamentoEspecializacao] = useState(false);
+  const [acabouOADoutorado, setAcabouOADoutorado] = useState(false);
+  const [acabouOAGraduacao, setAcabouOAGraduacao] = useState(false);
+  const [acabouOAIniciacaoCientifica, setAcabouOAIniciacaoCientifica] = useState(false);
+  const [acabouOAMestrado, setAcabouOAMestrado] = useState(false);
+  const [acabouOAPosDoutorado, setAcabouOAPosDoutorado] = useState(false);
+  const [acabouPartBancaAperfeicoamentoEspecializacao, setAcabouPartBancaAperfeicoamentoEspecializacao] = useState(false);
+  const [acabouPartBancaDoutorado, setAcabouPartBancaDoutorado] = useState(false);
+  const [acabouPartBancaExameQualificacao, setAcabouPartBancaExameQualificacao] = useState(false);
+  const [acabouPartBancaGraduacao, setAcabouPartBancaGraduacao] = useState(false);
+  const [acabouPartBancaJulgadoraConcursoPublico, setAcabouPartBancaJulgadoraConcursoPublico] = useState(false);
+  const [acabouPartBancaJulgadoraOutra, setAcabouPartBancaJulgadoraOutra] = useState(false);
+  const [acabouPartBancaJulgadoraProfessorTitular, setAcabouPartBancaJulgadoraProfessorTitular] = useState(false);
+  const [acabouPartBancaMestrado, setAcabouPartBancaMestrado] = useState(false);
+  const [acabouPartCongresso, setAcabouPartCongresso] = useState(false);
+  const [acabouPartEncontro, setAcabouPartEncontro] = useState(false);
+  const [acabouPartOficina, setAcabouPartOficina] = useState(false);
+  const [acabouPartOutras, setAcabouPartOutras] = useState(false);
+  const [acabouPartSeminario, setAcabouPartSeminario] = useState(false);
+  const [acabouPartSimposio, setAcabouPartSimposio] = useState(false);
+  const [acabouPTPremioTitulo, setAcabouPTPremioTitulo] = useState(false);
+  const [acabouFCCursoCurtaDuracao, setAcabouFCCursoCurtaDuracao] = useState(false);
+  const [acabouSigaDisciplina, setAcabouSigaDisciplina] = useState(false);
+  const [acabouSigaProjeto, setAcabouSigaProjeto] = useState(false);
+
+
+  const [acabou, setAcabou] = useState();
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    useEffect(() => {   setAcabouPBArtigoPublicado(true);      setSizeSigaDisciplina(dataPBArtigoPublicado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1));}, [dataPBArtigoPublicado,filterAno,filterText]);
+    useEffect(() => {   setAcabouPBCapituloLivroPublicado(true);       setSizeSigaProjeto(dataPBCapituloLivroPublicado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1));}, [dataPBCapituloLivroPublicado,filterAno,filterText]);
+    useEffect(() => {   setAcabouPBLivroPublicadoOrganizado(true);       setSizePBArtigoPublicado(dataPBLivroPublicadoOrganizado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_artigo) !== -1));}, [dataPBLivroPublicadoOrganizado,filterAno,filterText]);
+    useEffect(() => {   setAcabouPBTextoJornalRevista(true);       setSizePBCapituloLivroPublicado(dataPBTextoJornalRevista.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPBTextoJornalRevista,filterAno,filterText]);
+    useEffect(() => {   setAcabouPBTrabalhosEvento(true);      setSizePBLivroPublicadoOrganizado(dataPBTrabalhosEvento.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPBTrabalhosEvento,filterAno,filterText]);
+    useEffect(() => {   setAcabouAPConselhoComissaoConsultoria(true);      setSizePBTextoJornalRevista(dataAPConselhoComissaoConsultoria.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_texto) !== -1));}, [dataAPConselhoComissaoConsultoria,filterAno,filterText]);
+    useEffect(() => {   setAcabouAPDirecaoAdministracao(true);       setSizePBTrabalhosEvento(dataAPDirecaoAdministracao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_trabalho) !== -1));}, [dataAPDirecaoAdministracao,filterAno,filterText]);
+    useEffect(() => {   setAcabouAPPesquisaDesenvolvimento(true);      setSizeAPConselhoComissaoConsultoria(dataAPPesquisaDesenvolvimento.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataAPPesquisaDesenvolvimento,filterAno,filterText]);
+    useEffect(() => {   setAcabouAPVinculo(true);      setSizeAPDirecaoAdministracao(dataAPVinculo.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataAPVinculo,filterAno,filterText]);
+    useEffect(() => {   setAcabouATProjetoPesquisa(true);      setSizeAPPesquisaDesenvolvimento(dataFATDoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataFATDoutorado,filterAno,filterText]);
+    useEffect(() => {   setAcabouFATDoutorado(true);       setSizeAPVinculo(dataFATEspecializacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataFATEspecializacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouFATEspecializacao(true);      setSizeATProjetoPesquisa(dataFATGraduacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataFATGraduacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouFATGraduacao(true);       setSizeFATDoutorado(dataFATMestrado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataFATMestrado,filterAno,filterText]);
+    useEffect(() => {   setAcabouFATMestrado(true);      setSizeFATEspecializacao(dataOAAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataOAAperfeicoamentoEspecializacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouOAAperfeicoamentoEspecializacao(true);      setSizeFATGraduacao(dataOADoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataOADoutorado,filterAno,filterText]);
+    useEffect(() => {   setAcabouOADoutorado(true);      setSizeFATMestrado(dataOAGraduacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));}, [dataOAGraduacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouOAGraduacao(true);      setSizeOAAperfeicoamentoEspecializacao(dataOAIniciacaoCientifica.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataOAIniciacaoCientifica,filterAno,filterText]);
+    useEffect(() => {   setAcabouOAIniciacaoCientifica(true);      setSizeOADoutorado(dataOAMestrado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataOAMestrado,filterAno,filterText]);
+    useEffect(() => {   setAcabouOAMestrado(true);       setSizeOAGraduacao(dataOAPosDoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataOAPosDoutorado,filterAno,filterText]);
+    useEffect(() => {   setAcabouOAPosDoutorado(true);       setSizeOAIniciacaoCientifica(dataPartBancaAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaAperfeicoamentoEspecializacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaAperfeicoamentoEspecializacao(true);       setSizeOAMestrado(dataPartBancaDoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaDoutorado,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaDoutorado(true);       setSizeOAPosDoutorado(dataPartBancaExameQualificacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaExameQualificacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaExameQualificacao(true);       setSizePartBancaAperfeicoamentoEspecializacao(dataPartBancaGraduacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaGraduacao,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaGraduacao(true);       setSizePartBancaDoutorado(dataPartBancaJulgadoraConcursoPublico.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaJulgadoraConcursoPublico,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaJulgadoraConcursoPublico(true);      setSizePartBancaExameQualificacao(dataPartBancaJulgadoraOutra.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaJulgadoraOutra,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaJulgadoraOutra(true);      setSizePartBancaGraduacao(dataPartBancaJulgadoraProfessorTitular.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaJulgadoraProfessorTitular,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaJulgadoraProfessorTitular(true);       setSizePartBancaJulgadoraConcursoPublico(dataPartBancaMestrado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartBancaMestrado,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartBancaMestrado(true);      setSizePartBancaJulgadoraOutra(dataPartCongresso.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartCongresso,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartCongresso(true);      setSizePartBancaJulgadoraProfessorTitular(dataPartEncontro.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartEncontro,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartEncontro(true);       setSizePartBancaMestrado(dataPartOficina.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartOficina,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartOficina(true);      setSizePartCongresso(dataPartOutras.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartOutras,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartOutras(true);       setSizePartEncontro(dataPartSeminario.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartSeminario,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartSeminario(true);      setSizePartOficina(dataPartSimposio.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPartSimposio,filterAno,filterText]);
+    useEffect(() => {   setAcabouPartSimposio(true);       setSizePartOutras(dataPTPremioTitulo.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataPTPremioTitulo,filterAno,filterText]);
+    useEffect(() => {   setAcabouPTPremioTitulo(true);       setSizePartSeminario(dataATProjetoPesquisa.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataATProjetoPesquisa,filterAno,filterText]);
+    useEffect(() => {   setAcabouFCCursoCurtaDuracao(true);      setSizePartSimposio(dataFCCursoCurtaDuracao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));}, [dataFCCursoCurtaDuracao,filterAno,filterText]);
+    useEffect(() => {   setAcabouSigaDisciplina(true);       setSizePTPremioTitulo(dataSigaDisciplina.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_da_premiacao) !== -1));}, [dataSigaDisciplina,filterAno,filterText]);
+    useEffect(() => {   setAcabouSigaProjeto(true);      setSizeFCCursoCurtaDuracao(dataSigaProjeto.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_de_inicio) !== -1));}, [dataSigaProjeto,filterAno,filterText]);
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    getUserId(userName).then(data => setUser(data));
+
+
+
+    getTable(userName, 'siga_disciplina').then((size) => { setDataSigaDisciplina(size); }).then(() => { setAcabouSigaDisciplina(true) });
+    getTable(userName, 'siga_projeto').then((size) => { setDataSigaProjeto(size); }).then(() => { setAcabouSigaProjeto(true) });
+    getTable(userName, 'pb_artigo_publicado').then((size) => { setDataPBArtigoPublicado(size); }).then(() => { setAcabouPBArtigoPublicado(true) });
+    getTable(userName, 'pb_capitulo_livro_publicado_organizado').then((size) => { setDataPBCapituloLivroPublicado(size); }).then(() => { setAcabouPBCapituloLivroPublicado(true) });
+    getTable(userName, 'pb_livro_publicado_organizado').then((size) => { setDataPBLivroPublicadoOrganizado(size); }).then(() => { setAcabouPBLivroPublicadoOrganizado(true) });
+    getTable(userName, 'pb_texto_jornal_revista').then((size) => { setDataPBTextoJornalRevista(size); }).then(() => { setAcabouPBTextoJornalRevista(true) });
+    getTable(userName, 'pb_trabalho_evento').then((size) => { setDataPBTrabalhosEvento(size); }).then(() => { setAcabouPBTrabalhosEvento(true) });
+    getTable(userName, 'ap_conselho_comissao_consultoria').then((size) => { setDataAPConselhoComissaoConsultoria(size); }).then(() => { setAcabouAPConselhoComissaoConsultoria(true) });
+    getTable(userName, 'ap_direcao_administracao').then((size) => { setDataAPDirecaoAdministracao(size); }).then(() => { setAcabouAPDirecaoAdministracao(true) });
+    getTable(userName, 'ap_pesquisa_desenvolvimento').then((size) => { setDataAPPesquisaDesenvolvimento(size); }).then(() => { setAcabouAPPesquisaDesenvolvimento(true) });
+    getTable(userName, 'ap_vinculo').then((size) => { setDataAPVinculo(size); }).then(() => { setAcabouAPVinculo(true) });
+    getTable(userName, 'at_projeto_pesquisa').then((size) => { setDataATProjetoPesquisa(size); }).then(() => { setAcabouATProjetoPesquisa(true) });
+    getTable(userName, 'fat_doutorado').then((size) => { setDataFATDoutorado(size); }).then(() => { setAcabouFATDoutorado(true) });
+    getTable(userName, 'fat_especializacao').then((size) => { setDataFATEspecializacao(size); }).then(() => { setAcabouFATEspecializacao(true) });
+    getTable(userName, 'fat_graduacao').then((size) => { setDataFATGraduacao(size); }).then(() => { setAcabouFATGraduacao(true) });
+    getTable(userName, 'fat_mestrado').then((size) => { setDataFATMestrado(size); }).then(() => { setAcabouFATMestrado(true) });
+    getTable(userName, 'oa_aperfeicoamento_especializacao').then((size) => { setDataOAAperfeicoamentoEspecializacao(size); }).then(() => { setAcabouOAAperfeicoamentoEspecializacao(true) });
+    getTable(userName, 'oa_doutorado').then((size) => { setDataOADoutorado(size); }).then(() => { setAcabouOADoutorado(true) });
+    getTable(userName, 'oa_graduacao').then((size) => { setDataOAGraduacao(size); }).then(() => { setAcabouOAGraduacao(true) });
+    getTable(userName, 'oa_iniciacao_cientifica').then((size) => { setDataOAIniciacaoCientifica(size); }).then(() => { setAcabouOAIniciacaoCientifica(true) });
+    getTable(userName, 'oa_mestrado').then((size) => { setDataOAMestrado(size); }).then(() => { setAcabouOAMestrado(true) });
+    getTable(userName, 'oa_posdoutorado').then((size) => { setDataOAPosDoutorado(size); }).then(() => { setAcabouOAPosDoutorado(true) });
+    getTable(userName, 'part_banca_aperfeicoamento_especializacao').then((size) => { setDataPartBancaAperfeicoamentoEspecializacao(size); }).then(() => { setAcabouPartBancaAperfeicoamentoEspecializacao(true) });
+    getTable(userName, 'part_banca_doutorado').then((size) => { setDataPartBancaDoutorado(size); }).then(() => { setAcabouPartBancaDoutorado(true) });
+    getTable(userName, 'part_banca_exame_qualificacao').then((size) => { setDataPartBancaExameQualificacao(size); }).then(() => { setAcabouPartBancaExameQualificacao(true) });
+    getTable(userName, 'part_banca_graduacao').then((size) => { setDataPartBancaGraduacao(size); }).then(() => { setAcabouPartBancaGraduacao(true) });
+    getTable(userName, 'part_banca_julgadora_concurso_publico').then((size) => { setDataPartBancaJulgadoraConcursoPublico(size); }).then(() => { setAcabouPartBancaJulgadoraConcursoPublico(true) });
+    getTable(userName, 'part_banca_julgadora_outra').then((size) => { setDataPartBancaJulgadoraOutra(size); }).then(() => { setAcabouPartBancaJulgadoraOutra(true) });
+    getTable(userName, 'part_banca_julgadora_professor_titular').then((size) => { setDataPartBancaJulgadoraProfessorTitular(size); }).then(() => { setAcabouPartBancaJulgadoraProfessorTitular(true) });
+    getTable(userName, 'part_banca_mestrado').then((size) => { setDataPartBancaMestrado(size); }).then(() => { setAcabouPartBancaMestrado(true) });
+    getTable(userName, 'part_congresso').then((size) => { setDataPartCongresso(size); }).then(() => { setAcabouPartCongresso(true) });
+    getTable(userName, 'part_encontro').then((size) => { setDataPartEncontro(size); }).then(() => { setAcabouPartEncontro(true) });
+    getTable(userName, 'part_evento_congresso_outra').then((size) => { setDataPartOficina(size); }).then(() => { setAcabouPartOficina(true) });
+    getTable(userName, 'part_oficina').then((size) => { setDataPartOutras(size); }).then(() => { setAcabouPartOutras(true) });
+    getTable(userName, 'part_seminario').then((size) => { setDataPartSeminario(size); }).then(() => { setAcabouPartSeminario(true) });
+    getTable(userName, 'part_simposio').then((size) => { setDataPartSimposio(size); }).then(() => { setAcabouPartSimposio(true) });
+    getTable(userName, 'pt_premio_titulo').then((size) => { setDataPTPremioTitulo(size); }).then(() => { setAcabouPTPremioTitulo(true) });
+    getTable(userName, 'fc_curso_curta_duracao').then((size) => { setDataFCCursoCurtaDuracao(size); }).then(() => { setAcabouFCCursoCurtaDuracao(true) });
+
+  }, []);
+
+  useEffect(() => {
+    if (window.innerWidth >= 1000) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+
+  }, [])
+
+
+  useEffect(() => {
+    console.log("MMMMMM", acabouPBArtigoPublicado,
+      acabouPBCapituloLivroPublicado,
+      acabouPBLivroPublicadoOrganizado,
+      acabouPBTextoJornalRevista,
+      acabouPBTrabalhosEvento,
+      acabouAPConselhoComissaoConsultoria,
+      acabouAPDirecaoAdministracao,
+      acabouAPPesquisaDesenvolvimento,
+      acabouAPVinculo,
+      acabouATProjetoPesquisa,
+      acabouFATDoutorado,
+      acabouFATEspecializacao,
+      acabouFATGraduacao,
+      acabouFATMestrado,
+      acabouOAAperfeicoamentoEspecializacao,
+      acabouOADoutorado,
+      acabouOAGraduacao,
+      acabouOAIniciacaoCientifica,
+      acabouOAMestrado,
+      acabouOAPosDoutorado,
+      acabouPartBancaAperfeicoamentoEspecializacao,
+      acabouPartBancaDoutorado,
+      acabouPartBancaExameQualificacao,
+      acabouPartBancaGraduacao,
+      acabouPartBancaJulgadoraConcursoPublico,
+      acabouPartBancaJulgadoraOutra,
+      acabouPartBancaJulgadoraProfessorTitular,
+      acabouPartBancaMestrado,
+      acabouPartCongresso,
+      acabouPartEncontro,
+      acabouPartOficina,
+      acabouPartOutras,
+      acabouPartSeminario,
+      acabouPartSimposio,
+      acabouPTPremioTitulo,
+      acabouFCCursoCurtaDuracao,
+      acabouSigaDisciplina,
+      acabouSigaProjeto);
+
+    setAcabou((
+      acabouPBArtigoPublicado &&
+      acabouPBCapituloLivroPublicado &&
+      acabouPBLivroPublicadoOrganizado &&
+      acabouPBTextoJornalRevista &&
+      acabouPBTrabalhosEvento &&
+      acabouAPConselhoComissaoConsultoria &&
+      acabouAPDirecaoAdministracao &&
+      acabouAPPesquisaDesenvolvimento &&
+      acabouAPVinculo &&
+      acabouATProjetoPesquisa &&
+      acabouFATDoutorado &&
+      acabouFATEspecializacao &&
+      acabouFATGraduacao &&
+      acabouFATMestrado &&
+      acabouOAAperfeicoamentoEspecializacao &&
+      acabouOADoutorado &&
+      acabouOAGraduacao &&
+      acabouOAIniciacaoCientifica &&
+      acabouOAMestrado &&
+      acabouOAPosDoutorado &&
+      acabouPartBancaAperfeicoamentoEspecializacao &&
+      acabouPartBancaDoutorado &&
+      acabouPartBancaExameQualificacao &&
+      acabouPartBancaGraduacao &&
+      acabouPartBancaJulgadoraConcursoPublico &&
+      acabouPartBancaJulgadoraOutra &&
+      acabouPartBancaJulgadoraProfessorTitular &&
+      acabouPartBancaMestrado &&
+      acabouPartCongresso &&
+      acabouPartEncontro &&
+      acabouPartOficina &&
+      acabouPartOutras &&
+      acabouPartSeminario &&
+      acabouPartSimposio &&
+      acabouPTPremioTitulo &&
+      acabouFCCursoCurtaDuracao &&
+      acabouSigaDisciplina &&
+      acabouSigaProjeto
+    )
+    )
+  }, [
+    acabouPBArtigoPublicado,
+    acabouPBCapituloLivroPublicado,
+    acabouPBLivroPublicadoOrganizado,
+    acabouPBTextoJornalRevista,
+    acabouPBTrabalhosEvento,
+    acabouAPConselhoComissaoConsultoria,
+    acabouAPDirecaoAdministracao,
+    acabouAPPesquisaDesenvolvimento,
+    acabouAPVinculo,
+    acabouATProjetoPesquisa,
+    acabouFATDoutorado,
+    acabouFATEspecializacao,
+    acabouFATGraduacao,
+    acabouFATMestrado,
+    acabouOAAperfeicoamentoEspecializacao,
+    acabouOADoutorado,
+    acabouOAGraduacao,
+    acabouOAIniciacaoCientifica,
+    acabouOAMestrado,
+    acabouOAPosDoutorado,
+    acabouPartBancaAperfeicoamentoEspecializacao,
+    acabouPartBancaDoutorado,
+    acabouPartBancaExameQualificacao,
+    acabouPartBancaGraduacao,
+    acabouPartBancaJulgadoraConcursoPublico,
+    acabouPartBancaJulgadoraOutra,
+    acabouPartBancaJulgadoraProfessorTitular,
+    acabouPartBancaMestrado,
+    acabouPartCongresso,
+    acabouPartEncontro,
+    acabouPartOficina,
+    acabouPartOutras,
+    acabouPartSeminario,
+    acabouPartSimposio,
+    acabouPTPremioTitulo,
+    acabouFCCursoCurtaDuracao,
+    acabouSigaDisciplina,
+    acabouSigaProjeto])
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  window.addEventListener('resize', function () {
+
+    if (window.innerWidth >= 1000) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+  });
+
+
+  const Filtros = (TextBusca, anoSelect) => {//formato= (palavra, [2012,2020])
+    setAcabou(false);
+    //setItens([]);
+    setFilterText(TextBusca);
+    var date = anoSelect[1];
+    const dates = [];
+    while (date >= anoSelect[0]) {
+      dates.push(String(date));
+      date = date - 1;
+    }
+    setFilterAno(dates);
+    console.log("filtrosano", dates)
+    console.log("filtrosXXX=", TextBusca, anoSelect)
+
+  }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  return (
+    <Box >
+      <Backdrop className={classesbackdrop.backdrop} open={!acabou} >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <div style={{ marginLeft: 20, marginTop: 15 }}>
+        <Navegacao atual={'Portfólio'} anteriores={[
+          {
+            "name": "Home",
+            "url": "/ufjfportfolioprofissional/build"
+          }
+        ]} />
+      </div>
+      <PortfolioBusca getSearch={Filtros} filterAno={filterAno} sliderMin={1989} sliderMax={2020} />
+      <Card key={user.name + "aaaa"} style={{ margin: 20 }}>
+        <CardHeader
+          avatar={<Avatar className={classes.purple}></Avatar>}
+          title={user.name}
+          subheader={user.email}
+        />
+        <Box display="flex" justifyContent="center" p={0.5} bgcolor="background.paper">
+
+          <Card className={divMax_.root}>
+            <CardHeader
+              title={"Portfólio Siga"}
+              subheader={(sizeSigaDisciplina === '' ||
+                sizeSigaProjeto === '') && <LinearProgress />}
+
+            />
+
+
+            {
+              (true
+              // (sizeSigaDisciplina.length !== 0 && sizeSigaDisciplina !== []) ||
+               // (sizeSigaProjeto.length !== 0 && sizeSigaProjeto !== [])
+              ) && <div style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+
+
+
+
+                <SizeItem user={user} heade={'Disciplinas'} url={'disciplina'} num={sizeSigaDisciplina} />
+                <SizeItem user={user} heade={'Projetos'} url={'projeto'} num={sizeSigaProjeto} />
+
+
+              </div>}
+          </Card>
+        </Box>
+        <Box display="flex" justifyContent="center" p={0.5} bgcolor="background.paper">
+          <Card className={divMax_.root}>
+            <CardHeader
+              title={"Portfólio Lattes"/*<Button style={{ margin: 15, width: 200 }} color="primary" disableElevation onClick={() => href(`/portfolio/lattes/${user.user_name}`)} >Abrir Todos</Button>*/}
+              subheader={false
+                //sizePBArtigoPublicado === '' ||
+                //sizePBCapituloLivroPublicado === '' ||
+                //sizePBLivroPublicadoOrganizado === '' ||
+                //sizePBTextoJornalRevista === '' ||
+                //sizePBTrabalhosEvento === '') && <LinearProgress />
+              }
+              action={
+                <div>
+                  <IconButton aria-label="settings" onClick={handleClick}>
+                    <MoreVertIcon />
+                  </IconButton>
+
+                  <Menu
+                    id="fade-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={Fade}
+                  >
+                    <MenuItem onClick={() => props.history.push("/import")}>Importar Currículo Lattes</MenuItem>
+                    <MenuItem onClick={() => props.history.push("/apagar")}>Apagar Infomações</MenuItem>
+                  </Menu>
+                </div>
+              }
+
+            />
+
+            {(true
+              //(sizePBArtigoPublicado.length !== 0 && sizePBArtigoPublicado !== []) ||
+              //(sizePBCapituloLivroPublicado.length !== 0 && sizePBCapituloLivroPublicado !== []) ||
+              //(sizePBLivroPublicadoOrganizado.length !== 0 && sizePBLivroPublicadoOrganizado !== []) ||
+              //(sizePBTextoJornalRevista.length !== 0 && sizePBTextoJornalRevista !== []) ||
+              //(sizePBTrabalhosEvento.length !== 0 && sizePBTrabalhosEvento !== [])
+            ) &&
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Produção Bibliográfica" />
+                <SizeItem user={user} heade={'Artigos Publicados'} url={'PBArtigoPublicado'} num={sizePBArtigoPublicado} />
+                <SizeItem user={user} heade={'Capítulos de Livros Publicados'} url={'PBCapituloLivroPublicado'} num={sizePBCapituloLivroPublicado} />
+                <SizeItem user={user} heade={'Livros Publicados e Organizados'} url={'PBLivroPublicadoOrganizado'} num={sizePBLivroPublicadoOrganizado} />
+                <SizeItem user={user} heade={'Textos Jornais e Revistas'} url={'PBTextoJornalRevista'} num={sizePBTextoJornalRevista} />
+                <SizeItem user={user} heade={'Trabalhos em Eventos'} url={'PBTrabalhosEvento'} num={sizePBTrabalhosEvento} />
+
+              </Card>}
+
+            {true
+              //(sizeOAIniciacaoCientifica === '0' && sizeOAIniciacaoCientifica === '') ||
+              //(sizeOAGraduacao === '0' && sizeOAGraduacao === '') ||
+              //(sizeOAMestrado === '0' && sizeOAMestrado === '') ||
+              //(sizeOADoutorado === '0' && sizeOADoutorado === '') ||
+              //(sizeOAPosDoutorado === '0' && sizeOAPosDoutorado === '') ||
+              //(sizeOAAperfeicoamentoEspecializacao === '0' && sizeOAAperfeicoamentoEspecializacao === '')
+            &&
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Orientações em Andamento" />
+
+                <SizeItem user={user} heade={'Iniciação Cientifica'} url={'OAIniciacaoCientifica'} num={sizeOAIniciacaoCientifica} />
+                <SizeItem user={user} heade={'Mestrado'} url={'OAMestrado'} num={sizeOAMestrado} />
+                <SizeItem user={user} heade={'Graduação'} url={'OAGraduacao'} num={sizeOAGraduacao} />
+                <SizeItem user={user} heade={'Doutorado'} url={'OADoutorado'} num={sizeOADoutorado} />
+                <SizeItem user={user} heade={'Pós-doutorado'} url={'OAPosDoutorado'} num={sizeOAPosDoutorado} />
+                <SizeItem user={user} heade={'Aperfeiçoamento e Especialização'} url={'OAAperfeicoamentoEspecializacao'} num={sizeOAAperfeicoamentoEspecializacao} />
+
+
+              </Card>}
+
+            {(true
+              //(sizeFATGraduacao.length !== 0 && sizeFATGraduacao !== '') ||
+              //(sizeFATDoutorado.length !== 0 && sizeFATDoutorado !== '') ||
+              //(sizeFATMestrado.length !== 0 && sizeFATMestrado !== '') ||
+              //(sizeFATEspecializacao.length !== 0 && sizeFATEspecializacao !== '')
+            )
+              &&
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Formação Acadêmica Titulação" />
+
+
+
+                <SizeItem user={user} heade={'Graduação'} url={'FATGraduacao'} num={sizeFATGraduacao} />
+                <SizeItem user={user} heade={'Mestrado'} url={'FATMestrado'} num={sizeFATMestrado} />
+                <SizeItem user={user} heade={'Doutorado'} url={'FATDoutorado'} num={sizeFATDoutorado} />
+                <SizeItem user={user} heade={'Especialização'} url={'FATEspecializacao'} num={sizeFATEspecializacao} />
+
+
+              </Card>}
+
+            {(true
+              //(sizeAPConselhoComissaoConsultoria.length !== 0 && sizeAPConselhoComissaoConsultoria !== '') ||
+              //(sizeAPDirecaoAdministracao.length !== 0 && sizeAPDirecaoAdministracao !== '') ||
+              //(sizeAPPesquisaDesenvolvimento.length !== 0 && sizeAPPesquisaDesenvolvimento !== '') ||
+              //(sizeATProjetoPesquisa.length !== 0 && sizeATProjetoPesquisa !== '') ||
+              //(sizeAPVinculo.length !== 0 && sizeAPVinculo !== '')
+              )
+
+              &&
+
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Produção Bibliográfica" />
+
+                <SizeItem user={user} heade={'Conselho Comissão Consultoria'} url={'APConselhoComissaoConsultoria'} num={sizeAPConselhoComissaoConsultoria} />
+                <SizeItem user={user} heade={'Direção Administração'} url={'APDirecaoAdministracao'} num={sizeAPDirecaoAdministracao} />
+                <SizeItem user={user} heade={'Pesquisa e Desenvolvimento'} url={'APPesquisaDesenvolvimento'} num={sizeAPPesquisaDesenvolvimento} />
+                <SizeItem user={user} heade={'Vínculo'} url={'APVinculo'} num={sizeAPVinculo} />
+                <SizeItem user={user} heade={'Projeto Pesquisa'} url={'ATProjetoPesquisa'} num={sizeATProjetoPesquisa} />
+
+
+              </Card>}
+            {(true
+              //(sizePartBancaGraduacao.length !== 0 && sizePartBancaGraduacao !== '') ||
+              //(sizePartBancaMestrado.length !== 0 && sizePartBancaMestrado !== '') ||
+              //(sizePartBancaDoutorado.length !== 0 && sizePartBancaDoutorado !== '') ||
+              //(sizePartBancaAperfeicoamentoEspecializacao.length !== 0 && sizePartBancaAperfeicoamentoEspecializacao !== '') ||
+              //(sizePartBancaExameQualificacao.length !== 0 && sizePartBancaExameQualificacao !== '') ||
+              //(sizePartBancaJulgadoraConcursoPublico.length !== 0 && sizePartBancaJulgadoraConcursoPublico !== '') ||
+              //(sizePartBancaJulgadoraProfessorTitular.length !== 0 && sizePartBancaJulgadoraProfessorTitular !== '') ||
+              //(sizePartBancaJulgadoraOutra.length !== 0 && sizePartBancaJulgadoraOutra !== '')
+            )
+
+              &&
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Participacão em Banca" />
+
+
+
+                <SizeItem user={user} heade={'Graduação'} url={'PartBancaGraduacao'} num={sizePartBancaGraduacao} />
+                <SizeItem user={user} heade={'Mestrado'} url={'PartBancaMestrado'} num={sizePartBancaMestrado} />
+                <SizeItem user={user} heade={'Doutorado'} url={'PartBancaDoutorado'} num={sizePartBancaDoutorado} />
+                <SizeItem user={user} heade={'Aperfeiçoamento Especialização'} url={'PartBancaAperfeicoamentoEspecializacao'} num={sizePartBancaAperfeicoamentoEspecializacao} />
+                <SizeItem user={user} heade={'Exame Qualificação'} url={'PartBancaExameQualificacao'} num={sizePartBancaExameQualificacao} />
+                <SizeItem user={user} heade={'Julgadora de Professor Titular'} url={'PartBancaJulgadoraProfessorTitular'} num={sizePartBancaJulgadoraProfessorTitular} />
+                <SizeItem user={user} heade={'Julgadora de Concurso Publico'} url={'PartBancaJulgadoraConcursoPublico'} num={sizePartBancaJulgadoraConcursoPublico} />
+                <SizeItem user={user} heade={'Julgadora Outra'} url={'PartBancaJulgadoraOutra'} num={sizePartBancaJulgadoraOutra} />
+
+
+              </Card>}
+            {(true
+              //(sizePartEncontro.length !== 0 && sizePartEncontro !== '') ||
+              //(sizePartCongresso.length !== 0 && sizePartCongresso !== '') ||
+              //(sizePartOficina.length !== 0 && sizePartOficina !== '') ||
+              //(sizePartOutras.length !== 0 && sizePartOutras !== '') ||
+              //(sizePartSeminario.length !== 0 && sizePartSeminario !== '') ||
+              //(sizePartSimposio.length !== 0 && sizePartSimposio !== '')
+            )
+              &&
+
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Participacão em Eventos Congressos" />
+
+
+                <SizeItem user={user} heade={'Congresso'} url={'PartCongresso'} num={sizePartCongresso} />
+                <SizeItem user={user} heade={'Encontro'} url={'PartEncontro'} num={sizePartEncontro} />
+                <SizeItem user={user} heade={'Oficina'} url={'PartOficina'} num={sizePartOficina} />
+                <SizeItem user={user} heade={'Seminário'} url={'PartSeminario'} num={sizePartSeminario} />
+                <SizeItem user={user} heade={'Simpósio'} url={'PartSimposio'} num={sizePartSimposio} />
+                <SizeItem user={user} heade={'Outras'} url={'PartOutras'} num={sizePartOutras} />
+
+
+              </Card>}
+
+            {(true
+            //(sizeFCCursoCurtaDuracao.length !== 0 && sizeFCCursoCurtaDuracao !== '')
+            ) &&
+
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Cursos" />
+                <SizeItem user={user} heade={'Cursos de Curta Duração'} url={'FCCursoCurtaDuracao'} num={sizeFCCursoCurtaDuracao} />
+              </Card>}
+
+            {(true
+           // (sizePTPremioTitulo.length !== 0 && sizePTPremioTitulo !== '')
+            ) &&
+
+              <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+                <CardHeader title="Prêmios" />
+
+                <SizeItem user={user} heade={'Prêmios Titulos'} url={'PTPremioTitulo'} num={sizePTPremioTitulo} />
+
+              </Card>}
+
+          </Card>
+        </Box>
+      </Card>
+    </Box >
+
+  );
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+const useStyles = makeStyles((theme) => ({
+  root: {
+
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
+  },
+  purple: {
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500],
+  },
+
+}));
+
+const useStyles2 = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
+
+const divMax = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    backgroundColor: "#9d98b3",
+  },
+}));
+
+
+const divMaxMobile = makeStyles((theme) => ({
+  root: {
+    width: '100%',
   },
 }));
 

@@ -114,7 +114,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
 
 
   return (
-    <div>
+    <div style={{borderStyle:'dotted',borderWidth:2 , paddingTop:5,paddingBottom:10,paddingLeft:20,paddingLeft:20}}>
   {/* DOI: */}
   {urlDoi !== "" ?
         <div>
@@ -195,7 +195,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
         <div >
           <Typography component={'span'} style={{ width: 150 }}>
             <Box textAlign="left" >
-              Adicione uma nova URL:
+              Adicione uma URL:
             </Box>
           </Typography>
           <div style={{ width: "100%" }}>

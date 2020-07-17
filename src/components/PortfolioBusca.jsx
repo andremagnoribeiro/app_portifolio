@@ -72,10 +72,6 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
 
 
 
-
-
-
-
   const [filterAno, setFilterAno] = React.useState([sliderMin, sliderMax]);
   const [filterAno2, setFilterAno2] = React.useState([sliderMin, sliderMax]);
 
@@ -123,10 +119,10 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
 
               </div>
               <div style={{
-                width: 200, margin: 18
+                width: 300, margin: 18
               }}>
-                <Button onClick={btnFiltrarClick} variant="contained" style={{ width: '10%', height: 35, marginLeft: 1, backgroundColor: "secondary" }} color="primary" disableElevation>
-                  <SearchIcon />
+                <Button onClick={btnFiltrarClick} variant="contained" style={{ width: 120, height: 35, marginLeft: 1, backgroundColor: "secondary" }} color="primary" disableElevation>
+                  <SearchIcon />Filtrar
                 </Button>
               </div>
 
@@ -139,7 +135,7 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
               aria-label="show more"
               size="small"
             >
-              {expandedFiltro ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Filtro
+              {expandedFiltro ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Filtros
             </IconButton>
             <Collapse in={expandedFiltro} timeout="auto" unmountOnExit>
               <div style={{

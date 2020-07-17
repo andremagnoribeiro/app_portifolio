@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 export const TitleItem = ({ title, valor }) => (
   <div >
     {(valor !== '' && valor && valor !== "NULL") && <div style={{
-      marginLeft: 10,marginRight: 10,
+      marginLeft: 0,marginRight: 10,
     
     }}>
       <div style={{
@@ -17,7 +17,7 @@ export const TitleItem = ({ title, valor }) => (
 
         <Typography fontWeight="fontWeightBold" >
           <Box fontSize={14} fontWeight="fontWeightBold" m={1}>
-            {title}
+            {title}:
           </Box>
         </Typography >
         <Typography style={{ marginLeft: 40 }} >
