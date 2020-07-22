@@ -5,6 +5,7 @@ import './App.css';
 
 import {Portfolio}  from './containers/Portfolio';
 import {P_BarraMenu}  from './containers/userPublic/P_BarraMenu';
+import {P_PortfolioEdit}  from './containers/userPublic/P_PortfolioEdit';
 
 
 import {L_PortfolioEdit}  from './containers/userLogin/L_PortfolioEdit';
@@ -43,7 +44,7 @@ class App extends Component {
             
             
             {/* <PrivateRoute  exact path="/portfolio/:item/:user"  component={L_ViewItem} /> */}
-            <PrivateRoute  exact path='/portfolioEdit/:user'  componentPrivate={L_PortfolioEdit} componentPublic={FormLogin}/>
+            <PrivateRoute  exact path='/portfolioEdit/:user'  componentPrivate={L_PortfolioEdit} componentPublic={P_PortfolioEdit}/>
             <PrivateRoute  exact path='/editUser'  componentPrivate={L_EditUser} componentPublic={FormLogin}/>
             <PrivateRoute  exact path='/import'  componentPrivate={L_ImportXML} componentPublic={FormLogin}/>
             <PrivateRoute  exact path='/apagar'  componentPrivate={L_ApagarDados} componentPublic={FormLogin}/>

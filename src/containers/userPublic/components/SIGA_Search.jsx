@@ -15,14 +15,14 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 
-export const Search = ({ getSearch }) => {
+export const SIGA_Search = ({ getSearch }) => {
   const classes = useStyles();
-  const [textsearch, setTextsearch] = useState(null);
-  const [selectedFim, setSelectedFim] = useState(null);
-  const [selectedInicio, setSelectedInicio] = useState(null);
+  const [textsearch, setTextsearch] = useState('');
+  const [selectedFim, setSelectedFim] = useState("Fim");
+  const [selectedInicio, setSelectedInicio] = useState("Início");
   const [anoInicio, setAnoInicio] = useState([]);
   const [arrayFim, setArrayFim] = useState([]);
-  const [tipoD, setTipoD] = useState(null);
+  const [tipoD, setTipoD] = useState("");
  
   const onChangeInput = (event) => {
     setTextsearch(event.target.value);
@@ -40,18 +40,37 @@ export const Search = ({ getSearch }) => {
   }
 
   const handleChangeSelectInicio = (event) => {
-    var data = new Date();
-    setArrayFim(arrayDate(Number(event.target.value), data.getFullYear()));
-    setSelectedInicio(Number(event.target.value));
+    if(event.target.value){
+      var data = new Date();
+      setArrayFim(arrayDate(Number(event.target.value), data.getFullYear()));
+      setSelectedInicio(Number(event.target.value));
+    }else{
+      var data = new Date();
+      setArrayFim(arrayDate(1970, data.getFullYear()));
+      setSelectedInicio(Number(event.target.value));
+    }
    
+    //getSearch(textsearch, Number(event.target.value), selectedFim, tipoD);
   }
 
   const handleChangeSelectFim = (event) => {
+
+    if(event.target.value){
+      var data = new Date();
+      setAnoInicio(arrayDate( 1970,Number(event.target.value)));
+  
+    }else{
+      var data = new Date();
+      setAnoInicio(arrayDate(1970, data.getFullYear()));
+    }
     setSelectedFim(Number(event.target.value));
+    //getSearch(textsearch, selectedInicio, Number(event.target.value), tipoD);
   };
 
   const handleChangeSelectTipo = (event) => {
     setTipoD(event.target.value);
+    //getSearch(textsearch, selectedInicio, selectedFim, event.target.value);
+
   }
 
 
@@ -66,10 +85,16 @@ export const Search = ({ getSearch }) => {
   }
   useEffect(() => {
     var data = new Date();
-    setAnoInicio(arrayDate(1950, data.getFullYear()));
+    setAnoInicio(arrayDate(1970, data.getFullYear()));
+    setArrayFim(arrayDate(1970, data.getFullYear()));
   }, []);
 
-
+  const runScript=(e)=> {
+    if (e.target.keyCode === 13) {
+        getSearch(textsearch, selectedInicio, selectedFim, tipoD);
+        return false;
+    }
+  }
 
   return (
     <div>
@@ -130,36 +155,32 @@ export const Search = ({ getSearch }) => {
               }}>
                 <CardContent>
 
-                  <Typography  style={{ marginTop: 5, marginLeft: 15 }}  color="textSecondary" component="p">
-                    Ano de Publicação(início/fim)
-                  </Typography>
+                  <Typography  style={{ marginTop: 5, marginLeft: 5 }} variant="h10" color="textSecondary" component="p">
+                    Ano 
+          </Typography>
 
                   <FormControl className={classes.formControl}>
                     <Select
-                   
                       native
                       onChange={handleChangeSelectInicio}
-                      value={selectedInicio||""}
+                      value={selectedInicio}
                       input={<Input id="demo-dialog-native" />}
                     >
-                      <option value={null} >Todos</option>
+                      <option value={null} >Início</option>
                       {anoInicio.map(ano => {
 
-                        return <option key={ano} value={ano} >{ano}</option>
+                        return <option value={ano} >{ano}</option>
                       })}
                     </Select>
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <Select
-                   
                       native
                       onChange={handleChangeSelectFim}
-                      value={selectedFim||""}
+                      value={selectedFim}
                       input={<Input id="demo-dialog-native" />}
-                      placeholder="Fim"
-
                     >
-                      <option value={null} >Todos</option>
+                      <option value={null}>Fim</option>
                       {arrayFim.map(ano => {
                        
                         return <option value={ano}>{ano}</option>
@@ -174,25 +195,21 @@ export const Search = ({ getSearch }) => {
                 width: "calc((100% / 2) )"
               }}>
               <CardContent>
-                <Typography style={{ marginTop: 5, marginLeft: 5 }}  color="textSecondary" component="p">
+                <Typography style={{  marginTop: 5, marginLeft: 5  }} variant="h10" color="textSecondary" component="p">
                   Tipo
-          </Typography>
+                </Typography>
+                <FormControl className={classes.formControl}>
                 <Select
                   native
                   onChange={handleChangeSelectTipo}
                   value={tipoD}
                   input={<Input id="demo-dialog-native" />}
                 >
-                  <option value={null}>Todos</option>
-                  <option value="artigo_publicado" >Artigo Publicado</option>
-                  <option value="capitulo_de_livros_publicado" >Capítulo de Livro Publicado</option>
-                  <option value="livro_publicado" >Livro Publicado Organizado</option>
-                  <option value="trabalhoEvento" >Trabalho Evento</option>
-                  <option value="textoJornalRevista" >Texto Jornal Revista</option>
-                  
-                  
-                  {/* <option value="capitulo_de_livros_publicado" >Capitulo de Livros Publicado</option> */}
+                  <option value={null} >Todos</option>
+                  <option value="projeto" >Projetos</option>
+                  <option value="disciplina" >Disciplinas</option>
                 </Select>
+                </FormControl>
               </CardContent>
 </div>
 

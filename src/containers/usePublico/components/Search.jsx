@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 
-export const SigaSearch = ({ getSearch }) => {
+export const Search = ({ getSearch }) => {
   const classes = useStyles();
   const [textsearch, setTextsearch] = useState(null);
   const [selectedFim, setSelectedFim] = useState(null);
@@ -131,7 +130,7 @@ export const SigaSearch = ({ getSearch }) => {
               }}>
                 <CardContent>
 
-                  <Typography  style={{ marginTop: 5, marginLeft: 5 }}  color="textSecondary" component="p">
+                  <Typography  style={{ marginTop: 5, marginLeft: 15 }}  color="textSecondary" component="p">
                     Ano de Publicação(início/fim)
                   </Typography>
 
@@ -185,9 +184,12 @@ export const SigaSearch = ({ getSearch }) => {
                   input={<Input id="demo-dialog-native" />}
                 >
                   <option value={null}>Todos</option>
-                  <option value="projeto" >Projetos</option>
-                  <option value="disciplina" >Disciplinas</option>
-
+                  <option value="artigo_publicado" >Artigo Publicado</option>
+                  <option value="capitulo_de_livros_publicado" >Capítulo de Livro Publicado</option>
+                  <option value="livro_publicado" >Livro Publicado Organizado</option>
+                  <option value="trabalhoEvento" >Trabalho Evento</option>
+                  <option value="textoJornalRevista" >Texto Jornal Revista</option>
+                  
                   
                   {/* <option value="capitulo_de_livros_publicado" >Capitulo de Livros Publicado</option> */}
                 </Select>
