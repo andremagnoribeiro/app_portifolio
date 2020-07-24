@@ -14,6 +14,10 @@ import {Page_Private_EditUser}  from '../pages/private/Page_Private_EditUser';
 import {Page_Private_ApagarDados}  from '../pages/private/Page_Private_ApagarDados';
 import {Page_Private_ImportXML}  from '../pages/private/page_private_importxml/Page_Private_ImportXML';
 
+//Admin 
+import {Page_Admin_BarraMenu}  from '../pages/admin/Page_Admin_BarraMenu';
+import {Page_Admin_ImportDataSiga}  from '../pages/admin/Page_Admin_ImportDataSiga';
+import {Page_Admin_Home}  from '../pages/admin/Page_Admin_Home';
 
 
 import {PrivateRoute} from './Login';
@@ -29,11 +33,11 @@ class App extends Component {
        <BrowserRouter basename="/ufjfportfolioprofissional/build">
       
       <div style={{width:"100%" }}>
-        <PrivateRoute path="/"  componentPrivate={Page_Private_BarraMenu} componentPublic={Page_Public_BarraMenu}/>
+        <PrivateRoute path="/"  componentPrivate={Page_Private_BarraMenu} componentPublic={Page_Public_BarraMenu} componentAdmin={Page_Admin_BarraMenu}/>
 
         <Switch>
            {/* Rotas Publicas*/ }
-            <Route exact path="/"  component={Page_Public_Home} /> 
+            <PrivateRoute exact path="/"  componentPublic={Page_Public_Home} componentPrivate={Page_Public_Home} componentAdmin={Page_Admin_Home}/> 
             <Route exact path="/createuser"  component={Page_Public_CreateUser} /> 
             <Route  exact path='/portfolio/:user'  component={Page_Public_Portfolio}/>
             
@@ -45,6 +49,9 @@ class App extends Component {
             <PrivateRoute  exact path='/apagar'  componentPrivate={Page_Private_ApagarDados} componentPublic={Page_Public_FormLogin}/>
             <PrivateRoute  exact path='/formlogin'  componentPrivate={Page_Public_Home} componentPublic={Page_Public_FormLogin}/>
             
+            {/* Rotas ADMIN*/ }
+            <PrivateRoute path="/importDataSiga"  componentAdmin={Page_Admin_ImportDataSiga}/>
+
         </Switch>
       </div>
     </BrowserRouter>

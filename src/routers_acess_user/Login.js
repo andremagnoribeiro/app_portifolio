@@ -2,16 +2,29 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 
-export const PrivateRoute = ({ url, componentPrivate: ComponentPrivate, componentPublic: ComponentPublic, ...rest }) => {
 
-    return (
-        <Route {...rest} render={props => (
-            isLogin(props.match.params.user) ?
-                <ComponentPrivate {...props} />
-                : <ComponentPublic {...props} />
-        )} />
-    );
-};
+//class
+export const PrivateRoute = ({
+    url,
+    componentAdmin: ComponentAdmin,
+    componentPrivate: ComponentPrivate,
+    componentPublic: ComponentPublic,
+    ...rest }) =>
+    <Route {...rest} render={
+        props => {
+            console.log('>>>>>>>>1', isLogin());
+            if (isLogin() === "public") {
+                return <ComponentPublic {...props} />;
+            } else if (isLogin() === "private") {
+                return <ComponentPrivate {...props} />;
+            } else if (isLogin() === "admin") {
+                return <ComponentAdmin {...props} />;
+            }
+        }
+    }
+    />
+
+
 
 
 const TOKEN_KEY = 'user';
@@ -26,7 +39,15 @@ export const logout = () => {
 
 const isLogin = () => {
     if (localStorage.getItem('user') !== null) {
-        return true;
+        var user = JSON.parse(localStorage.getItem('user'));
+
+        if (user !== null) {
+
+            if (user.user_type === 'admin') {
+                return 'admin';
+            }
+            return 'private';
+        }
     }
-    return false;
+    return 'public';
 };

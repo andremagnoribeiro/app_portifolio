@@ -39,20 +39,46 @@ import { logout } from '../../routers_acess_user/Login';
 import { deleteUser } from "../../api/serverAPI";
 
 //class
-export const Page_Private_BarraMenu = props => {
-  const classes = useStyles();
+export const Page_Admin_BarraMenu = props => {
+  //////////////////////////////////////////////////////////
+  /////////0000000000//////////////////////////////////////////
+  ///////0//////////////////////////////////////////////
+  //////0///////////////////////////////////////////////////
+  //////0//////////////////////////////////////////////////
+  ///////0/////////////////////////////////////////////////
+  /////////000000000/////////////////////////////////////////
+  ///////////////////0////////////////////////////////////////
+  ////////////////////0/////////////////////////////////////
+  ///////////////////0///////////////////////////////////////
+  /////////////////0/////////////////////////////////////////
+  ////////000000000////////////////////////////////////////
+
+
+  const [open, setOpen] = useState(false);
+  const [openP, setOpenP] = useState(false);
+  const [anchorEla, setAnchorEla] = React.useState(null);
+
+  const [expandedmenu, setExpandedmenu] = useState(false);
+
 
   const [encolher, setEncolher] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState(undefined);
 
-  window.addEventListener('resize', function () {
 
-    if (window.innerWidth >= 1200) {
-      setEncolher(false);
-    } else {
-      setEncolher(true);
-    }
-  });
+
+
+  //////////////////////////////////////////////////////////
+  ////////0000000000000///////////////////////////////////////////
+  ////////0/////////////////////////////////////////////
+  ////////0/////////////////////////////////////////////////
+  ////////0////////////////////////////////////////////////
+  ////////0////////////////////////////////////////////////
+  ////////0000000000000//////////////////////////////////////////
+  ////////0////////////////////////////////////////////////
+  ////////0////////////////////////////////////////////////
+  ////////0//////////////////////////////////////////////////
+  ////////0//////////////////////////////////////////////////
+  ////////0000000000000////////////////////////////////////////
 
   useEffect(() => {
     if (window.innerWidth >= 1200) {
@@ -64,9 +90,29 @@ export const Page_Private_BarraMenu = props => {
   }, [])
 
 
-  const href = (href) => {
-    window.location.href = "/ufjfportfolioprofissional/build" + href;
-  }
+  //////////////////////////////////////////////////////////
+  //////////00000000/////////////0000000000000/////////////////////
+  ////////0//////////////////////0///////////////////////
+  ///////0///////////////////////0//////////////////////////
+  //////0////////////////////////0//////////////////////////
+  //////0////////////////////////0//////////////////////////
+  //////0////////////////////////0000000000////////////////////
+  //////0////////////////////////0/////////////////////////////
+  ///////0///////////////////////0///////////////////////////
+  ////////0//////////////////////0///////////////////////////
+  /////////000000000/////////////0///////////////////////////////////
+  ////////////////////////////////////////////////
+
+  const classes = useStyles();
+
+  window.addEventListener('resize', function () {
+
+    if (window.innerWidth >= 1200) {
+      setEncolher(false);
+    } else {
+      setEncolher(true);
+    }
+  });
 
   const delUser = () => {
 
@@ -81,9 +127,8 @@ export const Page_Private_BarraMenu = props => {
 
   }
 
-  const [open, setOpen] = useState(false);
-  const [openP, setOpenP] = useState(false);
   const anchorRef = useRef(null);
+
   const anchorRefp = useRef(null);
 
   const handleToggle = () => {
@@ -105,9 +150,6 @@ export const Page_Private_BarraMenu = props => {
     }
   }
 
-  /////////////////////////////
-
-
   const handleToggleP = () => {
     setOpenP(!openP);
   };
@@ -120,27 +162,17 @@ export const Page_Private_BarraMenu = props => {
     setOpenP(false);
   };
 
+
   function handleListKeyDownP(event) {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpenP(false);
     }
   }
-  ///////////////////
-
-
-  const [expandedmenu, setExpandedmenu] = useState(false);
-
 
   const handleExpandClickmenu = () => {
     setExpandedmenu(!expandedmenu);
   };
-
-
-
-
-
-  const [anchorEla, setAnchorEla] = React.useState(null);
 
   const handleClicka = (event) => {
     setAnchorEla(event.currentTarget);
@@ -149,6 +181,21 @@ export const Page_Private_BarraMenu = props => {
   const handleClosea = () => {
     setAnchorEla(null);
   };
+
+
+
+  //////////////////////////////////////////////////////////
+  ////////0000000//////////////////////////////////////////////////
+  ////////0///////0//////////////////////////////////////////
+  ////////0////////0//////////////////////////////////////////
+  ////////0////////0//////////////////////////////////////////
+  ////////0///////0/////////////////////////////////////////
+  ////////00000000////////////////////////////////////////////
+  ////////0//////0////////////////////////////////////////////
+  ////////0///////0/////////////////////////////////////////
+  ////////0////////0//////////////////////////////////////////
+  ////////0/////////0/////////////////////////////////////////
+  ////////0//////////0//////////////////////////////////////
   return (
     <div>
       {deleteDialog}
@@ -166,6 +213,10 @@ export const Page_Private_BarraMenu = props => {
 
             </IconButton>
             {/* MOBILE USUARIO/////////////////////////////////////////////// */}
+            <div
+              style={{ zIndex: 3 }}>
+              Administrador do Sistema
+             </div>
             <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
 
             {/* MOBILE USUARIO/////////////////////////////////////////////// */}
@@ -191,7 +242,7 @@ export const Page_Private_BarraMenu = props => {
                       <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
                         <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
+                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => props.history.push('/editUser')}>Edit</Typography></MenuItem>
                         <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
                       </MenuList>
                     </ClickAwayListener>
@@ -204,64 +255,37 @@ export const Page_Private_BarraMenu = props => {
           // DESKTOP //////////////////////////////////////////////////
           <Toolbar>
             <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
-
+            <div style={{width:250}}> 
+                  Administrador do Sistema
+             </div>
             <Grid
               justify="space-between"
               container
               spacing={1}
             >
+             
               <Grid item>
 
                 {/* Home//////////////////////////// */}
-                <Button variant="outlined" onClick={() => href("/")} >Home</Button>
-
-                {/* MEU PORTIFOLIO LATTES 1ºEditar 2ºVisualizar //////////////////////////// */}
-                <Button
-                  ref={anchorRefp}
-                  aria-controls={openP ? 'menu-list-growp' : undefined}
-                  aria-haspopup="true"
-                  onClick={handleToggleP}
-
-                  style={{ marginLeft: 20 }} variant="outlined"  >
-                  MEU PORTIFÓLIO LATTES
-                </Button>
-
-
-                <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
-                  {({ TransitionProps, placement }) => (
-                    <Grow
-                      {...TransitionProps}
-                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                    >
-                      <Paper>
-                        <ClickAwayListener onClickAway={handleCloseP}>
-                          <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
-
-                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-
-
-                {/* MEU PORTIFOLIO SIGA ///////////////////////////////*/}
-                <Button style={{ marginLeft: 20 }} variant="outlined" onClick={() => href(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
                 
-          
+                <Button variant="outlined" onClick={() => props.history.push("/")} >Home</Button>
+                <Button variant="outlined" onClick={() => props.history.push("/importDataSiga")} >Importar Dados do Siga</Button>
+               
+                
+                
+
               </Grid>
 
+
               <Grid item>
-{/* USUARIO AVATA /////////////////*/}
+                
+                {/* USUARIO AVATA /////////////////*/}
                 <Button ref={anchorRef}
                   aria-controls={open ? 'menu-list-grow' : undefined}
                   aria-haspopup="true"
                   onClick={handleToggle}
                   style={{ height: 40 }}>
                   <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
-
 
                   <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
                 </Button>
@@ -276,9 +300,7 @@ export const Page_Private_BarraMenu = props => {
                           <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
                             <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
-                          </MenuList>
+                         </MenuList>
                         </ClickAwayListener>
                       </Paper>
                     </Grow>
@@ -301,7 +323,7 @@ export const Page_Private_BarraMenu = props => {
         color="primary"
       >
         <MenuItem >
-          <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => href("/")} >Home</Button>
+          <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => props.history.push("/")} >Home</Button>
         </MenuItem>
         <MenuItem>
           <ExpansionPanel style={{ width: '100%' }}>
@@ -317,12 +339,12 @@ export const Page_Private_BarraMenu = props => {
 
                 style={{ width: '100%' }} variant="outlined"  >
                 MEU PORTIFÓLIO LATTES
-          </Button>
+            </Button>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
 
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }} onClick={() => props.history.push(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }} onClick={() => props.history.push(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
 
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -331,11 +353,11 @@ export const Page_Private_BarraMenu = props => {
 
         </MenuItem>
         <MenuItem>
-          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
+          <Button style={{ width: '100%' }} variant="outlined" onClick={() => props.history.push(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
 
         </MenuItem>
         <MenuItem>
-          <Button style={{ fontSize: 12, width: '100%' }} variant="outlined" onClick={() => href(`/`)} >Importação SIGA em desenvolvimento</Button>
+          <Button style={{ fontSize: 12, width: '100%' }} variant="outlined" onClick={() => props.history.push(`/`)} >Importação SIGA em desenvolvimento</Button>
 
         </MenuItem>
       </Menu>
@@ -351,8 +373,8 @@ export const Page_Private_BarraMenu = props => {
               <ClickAwayListener onClickAway={handleCloseP}>
                 <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
 
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -442,15 +464,15 @@ const DeleteUserDialogo = ({ deletee, fechar }) => {
         <DialogContent>
           <DialogContentText>
             Deseja realmete deletar o usuรกrio?
-          </DialogContentText>
+            </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={() => { handleClose(); fechar(); }} color="primary">
             Cancelar
-          </Button>
+            </Button>
           <Button onClick={() => deletee()} color="primary">
             Sim
-          </Button>
+            </Button>
         </DialogActions>
       </Dialog>
     </div>
