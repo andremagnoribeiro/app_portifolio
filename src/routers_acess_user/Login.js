@@ -5,7 +5,6 @@ import { Route } from 'react-router-dom';
 export const PrivateRoute = ({ url, componentPrivate: ComponentPrivate, componentPublic: ComponentPublic, ...rest }) => {
 
     return (
-
         <Route {...rest} render={props => (
             isLogin(props.match.params.user) ?
                 <ComponentPrivate {...props} />
@@ -24,11 +23,10 @@ export const logout = () => {
     window.location.href = "/ufjfportfolioprofissional/build/formlogin";
 }
 
-export const isLogin = (user) => {
-    if (user&&localStorage.getItem(TOKEN_KEY)) {
-        if (user!==localStorage.getItem(TOKEN_KEY).user_name) {
-            return true;
-        }
+
+const isLogin = () => {
+    if (localStorage.getItem('user') !== null) {
+        return true;
     }
     return false;
-}
+};

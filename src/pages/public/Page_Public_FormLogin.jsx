@@ -38,9 +38,9 @@ export const Page_Public_FormLogin = () => {
 
     xhr.onload = function () {
       if(xhr.responseText==="false"){
-        
         document.getElementById("msg").style.display="block";
       }else{
+        console.log(xhr.responseText);
         const user=JSON.parse(xhr.responseText);
         localStorage.setItem("user",JSON.stringify(user));
         window.location.href ="/ufjfportfolioprofissional/build/";
