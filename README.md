@@ -1,12 +1,12 @@
 
-1) Para ver o portifólio, tem que ir em Home e clicar no nome. Até aí ok.
-[13:46, 23/07/2020] Barrere: 
+1) Para ver o portifólio, tem que ir em Home e clicar no nome. 
+  Resolvido 
 
 2) "Meu Portifólio Siga" não apresenta nada. Não teria que apresentar os dados que acessei clicando no meu nome?
-Sim. Tinha um erro aqui e ja arrumei
+Sim.Tinha um Erro e foi Resolvido.
 
 3) "Meu Portifólio Lattes" me dá duas opções: Visualizar e Editar. Não teria que apresentar os dados que acessei clicando no meu nome ou mesmo permitir a importação?
-
+Sim 
 
 4) Temos que criar um funcionalidade que verifique se o que está no Lattes tem ou não comprovação (DOI, URL no Lattes ou URL inserida pelo usuário). Pode ser junto ao "Meu Portifólio Lattes". O resultado seria um check list (item do lattes e "Tem" ou "Não tem" (poderia ser uma imagem ou texto).
 

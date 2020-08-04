@@ -49,7 +49,7 @@ export const PBTrabalhosEvento = (item) => {
 
       <CardHeader
         title={"Trabalho em Evento"}
-        subheader={"Ano: " + item.ano_do_trabalho}
+        subheader={"id"+item.id+"Ano: " + item.ano_do_trabalho}
       />
 
       <CardContent>
@@ -70,7 +70,7 @@ export const PBTrabalhosEvento = (item) => {
           aria-expanded={expanded}
           aria-label="show more"
         >
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 
         </IconButton>
 
@@ -79,7 +79,7 @@ export const PBTrabalhosEvento = (item) => {
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -119,7 +119,7 @@ export const PBTextoJornalRevista = (item) => {
 
   return (
     <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
-      <CardHeader title="Texto Jornal Revista" subheader={"publicado em: " + item.data_de_publicacao.slice(0, -6) + "/" + item.data_de_publicacao.slice(2, -4) + "/" + item.data_de_publicacao.slice(4)} />
+      <CardHeader title="Texto Jornal Revista" subheader={"id"+item.id+"publicado em: " + item.data_de_publicacao.slice(0, -6) + "/" + item.data_de_publicacao.slice(2, -4) + "/" + item.data_de_publicacao.slice(4)} />
 
       <CardContent>
 
@@ -132,12 +132,12 @@ export const PBTextoJornalRevista = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
         <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -173,7 +173,7 @@ export const PBLivroPublicadoOrganizado = (item) => {
   return (
 
     <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
-      <CardHeader title="Livro Publicado Organizado" subheader={"publicado em: " + item.ano}
+      <CardHeader title="Livro Publicado Organizado" subheader={"id"+item.id+"publicado em: " + item.ano}
       />
       <CardContent>
 
@@ -183,12 +183,12 @@ export const PBLivroPublicadoOrganizado = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
         <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -231,7 +231,7 @@ export const PBCapituloLivroPublicado = (item) => {
 
       <CardHeader
         title="Capítulo de Livros Publicado"
-        subheader={"publicado em: " + item.ano}
+        subheader={"id"+item.id+"publicado em: " + item.ano}
       />
 
       <CardContent>
@@ -246,7 +246,7 @@ export const PBCapituloLivroPublicado = (item) => {
       <CardActions disableSpacing>
 
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
 
       </CardActions>
@@ -255,7 +255,7 @@ export const PBCapituloLivroPublicado = (item) => {
 
         <CardContent style={{ backgroundColor: "#d0ffd4" }}>
 
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -299,7 +299,7 @@ export const PBArtigoPublicado/**/ = (item) => {
 
   return (
     <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
-      <CardHeader title="Artigo Publicado"/**/ subheader={"publicado em: " + item.ano_do_artigo}/**/
+      <CardHeader title="Artigo Publicado"/**/ subheader={"id"+item.id+"publicado em: " + item.ano_do_artigo}/**/
       />
       <CardContent>
 
@@ -311,12 +311,12 @@ export const PBArtigoPublicado/**/ = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
         <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -361,7 +361,7 @@ export const SigaProjeto = (item) => {
       <CardHeader
         title={"Projeto: " + item.DESCRICAO}
 
-        subheader={
+        subheader={"id"+item.id+
           <div>
             <Typography>{"De " + item.DATAINICIO + " a " + item.DATAFIM}</Typography>
 
@@ -422,14 +422,14 @@ export const SigaDisciplina = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#d3d3d3",
+      backgroundColor: "#F0F8FF",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
         title={"Disciplina: " + item.NOME + " - " + item.DISCIPLINA + "-" + item.TURMA}
-        subheader={"Ano/Semetre: " + item.ANO + "/" + item.SEMESTRE}
+        subheader={"id"+item.id+"Ano/Semetre: " + item.ANO + "/" + item.SEMESTRE}
       />
       <CardContent>
         <Typography>Horas de Estรกgio: {item.HORASESTAGIO}</Typography>
@@ -464,7 +464,7 @@ export const ATProjetoPesquisa = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader
         title='Projeto Pesquisa'
-        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
 
@@ -479,7 +479,7 @@ export const ATProjetoPesquisa = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
@@ -503,7 +503,7 @@ export const ATProjetoPesquisa = (item) => {
         <TitleItem title={'Número Mestrado Prof'} valor={item.Número_mestrado_prof} />
         <TitleItem title={'Projeto de Pesquisa'} valor={item.projeto_de_pesquisa} />
         <TitleItem title={'Temáticas do Projeto'} valor={item.tematicas_do_projeto} />
-        {(item[`equipe_nome_completo1`] && item[`equipe_nome_completo1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        {(item[`equipe_nome_completo1`] && item[`equipe_nome_completo1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
           <CardHeader
             title="Autores"
             subheader=""
@@ -542,7 +542,7 @@ export const ATProjetoPesquisa = (item) => {
           })}
         </Card>}
 
-        {(item[`financiador_nome_instituicao1`] && item[`financiador_nome_instituicao1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        {(item[`financiador_nome_instituicao1`] && item[`financiador_nome_instituicao1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
           <CardHeader
             title="Financiador"
             subheader=""
@@ -607,7 +607,7 @@ export const APVinculo = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader
         title='Vínculo'
-        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
 
@@ -646,7 +646,7 @@ export const APPesquisaDesenvolvimento = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader
         title='Pesquisa e Desenvolvimento'
-        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
 
@@ -711,7 +711,7 @@ export const APDirecaoAdministracao = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader
         title='Direção Administração'
-        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
         <TitleItem title={'Cargo Função:'} valor={item.cargo_ou_funcao} />
@@ -751,7 +751,7 @@ export const APConselhoComissaoConsultoria = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader
         title='Conselho Comissão Consultoria'
-        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
         <TitleItem title={'Especificações'} valor={item.especificacao} />
@@ -795,7 +795,7 @@ export const FATDoutorado = (item) => {
   return (
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Doutorado'
-        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao+ '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
+        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao+ '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
       <CardContent>
 
         <TitleItem title={'Título da Dissertação ou Tese'} valor={item.titulo_da_dissertacao_tese} />
@@ -807,7 +807,7 @@ export const FATDoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -897,7 +897,7 @@ export const FATEspecializacao = (item) => {
       <CardHeader title='Especialização'
 
 
-        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
+        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
 
       />
       <CardContent>
@@ -912,7 +912,7 @@ export const FATEspecializacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -993,7 +993,7 @@ export const FATGraduacao = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Graduação'
 
-        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
+        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
 
       />
       <CardContent>
@@ -1007,7 +1007,7 @@ export const FATGraduacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1095,7 +1095,7 @@ export const FATMestrado = (item) => {
 
 
 
-        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao + '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
+        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao + '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
       <CardContent>
 
 
@@ -1121,7 +1121,7 @@ export const FATMestrado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1214,7 +1214,7 @@ export const OAAperfeicoamentoEspecializacao = (item) => {
 
 
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1235,7 +1235,7 @@ export const OAAperfeicoamentoEspecializacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1306,7 +1306,7 @@ export const OADoutorado = (item) => {
       <CardHeader title='Doutorado'
 
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1317,7 +1317,7 @@ export const OADoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1398,7 +1398,7 @@ export const OAGraduacao = (item) => {
 
 
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1412,7 +1412,7 @@ export const OAGraduacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1495,7 +1495,7 @@ export const OAIniciacaoCientifica = (item) => {
 
 
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1510,7 +1510,7 @@ export const OAIniciacaoCientifica = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1593,7 +1593,7 @@ export const OAMestrado = (item) => {
 
 
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1606,7 +1606,7 @@ export const OAMestrado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1675,7 +1675,7 @@ export const OAPosDoutorado = (item) => {
   return (
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Pós-doutorado'
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1688,7 +1688,7 @@ export const OAPosDoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1794,7 +1794,7 @@ export const PartBancaAperfeicoamentoEspecializacao = (item) => {
       <CardHeader title='Participação em Banca de Aperfeiçoamento Especialização'
 
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -1808,7 +1808,7 @@ export const PartBancaAperfeicoamentoEspecializacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1904,7 +1904,7 @@ export const PartBancaDoutorado = (item) => {
       <CardHeader title='Participação em Banca de Doutorado'
 
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -1918,7 +1918,7 @@ export const PartBancaDoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2014,7 +2014,7 @@ export const PartBancaExameQualificacao = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Banca de Exame Qualificação'
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2027,7 +2027,7 @@ export const PartBancaExameQualificacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2125,7 +2125,7 @@ export const PartBancaGraduacao = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Banca de Graduação'
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2138,7 +2138,7 @@ export const PartBancaGraduacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2236,7 +2236,7 @@ export const PartBancaJulgadoraConcursoPublico = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora de Concurso Publico'
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2250,7 +2250,7 @@ export const PartBancaJulgadoraConcursoPublico = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2332,7 +2332,7 @@ export const PartBancaJulgadoraOutra = (item) => {
   return (
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora Outra'
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2344,7 +2344,7 @@ export const PartBancaJulgadoraOutra = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2440,7 +2440,7 @@ export const PartBancaJulgadoraProfessorTitular = (item) => {
   return (
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora de Professor Titular'
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2460,7 +2460,7 @@ export const PartBancaJulgadoraProfessorTitular = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2553,7 +2553,7 @@ export const PartBancaMestrado = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Banca de Mestrado'
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2565,7 +2565,7 @@ export const PartBancaMestrado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2659,7 +2659,7 @@ export const PartCongresso = (item) => {
   return (
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Congresso'
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2674,7 +2674,7 @@ export const PartCongresso = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2731,7 +2731,7 @@ export const PartEncontro = (item) => {
 
   return (
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
-      <CardHeader title='Participação em Encontro' subheader={'publicado em: ' + item.ano}
+      <CardHeader title='Participação em Encontro' subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2748,7 +2748,7 @@ export const PartEncontro = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
       </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2815,7 +2815,7 @@ export const PartOficina = (item) => {
 
 
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
         <TitleItem title={'Título'} valor={item.titulo} />
@@ -2831,7 +2831,7 @@ export const PartOficina = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
 
@@ -2907,7 +2907,7 @@ export const PartOutras = (item) => {
 
 
 
-        subheader={'publicado em: ' + item.ano}
+        subheader={"id"+item.id+'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2921,7 +2921,7 @@ export const PartOutras = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -3019,7 +3019,7 @@ export const PartSeminario = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Seminário'
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -3040,7 +3040,7 @@ export const PartSeminario = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
       </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
@@ -3105,7 +3105,7 @@ export const PartSimposio = (item) => {
     <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
       <CardHeader title='Participação em Simpósio'
 
-        subheader={'Ano: ' + item.ano}
+        subheader={"id"+item.id+'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -3127,7 +3127,7 @@ export const PartSimposio = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
@@ -3190,7 +3190,7 @@ export const PTPremioTitulo = (item) => {
 
 
 
-        subheader={'Ano da Premiação: ' + item.ano_da_premiacao}
+        subheader={"id"+item.id+'Ano da Premiação: ' + item.ano_da_premiacao}
       />
 
       <CardContent>
@@ -3246,7 +3246,7 @@ export const FCCursoCurtaDuracao = (item) => {
 
 
 
-        subheader={'Período: de ' + item.ano_de_inicio + " a " + item.ano_de_conclusao}
+        subheader={"id"+item.id+'Período: de ' + item.ano_de_inicio + " a " + item.ano_de_conclusao}
       />
       <CardContent>
 

@@ -12,7 +12,6 @@ export const PrivateRoute = ({
     ...rest }) =>
     <Route {...rest} render={
         props => {
-            console.log('>>>>>>>>1', isLogin());
             if (isLogin() === "public") {
                 return <ComponentPublic {...props} />;
             } else if (isLogin() === "private") {

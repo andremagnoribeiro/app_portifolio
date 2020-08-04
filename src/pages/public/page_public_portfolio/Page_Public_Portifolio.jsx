@@ -192,45 +192,8 @@ setAcabou(true);
 
 
   useEffect(() => {
-console.log("MMMMMM", acabouPBArtigoPublicado,
-acabouPBCapituloLivroPublicado,
-acabouPBLivroPublicadoOrganizado,
-acabouPBTextoJornalRevista,
-acabouPBTrabalhosEvento,
-acabouAPConselhoComissaoConsultoria,
-acabouAPDirecaoAdministracao,
-acabouAPPesquisaDesenvolvimento,
-acabouAPVinculo,
-acabouATProjetoPesquisa,
-acabouFATDoutorado,
-acabouFATEspecializacao,
-acabouFATGraduacao,
-acabouFATMestrado,
-acabouOAAperfeicoamentoEspecializacao,
-acabouOADoutorado,
-acabouOAGraduacao,
-acabouOAIniciacaoCientifica,
-acabouOAMestrado,
-acabouOAPosDoutorado,
-acabouPartBancaAperfeicoamentoEspecializacao,
-acabouPartBancaDoutorado,
-acabouPartBancaExameQualificacao,
-acabouPartBancaGraduacao,
-acabouPartBancaJulgadoraConcursoPublico,
-acabouPartBancaJulgadoraOutra,
-acabouPartBancaJulgadoraProfessorTitular,
-acabouPartBancaMestrado,
-acabouPartCongresso,
-acabouPartEncontro,
-acabouPartOficina,
-acabouPartOutras,
-acabouPartSeminario,
-acabouPartSimposio,
-acabouPTPremioTitulo,
-acabouFCCursoCurtaDuracao,
-acabouSigaDisciplina,
-acabouSigaProjeto);
 
+  
     setAcabou((
       acabouPBArtigoPublicado &&
       acabouPBCapituloLivroPublicado &&
@@ -338,8 +301,6 @@ acabouSigaProjeto);
       date = date - 1;
     }
     setFilterAno(dates);
-    console.log("filtrosano", dates)
-    console.log("filtrosXXX=", TextBusca, anoSelect)
 
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////

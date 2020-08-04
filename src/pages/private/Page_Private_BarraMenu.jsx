@@ -30,7 +30,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import {ExportPDF} from './exportPDF';
 
 //variavel
 import { logout } from '../../routers_acess_user/Login';
@@ -41,9 +41,22 @@ import { deleteUser } from "../../api/serverAPI";
 //class
 export const Page_Private_BarraMenu = props => {
   const classes = useStyles();
-
+  const [anchorEla, setAnchorEla] = React.useState(null);
   const [encolher, setEncolher] = useState(false);
+
+  const anchorRef_MeuPortfolio = useRef(null);
+
+  const [open_MeuPortfolio, setOpen_MeuPortfolio] = useState(false);
+
+
   const [deleteDialog, setDeleteDialog] = useState(undefined);
+  const [open, setOpen] = useState(false);
+  const [openP, setOpenP] = useState(false);
+
+  const [expandedmenu, setExpandedmenu] = useState(false);
+
+  const anchorRef = useRef(null);
+  const anchorRefp = useRef(null);
 
   window.addEventListener('resize', function () {
 
@@ -63,17 +76,14 @@ export const Page_Private_BarraMenu = props => {
 
   }, [])
 
-
   const href = (href) => {
     window.location.href = "/ufjfportfolioprofissional/build" + href;
   }
 
   const delUser = () => {
 
-    setDeleteDialog(<DeleteUserDialogo deletee={() => {
+    setDeleteDialog(<DeleteUserDialogo delete_={() => {
       deleteUser(JSON.parse(localStorage.getItem("user")).user_name);
-
-
     }} fechar={
       () => setDeleteDialog(undefined)
     } />);
@@ -81,13 +91,12 @@ export const Page_Private_BarraMenu = props => {
 
   }
 
-  const [open, setOpen] = useState(false);
-  const [openP, setOpenP] = useState(false);
-  const anchorRef = useRef(null);
-  const anchorRefp = useRef(null);
-
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleToggle_MeuPortfolio = () => {
+    setOpen_MeuPortfolio((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
@@ -98,15 +107,23 @@ export const Page_Private_BarraMenu = props => {
     setOpen(false);
   };
 
+
+  const handleClose_MeuPortfolio = (event) => {
+
+    if (anchorRef_MeuPortfolio.current && anchorRef_MeuPortfolio.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen_MeuPortfolio(false);
+
+  };
+
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
     }
   }
-
-  /////////////////////////////
-
 
   const handleToggleP = () => {
     setOpenP(!openP);
@@ -128,19 +145,9 @@ export const Page_Private_BarraMenu = props => {
   }
   ///////////////////
 
-
-  const [expandedmenu, setExpandedmenu] = useState(false);
-
-
   const handleExpandClickmenu = () => {
     setExpandedmenu(!expandedmenu);
   };
-
-
-
-
-
-  const [anchorEla, setAnchorEla] = React.useState(null);
 
   const handleClicka = (event) => {
     setAnchorEla(event.currentTarget);
@@ -149,123 +156,39 @@ export const Page_Private_BarraMenu = props => {
   const handleClosea = () => {
     setAnchorEla(null);
   };
+
+  const fecharr=() => {
+    setOpen(false);
+  }
   return (
     <div>
       {deleteDialog}
-      <AppBar position="static" style={{ width: "100%", zIndex: 3 }} >
-        {encolher ?
-          //MOBILE
+      <AppBar position="static" style={{ width: "100%",minWidth:410, zIndex: 3 }} >
           <Toolbar>
-            <IconButton
-              onClick={handleClicka}
-              aria-expanded={expandedmenu}
-              aria-label="show more"
-              size="small">
-
-              <MoreVertIcon />
-
-            </IconButton>
-            {/* MOBILE USUARIO/////////////////////////////////////////////// */}
-            <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
-
-            {/* MOBILE USUARIO/////////////////////////////////////////////// */}
-            <Button ref={anchorRef}
-              aria-controls={open ? 'menu-list-grow' : undefined}
-              aria-haspopup="true"
-              onClick={handleToggle}
-              style={{ zIndex: 3 }}>
-              <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
-
-              <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
-            </Button>
-
-            {/* MOBILE Logout, Deletar Usuario,Editar Informações do Usuario/////////////////////////////////////////////// */}
-            <Popper style={{ zIndex: 3 }} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                  style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                >
-                  <Paper>
-                    <ClickAwayListener onClickAway={handleClose}>
-                      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
-          </Toolbar >
-          :
-          // DESKTOP //////////////////////////////////////////////////
-          <Toolbar>
-            <img alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
+          <img  onClick={() => props.history.push("/")} alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
 
             <Grid
               justify="space-between"
               container
               spacing={1}
             >
-              <Grid item>
-
-                {/* Home//////////////////////////// */}
-                <Button variant="outlined" onClick={() => href("/")} >Home</Button>
-
-                {/* MEU PORTIFOLIO LATTES 1ºEditar 2ºVisualizar //////////////////////////// */}
-                <Button
-                  ref={anchorRefp}
-                  aria-controls={openP ? 'menu-list-growp' : undefined}
-                  aria-haspopup="true"
-                  onClick={handleToggleP}
-
-                  style={{ marginLeft: 20 }} variant="outlined"  >
-                  MEU PORTIFÓLIO LATTES
-                </Button>
-
-
-                <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
-                  {({ TransitionProps, placement }) => (
-                    <Grow
-                      {...TransitionProps}
-                      style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                    >
-                      <Paper>
-                        <ClickAwayListener onClickAway={handleCloseP}>
-                          <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
-
-                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-
-
-                {/* MEU PORTIFOLIO SIGA ///////////////////////////////*/}
-                <Button style={{ marginLeft: 20 }} variant="outlined" onClick={() => href(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
-                
-          
+             <Grid item>
+                {/* <Button variant="outlined" style={{ marginLeft: 20 }} >Home</Button> */}
+           
               </Grid>
 
-              <Grid item>
-{/* USUARIO AVATA /////////////////*/}
+              <Grid item >
+                
                 <Button ref={anchorRef}
                   aria-controls={open ? 'menu-list-grow' : undefined}
                   aria-haspopup="true"
                   onClick={handleToggle}
                   style={{ height: 40 }}>
                   <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
-
-
                   <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
                 </Button>
-                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                {/* EXPANDIR */}
+                <Popper style={{zIndex:5}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                   {({ TransitionProps, placement }) => (
                     <Grow
                       {...TransitionProps}
@@ -275,9 +198,50 @@ export const Page_Private_BarraMenu = props => {
                         <ClickAwayListener onClickAway={handleClose}>
                           <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => href('/editUser')}>Edit</Typography></MenuItem>
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
+                              () => {
+                                setOpen(false)
+                                props.history.push("/portfolioEdit/");
+                              }
+                            } >Editar Portfólio</MenuItem>
+
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
+                              () => {
+                                setOpen(false);
+                                props.history.push("/import/");
+                              }
+                            } >Importar Currículo Lattes</MenuItem>
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }}  ><ExportPDF fechar={
+                              fecharr
+                            } /></MenuItem>
+
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
+                              () => {
+                                setOpen(false);
+                                props.history.push("/excluir");
+                              }
+                            } >Excluir Informações do Portfólio</MenuItem>
+
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
+                              () => {
+                                setOpen(false);
+                                props.history.push('/editUser');
+                              }}>Editar Usuário</MenuItem>
+
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
+                              () => {
+                                setOpen(false);
+                                delUser();
+                                ;
+                              }}>Excluir Usuário</MenuItem>
+
+                            <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
+                              () => {
+                                setOpen(false);
+                                logout();
+                              }
+                            }>Logout</MenuItem>
+
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>
@@ -289,7 +253,7 @@ export const Page_Private_BarraMenu = props => {
             </Grid>
 
 
-          </Toolbar>}
+          </Toolbar>
 
       </AppBar >
       <Menu
@@ -301,7 +265,7 @@ export const Page_Private_BarraMenu = props => {
         color="primary"
       >
         <MenuItem >
-          <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => href("/")} >Home</Button>
+          <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => props.history.push("/")} >Home</Button>
         </MenuItem>
         <MenuItem>
           <ExpansionPanel style={{ width: '100%' }}>
@@ -321,8 +285,8 @@ export const Page_Private_BarraMenu = props => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
 
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => href(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }} onClick={() => props.history.push(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
+              <Button variant="outlined" style={{ width: '100%' }} onClick={() => props.history.push(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
 
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -331,11 +295,11 @@ export const Page_Private_BarraMenu = props => {
 
         </MenuItem>
         <MenuItem>
-          <Button style={{ width: '100%' }} variant="outlined" onClick={() => href(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
+          <Button style={{ width: '100%' }} variant="outlined" onClick={() => props.history.push(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
 
         </MenuItem>
         <MenuItem>
-          <Button style={{ fontSize: 12, width: '100%' }} variant="outlined" onClick={() => href(`/`)} >Importação SIGA em desenvolvimento</Button>
+          <Button style={{ fontSize: 12, width: '100%' }} variant="outlined" onClick={() => props.history.push(`/`)} >Importação SIGA em desenvolvimento</Button>
 
         </MenuItem>
       </Menu>
@@ -351,8 +315,8 @@ export const Page_Private_BarraMenu = props => {
               <ClickAwayListener onClickAway={handleCloseP}>
                 <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
 
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => href(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -419,7 +383,7 @@ const StyledMenuItem = withStyles((theme) => ({
 
 
 
-const DeleteUserDialogo = ({ deletee, fechar }) => {
+const DeleteUserDialogo = ({ delete_, fechar }) => {
 
   const [open, setOpen] = React.useState(true);
 
@@ -441,14 +405,14 @@ const DeleteUserDialogo = ({ deletee, fechar }) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Deseja realmete deletar o usuรกrio?
+            Deseja realmente deletar seu usuário?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={() => { handleClose(); fechar(); }} color="primary">
             Cancelar
           </Button>
-          <Button onClick={() => deletee()} color="primary">
+          <Button onClick={() => delete_()} color="primary">
             Sim
           </Button>
         </DialogActions>
@@ -456,6 +420,8 @@ const DeleteUserDialogo = ({ deletee, fechar }) => {
     </div>
   );
 }
+
+
 
 
 

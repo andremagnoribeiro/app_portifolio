@@ -47,7 +47,6 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
   };
 
   const restaurar = (filterT, filterA) => {
-    console.log("ASDFASDF",filterT,"aaaaaa=", filterA)
     getSearch(filterT, filterA);
   }
 
@@ -60,7 +59,6 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
     getSearch(filterText, filterAno);
 
 
-    console.log("BuscaFiltro=", filterText, filterAno)
   }
 
 

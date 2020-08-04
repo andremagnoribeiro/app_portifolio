@@ -40,7 +40,6 @@ export const Page_Public_FormLogin = () => {
       if(xhr.responseText==="false"){
         document.getElementById("msg").style.display="block";
       }else{
-        console.log(xhr.responseText);
         const user=JSON.parse(xhr.responseText);
         localStorage.setItem("user",JSON.stringify(user));
         window.location.href ="/ufjfportfolioprofissional/build/";
@@ -116,8 +115,9 @@ export const Page_Public_FormLogin = () => {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <div>
-        admin admin????</div>
+      <div>Administrador: cpf: "1"  senha: "admin" </div>
+      <div>Usuário : cpf: "16284057830"  senha: "1234" </div>
+      
     </Container>
   );
 

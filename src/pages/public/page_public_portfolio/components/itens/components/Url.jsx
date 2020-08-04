@@ -107,7 +107,8 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
 
 
   return (
-    <div style={{ borderStyle: 'dotted', borderWidth: 2, paddingTop: 5, paddingBottom: 10, paddingLeft: 20, paddingLeft: 20 }}>
+    
+  <div style={{  paddingTop: 5, paddingBottom: 10, paddingLeft: 20, paddingLeft: 20 }}>
       {/* DOI: */}
       {urlDoi !== "" ?
         <div>
@@ -117,7 +118,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
             <Box textAlign="left" >
 
               <Tooltip title={urlDoi}>
-                <a href={urlDoi} rel="noopener noreferrer" target="_blank"  >URL Doi</a>
+                <a href={urlDoi} rel="noopener noreferrer" target="_blank"  >Doi(Currículo Lattes)</a>
               </Tooltip>
             </Box>
           </div>
@@ -132,7 +133,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
             <Box textAlign="justify" >
 
               <Tooltip title={urlHomePage}>
-                <a href={urlHomePage} rel="noopener noreferrer" target="_blank"  >URL HomePage</a>
+                <a href={urlHomePage} rel="noopener noreferrer" target="_blank"  >Home Page(Currículo Lattes)</a>
               </Tooltip>
 
             </Box>
@@ -146,13 +147,14 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
           <div style={{ width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             <Box textAlign="left" >
               {urlExternal && <Tooltip title={urlExternal}>
-                <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >URL External</a>
+                <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >Link(Usuário)</a>
               </Tooltip>}
             </Box>
           </div>
         </div>
        }
     </div>
+   
   );
 }
 

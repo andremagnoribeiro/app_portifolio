@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react'
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 
-
 export const MostradorFiltro = ({apagarFiltro,text}) => {
  
 //filtro mostrador StyledBreadcrumb
@@ -21,10 +20,7 @@ const clickFiltroApagar=()=>{
       />
     </div>
   );
-
 }
-
-
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
     marginLeft: 20,

@@ -129,7 +129,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
             <Box textAlign="left" >
 
               <Tooltip title={urlDoi}>
-                <a href={urlDoi} rel="noopener noreferrer" target="_blank"  >URL Doi</a>
+                <a href={urlDoi} rel="noopener noreferrer" target="_blank"  >Doi(Currículo Lattes)</a>
               </Tooltip>
             </Box>
           </div>
@@ -146,7 +146,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
             <Box textAlign="justify" >
 
             <Tooltip title={urlHomePage}>
-            <a href={urlHomePage} rel="noopener noreferrer" target="_blank"  >URL HomePage</a>
+            <a href={urlHomePage} rel="noopener noreferrer" target="_blank"  >Home Page(Currículo Lattes)</a>
              </Tooltip>
 
              </Box>
@@ -163,10 +163,10 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
           <div style={{ width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             <Box textAlign="left" >
               {urlExternal&&<Tooltip title={urlExternal}>
-                <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >URL External</a>
+                <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >Link(Usuário) </a>
               </Tooltip>}
               <IconButton onClick={() => { setExpanded(!expanded); setViewAdicionar(!viewAdicionar); }} aria-expanded={expanded} aria-label="show more" size='small'>
-                {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}{external_url ? "Atualizar URL" : "Adicionar URL"}
+                {expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}{external_url ? "Atualizar URL" : "Adicionar URL"}
               </IconButton>
             </Box>
           </div>
@@ -210,7 +210,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
           </div>
         </div> : undefined}
 
-    
+        {(urlHomePage !== ""||urlDoi !== ""||urlExternal)&&<Typography style={{marginRight:20}}>Comprovado</Typography>}
     </div>
   );
 }

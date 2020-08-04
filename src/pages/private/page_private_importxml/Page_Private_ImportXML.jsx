@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
 import ExpandMoreIcon from '@material-ui/icons/ExpandLessOutlined';
 import Collapse from '@material-ui/core/Collapse';
+import Tooltip from '@material-ui/core/Tooltip';
 
 //imagem
 import img_exportXML from './img/exportXML.png';
@@ -21,7 +22,7 @@ import './css/ImportXML.css';
 
 //variavel
 import { server } from '../../../var';
-
+import {getInfoXML , importXML} from './../../../api/serverAPI';
 
 
 //Class
@@ -36,64 +37,45 @@ export const Page_Private_ImportXML = (props) => {
     setExpandedImport(!expandedImport);
   };
 
-  useEffect(() => {
+  const calbackGetInforXML=(xhr_responseText)=>{
+    setInfo(JSON.parse(xhr_responseText));
+    document.getElementById("btnImportar").style.display = "none";
+    document.getElementById("textInput").style.display = "none";
+    document.getElementById("posLoadFile").style.display = "block";
+  };
 
-
-    console.log(info);
-
-
-  }, [info]);
-
-  const onChange = (e) => {
+  const onChange=(e)=>{
     let fileInput = e.target.files;
-
     setFilee(fileInput);
-    let xhr = new XMLHttpRequest(),
-      fd = new FormData();
+    getInfoXML(fileInput,calbackGetInforXML);
+  };
+ 
 
-    fd.append('file', fileInput[0]);
-    xhr.onload = function () {
-      setInfo(JSON.parse(xhr.responseText));
-
-      document.getElementById("btnImportar").style.display = "none";
-      document.getElementById("textInput").style.display = "none";
-      document.getElementById("posLoadFile").style.display = "block";
-
-    };
-
-    xhr.open('POST', server + `/ufjfportfolioprofissional/api/importxmlgetInfo.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
-    xhr.send(fd);
+  const CalbackImportXML1=(xhr_response)=>{
+    document.getElementById("importarDados").style.display = "none";
+    document.getElementById("progresso").style.display = "none";
+    document.getElementById("abrir_portfolio").style.display = "block";
+    document.getElementById("menseger").innerHTML = xhr_response;
   }
-
-  const onChange2 = (e) => {
+  const CalbackImportXML2=(evt_currentTarget_response)=>{
+    document.getElementById("menseger").innerHTML = evt_currentTarget_response;
+    var objDiv = document.getElementById("scroll");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  };
+  
+  const onChange2=(e)=>{
     document.getElementById("importarDados").style.display = "none";
     document.getElementById("progresso").style.display = "block";
-    let xhr = new XMLHttpRequest(),
-      fd = new FormData();
+    importXML(filee,CalbackImportXML1,CalbackImportXML2);
+  };
 
-    fd.append('file', filee[0]);
-    xhr.onload = function () {
-      document.getElementById("importarDados").style.display = "none";
-
-      document.getElementById("progresso").style.display = "none";
-      document.getElementById("menseger").innerHTML = xhr.responseText;
-    };
-    xhr.addEventListener("progress", function (evt) {
-      document.getElementById("menseger").innerHTML = evt.currentTarget.response;
-      var objDiv = document.getElementById("scroll");
-      objDiv.scrollTop = objDiv.scrollHeight;
-    }, false);
-
-    xhr.open('POST', server + `/ufjfportfolioprofissional/api/importxml.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
-    xhr.send(fd);
-  }
 
   return (
 
 
     <div style={{ margin: 20 }}>
 
-      <Card >
+      <Card style={{ height: 1500 }}>
 
         <Box textAlign="center">
           <CardHeader
@@ -103,13 +85,16 @@ export const Page_Private_ImportXML = (props) => {
           <Box textAlign="center">
             <Typography>Você pode exportar o aquivo no site <a href="lattes.cnpq.br" rel="noopener noreferrer" target="_blank"  >lattes.cnpq.br</a> conforme a imagem abaixo</Typography>
             <img alt="exportXML" style={{ width: "50%" }} src={img_exportXML} />
-
-
           </Box>
-          <div className="upload-btn-wrapper" style={{ margin: 20 }}  >
-            <div id="btnImportar" style={{ margin: 20 }} className="btn">Abrir Arquivo</div>
-            <input style={{ margin: 20, cursor: 'pointer' }} type="file" name="myfile" onChange={(e) => onChange(e)} />
+
+          <div className="upload-btn-wrapper" style={{ margin: 20 }} >
+
+            <div id="btnImportar" className="btn">Abrir Arquivo</div>
+
+
+            <input type="file" name="myfile" onChange={(e) => onChange(e)} />
           </div>
+
           <Typography id="textInput">O arquivo importado deve estar no formato .xml</Typography>
           <Typography id="textInput">Obs: Se tiver URL salvas para um determinado trabalho o sistema não irá deletar mas sim atualizar as informações.</Typography>
 
@@ -123,13 +108,13 @@ export const Page_Private_ImportXML = (props) => {
           <Typography >Última atualização: {info.dataAtualizacao} </Typography>
           <Typography >Última atualização: {info.horaAtualizacao} </Typography>
           <Button id="importarDados" style={{ margin: 20 }} variant="contained" color="primary" onClick={() => onChange2()}>Importar Dados</Button>
-          <Button id="voltar" style={{ margin: 20, display: 'none' }} variant="contained" color="primary" onClick={() => props.history.push("/portifolioedit/" + JSON.parse(localStorage.getItem("user")).user_name)}>Voltar</Button>
 
           <div id="scroll" style={{ width: '70%', height: 200, marginLeft: '15%', overflow: 'auto' }}>
             <Box textAlign="center" className="msg" id="menseger"></Box>
-            <div style={{ marginLeft: '50%', marginTop: 30,marginBottom:30 }}>
+            <div style={{ marginLeft: '50%', marginTop: 30, marginBottom: 30 }}>
               <CircularProgress style={{ display: 'none' }} id="progresso" color="inherit" />
             </div>
+          <Button id="abrir_portfolio" style={{ margin: 20, display: 'none' }} variant="contained" color="primary" onClick={() => props.history.push("/portfolioEdit/")}>Ir para Meu Portfólio</Button>
           </div>
 
 

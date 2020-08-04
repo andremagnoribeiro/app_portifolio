@@ -59,8 +59,9 @@ export const PBTrabalhosEvento = (item) => {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          size="small"
         >
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 
         </IconButton>
 
@@ -117,7 +118,7 @@ export const PBTextoJornalRevista = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
@@ -163,7 +164,7 @@ export const PBLivroPublicadoOrganizado = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
@@ -221,7 +222,7 @@ export const PBCapituloLivroPublicado = (item) => {
       <CardActions disableSpacing>
 
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
 
       </CardActions>
@@ -279,7 +280,7 @@ export const PBArtigoPublicado/**/ = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
@@ -448,7 +449,7 @@ export const ATProjetoPesquisa = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
@@ -748,7 +749,7 @@ export const FATDoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -853,7 +854,7 @@ export const FATEspecializacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -948,7 +949,7 @@ export const FATGraduacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1062,7 +1063,7 @@ export const FATMestrado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1176,7 +1177,7 @@ export const OAAperfeicoamentoEspecializacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1258,7 +1259,7 @@ export const OADoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1353,7 +1354,7 @@ export const OAGraduacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1451,7 +1452,7 @@ export const OAIniciacaoCientifica = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1547,7 +1548,7 @@ export const OAMestrado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1629,7 +1630,7 @@ export const OAPosDoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1749,7 +1750,7 @@ export const PartBancaAperfeicoamentoEspecializacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1859,7 +1860,7 @@ export const PartBancaDoutorado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -1968,7 +1969,7 @@ export const PartBancaExameQualificacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2079,7 +2080,7 @@ export const PartBancaGraduacao = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2191,7 +2192,7 @@ export const PartBancaJulgadoraConcursoPublico = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2285,7 +2286,7 @@ export const PartBancaJulgadoraOutra = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2401,7 +2402,7 @@ export const PartBancaJulgadoraProfessorTitular = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2506,7 +2507,7 @@ export const PartBancaMestrado = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2615,7 +2616,7 @@ export const PartCongresso = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2689,7 +2690,7 @@ export const PartEncontro = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
       </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2772,7 +2773,7 @@ export const PartOficina = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
 
@@ -2862,7 +2863,7 @@ export const PartOutras = (item) => {
 
         <CardActions disableSpacing>
           <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+            {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout='auto' >
@@ -2981,7 +2982,7 @@ export const PartSeminario = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
       </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
@@ -3068,7 +3069,7 @@ export const PartSimposio = (item) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton  size="small"  onClick={handleExpandClick} aria-expanded={expanded} aria-label='show more'>
-          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Abrir
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >

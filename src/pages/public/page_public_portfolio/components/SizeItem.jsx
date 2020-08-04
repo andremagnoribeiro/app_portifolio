@@ -209,7 +209,6 @@ export const SizeItem = ({ heade, num, url, mobile }) => {
     else if (heade === "Prêmios Titulos") {
       return num.map((item) => <PTPremioTitulo key={item.id} {...item} />);
     }
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", heade);
 
   }
 

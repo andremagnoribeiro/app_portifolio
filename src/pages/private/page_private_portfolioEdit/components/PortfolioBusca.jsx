@@ -47,7 +47,7 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
   };
 
   const restaurar = (filterT, filterA) => {
-    console.log("ASDFASDF",filterT,"aaaaaa=", filterA)
+   
     getSearch(filterT, filterA);
   }
 
@@ -60,7 +60,6 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
     getSearch(filterText, filterAno);
 
 
-    console.log("BuscaFiltro=", filterText, filterAno)
   }
 
 
@@ -74,11 +73,19 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
 
   const [filterAno, setFilterAno] = React.useState([sliderMin, sliderMax]);
   const [filterAno2, setFilterAno2] = React.useState([sliderMin, sliderMax]);
+  
+  
+  const [sliderMin_, setSliderMin_] = React.useState(sliderMin);
+  const [sliderMax_, setSliderMax_] = React.useState(sliderMax);
 
 
 
   const handleChangeSlider = (event, newValue) => {
     setFilterAno(newValue);
+    
+    setSliderMax_(newValue['1']);
+    setSliderMin_(newValue['0']);
+
   };
   const valueText = (filterAno) => filterAno
 
@@ -153,17 +160,26 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
                     value={filterAno}
                     onChange={handleChangeSlider}
                     //aria-label="custom thumb label"
-                    aria-labelledby="range-slider"
+                    aria-labelledby="continuous-slider"
                     getAriaValueText={valueText}
-                    valueLabelDisplay="auto"
+                    
+                    marks={[
+                      {
+                        value: sliderMin,
+                        label: sliderMin_,
+                      },
+                      {
+                        value: sliderMax,
+                        label: sliderMax_,
+                      },
+                    ]}
                   />
                 </div>
               </div>
             </Collapse>
           </div>
 
-
-
+         
         </div>
 
 
