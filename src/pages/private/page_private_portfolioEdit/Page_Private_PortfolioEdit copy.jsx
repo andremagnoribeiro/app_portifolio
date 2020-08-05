@@ -37,78 +37,130 @@ const useStylesback = makeStyles((theme) => ({
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+/////////
+/////////
+/////////
+/////////
+/////////
+/////////
 //Classe
 export const Page_Private_PortfolioEdit = (props) => {
 
+
+  //////////////////////
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
+  //Costantes
   const classesbackdrop = useStylesback();
 
   const userName = JSON.parse(localStorage.getItem('user')).user_name;
   
   const classes = useStyles();
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //STATE
-
-
-  const [filterText, setFilterText] = useState('');
-  const [filterAno, setFilterAno] = useState(["2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991"]);
-
-  const [mobile, setMobile] = useState(false);
-
-  const [acabou, setAcabou] = useState(false);
-  const [inicial, setInicial] = useState(1);
   
-  const [anoMin, setAnoMin]=useState(0);
-  const [anoMax,setAnoMax]=useState(0);
 
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  //STATE
   const [user, setUser] = useState([]);
   
   const [ComponenteBusca, setComponenteBusca] = useState(<div></div>);
   
+const [stateItens,setStateItens]=useState({ 
+  "sizePBArtigoPublicado":[],
+  "sizePBCapituloLivroPublicado":[],
+  "sizePBLivroPublicadoOrganizado":[],
+  "sizePBTextoJornalRevista":[],
+  "sizePBTrabalhosEvento":[],
+  "sizeAPConselhoComissaoConsultoria":[],
+  "sizeAPDirecaoAdministracao":[],
+  "sizeAPPesquisaDesenvolvimento":[],
+  "sizeAPVinculo":[],
+  "sizeATProjetoPesquisa":[],
+  "sizeFATDoutorado":[],
+  "sizeFATEspecializacao":[],
+  "sizeFATGraduacao":[],
+  "sizeFATMestrado":[],
+  "sizeOAAperfeicoamentoEspecializacao":[],
+  "sizeOADoutorado":[],
+  "sizeOAGraduacao":[],
+  "sizeOAIniciacaoCientifica":[],
+  "sizeOAMestrado":[],
+  "sizeOAPosDoutorado":[],
+  "sizePartBancaAperfeicoamentoEspecializacao":[],
+  "sizePartBancaDoutorado":[],
+  "sizePartBancaExameQualificacao":[],
+  "sizePartBancaGraduacao":[],
+  "sizePartBancaJulgadoraConcursoPublico":[],
+  "sizePartBancaJulgadoraOutra":[],
+  "sizePartBancaJulgadoraProfessorTitular":[],
+  "sizePartBancaMestrado":[],
+  "sizePartCongresso":[],
+  "sizePartEncontro":[],
+  "sizePartOficina":[],
+  "sizePartOutras":[],
+  "sizePartSeminario":[],
+  "sizePartSimposio":[],
+  "sizePTPremioTitulo":[],
+  "sizeFCCursoCurtaDuracao":[],
+  "sizeSigaDisciplina":[],
+  "sizeSigaProjeto":[]
+});
+ 
 
-  const [stateItens,setStateItens]=useState({ 
-    "sizePBArtigoPublicado":[],
-    "sizePBCapituloLivroPublicado":[],
-    "sizePBLivroPublicadoOrganizado":[],
-    "sizePBTextoJornalRevista":[],
-    "sizePBTrabalhosEvento":[],
-    "sizeAPConselhoComissaoConsultoria":[],
-    "sizeAPDirecaoAdministracao":[],
-    "sizeAPPesquisaDesenvolvimento":[],
-    "sizeAPVinculo":[],
-    "sizeATProjetoPesquisa":[],
-    "sizeFATDoutorado":[],
-    "sizeFATEspecializacao":[],
-    "sizeFATGraduacao":[],
-    "sizeFATMestrado":[],
-    "sizeOAAperfeicoamentoEspecializacao":[],
-    "sizeOADoutorado":[],
-    "sizeOAGraduacao":[],
-    "sizeOAIniciacaoCientifica":[],
-    "sizeOAMestrado":[],
-    "sizeOAPosDoutorado":[],
-    "sizePartBancaAperfeicoamentoEspecializacao":[],
-    "sizePartBancaDoutorado":[],
-    "sizePartBancaExameQualificacao":[],
-    "sizePartBancaGraduacao":[],
-    "sizePartBancaJulgadoraConcursoPublico":[],
-    "sizePartBancaJulgadoraOutra":[],
-    "sizePartBancaJulgadoraProfessorTitular":[],
-    "sizePartBancaMestrado":[],
-    "sizePartCongresso":[],
-    "sizePartEncontro":[],
-    "sizePartOficina":[],
-    "sizePartOutras":[],
-    "sizePartSeminario":[],
-    "sizePartSimposio":[],
-    "sizePTPremioTitulo":[],
-    "sizeFCCursoCurtaDuracao":[],
-    "sizeSigaDisciplina":[],
-    "sizeSigaProjeto":[]
-  });
+
+
+  
+  
+  
+  const [sizePBArtigoPublicado, setSizePBArtigoPublicado] = useState([]);
+  const [sizePBCapituloLivroPublicado, setSizePBCapituloLivroPublicado] = useState([]);
+  const [sizePBLivroPublicadoOrganizado, setSizePBLivroPublicadoOrganizado] = useState([]);
+  const [sizePBTextoJornalRevista, setSizePBTextoJornalRevista] = useState([]);
+  const [sizePBTrabalhosEvento, setSizePBTrabalhosEvento] = useState([]);
+  const [sizeAPConselhoComissaoConsultoria, setSizeAPConselhoComissaoConsultoria] = useState([]);
+  const [sizeAPDirecaoAdministracao, setSizeAPDirecaoAdministracao] = useState([]);
+  const [sizeAPPesquisaDesenvolvimento, setSizeAPPesquisaDesenvolvimento] = useState([]);
+  const [sizeAPVinculo, setSizeAPVinculo] = useState([]);
+  const [sizeATProjetoPesquisa, setSizeATProjetoPesquisa] = useState([]);
+  const [sizeFATDoutorado, setSizeFATDoutorado] = useState([]);
+  const [sizeFATEspecializacao, setSizeFATEspecializacao] = useState([]);
+  const [sizeFATGraduacao, setSizeFATGraduacao] = useState([]);
+  const [sizeFATMestrado, setSizeFATMestrado] = useState([]);
+  const [sizeOAAperfeicoamentoEspecializacao, setSizeOAAperfeicoamentoEspecializacao] = useState([]);
+  const [sizeOADoutorado, setSizeOADoutorado] = useState([]);
+  const [sizeOAGraduacao, setSizeOAGraduacao] = useState([]);
+  const [sizeOAIniciacaoCientifica, setSizeOAIniciacaoCientifica] = useState([]);
+  const [sizeOAMestrado, setSizeOAMestrado] = useState([]);
+  const [sizeOAPosDoutorado, setSizeOAPosDoutorado] = useState([]);
+  const [sizePartBancaAperfeicoamentoEspecializacao, setSizePartBancaAperfeicoamentoEspecializacao] = useState([]);
+  const [sizePartBancaDoutorado, setSizePartBancaDoutorado] = useState([]);
+  const [sizePartBancaExameQualificacao, setSizePartBancaExameQualificacao] = useState([]);
+  const [sizePartBancaGraduacao, setSizePartBancaGraduacao] = useState([]);
+  const [sizePartBancaJulgadoraConcursoPublico, setSizePartBancaJulgadoraConcursoPublico] = useState([]);
+  const [sizePartBancaJulgadoraOutra, setSizePartBancaJulgadoraOutra] = useState([]);
+  const [sizePartBancaJulgadoraProfessorTitular, setSizePartBancaJulgadoraProfessorTitular] = useState([]);
+  const [sizePartBancaMestrado, setSizePartBancaMestrado] = useState([]);
+  const [sizePartCongresso, setSizePartCongresso] = useState([]);
+  const [sizePartEncontro, setSizePartEncontro] = useState([]);
+  const [sizePartOficina, setSizePartOficina] = useState([]);
+  const [sizePartOutras, setSizePartOutras] = useState([]);
+  const [sizePartSeminario, setSizePartSeminario] = useState([]);
+  const [sizePartSimposio, setSizePartSimposio] = useState([]);
+  const [sizePTPremioTitulo, setSizePTPremioTitulo] = useState([]);
+  const [sizeFCCursoCurtaDuracao, setSizeFCCursoCurtaDuracao] = useState([]);
+  const [sizeSigaDisciplina, setSizeSigaDisciplina] = useState([]);
+  const [sizeSigaProjeto, setSizeSigaProjeto] = useState([]);
   
 
   const [dataPBArtigoPublicado, setDataPBArtigoPublicado] = useState([]);
@@ -151,16 +203,68 @@ export const Page_Private_PortfolioEdit = (props) => {
   const [dataSigaProjeto, setDataSigaProjeto] = useState([]);
 
 
-  
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //USE EFFECT////////////////////////////////////////////////////////////////////////////
+  const [filterText, setFilterText] = useState('');
+  const [filterAno, setFilterAno] = useState(["2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991"]);
 
-  //GET API
+  const [mobile, setMobile] = useState(false);
+
+  
+  const [acabouPBArtigoPublicado, setAcabouPBArtigoPublicado] = useState(false);
+  const [acabouPBCapituloLivroPublicado, setAcabouPBCapituloLivroPublicado] = useState(false);
+  const [acabouPBLivroPublicadoOrganizado, setAcabouPBLivroPublicadoOrganizado] = useState(false);
+  const [acabouPBTextoJornalRevista, setAcabouPBTextoJornalRevista] = useState(false);
+  const [acabouPBTrabalhosEvento, setAcabouPBTrabalhosEvento] = useState(false);
+  const [acabouAPConselhoComissaoConsultoria, setAcabouAPConselhoComissaoConsultoria] = useState(false);
+  const [acabouAPDirecaoAdministracao, setAcabouAPDirecaoAdministracao] = useState(false);
+  const [acabouAPPesquisaDesenvolvimento, setAcabouAPPesquisaDesenvolvimento] = useState(false);
+  const [acabouAPVinculo, setAcabouAPVinculo] = useState(false);
+  const [acabouATProjetoPesquisa, setAcabouATProjetoPesquisa] = useState(false);
+  const [acabouFATDoutorado, setAcabouFATDoutorado] = useState(false);
+  const [acabouFATEspecializacao, setAcabouFATEspecializacao] = useState(false);
+  const [acabouFATGraduacao, setAcabouFATGraduacao] = useState(false);
+  const [acabouFATMestrado, setAcabouFATMestrado] = useState(false);
+  const [acabouOAAperfeicoamentoEspecializacao, setAcabouOAAperfeicoamentoEspecializacao] = useState(false);
+  const [acabouOADoutorado, setAcabouOADoutorado] = useState(false);
+  const [acabouOAGraduacao, setAcabouOAGraduacao] = useState(false);
+  const [acabouOAIniciacaoCientifica, setAcabouOAIniciacaoCientifica] = useState(false);
+  const [acabouOAMestrado, setAcabouOAMestrado] = useState(false);
+  const [acabouOAPosDoutorado, setAcabouOAPosDoutorado] = useState(false);
+  const [acabouPartBancaAperfeicoamentoEspecializacao, setAcabouPartBancaAperfeicoamentoEspecializacao] = useState(false);
+  const [acabouPartBancaDoutorado, setAcabouPartBancaDoutorado] = useState(false);
+  const [acabouPartBancaExameQualificacao, setAcabouPartBancaExameQualificacao] = useState(false);
+  const [acabouPartBancaGraduacao, setAcabouPartBancaGraduacao] = useState(false);
+  const [acabouPartBancaJulgadoraConcursoPublico, setAcabouPartBancaJulgadoraConcursoPublico] = useState(false);
+  const [acabouPartBancaJulgadoraOutra, setAcabouPartBancaJulgadoraOutra] = useState(false);
+  const [acabouPartBancaJulgadoraProfessorTitular, setAcabouPartBancaJulgadoraProfessorTitular] = useState(false);
+  const [acabouPartBancaMestrado, setAcabouPartBancaMestrado] = useState(false);
+  const [acabouPartCongresso, setAcabouPartCongresso] = useState(false);
+  const [acabouPartEncontro, setAcabouPartEncontro] = useState(false);
+  const [acabouPartOficina, setAcabouPartOficina] = useState(false);
+  const [acabouPartOutras, setAcabouPartOutras] = useState(false);
+  const [acabouPartSeminario, setAcabouPartSeminario] = useState(false);
+  const [acabouPartSimposio, setAcabouPartSimposio] = useState(false);
+  const [acabouPTPremioTitulo, setAcabouPTPremioTitulo] = useState(false);
+  const [acabouFCCursoCurtaDuracao, setAcabouFCCursoCurtaDuracao] = useState(false);
+  const [acabouSigaDisciplina, setAcabouSigaDisciplina] = useState(false);
+  const [acabouSigaProjeto, setAcabouSigaProjeto] = useState(false);
+
+
+  const [acabou, setAcabou] = useState(1);
+  
+  
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //USE EFFECT
+
   useEffect(() => {
    
     getUserId(userName).then(data => setUser(data));
-    getAllTable(userName).then((data)=>{
+
+   getAllTable(userName).then((data)=>{
     setDataPBArtigoPublicado(data.pb_artigo_publicado);  setStateItens(prevState => {return {...prevState,"sizePBArtigoPublicado":data.pb_artigo_publicado}});
     setDataPBCapituloLivroPublicado(data.pb_capitulo_livro_publicado_organizado); setStateItens(prevState => {return {...prevState,"sizePBCapituloLivroPublicado":data.pb_capitulo_livro_publicado_organizado}});
     setDataPBLivroPublicadoOrganizado(data.pb_livro_publicado_organizado); setStateItens(prevState => {return {...prevState,"sizePBLivroPublicadoOrganizado":data.pb_livro_publicado_organizado}});
@@ -199,49 +303,119 @@ export const Page_Private_PortfolioEdit = (props) => {
     setDataFCCursoCurtaDuracao(data.fc_curso_curta_duracao); setStateItens(prevState => {return {...prevState,"sizeFCCursoCurtaDuracao":data.fc_curso_curta_duracao}});
     setDataSigaDisciplina(data.siga_disciplina); setStateItens(prevState => {return {...prevState,"sizeSigaDisciplina":data.siga_disciplina}});
     setDataSigaProjeto(data.siga_projeto); setStateItens(prevState => {return {...prevState,"sizeSigaProjeto":data.siga_projeto}});
-    }).then(() => { setAcabou(true); setInicial(2) });
+    }).then(() => { setAcabou(true); console.log(">>>>>>767",dataSigaDisciplina); filtroItens('',filterAno) });
       
   }, []);
 
-  useEffect(()=>{
-    getMaxMinAno(userName).then((ano)=>{
-      setAnoMin(parseInt(ano.anoMin));
-      setAnoMax(parseInt(ano.anoMax));
-      console.log(">>>>ano",ano);});
+  useEffect(() => {
+    if (window.innerWidth >= 1000) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+
+  }, [])
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  window.addEventListener('resize', function () {
+
+    if (window.innerWidth >= 1000) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+  });
+
+const [anoMin, setAnoMin]=useState(0);
+const [anoMax,setAnoMax]=useState(0);
+useEffect(()=>{
+  getMaxMinAno(userName).then((ano)=>{
+    setAnoMin(parseInt(ano.anoMin));
+    setAnoMin(parseInt(ano.anoMax));
+    console.log(">>>>1",ano);});
 
   },[]);
-
-
-  // State dos Itens  stateItens
-  useEffect(()=>{
-    setFiltroExportPDF();
-    if(inicial===2){
-      setAcabou(true);
-    }
-  console.log(">>>>>3",stateItens);
-  
-  },[stateItens]);
-
  
+  const dates=(anoSelect)=>new Promise((resolve, reject) => {
+    var date = anoSelect[1];
+    const dates = [];
+    while(date >= anoSelect[0]) {
+      dates.push(String(date));
+      date = date - 1;
+    }
+    resolve(dates) ;
+  });
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //FUNCTIONS  
-
-  //array de dadar para o filter
-
-
-  //Filtro
   const Filtros=(TextBusca, anoSelect)=>{//formato= (palavra, [2012,2020])
     setAcabou(false);
     //setItens([]);
     setFilterText(TextBusca);
     dates(anoSelect).then((date)=>{setFilterAno(date);filtroItens(TextBusca,date);});
+    
+   
+   
   }
 
-  //Filtro Ano e Texto
-  const filtroItens = (filterText_,filterAno_) => {
-    setStateItens({ 
+const setFiltroExportPDF=()=>{
+  localStorage.setItem("listExportPDF",
+  '{"filtro":'+
+  '{"ano":['+filterAno[0]+','+filterAno[filterAno.length-1]+'],'+
+  '"texto":"'+ filterText+'"'+
+  '}'+
+  ',"itens":'+
+     '['+
+      '{"name":"pb_artigo_publicado","id": ['+ (stateItens.sizePBArtigoPublicado.length!==0 ? stateItens.sizePBArtigoPublicado.map((it)=>it.id):"")+']},'+
+      '{"name":"pb_capitulo_livro_publicado_organizado","id": ['+ (stateItens.sizePBCapituloLivroPublicado.length!==0 ? stateItens.sizePBCapituloLivroPublicado.map((it)=>it.id):"")+']},'+
+      '{"name":"pb_livro_publicado_organizado","id": ['+ (stateItens.sizePBLivroPublicadoOrganizado.length!==0 ? stateItens.sizePBLivroPublicadoOrganizado.map((it)=>it.id):"")+']},'+
+      '{"name":"pb_texto_jornal_revista","id": ['+ (stateItens.sizePBTextoJornalRevista.length!==0 ? stateItens.sizePBTextoJornalRevista.map((it)=>it.id):"")+']},'+
+      '{"name":"pb_trabalho_evento","id": ['+ (stateItens.sizePBTrabalhosEvento.length!==0 ? stateItens.sizePBTrabalhosEvento.map((it)=>it.id):"")+']},'+
+      '{"name":"ap_conselho_comissao_consultoria","id": ['+ (stateItens.sizeAPConselhoComissaoConsultoria.length!==0 ? stateItens.sizeAPConselhoComissaoConsultoria.map((it)=>it.id):"")+']},'+
+      '{"name":"ap_direcao_administracao","id": ['+ (stateItens.sizeAPDirecaoAdministracao.length!==0 ? stateItens.sizeAPDirecaoAdministracao.map((it)=>it.id):"")+']},'+
+      '{"name":"ap_pesquisa_desenvolvimento","id": ['+ (stateItens.sizeAPPesquisaDesenvolvimento.length!==0 ? stateItens.sizeAPPesquisaDesenvolvimento.map((it)=>it.id):"")+']},'+
+      '{"name":"ap_vinculo","id": ['+ (stateItens.sizeAPVinculo.length!==0 ? stateItens.sizeAPVinculo.map((it)=>it.id):"")+']},'+
+      '{"name":"at_projeto_pesquisa","id": ['+ (stateItens.sizeATProjetoPesquisa.length!==0 ? stateItens.sizeATProjetoPesquisa.map((it)=>it.id):"")+']},'+
+      '{"name":"fat_doutorado","id": ['+ (stateItens.sizeFATDoutorado.length!==0 ? stateItens.sizeFATDoutorado.map((it)=>it.id):"")+']},'+
+      '{"name":"fat_especializacao","id": ['+ (stateItens.sizeFATEspecializacao.length!==0 ? stateItens.sizeFATEspecializacao.map((it)=>it.id):"")+']},'+
+      '{"name":"fat_graduacao","id": ['+ (stateItens.sizeFATGraduacao.length!==0 ? stateItens.sizeFATGraduacao.map((it)=>it.id):"")+']},'+
+      '{"name":"fat_mestrado","id": ['+ (stateItens.sizeFATMestrado.length!==0 ? stateItens.sizeFATMestrado.map((it)=>it.id):"")+']},'+
+      '{"name":"oa_aperfeicoamento_especializacao","id": ['+ (stateItens.sizeOAAperfeicoamentoEspecializacao.length!==0 ? stateItens.sizeOAAperfeicoamentoEspecializacao.map((it)=>it.id):"")+']},'+
+      '{"name":"oa_doutorado","id": ['+ (stateItens.sizeOADoutorado.length!==0 ? stateItens.sizeOADoutorado.map((it)=>it.id):"")+']},'+
+      '{"name":"oa_graduacao","id": ['+ (stateItens.sizeOAGraduacao.length!==0 ? stateItens.sizeOAGraduacao.map((it)=>it.id):"")+']},'+
+      '{"name":"oa_iniciacao_cientifica","id": ['+ (stateItens.sizeOAIniciacaoCientifica.length!==0 ? stateItens.sizeOAIniciacaoCientifica.map((it)=>it.id):"")+']},'+
+      '{"name":"oa_mestrado","id": ['+ (stateItens.sizeOAMestrado.length!==0 ? stateItens.sizeOAMestrado.map((it)=>it.id):"")+']},'+
+      '{"name":"oa_posdoutorado","id": ['+ (stateItens.sizeOAPosDoutorado.length!==0 ? stateItens.sizeOAPosDoutorado.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_aperfeicoamento_especializacao","id": ['+ (stateItens.sizePartBancaAperfeicoamentoEspecializacao.length!==0 ? stateItens.sizePartBancaAperfeicoamentoEspecializacao.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_doutorado","id": ['+ (stateItens.sizePartBancaDoutorado.length!==0 ? stateItens.sizePartBancaDoutorado.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_exame_qualificacao","id": ['+ (stateItens.sizePartBancaExameQualificacao.length!==0 ? stateItens.sizePartBancaExameQualificacao.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_graduacao","id": ['+ (stateItens.sizePartBancaGraduacao.length!==0 ? stateItens.sizePartBancaGraduacao.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_julgadora_concurso_publico","id": ['+ (stateItens.sizePartBancaJulgadoraConcursoPublico.length!==0 ? stateItens.sizePartBancaJulgadoraConcursoPublico.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_julgadora_outra","id": ['+ (stateItens.sizePartBancaJulgadoraOutra.length!==0 ? stateItens.sizePartBancaJulgadoraOutra.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_julgadora_professor_titular","id": ['+ (stateItens.sizePartBancaJulgadoraProfessorTitular.length!==0 ? stateItens.sizePartBancaJulgadoraProfessorTitular.map((it)=>it.id):"")+']},'+
+      '{"name":"part_banca_mestrado","id": ['+ (stateItens.sizePartBancaMestrado.length!==0 ? stateItens.sizePartBancaMestrado.map((it)=>it.id):"")+']},'+
+      '{"name":"part_congresso","id": ['+ (stateItens.sizePartCongresso.length!==0 ? stateItens.sizePartCongresso.map((it)=>it.id):"")+']},'+
+      '{"name":"part_encontro","id": ['+ (stateItens.sizePartEncontro.length!==0 ? stateItens.sizePartEncontro.map((it)=>it.id):"")+']},'+
+      '{"name":"part_oficina","id": ['+ (stateItens.sizePartOficina.length!==0 ? stateItens.sizePartOficina.map((it)=>it.id):"")+']},'+
+      '{"name":"part_evento_congresso_outra","id": ['+ (stateItens.sizePartOutras.length!==0 ? stateItens.sizePartOutras.map((it)=>it.id):"")+']},'+
+      '{"name":"part_seminario","id": ['+ (stateItens.sizePartSeminario.length!==0 ? stateItens.sizePartSeminario.map((it)=>it.id):"")+']},'+
+      '{"name":"part_simposio","id": ['+ (stateItens.sizePartSimposio.length!==0 ? stateItens.sizePartSimposio.map((it)=>it.id):"")+']},'+
+      '{"name":"pt_premio_titulo","id": ['+ (stateItens.sizePTPremioTitulo.length!==0 ? stateItens.sizePTPremioTitulo.map((it)=>it.id):"")+']},'+
+      '{"name":"fc_curso_curta_duracao","id": ['+ (stateItens.sizeFCCursoCurtaDuracao.length!==0 ? stateItens.sizeFCCursoCurtaDuracao.map((it)=>it.id):"")+']},'+
+      '{"name":"siga_disciplina","id": ['+ (stateItens.sizeSigaDisciplina.length!==0 ? stateItens.sizeSigaDisciplina.map((it)=>it.id):"")+']},'+
+      '{"name":"siga_projeto","id": ['+ (stateItens.sizeSigaProjeto.length!==0 ? stateItens.sizeSigaProjeto.map((it)=>it.id):"")+']}'+
+    ']}');
+  }
+ 
+
+const filtroItens = (filterText_,filterAno_) => {
+  
+  console.log(">>>>>>4")
+  setStateItens({ 
+
     "sizePBArtigoPublicado":dataPBArtigoPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_artigo) !== -1),
     "sizePBCapituloLivroPublicado":dataPBCapituloLivroPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
     "sizePBLivroPublicadoOrganizado":dataPBLivroPublicadoOrganizado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
@@ -281,90 +455,91 @@ export const Page_Private_PortfolioEdit = (props) => {
     "sizeSigaDisciplina":dataSigaDisciplina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1),
     "sizeSigaProjeto":dataSigaProjeto.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1)
   }); 
+  
   }
-
-  //export pdf save Objeto localStorange
-  const setFiltroExportPDF=()=>{
-    localStorage.setItem("listExportPDF",
-    ' {"filtro": '+
-    ' {"ano":['+filterAno[filterAno.length-1]+','+filterAno[0]+'], '+
-    ' "texto":"'+ filterText+'" '+
-    ' } '+
-    ' ,"itens": '+
-      '['+
-        '{"name":"pb_artigo_publicado","id": ['+ (stateItens.sizePBArtigoPublicado.length!==0 ? stateItens.sizePBArtigoPublicado.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_capitulo_livro_publicado_organizado","id": ['+ (stateItens.sizePBCapituloLivroPublicado.length!==0 ? stateItens.sizePBCapituloLivroPublicado.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_livro_publicado_organizado","id": ['+ (stateItens.sizePBLivroPublicadoOrganizado.length!==0 ? stateItens.sizePBLivroPublicadoOrganizado.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_texto_jornal_revista","id": ['+ (stateItens.sizePBTextoJornalRevista.length!==0 ? stateItens.sizePBTextoJornalRevista.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_trabalho_evento","id": ['+ (stateItens.sizePBTrabalhosEvento.length!==0 ? stateItens.sizePBTrabalhosEvento.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_conselho_comissao_consultoria","id": ['+ (stateItens.sizeAPConselhoComissaoConsultoria.length!==0 ? stateItens.sizeAPConselhoComissaoConsultoria.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_direcao_administracao","id": ['+ (stateItens.sizeAPDirecaoAdministracao.length!==0 ? stateItens.sizeAPDirecaoAdministracao.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_pesquisa_desenvolvimento","id": ['+ (stateItens.sizeAPPesquisaDesenvolvimento.length!==0 ? stateItens.sizeAPPesquisaDesenvolvimento.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_vinculo","id": ['+ (stateItens.sizeAPVinculo.length!==0 ? stateItens.sizeAPVinculo.map((it)=>it.id):"")+']},'+
-        '{"name":"at_projeto_pesquisa","id": ['+ (stateItens.sizeATProjetoPesquisa.length!==0 ? stateItens.sizeATProjetoPesquisa.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_doutorado","id": ['+ (stateItens.sizeFATDoutorado.length!==0 ? stateItens.sizeFATDoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_especializacao","id": ['+ (stateItens.sizeFATEspecializacao.length!==0 ? stateItens.sizeFATEspecializacao.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_graduacao","id": ['+ (stateItens.sizeFATGraduacao.length!==0 ? stateItens.sizeFATGraduacao.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_mestrado","id": ['+ (stateItens.sizeFATMestrado.length!==0 ? stateItens.sizeFATMestrado.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_aperfeicoamento_especializacao","id": ['+ (stateItens.sizeOAAperfeicoamentoEspecializacao.length!==0 ? stateItens.sizeOAAperfeicoamentoEspecializacao.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_doutorado","id": ['+ (stateItens.sizeOADoutorado.length!==0 ? stateItens.sizeOADoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_graduacao","id": ['+ (stateItens.sizeOAGraduacao.length!==0 ? stateItens.sizeOAGraduacao.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_iniciacao_cientifica","id": ['+ (stateItens.sizeOAIniciacaoCientifica.length!==0 ? stateItens.sizeOAIniciacaoCientifica.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_mestrado","id": ['+ (stateItens.sizeOAMestrado.length!==0 ? stateItens.sizeOAMestrado.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_posdoutorado","id": ['+ (stateItens.sizeOAPosDoutorado.length!==0 ? stateItens.sizeOAPosDoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_aperfeicoamento_especializacao","id": ['+ (stateItens.sizePartBancaAperfeicoamentoEspecializacao.length!==0 ? stateItens.sizePartBancaAperfeicoamentoEspecializacao.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_doutorado","id": ['+ (stateItens.sizePartBancaDoutorado.length!==0 ? stateItens.sizePartBancaDoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_exame_qualificacao","id": ['+ (stateItens.sizePartBancaExameQualificacao.length!==0 ? stateItens.sizePartBancaExameQualificacao.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_graduacao","id": ['+ (stateItens.sizePartBancaGraduacao.length!==0 ? stateItens.sizePartBancaGraduacao.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_julgadora_concurso_publico","id": ['+ (stateItens.sizePartBancaJulgadoraConcursoPublico.length!==0 ? stateItens.sizePartBancaJulgadoraConcursoPublico.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_julgadora_outra","id": ['+ (stateItens.sizePartBancaJulgadoraOutra.length!==0 ? stateItens.sizePartBancaJulgadoraOutra.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_julgadora_professor_titular","id": ['+ (stateItens.sizePartBancaJulgadoraProfessorTitular.length!==0 ? stateItens.sizePartBancaJulgadoraProfessorTitular.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_mestrado","id": ['+ (stateItens.sizePartBancaMestrado.length!==0 ? stateItens.sizePartBancaMestrado.map((it)=>it.id):"")+']},'+
-        '{"name":"part_congresso","id": ['+ (stateItens.sizePartCongresso.length!==0 ? stateItens.sizePartCongresso.map((it)=>it.id):"")+']},'+
-        '{"name":"part_encontro","id": ['+ (stateItens.sizePartEncontro.length!==0 ? stateItens.sizePartEncontro.map((it)=>it.id):"")+']},'+
-        '{"name":"part_oficina","id": ['+ (stateItens.sizePartOficina.length!==0 ? stateItens.sizePartOficina.map((it)=>it.id):"")+']},'+
-        '{"name":"part_evento_congresso_outra","id": ['+ (stateItens.sizePartOutras.length!==0 ? stateItens.sizePartOutras.map((it)=>it.id):"")+']},'+
-        '{"name":"part_seminario","id": ['+ (stateItens.sizePartSeminario.length!==0 ? stateItens.sizePartSeminario.map((it)=>it.id):"")+']},'+
-        '{"name":"part_simposio","id": ['+ (stateItens.sizePartSimposio.length!==0 ? stateItens.sizePartSimposio.map((it)=>it.id):"")+']},'+
-        '{"name":"pt_premio_titulo","id": ['+ (stateItens.sizePTPremioTitulo.length!==0 ? stateItens.sizePTPremioTitulo.map((it)=>it.id):"")+']},'+
-        '{"name":"fc_curso_curta_duracao","id": ['+ (stateItens.sizeFCCursoCurtaDuracao.length!==0 ? stateItens.sizeFCCursoCurtaDuracao.map((it)=>it.id):"")+']},'+
-        '{"name":"siga_disciplina","id": ['+ (stateItens.sizeSigaDisciplina.length!==0 ? stateItens.sizeSigaDisciplina.map((it)=>it.id):"")+']},'+
-        '{"name":"siga_projeto","id": ['+ (stateItens.sizeSigaProjeto.length!==0 ? stateItens.sizeSigaProjeto.map((it)=>it.id):"")+']}'+
-      ']}');
-  } 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+useEffect(()=>{
+  setFiltroExportPDF();
+  if(acabou!==1){
+  setAcabou(true);
+  
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //RETURN PAGE////////////////////////////////////////////////////////////////////////////////////////
+  
+}
+console.log(">>>>>3",stateItens);
+setSizePBArtigoPublicado(stateItens.sizePBArtigoPublicado);
+setSizePBCapituloLivroPublicado(stateItens.sizePBCapituloLivroPublicado);
+setSizePBLivroPublicadoOrganizado(stateItens.sizePBLivroPublicadoOrganizado);
+setSizePBTextoJornalRevista(stateItens.sizePBTextoJornalRevista);
+setSizePBTrabalhosEvento(stateItens.sizePBTrabalhosEvento);
+setSizeAPConselhoComissaoConsultoria(stateItens.sizeAPConselhoComissaoConsultoria);
+setSizeAPDirecaoAdministracao(stateItens.sizeAPDirecaoAdministracao);
+setSizeAPPesquisaDesenvolvimento(stateItens.sizeAPPesquisaDesenvolvimento);
+setSizeAPVinculo(stateItens.sizeAPVinculo);
+setSizeATProjetoPesquisa(stateItens.sizeATProjetoPesquisa);
+setSizeFATDoutorado(stateItens.sizeFATDoutorado);
+setSizeFATEspecializacao(stateItens.sizeFATEspecializacao);
+setSizeFATGraduacao(stateItens.sizeFATGraduacao);
+setSizeFATMestrado(stateItens.sizeFATMestrado);
+setSizeOAAperfeicoamentoEspecializacao(stateItens.sizeOAAperfeicoamentoEspecializacao);
+setSizeOADoutorado(stateItens.sizeOADoutorado);
+setSizeOAGraduacao(stateItens.sizeOAGraduacao);
+setSizeOAIniciacaoCientifica(stateItens.sizeOAIniciacaoCientifica);
+setSizeOAMestrado(stateItens.sizeOAMestrado);
+setSizeOAPosDoutorado(stateItens.sizeOAPosDoutorado);
+setSizePartBancaAperfeicoamentoEspecializacao(stateItens.sizePartBancaAperfeicoamentoEspecializacao);
+setSizePartBancaDoutorado(stateItens.sizePartBancaDoutorado);
+setSizePartBancaExameQualificacao(stateItens.sizePartBancaExameQualificacao);
+setSizePartBancaGraduacao(stateItens.sizePartBancaGraduacao);
+setSizePartBancaJulgadoraConcursoPublico(stateItens.sizePartBancaJulgadoraConcursoPublico);
+setSizePartBancaJulgadoraOutra(stateItens.sizePartBancaJulgadoraOutra);
+setSizePartBancaJulgadoraProfessorTitular(stateItens.sizePartBancaJulgadoraProfessorTitular);
+setSizePartBancaMestrado(stateItens.sizePartBancaMestrado);
+setSizePartCongresso(stateItens.sizePartCongresso);
+setSizePartEncontro(stateItens.sizePartEncontro);
+setSizePartOficina(stateItens.sizePartOficina);
+setSizePartOutras(stateItens.sizePartOutras);
+setSizePartSeminario(stateItens.sizePartSeminario);
+setSizePartSimposio(stateItens.sizePartSimposio);
+setSizePTPremioTitulo(stateItens.sizePTPremioTitulo);
+setSizeFCCursoCurtaDuracao(stateItens.sizeFCCursoCurtaDuracao);
+setSizeSigaDisciplina(stateItens.sizeSigaDisciplina);
+setSizeSigaProjeto(stateItens.sizeSigaProjeto);
+},[stateItens]);
+
   return (
+  
     <Box >
+      
       <Backdrop className={classesbackdrop.backdrop} open={!acabou} >
         <CircularProgress color="inherit" />
       </Backdrop>
       <div style={{ marginLeft: 20, marginTop: 15 }}>
-        <Navegacao atual={'Portfólio'} anteriores={[
+        <Navegacao atual={'Portfólio Publico'} anteriores={[
           {
             "name": "Home",
-            "url": "Portfólio"
+            "url": "Portfólio Publico"
           }
         ]} />
       </div>
       {/* <PortfolioBusca getSearch={Filtros} filterAno={filterAno} sliderMin={1989} sliderMax={2020} /> */}
      
      
-     { (anoMin!==0&&anoMax!==0)&&<PortfolioBusca 
+      {/*(anoMin!==0&&anoMax!==0) &&<PortfolioBusca 
     getSearch={Filtros} 
     filterAno={filterAno} 
     sliderMin={anoMin} 
-    sliderMax={anoMax} />}
+    sliderMax={anoMax} />*/}
      
-      {/* <PortfolioBusca 
+      <PortfolioBusca 
     getSearch={Filtros} 
     filterAno={filterAno} 
     sliderMin={1989} 
-    sliderMax={2020} /> */}
+    sliderMax={2020} />
 
       <Card key={user.name + "aaaa"} style={{ margin: 20 }}>
         <CardHeader
@@ -380,7 +555,10 @@ export const Page_Private_PortfolioEdit = (props) => {
               subheader={(stateItens.sizeSigaDisciplina === '' ||
                 stateItens.sizeSigaProjeto === '') && <LinearProgress />}
             />
-            {(
+
+
+            {
+              (
                 (stateItens.sizeSigaDisciplina.length !== 0 && stateItens.sizeSigaDisciplina !== '') ||
                 (stateItens.sizeSigaProjeto.length !== 0 && stateItens.sizeSigaProjeto !== '')
               ) && <div style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
@@ -399,6 +577,7 @@ export const Page_Private_PortfolioEdit = (props) => {
                 stateItens.sizePBLivroPublicadoOrganizado === '' ||
                 stateItens.sizePBTextoJornalRevista === '' ||
                 stateItens.sizePBTrabalhosEvento === '') && <LinearProgress />}
+                
             />
             {(
               (stateItens.sizePBArtigoPublicado.length !== 0 && stateItens.sizePBArtigoPublicado !== []) ||
@@ -416,6 +595,7 @@ export const Page_Private_PortfolioEdit = (props) => {
                 <SizeItem user={user} heade={'Trabalhos em Eventos'} url={'PBTrabalhosEvento'} num={stateItens.sizePBTrabalhosEvento} />
 
               </Card>}
+
             {(
               (stateItens.sizeOAIniciacaoCientifica === '0' && stateItens.sizeOAIniciacaoCientifica === '') ||
               (stateItens.sizeOAGraduacao === '0' && stateItens.sizeOAGraduacao === '') ||
@@ -426,13 +606,17 @@ export const Page_Private_PortfolioEdit = (props) => {
             ) &&
               <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
                 <CardHeader title="Orientações em Andamento" />
+
                 <SizeItem user={user} heade={'Orientações em Andamendo de Iniciação Cientifica'} url={'OAIniciacaoCientifica'} num={stateItens.sizeOAIniciacaoCientifica} />
                 <SizeItem user={user} heade={'Orientações em Andamendo de Mestrado'} url={'OAMestrado'} num={stateItens.sizeOAMestrado} />
                 <SizeItem user={user} heade={'Orientações em Andamendo de Graduação'} url={'OAGraduacao'} num={stateItens.sizeOAGraduacao} />
                 <SizeItem user={user} heade={'Orientações em Andamendo de Doutorado'} url={'OADoutorado'} num={stateItens.sizeOADoutorado} />
                 <SizeItem user={user} heade={'Orientações em Andamendo de Pós-doutorado'} url={'OAPosDoutorado'} num={stateItens.sizeOAPosDoutorado} />
                 <SizeItem user={user} heade={'Orientações em Andamendo de Aperfeiçoamento e Especialização'} url={'OAAperfeicoamentoEspecializacao'} num={stateItens.sizeOAAperfeicoamentoEspecializacao} />
+
+
               </Card>}
+
             {(
               (stateItens.sizeFATGraduacao.length !== 0 && stateItens.sizeFATGraduacao !== '') ||
               (stateItens.sizeFATDoutorado.length !== 0 && stateItens.sizeFATDoutorado !== '') ||
@@ -487,6 +671,7 @@ export const Page_Private_PortfolioEdit = (props) => {
               &&
               <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
                 <CardHeader title="Participacão em Banca" />
+
 
 
                 <SizeItem user={user} heade={'Banca Julgadora de Graduação'} url={'PartBancaGraduacao'} num={stateItens.sizePartBancaGraduacao} />
@@ -599,14 +784,3 @@ const useStylesBackdrop = makeStyles((theme) => ({
     color: '#fff',
   },
 }));
-
-
-const dates=(anoSelect)=>new Promise((resolve, reject) => {
-  var date = anoSelect[1];
-  const dates = [];
-  while(date >= anoSelect[0]) {
-    dates.push(String(date));
-    date = date - 1;
-  }
-  resolve(dates) ;
-});

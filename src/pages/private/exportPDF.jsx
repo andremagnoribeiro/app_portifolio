@@ -37,8 +37,7 @@ export const ExportPDF = ({ fechar }) => {
   const exportpdf=(itens)=>{
     let xhr = new XMLHttpRequest();
     let fd = new FormData();
-    fd.append('namesitens',  localStorage.getItem("dadosListados") );
-    console.log(localStorage.getItem("dadosListados"));
+    fd.append('namesitens',  localStorage.getItem("listExportPDF") );
     xhr.responseType = "blob";
     xhr.onload = function () {
       const file = new Blob([xhr.response], { type: 'application/pdf' });
