@@ -165,7 +165,6 @@ export const Page_Private_PortfolioEdit = (props) => {
   const [mobile, setMobile] = useState(false);
 
   
-  
   const [acabouPBArtigoPublicado, setAcabouPBArtigoPublicado] = useState(false);
   const [acabouPBCapituloLivroPublicado, setAcabouPBCapituloLivroPublicado] = useState(false);
   const [acabouPBLivroPublicadoOrganizado, setAcabouPBLivroPublicadoOrganizado] = useState(false);
@@ -209,7 +208,7 @@ export const Page_Private_PortfolioEdit = (props) => {
   const [acabou, setAcabou] = useState();
   
   
-  
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -262,7 +261,6 @@ export const Page_Private_PortfolioEdit = (props) => {
       setDataSigaProjeto(data.siga_projeto);  setSizeSigaProjeto(data.siga_projeto);
     }).then(() => { setAcabou(true) });
       
-
   }, []);
 
   useEffect(() => {
@@ -373,26 +371,30 @@ export const Page_Private_PortfolioEdit = (props) => {
 
 const [anoMin, setAnoMin]=useState(0);
 const [anoMax,setAnoMax]=useState(0);
+useEffect(()=>{
   getMaxMinAno(userName).then((ano)=>{
     setAnoMin(parseInt(ano.anoMin));
     setAnoMin(parseInt(ano.anoMax));
     console.log(">>>>1",ano);});
 
-
-
-
-    async  function Filtros(TextBusca, anoSelect){//formato= (palavra, [2012,2020])
-    setAcabou(false);
-    //setItens([]);
-    setFilterText(TextBusca);
+  },[]);
+ 
+  const dates=(anoSelect)=>new Promise((resolve, reject) => {
     var date = anoSelect[1];
     const dates = [];
-     while(date >= anoSelect[0]) {
+    while(date >= anoSelect[0]) {
       dates.push(String(date));
       date = date - 1;
     }
-    await setFilterAno(dates);
-    await filtroItens(TextBusca,dates);
+    resolve(dates) ;
+  });
+
+  const Filtros=(TextBusca, anoSelect)=>{//formato= (palavra, [2012,2020])
+    setAcabou(false);
+    //setItens([]);
+    setFilterText(TextBusca);
+    dates(anoSelect).then((date)=>{setFilterAno(date);filtroItens(TextBusca,date).then((a)=>setAcabou(true))});
+   
     setFiltroExportPDF();
   }
 
@@ -408,49 +410,55 @@ const setFiltroExportPDF=()=>{
      '{"name":"pb_artigo_publicado","id": ['+sizePBArtigoPublicado.map((it)=>it.id)+']},'+
     ']}');
   }
+ 
+ 
 
 
-  function  filtroItens(filterText_,filterAno_){
-     setSizePBArtigoPublicado(dataPBArtigoPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_trabalho) !== -1));
-     setSizePBCapituloLivroPublicado(dataPBCapituloLivroPublicado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePBLivroPublicadoOrganizado(dataPBLivroPublicadoOrganizado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePBTextoJornalRevista(dataPBTextoJornalRevista.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_texto) !== -1));
-     setSizePBTrabalhosEvento(dataPBTrabalhosEvento.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_do_trabalho) !== -1));
-     setSizeAPConselhoComissaoConsultoria(dataAPConselhoComissaoConsultoria.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeAPDirecaoAdministracao(dataAPDirecaoAdministracao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeAPPesquisaDesenvolvimento(dataAPPesquisaDesenvolvimento.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeAPVinculo(dataAPVinculo.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeFATDoutorado(dataFATDoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeFATEspecializacao(dataFATEspecializacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeFATGraduacao(dataFATGraduacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeFATMestrado(dataFATMestrado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
-     setSizeOAAperfeicoamentoEspecializacao(dataOAAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizeOADoutorado(dataOADoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizeOAGraduacao(dataOAGraduacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizeOAIniciacaoCientifica(dataOAIniciacaoCientifica.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizeOAMestrado(dataOAMestrado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizeOAPosDoutorado(dataOAPosDoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaAperfeicoamentoEspecializacao(dataPartBancaAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaDoutorado(dataPartBancaDoutorado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaExameQualificacao(dataPartBancaExameQualificacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaGraduacao(dataPartBancaGraduacao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaJulgadoraConcursoPublico(dataPartBancaJulgadoraConcursoPublico.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaJulgadoraOutra(dataPartBancaJulgadoraOutra.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaJulgadoraProfessorTitular(dataPartBancaJulgadoraProfessorTitular.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartBancaMestrado(dataPartBancaMestrado.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartCongresso(dataPartCongresso.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartEncontro(dataPartEncontro.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartOficina(dataPartOficina.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartOutras(dataPartOutras.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartSeminario(dataPartSeminario.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePartSimposio(dataPartSimposio.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano) !== -1));
-     setSizePTPremioTitulo(dataPTPremioTitulo.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_da_premiacao) !== -1));
-     setSizeFCCursoCurtaDuracao(dataFCCursoCurtaDuracao.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_de_inicio) !== -1));
-     setSizeSigaDisciplina(dataSigaDisciplina.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1));
-     setSizeSigaProjeto(dataSigaProjeto.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ANO) !== -1));
-     setSizeATProjetoPesquisa(dataATProjetoPesquisa.filter((item) => (new RegExp(filterText, 'i')).test(JSON.stringify(item))).filter((item) => filterAno.indexOf(item.ano_inicio) !== -1));
+const filtroItens = (filterText_,filterAno_) =>new Promise((resolve, reject) => {
+     
+     setSizePBArtigoPublicado( dataPBArtigoPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_artigo) !== -1));
+     setSizePBCapituloLivroPublicado( dataPBCapituloLivroPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePBLivroPublicadoOrganizado( dataPBLivroPublicadoOrganizado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePBTextoJornalRevista( dataPBTextoJornalRevista.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_texto) !== -1));
+     setSizePBTrabalhosEvento( dataPBTrabalhosEvento.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_trabalho) !== -1));
+     setSizeAPConselhoComissaoConsultoria( dataAPConselhoComissaoConsultoria.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeAPDirecaoAdministracao( dataAPDirecaoAdministracao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeAPPesquisaDesenvolvimento( dataAPPesquisaDesenvolvimento.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeAPVinculo( dataAPVinculo.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeFATDoutorado( dataFATDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeFATEspecializacao( dataFATEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeFATGraduacao( dataFATGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeFATMestrado( dataFATMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     setSizeOAAperfeicoamentoEspecializacao( dataOAAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizeOADoutorado( dataOADoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizeOAGraduacao( dataOAGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizeOAIniciacaoCientifica( dataOAIniciacaoCientifica.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizeOAMestrado( dataOAMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizeOAPosDoutorado( dataOAPosDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaAperfeicoamentoEspecializacao( dataPartBancaAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaDoutorado( dataPartBancaDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaExameQualificacao( dataPartBancaExameQualificacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaGraduacao( dataPartBancaGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaJulgadoraConcursoPublico( dataPartBancaJulgadoraConcursoPublico.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaJulgadoraOutra( dataPartBancaJulgadoraOutra.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaJulgadoraProfessorTitular( dataPartBancaJulgadoraProfessorTitular.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartBancaMestrado( dataPartBancaMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartCongresso( dataPartCongresso.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartEncontro( dataPartEncontro.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartOficina( dataPartOficina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartOutras( dataPartOutras.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartSeminario( dataPartSeminario.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePartSimposio( dataPartSimposio.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1));
+     setSizePTPremioTitulo( dataPTPremioTitulo.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_da_premiacao) !== -1));
+     setSizeFCCursoCurtaDuracao( dataFCCursoCurtaDuracao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_de_inicio) !== -1));
+     setSizeSigaDisciplina( dataSigaDisciplina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1));
+     setSizeSigaProjeto( dataSigaProjeto.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1));
+     setSizeATProjetoPesquisa( dataATProjetoPesquisa.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1));
+     
+     resolve("ee") ;
+     
     
-  }
+  });
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -496,7 +504,6 @@ const setFiltroExportPDF=()=>{
               title={"Portfólio Siga "}
               subheader={(sizeSigaDisciplina === '' ||
                 sizeSigaProjeto === '') && <LinearProgress />}
-
             />
 
 
