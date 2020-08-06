@@ -35,12 +35,13 @@ const useStylesback = makeStyles((theme) => ({
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Classe
-export const Page_Private_PortfolioEdit = (props) => {
+export const Page_Public_Portfolio = (props) => {
 
   const classesbackdrop = useStylesback();
 
-  const userName = JSON.parse(localStorage.getItem('user')).user_name;
-  
+ const userName = props.match.params.user;
+
+
   const classes = useStyles();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,6 +200,7 @@ export const Page_Private_PortfolioEdit = (props) => {
   }, []);
 
   useEffect(()=>{
+    console.log(userName,">>>>");
     api_getMaxMinAno(userName).then((ano)=>{
       setAnoMin(parseInt(ano.anoMin));
       setAnoMax(parseInt(ano.anoMax));
@@ -209,7 +211,7 @@ export const Page_Private_PortfolioEdit = (props) => {
 
   // State dos Itens  stateItens
   useEffect(()=>{
-    setFiltroExportPDF();
+    
     if(inicial===2){
       setAcabou(true);
     }
@@ -277,56 +279,6 @@ export const Page_Private_PortfolioEdit = (props) => {
     "sizeSigaProjeto":dataSigaProjeto.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1)
   }); 
   }
-
-  //export pdf save Objeto localStorange
-  const setFiltroExportPDF=()=>{
-    localStorage.setItem("listExportPDF",
-    ' {"filtro": '+
-    ' {"ano":['+filterAno[filterAno.length-1]+','+filterAno[0]+'], '+
-    ' "texto":"'+ filterText+'" '+
-    ' } '+
-    ' ,"itens": '+
-      '['+
-        '{"name":"pb_artigo_publicado","id": ['+ (stateItens.sizePBArtigoPublicado.length!==0 ? stateItens.sizePBArtigoPublicado.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_capitulo_livro_publicado_organizado","id": ['+ (stateItens.sizePBCapituloLivroPublicado.length!==0 ? stateItens.sizePBCapituloLivroPublicado.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_livro_publicado_organizado","id": ['+ (stateItens.sizePBLivroPublicadoOrganizado.length!==0 ? stateItens.sizePBLivroPublicadoOrganizado.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_texto_jornal_revista","id": ['+ (stateItens.sizePBTextoJornalRevista.length!==0 ? stateItens.sizePBTextoJornalRevista.map((it)=>it.id):"")+']},'+
-        '{"name":"pb_trabalho_evento","id": ['+ (stateItens.sizePBTrabalhosEvento.length!==0 ? stateItens.sizePBTrabalhosEvento.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_conselho_comissao_consultoria","id": ['+ (stateItens.sizeAPConselhoComissaoConsultoria.length!==0 ? stateItens.sizeAPConselhoComissaoConsultoria.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_direcao_administracao","id": ['+ (stateItens.sizeAPDirecaoAdministracao.length!==0 ? stateItens.sizeAPDirecaoAdministracao.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_pesquisa_desenvolvimento","id": ['+ (stateItens.sizeAPPesquisaDesenvolvimento.length!==0 ? stateItens.sizeAPPesquisaDesenvolvimento.map((it)=>it.id):"")+']},'+
-        '{"name":"ap_vinculo","id": ['+ (stateItens.sizeAPVinculo.length!==0 ? stateItens.sizeAPVinculo.map((it)=>it.id):"")+']},'+
-        '{"name":"at_projeto_pesquisa","id": ['+ (stateItens.sizeATProjetoPesquisa.length!==0 ? stateItens.sizeATProjetoPesquisa.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_doutorado","id": ['+ (stateItens.sizeFATDoutorado.length!==0 ? stateItens.sizeFATDoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_especializacao","id": ['+ (stateItens.sizeFATEspecializacao.length!==0 ? stateItens.sizeFATEspecializacao.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_graduacao","id": ['+ (stateItens.sizeFATGraduacao.length!==0 ? stateItens.sizeFATGraduacao.map((it)=>it.id):"")+']},'+
-        '{"name":"fat_mestrado","id": ['+ (stateItens.sizeFATMestrado.length!==0 ? stateItens.sizeFATMestrado.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_aperfeicoamento_especializacao","id": ['+ (stateItens.sizeOAAperfeicoamentoEspecializacao.length!==0 ? stateItens.sizeOAAperfeicoamentoEspecializacao.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_doutorado","id": ['+ (stateItens.sizeOADoutorado.length!==0 ? stateItens.sizeOADoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_graduacao","id": ['+ (stateItens.sizeOAGraduacao.length!==0 ? stateItens.sizeOAGraduacao.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_iniciacao_cientifica","id": ['+ (stateItens.sizeOAIniciacaoCientifica.length!==0 ? stateItens.sizeOAIniciacaoCientifica.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_mestrado","id": ['+ (stateItens.sizeOAMestrado.length!==0 ? stateItens.sizeOAMestrado.map((it)=>it.id):"")+']},'+
-        '{"name":"oa_posdoutorado","id": ['+ (stateItens.sizeOAPosDoutorado.length!==0 ? stateItens.sizeOAPosDoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_aperfeicoamento_especializacao","id": ['+ (stateItens.sizePartBancaAperfeicoamentoEspecializacao.length!==0 ? stateItens.sizePartBancaAperfeicoamentoEspecializacao.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_doutorado","id": ['+ (stateItens.sizePartBancaDoutorado.length!==0 ? stateItens.sizePartBancaDoutorado.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_exame_qualificacao","id": ['+ (stateItens.sizePartBancaExameQualificacao.length!==0 ? stateItens.sizePartBancaExameQualificacao.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_graduacao","id": ['+ (stateItens.sizePartBancaGraduacao.length!==0 ? stateItens.sizePartBancaGraduacao.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_julgadora_concurso_publico","id": ['+ (stateItens.sizePartBancaJulgadoraConcursoPublico.length!==0 ? stateItens.sizePartBancaJulgadoraConcursoPublico.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_julgadora_outra","id": ['+ (stateItens.sizePartBancaJulgadoraOutra.length!==0 ? stateItens.sizePartBancaJulgadoraOutra.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_julgadora_professor_titular","id": ['+ (stateItens.sizePartBancaJulgadoraProfessorTitular.length!==0 ? stateItens.sizePartBancaJulgadoraProfessorTitular.map((it)=>it.id):"")+']},'+
-        '{"name":"part_banca_mestrado","id": ['+ (stateItens.sizePartBancaMestrado.length!==0 ? stateItens.sizePartBancaMestrado.map((it)=>it.id):"")+']},'+
-        '{"name":"part_congresso","id": ['+ (stateItens.sizePartCongresso.length!==0 ? stateItens.sizePartCongresso.map((it)=>it.id):"")+']},'+
-        '{"name":"part_encontro","id": ['+ (stateItens.sizePartEncontro.length!==0 ? stateItens.sizePartEncontro.map((it)=>it.id):"")+']},'+
-        '{"name":"part_oficina","id": ['+ (stateItens.sizePartOficina.length!==0 ? stateItens.sizePartOficina.map((it)=>it.id):"")+']},'+
-        '{"name":"part_evento_congresso_outra","id": ['+ (stateItens.sizePartOutras.length!==0 ? stateItens.sizePartOutras.map((it)=>it.id):"")+']},'+
-        '{"name":"part_seminario","id": ['+ (stateItens.sizePartSeminario.length!==0 ? stateItens.sizePartSeminario.map((it)=>it.id):"")+']},'+
-        '{"name":"part_simposio","id": ['+ (stateItens.sizePartSimposio.length!==0 ? stateItens.sizePartSimposio.map((it)=>it.id):"")+']},'+
-        '{"name":"pt_premio_titulo","id": ['+ (stateItens.sizePTPremioTitulo.length!==0 ? stateItens.sizePTPremioTitulo.map((it)=>it.id):"")+']},'+
-        '{"name":"fc_curso_curta_duracao","id": ['+ (stateItens.sizeFCCursoCurtaDuracao.length!==0 ? stateItens.sizeFCCursoCurtaDuracao.map((it)=>it.id):"")+']},'+
-        '{"name":"siga_disciplina","id": ['+ (stateItens.sizeSigaDisciplina.length!==0 ? stateItens.sizeSigaDisciplina.map((it)=>it.id):"")+']},'+
-        '{"name":"siga_projeto","id": ['+ (stateItens.sizeSigaProjeto.length!==0 ? stateItens.sizeSigaProjeto.map((it)=>it.id):"")+']}'+
-      ']}');
-  } 
 
 
 

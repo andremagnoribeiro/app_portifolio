@@ -15,6 +15,34 @@ export const TitleItem = ({ title, valor }) => (
         marginLeft: 10
       }}>
 
+        <div  >
+          <div >
+            {title}:
+          </div>
+        </div >
+        <div style={{ marginLeft: 40 }} >
+          <div >
+            {valor}
+          </div>
+        </div >
+      </div>
+    </div>}
+
+  </div>
+)
+
+
+/* 
+
+
+{(valor !== '' && valor && valor !== "NULL") && <div style={{
+      marginLeft: 0,marginRight: 10,
+    
+    }}>
+      <div style={{
+        marginLeft: 10
+      }}>
+
         <Typography fontWeight="fontWeightBold" >
           <Box fontSize={14} fontWeight="fontWeightBold" m={1}>
             {title}:
@@ -27,6 +55,6 @@ export const TitleItem = ({ title, valor }) => (
         </Typography >
       </div>
     </div>}
-
-  </div>
-)
+    
+    
+    */ 

@@ -3,7 +3,6 @@
 
 import React, { useState } from 'react';
 
-import { server } from './../../var';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,7 +28,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Snackbar from '@material-ui/core/Snackbar';
-import { api_exportPDF} from '../../api/serverAPI';
+
+
+
+import { api_exportPDF} from '../../../../api/serverAPI';
 export const ExportPDF = ({ fechar }) => {
 
 

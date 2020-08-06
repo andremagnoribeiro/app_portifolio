@@ -30,13 +30,13 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {ExportPDF} from './exportPDF';
 
 //variavel
-import { logout } from '../../routers_acess_user/Login';
-
+import { logout } from '../../../routers_acess_user/Login';
+//components
+import {ExportPDF} from './components/exportPDF';
 //api
-import { api_deleteUser } from "../../api/serverAPI";
+import { api_deleteUser } from "../../../api/serverAPI";
 
 //class
 export const Page_Private_BarraMenu = props => {

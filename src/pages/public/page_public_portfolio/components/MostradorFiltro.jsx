@@ -3,11 +3,8 @@
 
 import React, { useState, useEffect } from 'react'
 
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-
 
 export const MostradorFiltro = ({apagarFiltro,text}) => {
  
@@ -23,10 +20,7 @@ const clickFiltroApagar=()=>{
       />
     </div>
   );
-
 }
-
-
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
     marginLeft: 20,

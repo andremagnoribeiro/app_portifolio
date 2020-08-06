@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 //Pages Public
 import { Page_Public_Home } from '../pages/public/Page_Public_Home';
 import { Page_Public_BarraMenu } from '../pages/public/Page_Public_BarraMenu';
-import { Page_Public_Portfolio } from '../pages/public/page_public_portfolio/Page_Public_Portifolio';
+import { Page_Public_Portfolio } from '../pages/public/page_public_portfolio/Page_Public_Portfolio';
 import { Page_Public_CreateUser } from '../pages/public/Page_Public_CreateUser';
 import { Page_Public_FormLogin } from '../pages/public/Page_Public_FormLogin';
 
 //Pages Private
 import { Page_Private_PortfolioEdit } from '../pages/private/page_private_portfolioEdit/Page_Private_PortfolioEdit';
-import { Page_Private_BarraMenu } from '../pages/private/Page_Private_BarraMenu';
+import { Page_Private_BarraMenu } from '../pages/private/page_private_barraMenu/Page_Private_BarraMenu';
 import { Page_Private_EditUser } from '../pages/private/Page_Private_EditUser';
 import { Page_Private_ApagarDados } from '../pages/private/page_private_apagarDados/Page_Private_ApagarDados';
 import { Page_Private_ImportXML } from '../pages/private/page_private_importxml/Page_Private_ImportXML';
@@ -39,8 +39,7 @@ class App extends Component {
 <PrivateRoute path = "/"
 componentPrivate = { Page_Private_BarraMenu }
 componentPublic = { Page_Public_BarraMenu }
-componentAdmin = { Page_Admin_BarraMenu }
-/>
+componentAdmin = { Page_Admin_BarraMenu }/>
 
 <Switch >
    { /* Rotas Publicas*/ }
@@ -68,7 +67,7 @@ componentPrivate = { Page_Private_ApagarDados }
 componentPublic = { Page_Public_FormLogin }
 /> <PrivateRoute exact path = '/formlogin'
 componentPrivate = { Page_Public_Home }
-c omponentPublic = { Page_Public_FormLogin }
+componentPublic = { Page_Public_FormLogin }
 /> 
 
 {/* <PrivateRoute exact path = '/export'

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+//materia ui
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
@@ -9,18 +11,26 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Box from '@material-ui/core/Box';
 
+
+//components
 import { Autores } from './components/Autores';
 import { DadosGerais } from './components/DadosGerais';
 import { PalavraChave } from './components/PalavraChave';
 import { AreaConhecimento } from './components/AreaConhecimento';
 import { Url } from './components/Url';
 import { TitleItem } from './components/TitleItem';
-import Box from '@material-ui/core/Box';
 
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 export const PBTrabalhosEvento = (item) => {
   const table = "pb_trabalho_evento";
 
@@ -32,7 +42,7 @@ export const PBTrabalhosEvento = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "rgb(250, 249, 209)",
+      backgroundColor: "#ffffe9",
       maxWidth: 2000,
       margin: 20
     }}>
@@ -59,7 +69,6 @@ export const PBTrabalhosEvento = (item) => {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-          size="small"
         >
           {!expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}Veja Mais
 
@@ -69,8 +78,8 @@ export const PBTrabalhosEvento = (item) => {
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -92,7 +101,12 @@ export const PBTrabalhosEvento = (item) => {
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 
 export const PBTextoJornalRevista = (item) => {
   const table = "pb_texto_jornal_revista";
@@ -104,7 +118,7 @@ export const PBTextoJornalRevista = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
+    <Card style={{ backgroundColor: "#ffffe9", margin: 20 }}>
       <CardHeader title="Texto Jornal Revista" subheader={"publicado em: " + item.data_de_publicacao.slice(0, -6) + "/" + item.data_de_publicacao.slice(2, -4) + "/" + item.data_de_publicacao.slice(4)} />
 
       <CardContent>
@@ -122,8 +136,8 @@ export const PBTextoJornalRevista = (item) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -139,7 +153,12 @@ export const PBTextoJornalRevista = (item) => {
   );
 
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 
 
 export const PBLivroPublicadoOrganizado = (item) => {
@@ -153,7 +172,7 @@ export const PBLivroPublicadoOrganizado = (item) => {
 
   return (
 
-    <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
+    <Card style={{ backgroundColor: "#ffffe9", margin: 20 }}>
       <CardHeader title="Livro Publicado Organizado" subheader={"publicado em: " + item.ano}
       />
       <CardContent>
@@ -168,8 +187,8 @@ export const PBLivroPublicadoOrganizado = (item) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -188,7 +207,12 @@ export const PBLivroPublicadoOrganizado = (item) => {
 
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 export const PBCapituloLivroPublicado = (item) => {
   const table = "pb_capitulo_livro_publicado_organizado";
 
@@ -201,7 +225,7 @@ export const PBCapituloLivroPublicado = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#d0ffd4",
+      backgroundColor: "#ffffe9",
       margin: 20
     }}>
 
@@ -229,9 +253,9 @@ export const PBCapituloLivroPublicado = (item) => {
 
       <Collapse in={expanded} timeout="auto" >
 
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
 
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -257,6 +281,13 @@ export const PBCapituloLivroPublicado = (item) => {
 }
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 export const PBArtigoPublicado/**/ = (item) => {
 
   const table = "pb_artigo_publicado";/**/
@@ -267,7 +298,7 @@ export const PBArtigoPublicado/**/ = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
+    <Card style={{ backgroundColor: "#ffffe9", margin: 20 }}>
       <CardHeader title="Artigo Publicado"/**/ subheader={"publicado em: " + item.ano_do_artigo}/**/
       />
       <CardContent>
@@ -284,8 +315,8 @@ export const PBArtigoPublicado/**/ = (item) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -307,32 +338,18 @@ export const PBArtigoPublicado/**/ = (item) => {
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+
 export const SigaProjeto = (item) => {
-
-
-
-  // const dataDuracao = (i, f) => {
-
-  //   var diai = i.substring(0, 2);
-  //   var mesi = i.substring(3, 2);
-  //   var anoi = i.substring(6, 4);
-
-  //   var diaf = f.substring(0, 2);
-  //   var mesf = f.substring(3, 2);
-  //   var anof = f.substring(6, 4);
-
-
-  //   var anos = ""
-
-  //   //aaaaaaaaaaaaaaaaaaaaaaaaaaaaa??????????????????
-
-  //   return anos;
-
-  // }
 
   return (
     <Card style={{
-      backgroundColor: "#d4d4d4",
+      backgroundColor: "#ffffe9",
       maxWidth: 2000,
       margin: 20
     }}>
@@ -343,7 +360,6 @@ export const SigaProjeto = (item) => {
         subheader={
           <div>
             <Typography>{"De " + item.DATAINICIO + " a " + item.DATAFIM}</Typography>
-
           </div>}
       />
 
@@ -387,7 +403,12 @@ export const SigaProjeto = (item) => {
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 export const SigaDisciplina = (item) => {
 
 
@@ -396,7 +417,7 @@ export const SigaDisciplina = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#d3d3d3",
+      backgroundColor: "#ffffe9",
       maxWidth: 2000,
       margin: 20
     }}>
@@ -418,7 +439,12 @@ export const SigaDisciplina = (item) => {
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 export const ATProjetoPesquisa = (item) => {
 
   const table = 'at_projeto_pesquisa';
@@ -430,7 +456,7 @@ export const ATProjetoPesquisa = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Projeto Pesquisa'
         subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
@@ -444,7 +470,6 @@ export const ATProjetoPesquisa = (item) => {
         <TitleItem title={'Projeto'} valor={item.nome_do_projeto} />
         <TitleItem title={'Natureza'} valor={item.natureza} />
         <TitleItem title={'Orgão'} valor={item.nome_orgao} />
-
 
       </CardContent>
       <CardActions disableSpacing>
@@ -473,7 +498,7 @@ export const ATProjetoPesquisa = (item) => {
         <TitleItem title={'Número Mestrado Prof'} valor={item.Número_mestrado_prof} />
         <TitleItem title={'Projeto de Pesquisa'} valor={item.projeto_de_pesquisa} />
         <TitleItem title={'Temáticas do Projeto'} valor={item.tematicas_do_projeto} />
-        {(item[`equipe_nome_completo1`] && item[`equipe_nome_completo1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        {(item[`equipe_nome_completo1`] && item[`equipe_nome_completo1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
           <CardHeader
             title="Autores"
             subheader=""
@@ -512,7 +537,7 @@ export const ATProjetoPesquisa = (item) => {
           })}
         </Card>}
 
-        {(item[`financiador_nome_instituicao1`] && item[`financiador_nome_instituicao1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#d3d3d3" }}>
+        {(item[`financiador_nome_instituicao1`] && item[`financiador_nome_instituicao1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
           <CardHeader
             title="Financiador"
             subheader=""
@@ -561,7 +586,12 @@ export const ATProjetoPesquisa = (item) => {
 }
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 
 export const APVinculo = (item) => {
 
@@ -569,7 +599,7 @@ export const APVinculo = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Vínculo'
         subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
@@ -595,7 +625,12 @@ export const APVinculo = (item) => {
 
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 
 export const APPesquisaDesenvolvimento = (item) => {
 
@@ -603,7 +638,7 @@ export const APPesquisaDesenvolvimento = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Pesquisa e Desenvolvimento'
         subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
@@ -655,7 +690,12 @@ export const APPesquisaDesenvolvimento = (item) => {
 
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 
 export const APDirecaoAdministracao = (item) => {
 
@@ -663,7 +703,7 @@ export const APDirecaoAdministracao = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Direção Administração'
         subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
@@ -689,16 +729,21 @@ export const APDirecaoAdministracao = (item) => {
 
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 
 export const APConselhoComissaoConsultoria = (item) => {
 
   const table = 'ap_conselho_comissao_consultoria';/**/
-
+  
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Conselho Comissão Consultoria'
         subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
@@ -722,6 +767,14 @@ export const APConselhoComissaoConsultoria = (item) => {
 
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+
 export const FATDoutorado = (item) => {
 
   const table = 'fat_doutorado';/**/
@@ -735,7 +788,7 @@ export const FATDoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Doutorado'
         subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao+ '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
       <CardContent>
@@ -835,7 +888,7 @@ export const FATEspecializacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Especialização'
 
 
@@ -932,7 +985,7 @@ export const FATGraduacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Graduação'
 
         subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
@@ -1026,7 +1079,7 @@ export const FATMestrado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Mestrado'
 
 
@@ -1148,7 +1201,7 @@ export const OAAperfeicoamentoEspecializacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Aperfeiçoamento e Especialização'
 
 
@@ -1244,7 +1297,7 @@ export const OADoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Doutorado'
 
 
@@ -1330,7 +1383,7 @@ export const OAGraduacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Graduação'
 
 
@@ -1426,7 +1479,7 @@ export const OAIniciacaoCientifica = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Iniciação Cientifica'
 
 
@@ -1524,7 +1577,7 @@ export const OAMestrado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Mestrado'
 
 
@@ -1615,7 +1668,7 @@ export const OAPosDoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Pós-doutorado'
         subheader={'publicado em: ' + item.ano}
       />
@@ -1732,7 +1785,7 @@ export const PartBancaAperfeicoamentoEspecializacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Aperfeiçoamento Especialização'
 
 
@@ -1842,7 +1895,7 @@ export const PartBancaDoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Doutorado'
 
 
@@ -1953,7 +2006,7 @@ export const PartBancaExameQualificacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Exame Qualificação'
 
         subheader={'Ano: ' + item.ano}
@@ -2064,7 +2117,7 @@ export const PartBancaGraduacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Graduação'
 
         subheader={'Ano: ' + item.ano}
@@ -2175,7 +2228,7 @@ export const PartBancaJulgadoraConcursoPublico = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora de Concurso Publico'
 
         subheader={'publicado em: ' + item.ano}
@@ -2272,7 +2325,7 @@ export const PartBancaJulgadoraOutra = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora Outra'
         subheader={'publicado em: ' + item.ano}
       />
@@ -2380,7 +2433,7 @@ export const PartBancaJulgadoraProfessorTitular = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora de Professor Titular'
         subheader={'publicado em: ' + item.ano}
       />
@@ -2492,7 +2545,7 @@ export const PartBancaMestrado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Mestrado'
 
         subheader={'publicado em: ' + item.ano}
@@ -2599,7 +2652,7 @@ export const PartCongresso = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Congresso'
         subheader={'Ano: ' + item.ano}
       />
@@ -2672,7 +2725,7 @@ export const PartEncontro = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Encontro' subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
@@ -2752,7 +2805,7 @@ export const PartOficina = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Oficina'
 
 
@@ -2780,7 +2833,7 @@ export const PartOficina = (item) => {
       </CardContent>
 
       <Collapse in={expanded} timeout='auto' >
-        <CardContent style={{ backgroundColor: '#d0ffd4' }}>
+        <CardContent style={{ backgroundColor: '#ffffe9' }}>
           <TitleItem title={'Instituição'} valor={item.nome_da_instituicao} />
 
           <TitleItem title={'Forma de Participação'} valor={item.forma_participacao} />
@@ -2837,7 +2890,7 @@ export const PartOutras = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Outras'
 
 
@@ -2958,7 +3011,7 @@ export const PartSeminario = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Seminário'
 
         subheader={'Ano: ' + item.ano}
@@ -2986,7 +3039,7 @@ export const PartSeminario = (item) => {
       </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
-        <CardContent style={{ backgroundColor: '#d0ffd4' }}>
+        <CardContent >
           <TitleItem title={'Instituição'} valor={item.nome_da_instituicao} />
           <TitleItem title={'Cógigo da Instituição'} valor={item.codigo_instituicao} />
           <TitleItem title={'Nome do Participante do Congresso'} valor={item.nome_completo_do_participante_de_eventos_congressos} />
@@ -3044,7 +3097,7 @@ export const PartSimposio = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Simpósio'
 
         subheader={'Ano: ' + item.ano}
@@ -3073,7 +3126,7 @@ export const PartSimposio = (item) => {
 </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
-        <CardContent style={{ backgroundColor: '#d0ffd4' }}>
+        <CardContent style={{ backgroundColor: '#ffffe9' }}>
 
           <TitleItem title={'Forma de Participação'} valor={item.forma_participacao} />
           <TitleItem title={'Local do Evento'} valor={item.local_do_evento} />
@@ -3122,10 +3175,10 @@ export const PTPremioTitulo = (item) => {
 
   const [expanded, setExpanded] = useState(false);
 
-
+ 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Prêmio e Titulo'
 
 
@@ -3174,10 +3227,10 @@ export const FCCursoCurtaDuracao = (item) => {
 
   const [expanded, setExpanded] = useState(false);
 
- 
+  
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Curso Curta Duração'
 
 
