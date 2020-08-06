@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 //api
-import {getUserId} from "../../api/serverAPI";
+import {api_getUserId} from "../../api/serverAPI";
 
 //login
 import { logout } from '../../routers_acess_user/Login';
@@ -27,7 +27,7 @@ export const Page_Private_EditUser = () => {
 
 
   useEffect(()=>{
-      getUserId(JSON.parse(localStorage.getItem("user")).user_name)
+    api_getUserId(JSON.parse(localStorage.getItem("user")).user_name)
         .then(data =>{
           setName(data.name);
           setUser_name(data.user_name);

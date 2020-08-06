@@ -42,14 +42,14 @@ export const PBTrabalhosEvento = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "rgb(250, 249, 209)",
+      backgroundColor: "#ffffe9",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
         title={"Trabalho em Evento"}
-        subheader={"id"+item.id+"Ano: " + item.ano_do_trabalho}
+        subheader={"Ano: " + item.ano_do_trabalho}
       />
 
       <CardContent>
@@ -78,8 +78,8 @@ export const PBTrabalhosEvento = (item) => {
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -118,8 +118,8 @@ export const PBTextoJornalRevista = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
-      <CardHeader title="Texto Jornal Revista" subheader={"id"+item.id+"publicado em: " + item.data_de_publicacao.slice(0, -6) + "/" + item.data_de_publicacao.slice(2, -4) + "/" + item.data_de_publicacao.slice(4)} />
+    <Card style={{ backgroundColor: "#ffffe9", margin: 20 }}>
+      <CardHeader title="Texto Jornal Revista" subheader={"publicado em: " + item.data_de_publicacao.slice(0, -6) + "/" + item.data_de_publicacao.slice(2, -4) + "/" + item.data_de_publicacao.slice(4)} />
 
       <CardContent>
 
@@ -136,8 +136,8 @@ export const PBTextoJornalRevista = (item) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -172,8 +172,8 @@ export const PBLivroPublicadoOrganizado = (item) => {
 
   return (
 
-    <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
-      <CardHeader title="Livro Publicado Organizado" subheader={"id"+item.id+"publicado em: " + item.ano}
+    <Card style={{ backgroundColor: "#ffffe9", margin: 20 }}>
+      <CardHeader title="Livro Publicado Organizado" subheader={"publicado em: " + item.ano}
       />
       <CardContent>
 
@@ -187,8 +187,8 @@ export const PBLivroPublicadoOrganizado = (item) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -225,13 +225,13 @@ export const PBCapituloLivroPublicado = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#d0ffd4",
+      backgroundColor: "#ffffe9",
       margin: 20
     }}>
 
       <CardHeader
         title="Capítulo de Livros Publicado"
-        subheader={"id"+item.id+"publicado em: " + item.ano}
+        subheader={"publicado em: " + item.ano}
       />
 
       <CardContent>
@@ -253,9 +253,9 @@ export const PBCapituloLivroPublicado = (item) => {
 
       <Collapse in={expanded} timeout="auto" >
 
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
 
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -298,8 +298,8 @@ export const PBArtigoPublicado/**/ = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: "#d0ffd4", margin: 20 }}>
-      <CardHeader title="Artigo Publicado"/**/ subheader={"id"+item.id+"publicado em: " + item.ano_do_artigo}/**/
+    <Card style={{ backgroundColor: "#ffffe9", margin: 20 }}>
+      <CardHeader title="Artigo Publicado"/**/ subheader={"publicado em: " + item.ano_do_artigo}/**/
       />
       <CardContent>
 
@@ -315,8 +315,8 @@ export const PBArtigoPublicado/**/ = (item) => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" >
-        <CardContent style={{ backgroundColor: "#d0ffd4" }}>
-          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+        <CardContent style={{ backgroundColor: "#ffffe9" }}>
+          <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
             <CardHeader
               title="Dados Gerais"
               subheader=""
@@ -347,13 +347,9 @@ export const PBArtigoPublicado/**/ = (item) => {
 
 export const SigaProjeto = (item) => {
 
-
-
- 
-
   return (
     <Card style={{
-      backgroundColor: "#d4d4d4",
+      backgroundColor: "#ffffe9",
       maxWidth: 2000,
       margin: 20
     }}>
@@ -361,10 +357,9 @@ export const SigaProjeto = (item) => {
       <CardHeader
         title={"Projeto: " + item.DESCRICAO}
 
-        subheader={"id"+item.id+
+        subheader={
           <div>
             <Typography>{"De " + item.DATAINICIO + " a " + item.DATAFIM}</Typography>
-
           </div>}
       />
 
@@ -422,14 +417,14 @@ export const SigaDisciplina = (item) => {
 
   return (
     <Card style={{
-      backgroundColor: "#F0F8FF",
+      backgroundColor: "#ffffe9",
       maxWidth: 2000,
       margin: 20
     }}>
 
       <CardHeader
         title={"Disciplina: " + item.NOME + " - " + item.DISCIPLINA + "-" + item.TURMA}
-        subheader={"id"+item.id+"Ano/Semetre: " + item.ANO + "/" + item.SEMESTRE}
+        subheader={"Ano/Semetre: " + item.ANO + "/" + item.SEMESTRE}
       />
       <CardContent>
         <Typography>Horas de Estรกgio: {item.HORASESTAGIO}</Typography>
@@ -461,10 +456,10 @@ export const ATProjetoPesquisa = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Projeto Pesquisa'
-        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
 
@@ -503,7 +498,7 @@ export const ATProjetoPesquisa = (item) => {
         <TitleItem title={'Número Mestrado Prof'} valor={item.Número_mestrado_prof} />
         <TitleItem title={'Projeto de Pesquisa'} valor={item.projeto_de_pesquisa} />
         <TitleItem title={'Temáticas do Projeto'} valor={item.tematicas_do_projeto} />
-        {(item[`equipe_nome_completo1`] && item[`equipe_nome_completo1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+        {(item[`equipe_nome_completo1`] && item[`equipe_nome_completo1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
           <CardHeader
             title="Autores"
             subheader=""
@@ -542,7 +537,7 @@ export const ATProjetoPesquisa = (item) => {
           })}
         </Card>}
 
-        {(item[`financiador_nome_instituicao1`] && item[`financiador_nome_instituicao1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#F0F8FF" }}>
+        {(item[`financiador_nome_instituicao1`] && item[`financiador_nome_instituicao1`] !== "NULL") && <Card style={{ marginTop: 30, paddingBottom: 30, backgroundColor: "#ffffe9" }}>
           <CardHeader
             title="Financiador"
             subheader=""
@@ -604,10 +599,10 @@ export const APVinculo = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Vínculo'
-        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
 
@@ -643,10 +638,10 @@ export const APPesquisaDesenvolvimento = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Pesquisa e Desenvolvimento'
-        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
 
@@ -708,10 +703,10 @@ export const APDirecaoAdministracao = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Direção Administração'
-        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
         <TitleItem title={'Cargo Função:'} valor={item.cargo_ou_funcao} />
@@ -748,10 +743,10 @@ export const APConselhoComissaoConsultoria = (item) => {
 
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader
         title='Conselho Comissão Consultoria'
-        subheader={"id"+item.id+'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
+        subheader={'Período(mes/ano): de ' + item.mes_inicio + "/" + item.ano_inicio + " a " + item.mes_fim + "/" + item.ano_fim}
       />
       <CardContent>
         <TitleItem title={'Especificações'} valor={item.especificacao} />
@@ -793,9 +788,9 @@ export const FATDoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Doutorado'
-        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao+ '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
+        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao+ '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
       <CardContent>
 
         <TitleItem title={'Título da Dissertação ou Tese'} valor={item.titulo_da_dissertacao_tese} />
@@ -893,11 +888,11 @@ export const FATEspecializacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Especialização'
 
 
-        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
+        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
 
       />
       <CardContent>
@@ -990,10 +985,10 @@ export const FATGraduacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Graduação'
 
-        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
+        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao }
 
       />
       <CardContent>
@@ -1084,7 +1079,7 @@ export const FATMestrado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Mestrado'
 
 
@@ -1095,7 +1090,7 @@ export const FATMestrado = (item) => {
 
 
 
-        subheader={"id"+item.id+'período: de ' + item.ano_inicio + " a " + item.ano_conclusao + '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
+        subheader={'período: de ' + item.ano_inicio + " a " + item.ano_conclusao + '   Ano da Obtenção do Titulo: ' + item.ano_obtencao_do_titulo} />
       <CardContent>
 
 
@@ -1206,7 +1201,7 @@ export const OAAperfeicoamentoEspecializacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Aperfeiçoamento e Especialização'
 
 
@@ -1214,7 +1209,7 @@ export const OAAperfeicoamentoEspecializacao = (item) => {
 
 
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1302,11 +1297,11 @@ export const OADoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Doutorado'
 
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1388,7 +1383,7 @@ export const OAGraduacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Graduação'
 
 
@@ -1398,7 +1393,7 @@ export const OAGraduacao = (item) => {
 
 
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1484,7 +1479,7 @@ export const OAIniciacaoCientifica = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Iniciação Cientifica'
 
 
@@ -1495,7 +1490,7 @@ export const OAIniciacaoCientifica = (item) => {
 
 
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1582,7 +1577,7 @@ export const OAMestrado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Mestrado'
 
 
@@ -1593,7 +1588,7 @@ export const OAMestrado = (item) => {
 
 
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1673,9 +1668,9 @@ export const OAPosDoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Pós-doutorado'
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -1790,11 +1785,11 @@ export const PartBancaAperfeicoamentoEspecializacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Aperfeiçoamento Especialização'
 
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -1900,11 +1895,11 @@ export const PartBancaDoutorado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Doutorado'
 
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2011,10 +2006,10 @@ export const PartBancaExameQualificacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Exame Qualificação'
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2122,10 +2117,10 @@ export const PartBancaGraduacao = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Graduação'
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2233,10 +2228,10 @@ export const PartBancaJulgadoraConcursoPublico = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora de Concurso Publico'
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2330,9 +2325,9 @@ export const PartBancaJulgadoraOutra = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora Outra'
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2438,9 +2433,9 @@ export const PartBancaJulgadoraProfessorTitular = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca Julgadora de Professor Titular'
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2550,10 +2545,10 @@ export const PartBancaMestrado = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Banca de Mestrado'
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2657,9 +2652,9 @@ export const PartCongresso = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Congresso'
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -2730,8 +2725,8 @@ export const PartEncontro = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
-      <CardHeader title='Participação em Encontro' subheader={"id"+item.id+'publicado em: ' + item.ano}
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
+      <CardHeader title='Participação em Encontro' subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -2810,12 +2805,12 @@ export const PartOficina = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Oficina'
 
 
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
         <TitleItem title={'Título'} valor={item.titulo} />
@@ -2838,7 +2833,7 @@ export const PartOficina = (item) => {
       </CardContent>
 
       <Collapse in={expanded} timeout='auto' >
-        <CardContent style={{ backgroundColor: '#d0ffd4' }}>
+        <CardContent style={{ backgroundColor: '#ffffe9' }}>
           <TitleItem title={'Instituição'} valor={item.nome_da_instituicao} />
 
           <TitleItem title={'Forma de Participação'} valor={item.forma_participacao} />
@@ -2895,7 +2890,7 @@ export const PartOutras = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Outras'
 
 
@@ -2907,7 +2902,7 @@ export const PartOutras = (item) => {
 
 
 
-        subheader={"id"+item.id+'publicado em: ' + item.ano}
+        subheader={'publicado em: ' + item.ano}
       />
       <CardContent>
 
@@ -3016,10 +3011,10 @@ export const PartSeminario = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Seminário'
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -3044,7 +3039,7 @@ export const PartSeminario = (item) => {
       </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
-        <CardContent style={{ backgroundColor: '#d0ffd4' }}>
+        <CardContent >
           <TitleItem title={'Instituição'} valor={item.nome_da_instituicao} />
           <TitleItem title={'Cógigo da Instituição'} valor={item.codigo_instituicao} />
           <TitleItem title={'Nome do Participante do Congresso'} valor={item.nome_completo_do_participante_de_eventos_congressos} />
@@ -3102,10 +3097,10 @@ export const PartSimposio = (item) => {
   };
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Participação em Simpósio'
 
-        subheader={"id"+item.id+'Ano: ' + item.ano}
+        subheader={'Ano: ' + item.ano}
       />
       <CardContent>
 
@@ -3131,7 +3126,7 @@ export const PartSimposio = (item) => {
 </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout='auto' >
-        <CardContent style={{ backgroundColor: '#d0ffd4' }}>
+        <CardContent style={{ backgroundColor: '#ffffe9' }}>
 
           <TitleItem title={'Forma de Participação'} valor={item.forma_participacao} />
           <TitleItem title={'Local do Evento'} valor={item.local_do_evento} />
@@ -3183,14 +3178,14 @@ export const PTPremioTitulo = (item) => {
  
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Prêmio e Titulo'
 
 
 
 
 
-        subheader={"id"+item.id+'Ano da Premiação: ' + item.ano_da_premiacao}
+        subheader={'Ano da Premiação: ' + item.ano_da_premiacao}
       />
 
       <CardContent>
@@ -3235,7 +3230,7 @@ export const FCCursoCurtaDuracao = (item) => {
   
 
   return (
-    <Card style={{ backgroundColor: '#d0ffd4', margin: 20 }}>
+    <Card style={{ backgroundColor: '#ffffe9', margin: 20 }}>
       <CardHeader title='Curso Curta Duração'
 
 
@@ -3246,7 +3241,7 @@ export const FCCursoCurtaDuracao = (item) => {
 
 
 
-        subheader={"id"+item.id+'Período: de ' + item.ano_de_inicio + " a " + item.ano_de_conclusao}
+        subheader={'Período: de ' + item.ano_de_inicio + " a " + item.ano_de_conclusao}
       />
       <CardContent>
 

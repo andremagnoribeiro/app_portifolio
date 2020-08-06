@@ -29,37 +29,33 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Snackbar from '@material-ui/core/Snackbar';
-
-
+import { api_exportPDF} from '../../api/serverAPI';
 export const ExportPDF = ({ fechar }) => {
 
-  
-  const exportpdf=(itens)=>{
-    let xhr = new XMLHttpRequest();
-    let fd = new FormData();
-    fd.append('namesitens',  localStorage.getItem("listExportPDF") );
-    xhr.responseType = "blob";
-    xhr.onload = function () {
-      const file = new Blob([xhr.response], { type: 'application/pdf' });
-      const fileURL = URL.createObjectURL(file);
-        window.open(fileURL, "_blank");
-        fechar();
-    };
-    xhr.open('POST', server + `/ufjfportfolioprofissional/api/exportPDF/?user=${JSON.parse(localStorage.getItem("user")).user_name}&name=${JSON.parse(localStorage.getItem("user")).name}&email=${JSON.parse(localStorage.getItem("user")).email}`, true);
-    xhr.send(fd);
+
+  //export PDF
+  const runExportPDF=()=>{
+    api_exportPDF(CallBackExportPdf);
   }
 
- 
-  
+  const CallBackExportPdf=(xhr_response)=>{
+    const file = new Blob([xhr_response], { type: 'application/pdf' });
+    const fileURL = URL.createObjectURL(file);
+      window.open(fileURL, "_blank");
+      fechar();
+  }
+
+
+  //open closer snackbar
   const handleClose = () => {
     setOpen(false);
   };
   
- 
   const [open, setOpen] = useState(false);
+
   return (
     <div>
-    <div id="exportButton" onClick={()=>{exportpdf();setOpen(true);} } >Exportar Portfolio em PDF</div>
+    <div id="exportButton" onClick={()=>{runExportPDF();setOpen(true);} } >Exportar Portfolio em PDF</div>
     <Snackbar
         anchorOrigin={{
           vertical: 'top',
@@ -75,3 +71,4 @@ export const ExportPDF = ({ fechar }) => {
   );
 
 }
+

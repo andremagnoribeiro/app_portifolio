@@ -24,7 +24,7 @@ import { PortfolioBusca } from './components/PortfolioBusca'
 import { SizeItem } from "./components/SizeItem"
 import Navegacao from "./components/Navegacao"
 //API
-import { getAllTable ,getUserId,getMaxMinAno} from "../../../api/serverAPI";
+import { api_getAllTable ,api_getUserId,api_getMaxMinAno} from "../../../api/serverAPI";
 import { TimelapseOutlined } from '@material-ui/icons';
 
 const useStylesback = makeStyles((theme) => ({
@@ -159,8 +159,8 @@ export const Page_Private_PortfolioEdit = (props) => {
   //GET API
   useEffect(() => {
    
-    getUserId(userName).then(data => setUser(data));
-    getAllTable(userName).then((data)=>{
+    api_getUserId(userName).then(data => setUser(data));
+    api_getAllTable(userName).then((data)=>{
     setDataPBArtigoPublicado(data.pb_artigo_publicado);  setStateItens(prevState => {return {...prevState,"sizePBArtigoPublicado":data.pb_artigo_publicado}});
     setDataPBCapituloLivroPublicado(data.pb_capitulo_livro_publicado_organizado); setStateItens(prevState => {return {...prevState,"sizePBCapituloLivroPublicado":data.pb_capitulo_livro_publicado_organizado}});
     setDataPBLivroPublicadoOrganizado(data.pb_livro_publicado_organizado); setStateItens(prevState => {return {...prevState,"sizePBLivroPublicadoOrganizado":data.pb_livro_publicado_organizado}});
@@ -204,7 +204,7 @@ export const Page_Private_PortfolioEdit = (props) => {
   }, []);
 
   useEffect(()=>{
-    getMaxMinAno(userName).then((ano)=>{
+    api_getMaxMinAno(userName).then((ano)=>{
       setAnoMin(parseInt(ano.anoMin));
       setAnoMax(parseInt(ano.anoMax));
       console.log(">>>>ano",ano);});

@@ -3,21 +3,21 @@ import axios from 'axios';
 import { server } from '../var';
 
 
-export const getUsers = () => axios
+export const api_getUsers = () => axios
 .get(`${server}/ufjfportfolioprofissional/api/getUsers.php`)
 .then(({ data }) => {
  
   return data;
 })
 
-export const getUserId = (user_name) => axios
+export const api_getUserId = (user_name) => axios
 .get(`${server}/ufjfportfolioprofissional/api/getUserId.php?username=${user_name}`)
 .then(({ data }) => {
   
   return data;
 })
 
-export const deleteUser = (user_name) => {
+export const api_deleteUser = (user_name) => {
   let xhr = new XMLHttpRequest();
   xhr.open('POST', server +
     `/ufjfportfolioprofissional/api/deleteUser.php/?user_name=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
@@ -25,14 +25,14 @@ export const deleteUser = (user_name) => {
 }
 
 
-export const getTable = (userName,name) => axios
+export const api_getTable = (userName,name) => axios
 .get(`${server}/ufjfportfolioprofissional/api/getTable.php?user=${userName}&name=${name}`)
 .then(({ data }) => {
  
   return data;
 })
 
-export const getAllTable = (userName) => axios
+export const api_getAllTable = (userName) => axios
 .get(`${server}/ufjfportfolioprofissional/api/getAllTable.php?user=${userName}`)
 .then(({ data }) => {
  
@@ -40,37 +40,18 @@ export const getAllTable = (userName) => axios
 })
 
 
-export const getMaxMinAno = (userName) => axios
+export const api_getMaxMinAno = (userName) => axios
 .get(`${server}/ufjfportfolioprofissional/api/getMaxMinAno.php?user=${userName}`).then(({ data }) => {
  console.log(">>>>",data);
   return data;
 })
 
 
-export const getSizeTable = (userName,filter,table,respost) =>{
-
-  let xhr = new XMLHttpRequest();
-
-  xhr.onload = function(e) {
-    if (this.status == 200) {
-      respost(JSON.parse(this.responseText)['count(*)']);
-     
-    }else{
-      respost(false);
-    }
-  };
-
-  xhr.open('GET', `${server}/ufjfportfolioprofissional/api/getsize.php?user=${userName}&name=${table}&filtertext=${filter.text}&filterano=${filter.ano}`, true);
-  xhr.send();
-
-}
 
 
-export const importXML = ( filee ,calback,calback2) => {
- 
+export const api_importXML = ( filee ,calback,calback2) => {
   let xhr = new XMLHttpRequest(),
     fd = new FormData();
-
   fd.append('file', filee[0]);
   xhr.onload = function () {
     calback(xhr.responseText);
@@ -83,18 +64,37 @@ export const importXML = ( filee ,calback,calback2) => {
   xhr.send(fd);
 }
 
-export const getInfoXML = (fileInput,calback) => {
- 
-  
-  let xhr = new XMLHttpRequest(),
-    fd = new FormData();
-
+export const api_getInfoXML = (fileInput,calback) => {
+  let xhr = new XMLHttpRequest(),fd = new FormData();
   fd.append('file', fileInput[0]);
-  xhr.onload = function () {
+    xhr.onload = function () {
     calback(xhr.responseText);
   };
+
   xhr.open('POST', server + `/ufjfportfolioprofissional/api/importxmlgetInfo.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
   xhr.send(fd);
 }
 
 
+export const api_deleteTable = (nameTableSql,callback) => {
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if(xhr.status===200&&xhr.responseText==='true'){
+      callback();
+    }
+  };
+  xhr.open('POST', server + `/ufjfportfolioprofissional/api/delete.php?user=${JSON.parse(localStorage.getItem("user")).user_name}&table=${nameTableSql}`,true);
+  xhr.send();
+}
+
+export const api_exportPDF=(callback)=>{
+  let xhr = new XMLHttpRequest();
+  let fd = new FormData();
+  fd.append('namesitens',  localStorage.getItem("listExportPDF") );
+  xhr.responseType = "blob";
+  xhr.onload = function () {
+    callback(xhr.response);
+  };
+  xhr.open('POST', server + `/ufjfportfolioprofissional/api/exportPDF/?user=${JSON.parse(localStorage.getItem("user")).user_name}&name=${JSON.parse(localStorage.getItem("user")).name}&email=${JSON.parse(localStorage.getItem("user")).email}`, true);
+  xhr.send(fd);
+}

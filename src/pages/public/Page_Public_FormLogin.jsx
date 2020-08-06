@@ -105,7 +105,7 @@ export const Page_Public_FormLogin = () => {
           <Grid container>
             <Grid item>
               <a href="/ufjfportfolioprofissional/build/createuser" variant="body2">
-                {"Criar uma Usuário"}
+                {"Criar uma UsuÃ¡rio"}
               </a>
             </Grid>
           </Grid>
@@ -116,7 +116,7 @@ export const Page_Public_FormLogin = () => {
         <Copyright />
       </Box>
       <div>Administrador: cpf: "1"  senha: "admin" </div>
-      <div>Usuário : cpf: "16284057830"  senha: "1234" </div>
+      <div>UsuÃ¡rio : cpf: "16284057830"  senha: "1234" </div>
       
     </Container>
   );
@@ -129,7 +129,7 @@ export const Page_Public_FormLogin = () => {
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {'Copyright Â© '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>{' '}

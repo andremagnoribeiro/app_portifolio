@@ -6,7 +6,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 
 //api
-import { getUsers } from "../../api/serverAPI";
+import { api_getUsers } from "../../api/serverAPI";
 
 export const Page_Public_Home = (props) => {
 
@@ -14,7 +14,7 @@ export const Page_Public_Home = (props) => {
   const [users_, setUsers_] = useState({"aaa":"aaaa"});
 
   useEffect(() => {
-    getUsers().then(data => setUsers(data));
+    api_getUsers().then(data => setUsers(data));
   }, []);
 
 
@@ -22,7 +22,7 @@ export const Page_Public_Home = (props) => {
   return (
 
     <div >
-      <h1 style={{ marginLeft: 25 }}>Usuários   -{users_.aaa}</h1>
+      <h1 style={{ marginLeft: 25 }}>Usuários</h1>
       {users.map(user =>
         <Card key={user.name + "aaaa"} style={{ margin: 20, cursor:'pointer' }} onClick={() => props.history.push("/portfolio/"+user.user_name)}  >
           <CardHeader

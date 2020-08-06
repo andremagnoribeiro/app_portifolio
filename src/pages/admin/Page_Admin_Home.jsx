@@ -6,14 +6,14 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 
 //api
-import { getUsers } from "../../api/serverAPI";
+import { api_getUsers } from "../../api/serverAPI";
 
 export const Page_Admin_Home = (props) => {
 
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getUsers().then(data => setUsers(data));
+    api_getUsers().then(data => setUsers(data));
   }, []);
 
 

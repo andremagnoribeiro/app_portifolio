@@ -11,7 +11,7 @@ import { Page_Public_FormLogin } from '../pages/public/Page_Public_FormLogin';
 import { Page_Private_PortfolioEdit } from '../pages/private/page_private_portfolioEdit/Page_Private_PortfolioEdit';
 import { Page_Private_BarraMenu } from '../pages/private/Page_Private_BarraMenu';
 import { Page_Private_EditUser } from '../pages/private/Page_Private_EditUser';
-import { Page_Private_ApagarDados } from '../pages/private/Page_Private_ApagarDados';
+import { Page_Private_ApagarDados } from '../pages/private/page_private_apagarDados/Page_Private_ApagarDados';
 import { Page_Private_ImportXML } from '../pages/private/page_private_importxml/Page_Private_ImportXML';
 //import { ExportPDF } from '../pages/private/page_private_portfolioEdit/components/exportPDF';
 

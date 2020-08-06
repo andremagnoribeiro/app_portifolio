@@ -7,9 +7,8 @@ import Grid from '@material-ui/core/Grid';
 
 export const Page_Public_BarraMenu = props => {
 
-  const href = (href) => {
-    window.location.href = "/ufjfportfolioprofissional/build" + href;
-  }
+ 
+
   return (
     <AppBar position="relative" style={{ width: "100%",zIndex:3 }} >
       <Toolbar>
@@ -24,14 +23,9 @@ export const Page_Public_BarraMenu = props => {
               <Button variant="outlined" style={{ marginLeft: 20 }} onClick={() => props.history.push("/formlogin")} >Login</Button>
           </Grid>
           <Grid item>
-            
           </Grid>
         </Grid>
-
-
-
       </Toolbar>
-
     </AppBar>
 
   );

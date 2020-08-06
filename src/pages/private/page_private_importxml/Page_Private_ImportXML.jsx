@@ -22,19 +22,22 @@ import './css/ImportXML.css';
 
 //variavel
 import { server } from '../../../var';
-import {getInfoXML , importXML} from './../../../api/serverAPI';
+import {api_getInfoXML , api_importXML} from './../../../api/serverAPI';
 
 
 //Class
 export const Page_Private_ImportXML = (props) => {
 
-  const [info, setInfo] = useState({});
-  const [filee, setFilee] = useState({});
   const [expandedImport, setExpandedImport] = useState(false);
+  const [filee, setFilee] = useState({});
+  const [info, setInfo] = useState({});
+  
 
-
-  const handleExpandClickImport = () => {
-    setExpandedImport(!expandedImport);
+  //GET INFO XML INICIAL
+  const runGetInfoXML=(e)=>{
+    let fileInput = e.target.files;
+    setFilee(fileInput);
+    api_getInfoXML(fileInput,calbackGetInforXML);
   };
 
   const calbackGetInforXML=(xhr_responseText)=>{
@@ -44,29 +47,25 @@ export const Page_Private_ImportXML = (props) => {
     document.getElementById("posLoadFile").style.display = "block";
   };
 
-  const onChange=(e)=>{
-    let fileInput = e.target.files;
-    setFilee(fileInput);
-    getInfoXML(fileInput,calbackGetInforXML);
-  };
  
-
+  //INSERT OR UPDATE OF WORKS
   const CalbackImportXML1=(xhr_response)=>{
     document.getElementById("importarDados").style.display = "none";
     document.getElementById("progresso").style.display = "none";
     document.getElementById("abrir_portfolio").style.display = "block";
     document.getElementById("menseger").innerHTML = xhr_response;
   }
+
   const CalbackImportXML2=(evt_currentTarget_response)=>{
     document.getElementById("menseger").innerHTML = evt_currentTarget_response;
     var objDiv = document.getElementById("scroll");
     objDiv.scrollTop = objDiv.scrollHeight;
   };
-  
-  const onChange2=(e)=>{
+
+  const runImportXML=(e)=>{
     document.getElementById("importarDados").style.display = "none";
     document.getElementById("progresso").style.display = "block";
-    importXML(filee,CalbackImportXML1,CalbackImportXML2);
+    api_importXML(filee,CalbackImportXML1,CalbackImportXML2);
   };
 
 
@@ -92,7 +91,7 @@ export const Page_Private_ImportXML = (props) => {
             <div id="btnImportar" className="btn">Abrir Arquivo</div>
 
 
-            <input type="file" name="myfile" onChange={(e) => onChange(e)} />
+            <input type="file" name="myfile" onChange={(e) => runGetInfoXML(e)} />
           </div>
 
           <Typography id="textInput">O arquivo importado deve estar no formato .xml</Typography>
@@ -107,7 +106,7 @@ export const Page_Private_ImportXML = (props) => {
           <Typography >Sistema de Origem: {info.sistemaOrigem} </Typography>
           <Typography >Última atualização: {info.dataAtualizacao} </Typography>
           <Typography >Última atualização: {info.horaAtualizacao} </Typography>
-          <Button id="importarDados" style={{ margin: 20 }} variant="contained" color="primary" onClick={() => onChange2()}>Importar Dados</Button>
+          <Button id="importarDados" style={{ margin: 20 }} variant="contained" color="primary" onClick={() => runImportXML()}>Importar Dados</Button>
 
           <div id="scroll" style={{ width: '70%', height: 200, marginLeft: '15%', overflow: 'auto' }}>
             <Box textAlign="center" className="msg" id="menseger"></Box>

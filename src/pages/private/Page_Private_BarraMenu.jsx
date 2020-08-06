@@ -36,7 +36,7 @@ import {ExportPDF} from './exportPDF';
 import { logout } from '../../routers_acess_user/Login';
 
 //api
-import { deleteUser } from "../../api/serverAPI";
+import { api_deleteUser } from "../../api/serverAPI";
 
 //class
 export const Page_Private_BarraMenu = props => {
@@ -58,38 +58,19 @@ export const Page_Private_BarraMenu = props => {
   const anchorRef = useRef(null);
   const anchorRefp = useRef(null);
 
-  window.addEventListener('resize', function () {
+  
 
-    if (window.innerWidth >= 1200) {
-      setEncolher(false);
-    } else {
-      setEncolher(true);
-    }
-  });
 
-  useEffect(() => {
-    if (window.innerWidth >= 1200) {
-      setEncolher(false);
-    } else {
-      setEncolher(true);
-    }
-
-  }, [])
-
-  const href = (href) => {
-    window.location.href = "/ufjfportfolioprofissional/build" + href;
-  }
+  
 
   const delUser = () => {
-
     setDeleteDialog(<DeleteUserDialogo delete_={() => {
-      deleteUser(JSON.parse(localStorage.getItem("user")).user_name);
+      api_deleteUser(JSON.parse(localStorage.getItem("user")).user_name);
     }} fechar={
       () => setDeleteDialog(undefined)
     } />);
-
-
   }
+
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -103,7 +84,6 @@ export const Page_Private_BarraMenu = props => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -113,7 +93,6 @@ export const Page_Private_BarraMenu = props => {
     if (anchorRef_MeuPortfolio.current && anchorRef_MeuPortfolio.current.contains(event.target)) {
       return;
     }
-
     setOpen_MeuPortfolio(false);
 
   };
@@ -160,11 +139,13 @@ export const Page_Private_BarraMenu = props => {
   const fecharr=() => {
     setOpen(false);
   }
+
   return (
     <div>
       {deleteDialog}
       <AppBar position="static" style={{ width: "100%",minWidth:410, zIndex: 3 }} >
           <Toolbar>
+          {/* IMAGEM UFJF */}
           <img  onClick={() => props.history.push("/")} alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
 
             <Grid
@@ -172,13 +153,15 @@ export const Page_Private_BarraMenu = props => {
               container
               spacing={1}
             >
-             <Grid item>
+              
+              <Grid item>
+                {/* BUTTON HOME */}
                 {/* <Button variant="outlined" style={{ marginLeft: 20 }} >Home</Button> */}
-           
               </Grid>
 
               <Grid item >
-                
+
+                {/* Button AVATA NAME /////////////////////////////////////////////////////*/}
                 <Button ref={anchorRef}
                   aria-controls={open ? 'menu-list-grow' : undefined}
                   aria-haspopup="true"
@@ -187,7 +170,10 @@ export const Page_Private_BarraMenu = props => {
                   <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
                   <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
                 </Button>
-                {/* EXPANDIR */}
+
+
+
+                {/* EXPANDIR /////////////////////////////////////////////////////*/}
                 <Popper style={{zIndex:5}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                   {({ TransitionProps, placement }) => (
                     <Grow
@@ -248,87 +234,20 @@ export const Page_Private_BarraMenu = props => {
                     </Grow>
                   )}
                 </Popper>
-
               </Grid>
             </Grid>
-
-
           </Toolbar>
-
       </AppBar >
-      <Menu
-        id="customized-menu"
-        anchorEl={anchorEla}
-        keepMounted
-        open={Boolean(anchorEla)}
-        onClose={handleClosea}
-        color="primary"
-      >
-        <MenuItem >
-          <Button variant="contained" color="primary" style={{ width: '100%' }} variant="outlined" onClick={() => props.history.push("/")} >Home</Button>
-        </MenuItem>
-        <MenuItem>
-          <ExpansionPanel style={{ width: '100%' }}>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Button
-                ref={anchorRefp}
-                aria-controls={openP ? 'menu-list-growp' : undefined}
-                aria-haspopup="true"
-
-                style={{ width: '100%' }} variant="outlined"  >
-                MEU PORTIFÓLIO LATTES
-          </Button>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => props.history.push(`/portfolio/lattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Button>
-              <Button variant="outlined" style={{ width: '100%' }} onClick={() => props.history.push(`/portfolio/lattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Button>
-
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-
-
-
-        </MenuItem>
-        <MenuItem>
-          <Button style={{ width: '100%' }} variant="outlined" onClick={() => props.history.push(`/portfolio/siga/${JSON.parse(localStorage.getItem("user")).user_name}`)} >Meu Portfólio siga</Button>
-
-        </MenuItem>
-        <MenuItem>
-          <Button style={{ fontSize: 12, width: '100%' }} variant="outlined" onClick={() => props.history.push(`/`)} >Importação SIGA em desenvolvimento</Button>
-
-        </MenuItem>
-      </Menu>
-
-
-      <Popper open={openP} anchorEl={anchorRefp.current} role={undefined} transition disablePortal>
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleCloseP}>
-                <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
-
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-
+     
 
 
     </div>
   );
 }
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -346,6 +265,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: deepPurple[500],
   },
 }));
+
+
+
+
+
+
+
 
 
 
@@ -370,6 +296,18 @@ const StyledMenu = withStyles({
 ));
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     '&:focus': {
@@ -380,6 +318,13 @@ const StyledMenuItem = withStyles((theme) => ({
     },
   },
 }))(MenuItem);
+
+
+
+
+
+
+
 
 
 

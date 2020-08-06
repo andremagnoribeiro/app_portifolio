@@ -6,11 +6,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
 //variavel
-import { server } from '../../var';
 
-
-
-
+import {DeleteTable} from './components/DeleteTable';
 
 
 export const Page_Private_ApagarDados = ({ update }) => {
@@ -64,51 +61,11 @@ export const Page_Private_ApagarDados = ({ update }) => {
 <DeleteTable name={'Participação em Simpósio'} nameTableSql={'part_simposio'} user={JSON.parse(localStorage.getItem('user')).user_name}  />
 <DeleteTable name={'Prêmio Titulo'} nameTableSql={'pt_premio_titulo'} user={JSON.parse(localStorage.getItem('user')).user_name}  />
 <DeleteTable name={'Curso Curta Duração'} nameTableSql={'fc_curso_curta_duracao'} user={JSON.parse(localStorage.getItem('user')).user_name}  />
-<DeleteTable name={'Disciplina'} nameTableSql={'disciplinas'} user={JSON.parse(localStorage.getItem('user')).user_name}  />
-<DeleteTable name={'Projeto'} nameTableSql={'projetos'} user={JSON.parse(localStorage.getItem('user')).user_name}  />  </div>
+<DeleteTable name={'Disciplina'} nameTableSql={'siga_disciplina'} user={JSON.parse(localStorage.getItem('user')).user_name}  />
+<DeleteTable name={'Projeto'} nameTableSql={'siga_projeto'} user={JSON.parse(localStorage.getItem('user')).user_name}  />  </div>
 
     </div>
   );
 }
 
 
-
-const DeleteTable = ({ name, nameTableSql, user }) => {
-
-  const deleteTable = () => {
-
-    let xhr = new XMLHttpRequest();
-
-    xhr.onload = function () {
-      if (xhr.status === 200 && xhr.responseText === 'true') {
-        document.getElementById("menseger" + nameTableSql).innerHTML = "Arquivos deletados com sucesso! ";
-       
-      }
-    };
-
-    xhr.open('POST', server + `/ufjfportfolioprofissional/api/delete.php?user=${user}&table=${nameTableSql}`, true);
-    xhr.send();
-  }
-
-
-
-  return (
-    <div style={{ margin: 20 }}    >
-
-      <Button variant="contained"
-        color="secondary"
-
-        startIcon={<DeleteIcon />}
-        onClick={deleteTable}
-        size="small"
-      >
-        <span > Apagar todas as Informações</span>
-
-      </Button>
-      <span>{"  " + name} </span>
-
-      <div id={"menseger" + nameTableSql}> </div>
-
-    </div>
-  );
-}

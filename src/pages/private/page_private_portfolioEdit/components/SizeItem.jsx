@@ -107,11 +107,12 @@ export const SizeItem = ({ heade, num, url, mobile, filtro }) => {
         comprovados_ += 1;
       }
     });
-    setComprovados(<Typography style={{color:"green",marginRight:5}}>{comprovados_} comprovados</Typography>);
+    setComprovados(comprovados);
 
   },[]);
 
   const classes = useStyles();
+  const classes2 = useStyles2();
   const [exportPDF, setExportPDF] = useState([]);
   const open = Boolean(anchorEl);
 
@@ -165,23 +166,39 @@ export const SizeItem = ({ heade, num, url, mobile, filtro }) => {
 
   }
 
-
+console.log(">>>",classes2.hideBorder);
 
   //return (true && <div>
   return ((num.length !== 0 && num.length !== '') && <div>
-    <ExpansionPanel>
-      <ExpansionPanelSummary
+   <ExpansionPanel  className={classes2.hideBorder}>
+      <ExpansionPanelSummary 
+       
         onClick={expandir}
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
         style={{
-          backgroundColor: '#aaaaaa',
+          backgroundColor: '#ffffff',
+          borderWidth:2,
+          borderStyle:"solid",
+          borderColor:"#000000",
+          marginBottom:5,
+          borderRadius:20
         }}
       >
-        <Typography className={classes.heading}> {num.length + "  " + heade } </Typography> 
-      
-        {comprovados}
+        <Typography className={classes.heading}> 
+        
+
+          <span style={{fontSize:25,color:'#000000'}}>{heade}</span>
+          <Typography style={{
+          fontSize:16,
+          color:'#505050'
+          }}>
+          {"quantidade:"+num.length}{"    comprovados:"+comprovados}
+          </Typography>
+        
+          </Typography>
+        
 
       </ExpansionPanelSummary>
 
@@ -211,3 +228,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const useStyles2 = makeStyles (
+  {hideBorder: 
+    {boxShadow: 'none',
+     '& .MuiExpansionPanel-root: before': {display: 'none',
+    },
+  },
+}) 

@@ -27,9 +27,9 @@ export const Page_Public_CreateUser = () => {
         if(xhr.responseText==="true"){
           window.location.href ="/ufjfportfolioprofissional/build/formlogin";
         }else if(xhr.responseText==="cpf"){
-          document.getElementById("msg").innerText="CPF já Existente!"
+          document.getElementById("msg").innerText="CPF jรก Existente!"
         }else if(xhr.responseText==="username"){
-          document.getElementById("msg").innerText="Escolher outro nome de Usuário"
+          document.getElementById("msg").innerText="Escolher outro nome de Usuรกrio"
         }
       };
   
@@ -49,7 +49,7 @@ export const Page_Public_CreateUser = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <h1>Criar Usuário</h1>
+      <h1>Criar Usuรกrio</h1>
           <TextField
             variant="outlined"
             margin="normal"
@@ -65,8 +65,8 @@ export const Page_Public_CreateUser = () => {
             margin="normal"
             required
             fullWidth
-            label="Nome do Usuário"
-            name="Nome do Usuário"
+            label="Nome do Usuรกrio"
+            name="Nome do Usuรกrio"
             autoFocus
             onChange={e=>setNameUser(e.target.value)}
           />
