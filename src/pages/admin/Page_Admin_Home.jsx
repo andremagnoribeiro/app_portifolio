@@ -20,7 +20,7 @@ export const Page_Admin_Home = (props) => {
   return (
 
     <div >
-      <h1 style={{ marginLeft: 25 }}>Usuários</h1>
+      <h1 style={{ marginLeft: 25 }}>Usu?rios</h1>
       {users.map(user =>
         <Card key={user.name + "aaaa"} style={{ margin: 20, cursor:'pointer' }} onClick={() => props.history.push("/portfolio/"+user.user_name)}  >
           <CardHeader

@@ -415,7 +415,7 @@ const DeleteUserDialogo = ({ deletee, fechar }) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Deseja realmete deletar o usuรกrio?
+            Deseja realmete deletar o usuário?
             </DialogContentText>
         </DialogContent>
         <DialogActions>

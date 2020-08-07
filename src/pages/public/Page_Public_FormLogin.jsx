@@ -28,18 +28,21 @@ export const Page_Public_FormLogin = (props) => {
   const [textEmail,setTextEmail]= useState("");
   const [textPassWord,setTextPassWord]= useState("");
 
-  
   const runLogin=()=>{
     api_getInfoLogin(textEmail,md5(textPassWord),loginCallback);
   }
 
   const loginCallback=(xhr_responseText)=>{
-    const user=JSON.parse(xhr_responseText);
-    localStorage.setItem("user",JSON.stringify(user));
-    props.history.push("/ufjfportfolioprofissional/build/");;
+    if(xhr_responseText!=="false"){
+      const user=JSON.parse(xhr_responseText);
+      localStorage.setItem("user",JSON.stringify(user));
+      props.history.push("/");
+    }else{
+      document.getElementById('msg').style.display="block";
+    }
+    
   }
  
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -53,10 +56,10 @@ export const Page_Public_FormLogin = (props) => {
        
         <form className={classes.form} noValidate>
         <Typography id="msg" component="span" color="secondary" variant="p" style={{display:"none"}}>
-          email ou senha incorreto
+          CPF ou senha incorretos!
+
         </Typography>
           <TextField
-            
             variant="outlined"
             margin="normal"
             required
@@ -68,7 +71,7 @@ export const Page_Public_FormLogin = (props) => {
             autoFocus
             onChange={e=>setTextEmail(e.target.value)}
           />
-          
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -94,38 +97,16 @@ export const Page_Public_FormLogin = (props) => {
           <Grid container>
             <Grid item>
               <a href="/createuser" variant="body2">
-                {"Criar uma UsuÃ¡rio"}
+                {"Criar Usuário"}
               </a>
             </Grid>
           </Grid>
-          
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-      <div>Administrador: cpf: "1"  senha: "admin" </div>
-      <div>UsuÃ¡rio : cpf: "16284057830"  senha: "1234" </div>
-      
     </Container>
   );
-
-  
 }
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright Â© '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {

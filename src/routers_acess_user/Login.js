@@ -45,7 +45,9 @@ const isLogin = () => {
             if (user.user_type === 'admin') {
                 return 'admin';
             }
-            return 'private';
+            
+              return 'private';
+            
         }
     }
     return 'public';

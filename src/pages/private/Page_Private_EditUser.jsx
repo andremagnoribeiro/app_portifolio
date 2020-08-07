@@ -46,9 +46,9 @@ export const Page_Private_EditUser = (props) => {
           logout();
           props.history.push("/formlogin");
         }else if(xhr.responseText==="cpf"){
-          document.getElementById("msg").innerText="CPF já Existente!"
+          document.getElementById("msg").innerText="CPF j? Existente!"
         }else if(xhr.responseText==="username"){
-          document.getElementById("msg").innerText="Escolher outro nome de Usuário"
+          document.getElementById("msg").innerText="Escolher outro nome de Usu?rio"
         }
       };
   
@@ -64,7 +64,7 @@ export const Page_Private_EditUser = (props) => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <h1>Editar Usuário</h1>
+      <h1>Editar Usu?rio</h1>
           <TextField
             value={name}
             variant="outlined"
@@ -82,13 +82,12 @@ export const Page_Private_EditUser = (props) => {
             margin="normal"
             required
             fullWidth
-            label="Nome do Usuário"
-            name="Nome do Usuário"
+            label="Nome do Usu?rio"
+            name="Nome do Usu?rio"
             autoFocus
             onChange={e=>setUser_name(e.target.value)}
           />
     
-
           <TextField
             value={email}
             variant="outlined"

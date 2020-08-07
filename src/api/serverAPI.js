@@ -50,12 +50,13 @@ export const api_getInfoLogin = (textEmail,md5_textPassWord, callBack) => {
   let xhr = new XMLHttpRequest();
   xhr.onload = function () {
 
-    if(xhr.responseText==="false"){
+    if(xhr.responseText==="false"&&xhr.status!==200){
       document.getElementById("msg").style.display="block";
       callBack(false);
     }else{
       callBack(xhr.responseText);
     }
+
   };
 
   xhr.open('GET', server+`/ufjfportfolioprofissional/api/request/get/authenticate.php/?user=${textEmail}&password=${md5_textPassWord}`, true);
@@ -98,11 +99,7 @@ export const api_deleteTable = (nameTableSql,callback) => {
       callback(true);
     }else{
       callback(false);
-    } if(xhr.status===200&&xhr.responseText==='true'){
-      callback(true);
-    }else{
-      callback(false);
-    }
+    } 
   };
   xhr.open('DELETE', server + `/ufjfportfolioprofissional/api/request/delete/table.php?user=${JSON.parse(localStorage.getItem("user")).user_name}&table=${nameTableSql}`,true);
   xhr.send();

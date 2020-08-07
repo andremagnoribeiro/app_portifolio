@@ -27,14 +27,14 @@ export const Page_Public_CreateUser = (props) => {
         if(xhr.responseText==="true"){
           props.history.push("/formlogin");
         }else if(xhr.responseText==="cpf"){
-          document.getElementById("msg").innerText="CPF jรก Existente!"
+          document.getElementById("msg").innerText="CPF já Existente!"
         }else if(xhr.responseText==="username"){
-          document.getElementById("msg").innerText="Escolher outro nome de Usuรกrio"
+          document.getElementById("msg").innerText="Escolher outro nome de Usuário"
         }
       };
   
-      xhr.open('POST', server+
-      `/ufjfportfolioprofissional/api/createUser.php/?
+      xhr.open('CREATE', server+
+      `/ufjfportfolioprofissional/api/create/user.php/?
       name=${name}&
       nameUser=${nameUser}&`+
       `cpf=${CPF}&
@@ -49,7 +49,7 @@ export const Page_Public_CreateUser = (props) => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <h1>Criar Usuรกrio</h1>
+      <h1>Criar Usuário</h1>
           <TextField
             variant="outlined"
             margin="normal"
@@ -65,8 +65,8 @@ export const Page_Public_CreateUser = (props) => {
             margin="normal"
             required
             fullWidth
-            label="Nome do Usuรกrio"
-            name="Nome do Usuรกrio"
+            label="Nome do Usuário"
+            name="Nome do Usuário"
             autoFocus
             onChange={e=>setNameUser(e.target.value)}
           />
@@ -114,7 +114,7 @@ export const Page_Public_CreateUser = (props) => {
             color="primary"
             className={classes.submit}
           >
-           Criar User
+           Criar Usuário
           </Button>
        
     </Container>
