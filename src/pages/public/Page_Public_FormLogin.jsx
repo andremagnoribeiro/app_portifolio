@@ -18,38 +18,27 @@ import {server} from '../../var';
 
 //md5
 import md5 from 'md5';
-
+import {api_getInfoLogin} from '../../api/serverAPI';
 
 //class
-export const Page_Public_FormLogin = () => {
+export const Page_Public_FormLogin = (props) => {
 
   const classes = useStyles();
   
   const [textEmail,setTextEmail]= useState("");
   const [textPassWord,setTextPassWord]= useState("");
- 
 
- 
- 
-
-  const loginForm = () => {
-    
-    let xhr = new XMLHttpRequest();
-
-    xhr.onload = function () {
-      if(xhr.responseText==="false"){
-        document.getElementById("msg").style.display="block";
-      }else{
-        const user=JSON.parse(xhr.responseText);
-        localStorage.setItem("user",JSON.stringify(user));
-        window.location.href ="/ufjfportfolioprofissional/build/";
-      }
-    };
-
-    xhr.open('GET', server+`/ufjfportfolioprofissional/api/login.php/?user=${textEmail}&password=${md5(textPassWord)}`, true);
-    xhr.send();
-
+  
+  const runLogin=()=>{
+    api_getInfoLogin(textEmail,md5(textPassWord),loginCallback);
   }
+
+  const loginCallback=(xhr_responseText)=>{
+    const user=JSON.parse(xhr_responseText);
+    localStorage.setItem("user",JSON.stringify(user));
+    props.history.push("/ufjfportfolioprofissional/build/");;
+  }
+ 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -94,7 +83,7 @@ export const Page_Public_FormLogin = () => {
           />
         
           <Button
-            onClick={loginForm}
+            onClick={runLogin}
             fullWidth
             variant="contained"
             color="primary"
@@ -104,7 +93,7 @@ export const Page_Public_FormLogin = () => {
           </Button>
           <Grid container>
             <Grid item>
-              <a href="/ufjfportfolioprofissional/build/createuser" variant="body2">
+              <a href="/createuser" variant="body2">
                 {"Criar uma UsuÃ¡rio"}
               </a>
             </Grid>
@@ -120,7 +109,6 @@ export const Page_Public_FormLogin = () => {
       
     </Container>
   );
-
 
   
 }

@@ -32,7 +32,7 @@ const TOKEN_KEY = 'user';
 
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
-    window.location.href = "/ufjfportfolioprofissional/build/formlogin";
+    window.location.href = "/formlogin";
 }
 
 

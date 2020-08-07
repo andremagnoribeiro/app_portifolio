@@ -11,6 +11,9 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+
 
 
 //Components
@@ -290,15 +293,14 @@ export const Page_Public_Portfolio = (props) => {
       <Backdrop className={classesbackdrop.backdrop} open={!acabou} >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <div style={{ marginLeft: 20, marginTop: 15 }}>
-        <Navegacao atual={'Portfólio'} anteriores={[
-          {
-            "name": "Home",
-            "url": "Portfólio"
-          }
-        ]} />
-      </div>
+      
+      <Breadcrumbs style={{ marginLeft: 20, marginTop: 15 }} aria-label="breadcrumb">
+        <div style={{curso:'pointer'}} onClick={() => props.history.push("/")} >
+          Home
+        </div>
      
+        <Typography color="textPrimary">Portfólio</Typography>
+      </Breadcrumbs>
      
      { (anoMin!==0&&anoMax!==0)&&<PortfolioBusca 
     getSearch={Filtros} 

@@ -37,10 +37,20 @@ export const Page_Private_ImportXML = (props) => {
   const runGetInfoXML=(e)=>{
     let fileInput = e.target.files;
     setFilee(fileInput);
-    api_getInfoXML(fileInput,calbackGetInforXML);
+   
+      let xhr = new XMLHttpRequest(),fd = new FormData();
+      fd.append('file', fileInput[0]);
+        xhr.onload = function () {
+        calbackGetInforXML(xhr.responseText);
+      };
+    
+      xhr.open('POST', server + `/ufjfportfolioprofissional/api/request/post/import-xml-get-Info.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
+      xhr.send(fd);
+    
   };
 
   const calbackGetInforXML=(xhr_responseText)=>{
+    console.log(">>>>>9",xhr_responseText);
     setInfo(JSON.parse(xhr_responseText));
     document.getElementById("btnImportar").style.display = "none";
     document.getElementById("textInput").style.display = "none";

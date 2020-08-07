@@ -31,12 +31,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
+
 //variavel
+
 import { logout } from '../../../routers_acess_user/Login';
 //components
 import {ExportPDF} from './components/exportPDF';
 //api
-import { api_deleteUser } from "../../../api/serverAPI";
+import { api_deleteUser,api_deleteAllTableCurriculoLattes } from "../../../api/serverAPI";
+import Snackbar from '@material-ui/core/Snackbar';
 
 //class
 export const Page_Private_BarraMenu = props => {
@@ -48,7 +52,6 @@ export const Page_Private_BarraMenu = props => {
 
   const [open_MeuPortfolio, setOpen_MeuPortfolio] = useState(false);
 
-
   const [deleteDialog, setDeleteDialog] = useState(undefined);
   const [open, setOpen] = useState(false);
   const [openP, setOpenP] = useState(false);
@@ -58,34 +61,99 @@ export const Page_Private_BarraMenu = props => {
   const anchorRef = useRef(null);
   const anchorRefp = useRef(null);
 
+  //Delete User Logado
+   
+  //open closer snackbar
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
   
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
+  const deleteUserCallback=(reponse)=>{
+    if(reponse){
+      setDeleteDialog(<Snackbar
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      open={openSnackbar}
+      onClose={handleCloseSnackbar}
+      message={"Usuário Apagado com Sucesso!"}
+      key={"xxxxx"}
+    />);
+    }else{
+      setDeleteDialog(<Snackbar
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      open={openSnackbar}
+      onClose={handleCloseSnackbar}
+      message={"Ocorreu um erro, não foi possivel apagar o Usuário!"}
+      key={"xxxx"}
+    />)
+  }
+  }
+  const runDeleteUser = () => {
+    setDeleteDialog(<AlertDelete 
+      title={""}
+      text={"Você realmente deseja deletar seu usuário?"}
+      delete_={ () => {setDeleteDialog(undefined);api_deleteUser(deleteUserCallback);}} 
+      fechar={() => setDeleteDialog(undefined) }
+      />);
+  }
 
+  //Delete All Table Portfolio Lattes 
+  const deleteAllTableCallback=(reponse)=>{
+    if(reponse){
+    setDeleteDialog(<Snackbar
+    anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    open={openSnackbar}
+    onClose={handleCloseSnackbar}
+    message={"Portfólio Curriculo Lattes deletado com Sucesso!"}
+    key={"xxxx"}
+    />);}else{
+      setDeleteDialog(<Snackbar
+    anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    open={openSnackbar}
+    onClose={handleCloseSnackbar}
+    message={"Ocorreu um erro seu Portfólio Curriculo Lattes não consegui ser apagado!"}
+    key={"xxxx"}
+    />)
+    }
+  }
   
-
-  const delUser = () => {
-    setDeleteDialog(<DeleteUserDialogo delete_={() => {
-      api_deleteUser(JSON.parse(localStorage.getItem("user")).user_name);
-    }} fechar={
-      () => setDeleteDialog(undefined)
-    } />);
+  const runDeleteAllPortfolioLattes = () => {
+    setDeleteDialog(<AlertDelete 
+      title={""}
+      text={"Você realmente deseja deletar todas as informações do seu Portfólio do Currículo Lattes?"}
+      delete_={() => {setDeleteDialog(undefined);api_deleteAllTableCurriculoLattes(deleteAllTableCallback);}} 
+      fechar={() => setDeleteDialog(undefined) }
+      />);
   }
 
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
-  };
+  }
 
   const handleToggle_MeuPortfolio = () => {
     setOpen_MeuPortfolio((prevOpen) => !prevOpen);
-  };
+  }
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
     setOpen(false);
-  };
+  }
 
 
   const handleClose_MeuPortfolio = (event) => {
@@ -95,7 +163,7 @@ export const Page_Private_BarraMenu = props => {
     }
     setOpen_MeuPortfolio(false);
 
-  };
+  }
 
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
@@ -204,9 +272,9 @@ export const Page_Private_BarraMenu = props => {
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {
                                 setOpen(false);
-                                props.history.push("/excluir");
+                                runDeleteAllPortfolioLattes();
                               }
-                            } >Excluir Informações do Portfólio</MenuItem>
+                            } >Apagar Portfólio</MenuItem>
 
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {
@@ -217,7 +285,7 @@ export const Page_Private_BarraMenu = props => {
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {
                                 setOpen(false);
-                                delUser();
+                                runDeleteUser();
                                 ;
                               }}>Excluir Usuário</MenuItem>
 
@@ -328,43 +396,44 @@ const StyledMenuItem = withStyles((theme) => ({
 
 
 
-const DeleteUserDialogo = ({ delete_, fechar }) => {
+const AlertDelete = ({ delete_, fechar ,text,title}) => {
 
-  const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(true);
 
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+    const handleClose = () => {
+      setOpen(false);
+    };
 
-  return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
+    return (
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
 
-        aria-labelledby="draggable-dialog-title"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Subscribe{open}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Deseja realmente deletar seu usuário?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={() => { handleClose(); fechar(); }} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={() => delete_()} color="primary">
-            Sim
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-}
+          aria-labelledby="draggable-dialog-title"
+        >
+          <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          {title}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              {text}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={() => { handleClose(); fechar(); }} color="primary">
+              Cancelar
+            </Button>
+            <Button onClick={() => delete_()} color="primary">
+              Sim
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+
+  }
 
 
 

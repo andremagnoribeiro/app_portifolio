@@ -17,11 +17,8 @@ export const Page_Public_Home = (props) => {
     api_getUsers().then(data => setUsers(data));
   }, []);
 
-
-
   return (
-
-    <div >
+    <div>
       <h1 style={{ marginLeft: 25 }}>Usuários</h1>
       {users.map(user =>
         <Card key={user.name + "aaaa"} style={{ margin: 20, cursor:'pointer' }} onClick={() => props.history.push("/portfolio/"+user.user_name)}  >
@@ -32,7 +29,6 @@ export const Page_Public_Home = (props) => {
           />
         </Card>)}
     </div>
-
   );
 }
 

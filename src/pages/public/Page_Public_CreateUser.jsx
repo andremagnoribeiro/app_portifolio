@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import {server} from '../../var';
 import md5 from 'md5';
 
-export const Page_Public_CreateUser = () => {
+export const Page_Public_CreateUser = (props) => {
 
   const classes = useStyles();
 
@@ -25,7 +25,7 @@ export const Page_Public_CreateUser = () => {
       let xhr = new XMLHttpRequest();
       xhr.onload = function () {
         if(xhr.responseText==="true"){
-          window.location.href ="/ufjfportfolioprofissional/build/formlogin";
+          props.history.push("/formlogin");
         }else if(xhr.responseText==="cpf"){
           document.getElementById("msg").innerText="CPF jรก Existente!"
         }else if(xhr.responseText==="username"){

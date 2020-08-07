@@ -17,7 +17,7 @@ import { logout } from '../../routers_acess_user/Login';
 import {server} from '../../var';
 
 
-export const Page_Private_EditUser = () => {
+export const Page_Private_EditUser = (props) => {
 
   const classes = useStyles();
 
@@ -44,7 +44,7 @@ export const Page_Private_EditUser = () => {
       xhr.onload = function () {
         if(xhr.responseText==="true"){
           logout();
-          window.location.href ="/ufjfportfolioprofissional/build/formlogin";
+          props.history.push("/formlogin");
         }else if(xhr.responseText==="cpf"){
           document.getElementById("msg").innerText="CPF já Existente!"
         }else if(xhr.responseText==="username"){

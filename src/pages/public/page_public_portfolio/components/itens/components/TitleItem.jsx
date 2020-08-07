@@ -9,16 +9,14 @@ export const TitleItem = ({ title, valor }) => (
   <div >
     {(valor !== '' && valor && valor !== "NULL") && <div style={{
       marginLeft: 0,marginRight: 10,
-    
     }}>
       <div style={{
         marginLeft: 10
       }}>
-
-        <div  >
-          <div >
+        <div>
+          <span style={{color:'#b6b6b6'}}>
             {title}:
-          </div>
+          </span>
         </div >
         <div style={{ marginLeft: 40 }} >
           <div >
@@ -27,34 +25,7 @@ export const TitleItem = ({ title, valor }) => (
         </div >
       </div>
     </div>}
-
   </div>
 )
 
 
-/* 
-
-
-{(valor !== '' && valor && valor !== "NULL") && <div style={{
-      marginLeft: 0,marginRight: 10,
-    
-    }}>
-      <div style={{
-        marginLeft: 10
-      }}>
-
-        <Typography fontWeight="fontWeightBold" >
-          <Box fontSize={14} fontWeight="fontWeightBold" m={1}>
-            {title}:
-          </Box>
-        </Typography >
-        <Typography style={{ marginLeft: 40 }} >
-          <Box fontSize={14} m={1}>
-            {valor}
-          </Box>
-        </Typography >
-      </div>
-    </div>}
-    
-    
-    */ 

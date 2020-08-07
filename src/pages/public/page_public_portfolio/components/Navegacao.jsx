@@ -4,17 +4,20 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 
 
 
-export default function Navegacao({ anteriores, atual },props) {
+export default function Navegacao(props) {
+
+
+  console.log(props);
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      {anteriores.map((item) => 
-        <div onClick={() => props.history.push(item.url)} >
+      {props.anteriores.map((item) =>{
+        console.log(">>>>6", item.url);
+        return <div onClick={() => props.history.push(item.url)} >
           {item.name}
         </div>
-
-
+      }
       )}
-      <Typography color="textPrimary">{atual}</Typography>
+      <Typography color="textPrimary">{props.atual}</Typography>
     </Breadcrumbs>
   );
 }
