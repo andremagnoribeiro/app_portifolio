@@ -83,7 +83,9 @@ export const Page_Private_BarraMenu = props => {
       message={"Usuário Apagado com Sucesso!"}
       key={"xxxxx"}
     />);
-    logout(props);
+    setTimeout(()=>setDeleteDialog(undefined),5000)
+    props.history.push( '/',null);
+    props.history.push( '/',null);
     }else{
       setDeleteDialog(<Snackbar
       anchorOrigin={{
@@ -94,7 +96,8 @@ export const Page_Private_BarraMenu = props => {
       onClose={handleCloseSnackbar}
       message={"Ocorreu um erro, não foi possivel apagar o Usuário!"}
       key={"xxxx"}
-    />)
+    />);
+    setTimeout(()=>setDeleteDialog(undefined),5000)
   }
   }
   const runDeleteUser = () => {
@@ -119,7 +122,8 @@ export const Page_Private_BarraMenu = props => {
     message={"Portfólio Currículo Lattes deletado com Sucesso!"}
     key={"xxxx"}
     />);
-    setTimeout(()=>{props.history.push("/portfolioedit")},2000);
+    props.history.push( '/' ,null);
+    props.history.push("/portfolioedit",null);
   }else{
       setDeleteDialog(<Snackbar
     anchorOrigin={{
@@ -130,7 +134,8 @@ export const Page_Private_BarraMenu = props => {
     onClose={handleCloseSnackbar}
     message={"Ocorreu um erro seu Portfólio Currículo Lattes não consegui ser apagado!"}
     key={"xxxx"}
-    />)
+    />);
+    setTimeout(()=>setDeleteDialog(undefined),5000);
     }
   }
   
@@ -141,6 +146,7 @@ export const Page_Private_BarraMenu = props => {
       delete_={() => {setDeleteDialog(undefined);api_deleteAllTableCurriculoLattes(deleteAllTableCallback);}} 
       fechar={() => setDeleteDialog(undefined) }
       />);
+      setTimeout(()=>setDeleteDialog(undefined),5000)
   }
 
   const handleToggle = () => {
