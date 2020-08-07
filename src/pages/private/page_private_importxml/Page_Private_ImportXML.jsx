@@ -44,7 +44,7 @@ export const Page_Private_ImportXML = (props) => {
         calbackGetInforXML(xhr.responseText);
       };
     
-      xhr.open('POST', server + `/ufjfportfolioprofissional/api/request/post/import-xml-get-Info.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
+      xhr.open('POST', server + `/api/request/post/import-xml-get-Info.php?user=${JSON.parse(localStorage.getItem("user")).user_name}`, true);
       xhr.send(fd);
     
   };

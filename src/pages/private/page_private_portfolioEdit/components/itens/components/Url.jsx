@@ -96,7 +96,7 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
         }
       };
 
-      xhr.open('POST', server + `/ufjfportfolioprofissional/api/request/post/url.php?url=${url}&id=${id}&table=${table}`, true);
+      xhr.open('POST', server + `/api/request/post/url.php?url=${url}&id=${id}&table=${table}`, true);
       xhr.send();
     } else {
       setInputPlaceholder("URL Invalida! Tente Outra");

@@ -194,7 +194,7 @@ export const SizeItem = ({ heade, num, url, mobile, filtro }) => {
           fontSize:16,
           color:'#505050'
           }}>
-          {"quantidade:"+num.length}{"    comprovados:"+comprovados}
+          {"quantidade:"+num.length}{"    Comprovados:"+comprovados}
           </Typography>
         
           </Typography>

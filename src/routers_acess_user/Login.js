@@ -29,9 +29,9 @@ export const PrivateRoute = ({
 const TOKEN_KEY = 'user';
 
 
-export const logout = () => {
+export const logout = (props) => {
     localStorage.removeItem(TOKEN_KEY);
-    window.location.href = "/formlogin";
+    props.history.push("/formlogin");
 }
 
 const isLogin = () => {

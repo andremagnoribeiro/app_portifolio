@@ -95,9 +95,9 @@ export const Page_Public_FormLogin = (props) => {
           </Button>
           <Grid container>
             <Grid item>
-              <a href="/createuser" variant="body2">
+              <Link onClick={()=>props.history.push("/createuser")}  variant="body2">
                 {"Criar Usuário"}
-              </a>
+              </Link>
             </Grid>
           </Grid>
         </form>

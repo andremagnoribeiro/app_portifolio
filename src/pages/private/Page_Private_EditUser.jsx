@@ -43,7 +43,7 @@ export const Page_Private_EditUser = (props) => {
       let xhr = new XMLHttpRequest();
       xhr.onload = function () {
         if(xhr.responseText==="true"){
-          logout();
+          logout(props);
           props.history.push("/formlogin");
         }else if(xhr.responseText==="cpf"){
           document.getElementById("msg").innerText="CPF j? Existente!"
@@ -53,7 +53,7 @@ export const Page_Private_EditUser = (props) => {
       };
   
       xhr.open('POST', server+
-      `/ufjfportfolioprofissional/api/request/post/edit-user.php/?user_name=${
+      `/api/request/post/edit-user.php/?user_name=${
         JSON.parse(localStorage.getItem("user")).user_name
       }&update_user_name=${user_name}&update_email=${email}&update_name=${name}`, true);
 

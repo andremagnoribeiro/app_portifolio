@@ -68,9 +68,10 @@ export const Page_Private_BarraMenu = props => {
     setOpenSnackbar(false);
   };
   
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(true);
 
   const deleteUserCallback=(reponse)=>{
+
     if(reponse){
       setDeleteDialog(<Snackbar
       anchorOrigin={{
@@ -82,6 +83,7 @@ export const Page_Private_BarraMenu = props => {
       message={"Usuário Apagado com Sucesso!"}
       key={"xxxxx"}
     />);
+    logout(props);
     }else{
       setDeleteDialog(<Snackbar
       anchorOrigin={{
@@ -114,9 +116,11 @@ export const Page_Private_BarraMenu = props => {
     }}
     open={openSnackbar}
     onClose={handleCloseSnackbar}
-    message={"Portfólio Curriculo Lattes deletado com Sucesso!"}
+    message={"Portfólio Currículo Lattes deletado com Sucesso!"}
     key={"xxxx"}
-    />);}else{
+    />);
+    setTimeout(()=>{props.history.push("/portfolioedit")},2000);
+  }else{
       setDeleteDialog(<Snackbar
     anchorOrigin={{
       vertical: 'top',
@@ -124,7 +128,7 @@ export const Page_Private_BarraMenu = props => {
     }}
     open={openSnackbar}
     onClose={handleCloseSnackbar}
-    message={"Ocorreu um erro seu Portfólio Curriculo Lattes não consegui ser apagado!"}
+    message={"Ocorreu um erro seu Portfólio Currículo Lattes não consegui ser apagado!"}
     key={"xxxx"}
     />)
     }
@@ -138,7 +142,6 @@ export const Page_Private_BarraMenu = props => {
       fechar={() => setDeleteDialog(undefined) }
       />);
   }
-
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -274,7 +277,7 @@ export const Page_Private_BarraMenu = props => {
                                 setOpen(false);
                                 runDeleteAllPortfolioLattes();
                               }
-                            } >Apagar Portfólio</MenuItem>
+                            } >Excluir Portfólio Currículo Lattes</MenuItem>
 
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {
@@ -292,7 +295,7 @@ export const Page_Private_BarraMenu = props => {
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {
                                 setOpen(false);
-                                logout();
+                                logout(props);
                               }
                             }>Logout</MenuItem>
 

@@ -22,7 +22,9 @@ export const Page_Public_CreateUser = (props) => {
     if(name===""||nameUser===""||CPF===""||email===""||passWord===""){
       document.getElementById("msg").innerText="Verificar, campo obrigatorio em branco."
     }else{
-      let xhr = new XMLHttpRequest();
+      let xhr = new XMLHttpRequest(),
+      fd = new FormData();
+      fd.append('file', "filee");
       xhr.onload = function () {
         if(xhr.responseText==="true"){
           props.history.push("/formlogin");
@@ -33,14 +35,14 @@ export const Page_Public_CreateUser = (props) => {
         }
       };
   
-      xhr.open('CREATE', server+
-      `/ufjfportfolioprofissional/api/create/user.php/?
+      xhr.open('POST', server+
+      `/api/request/post/user.php/?
       name=${name}&
       nameUser=${nameUser}&`+
       `cpf=${CPF}&
       email=${email}&
       password=${md5(passWord)}`, true);
-      xhr.send();
+      xhr.send(fd);
 
     }
    

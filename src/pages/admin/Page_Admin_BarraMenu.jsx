@@ -193,7 +193,7 @@ export const Page_Admin_BarraMenu = props => {
                     <ClickAwayListener onClickAway={handleClose}>
                       <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
+                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout(props)} >Logout</Typography></MenuItem>
                         <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => props.history.push('/editUser')}>Edit</Typography></MenuItem>
                         <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
                       </MenuList>
@@ -251,7 +251,7 @@ export const Page_Admin_BarraMenu = props => {
                         <ClickAwayListener onClickAway={handleClose}>
                           <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout} >Logout</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout(props)} >Logout</Typography></MenuItem>
                          </MenuList>
                         </ClickAwayListener>
                       </Paper>
