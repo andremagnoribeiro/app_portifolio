@@ -30,7 +30,7 @@ class App extends Component {
     render() {
         return (
 // <BrowserRouter>
-<BrowserRouter  >
+<BrowserRouter basename={'/ufjfportfolioprofissional'} >
 
 <div style = {
     { width: "100%" }

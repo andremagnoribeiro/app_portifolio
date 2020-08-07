@@ -16,7 +16,7 @@ import { server } from '../../var';
 export const Page_Admin_ImportDataSiga = () => {
 
 return(
-  <div>Importação de Informações do Siga</div>
+  <div>Importação das Informações do SIGA para o BD do sistema</div>
 );
 }
 
