@@ -29,23 +29,19 @@ export const PrivateRoute = ({
 const TOKEN_KEY = 'user';
 
 
-
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     window.location.href = "/formlogin";
 }
-
 
 const isLogin = () => {
     if (localStorage.getItem('user') !== null) {
         var user = JSON.parse(localStorage.getItem('user'));
 
         if (user !== null) {
-
             if (user.user_type === 'admin') {
                 return 'admin';
             }
-            
               return 'private';
             
         }

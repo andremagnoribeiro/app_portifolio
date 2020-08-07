@@ -53,7 +53,7 @@ export const Page_Private_EditUser = (props) => {
       };
   
       xhr.open('POST', server+
-      `/ufjfportfolioprofissional/api/editUser.php/?user_name=${
+      `/ufjfportfolioprofissional/api/request/post/edit-user.php/?user_name=${
         JSON.parse(localStorage.getItem("user")).user_name
       }&update_user_name=${user_name}&update_email=${email}&update_name=${name}`, true);
 
