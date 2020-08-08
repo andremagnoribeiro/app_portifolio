@@ -92,7 +92,7 @@ export const Page_Private_ImportXML = (props) => {
             title="Importação do Currículo Lattes"
           />
           <Box textAlign="center">
-            <Typography>Você pode exportar o aquivo no site <a href="lattes.cnpq.br" rel="noopener noreferrer" target="_blank"  >lattes.cnpq.br</a> conforme a imagem abaixo</Typography>
+            <Typography>Você pode exportar o arquivo no site <a href="lattes.cnpq.br" rel="noopener noreferrer" target="_blank"  >lattes.cnpq.br</a> conforme a imagem abaixo</Typography>
             <img alt="exportXML" style={{ width: "50%" }} src={img_exportXML} />
           </Box>
 
@@ -112,7 +112,7 @@ export const Page_Private_ImportXML = (props) => {
         <Box id="posLoadFile" style={{ display: 'none', margin: 20 }} textAlign="center">
           <Typography >Arquivo "{info.nomeArquivoXML}" carregado. </Typography>
           <Typography >Nome Completo: {info.nomeCompleto}  </Typography>
-          <Typography >Número Idendificador: {info.numeroidendificador} </Typography>
+          <Typography >Númeroidentificador: {info.numeroidendificador} </Typography>
           <Typography >Sistema de Origem: {info.sistemaOrigem} </Typography>
           <Typography >Última atualização: {info.dataAtualizacao} </Typography>
           <Typography >Última atualização: {info.horaAtualizacao} </Typography>

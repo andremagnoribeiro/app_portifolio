@@ -39,7 +39,7 @@ import { logout } from '../../routers_acess_user/Login';
 import { api_deleteUser } from "../../api/serverAPI";
 
 //class
-export const Page_Admin_BarraMenu = props => {
+export const Page_Admin_BarraMenu=(props)=>{
 
 
   const [open, setOpen] = useState(false);

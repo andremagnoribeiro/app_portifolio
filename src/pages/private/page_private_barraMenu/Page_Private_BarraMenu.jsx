@@ -84,6 +84,7 @@ export const Page_Private_BarraMenu = props => {
       key={"xxxxx"}
     />);
     setTimeout(()=>setDeleteDialog(undefined),5000)
+    logout(props);
     props.history.push( '/',null);
     props.history.push( '/',null);
     }else{
@@ -122,6 +123,7 @@ export const Page_Private_BarraMenu = props => {
     message={"Portfólio Currículo Lattes deletado com Sucesso!"}
     key={"xxxx"}
     />);
+  
     props.history.push( '/' ,null);
     props.history.push("/portfolioedit",null);
   }else{
