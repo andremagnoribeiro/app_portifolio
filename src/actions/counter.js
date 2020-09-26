@@ -1,6 +1,6 @@
 import  {actionsTypes}  from '../constants/counter'
 
-const actions ={
+const actions = {
   decrement: () => ({
     type: actionsTypes.COUNTER_DECREMENT
   }),

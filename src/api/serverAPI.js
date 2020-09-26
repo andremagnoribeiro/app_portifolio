@@ -7,14 +7,12 @@ import { server } from '../var';
 export const api_getUsers = () => axios
 .get(`${server}/api/request/get/users.php`)
 .then(({ data }) => {
- 
   return data;
 })
 
 export const api_getUserId = (user_name) => axios
 .get(`${server}/api/request/get/userid.php?username=${user_name}`)
 .then(({ data }) => {
-  
   return data;
 })
 

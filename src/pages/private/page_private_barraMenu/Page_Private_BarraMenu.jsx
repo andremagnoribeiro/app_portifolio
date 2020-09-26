@@ -34,7 +34,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 //variavel
-
 import { logout } from '../../../routers_acess_user/Login';
 //components
 import {ExportPDF} from './components/exportPDF';
@@ -42,8 +41,18 @@ import {ExportPDF} from './components/exportPDF';
 import { api_deleteUser,api_deleteAllTableCurriculoLattes } from "../../../api/serverAPI";
 import Snackbar from '@material-ui/core/Snackbar';
 
+
 //class
 export const Page_Private_BarraMenu = props => {
+
+  const [menuPDF,setMenuPDF] = useState(false);
+
+  useEffect(()=>{
+    if(localStorage.getItem("listExportPDF")){
+      setMenuPDF(true);
+    }
+  },[]);
+
   const classes = useStyles();
   const [anchorEla, setAnchorEla] = React.useState(null);
   const [encolher, setEncolher] = useState(false);
@@ -146,7 +155,7 @@ export const Page_Private_BarraMenu = props => {
       title={""}
       text={"Você realmente deseja deletar todas as informações do seu Portfólio do Currículo Lattes?"}
       delete_={() => {setDeleteDialog(undefined);api_deleteAllTableCurriculoLattes(deleteAllTableCallback);}} 
-      fechar={() => setDeleteDialog(undefined) }
+      fechar={() => setDeleteDialog(undefined)}
       />);
       setTimeout(()=>setDeleteDialog(undefined),5000)
   }
@@ -276,9 +285,10 @@ export const Page_Private_BarraMenu = props => {
                                 props.history.push("/import/");
                               }
                             } >Importar Currículo Lattes</MenuItem>
-                            <MenuItem variant="outlined" style={{ marginLeft: 10 }}  ><ExportPDF fechar={
+                            {menuPDF&&<MenuItem variant="outlined" style={{ marginLeft: 10 }}  >
+                              <ExportPDF fechar={
                               fecharr
-                            } /></MenuItem>
+                            } /></MenuItem>}
 
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {

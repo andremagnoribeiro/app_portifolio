@@ -9,7 +9,7 @@ import {store } from '../store'
 
 const Root=()=>(
   <Provider store={store}>
-   <Counter/>
+   <App/>
   </Provider>
 )
 
