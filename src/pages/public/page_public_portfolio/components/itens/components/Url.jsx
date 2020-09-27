@@ -112,106 +112,51 @@ export const Url = ({ id, table, doi, home_page, external_url }) => {
 
 
   return (
-    <div style={{borderStyle:'dotted',borderWidth:2 , paddingTop:5,paddingBottom:10,paddingLeft:20,paddingLeft:20}}>
-  {/* DOI: */}
-  {urlDoi !== "" ?
+    <div style={{ borderStyle: 'dotted', borderWidth: 2, paddingTop: 5, paddingBottom: 10, paddingLeft: 20, paddingLeft: 20 }}>
+      {/* DOI: */}
+      {urlDoi !== "" ?
         <div>
-          {/* <Typography component={'span'} style={{
-            width: 150
-          }}>
-            <Box textAlign="left" >
-              DOI:
-          </Box>
-          </Typography> */}
+
           <div style={{
             width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
           }}>
             <Box textAlign="left" >
-
               <Tooltip title={urlDoi}>
                 <a href={urlDoi} rel="noopener noreferrer" target="_blank"  >Doi(Currículo Lattes)</a>
               </Tooltip>
             </Box>
           </div>
         </div> : undefined}
+
       {/* Home Page: */}
       {urlHomePage !== "" ?
         <div >
-          {/* <Typography component={'span'} style={{ width: 150 }}>
-            <Box textAlign="left" >
-              Home Page:
-            </Box>
-          </Typography> */}
+
           <div style={{ width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             <Box textAlign="justify" >
 
-            <Tooltip title={urlHomePage}>
-            <a href={urlHomePage} rel="noopener noreferrer" target="_blank"  >Home Page(Currículo Lattes)</a>
-             </Tooltip>
+              <Tooltip title={urlHomePage}>
+                <a href={urlHomePage} rel="noopener noreferrer" target="_blank"  >Home Page(Currículo Lattes)</a>
+              </Tooltip>
 
-             </Box>
+            </Box>
           </div>
         </div> : undefined}
 
 
       {/* URL Externa: */}
-      {viewVisualizar ?
-        <div >
-          {/* <Typography component={'span'} style={{ width: 150 }}>
-            <Box textAlign="left" >URL Externa:</Box>
-          </Typography> */}
-          <div style={{ width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            <Box textAlign="left" >
-              {urlExternal&&<Tooltip title={urlExternal}>
-                <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >Link(Usuário) </a>
-              </Tooltip>}
-              <IconButton onClick={() => { setExpanded(!expanded); setViewAdicionar(!viewAdicionar); }} aria-expanded={expanded} aria-label="show more" size='small'>
-                {expanded ? <ExpandMoreIcon /> : <ExpandLessOutlinedIcon />}{external_url ? "Atualizar URL" : "Adicionar URL"}
-              </IconButton>
-            </Box>
-          </div>
+
+      {urlExternal &&
+        <div style={{ width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <Box textAlign="left" >
+            <Tooltip title={urlExternal}>
+              <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >Link(Usuário) </a>
+            </Tooltip>
+          </Box>
         </div>
-        :
-        <div >
-          {/* <Typography component={'span'} style={{ width: 150 }}>
-            <Box textAlign="right" >
-              URL Externa:
-              </Box>
-          </Typography> */}
-          <div style={{ width: "100%", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            <Box textAlign="left" >
-            {urlExternal&&<Tooltip title={urlExternal}>
-                <a href={urlExternal} rel="noopener noreferrer" target="_blank"  >URL External</a>
-              </Tooltip>}
-            </Box>
-          </div>
-          <div style={{ width: "100%" }}>
-          </div>
-        </div>}
+      }
 
-      {viewAdicionar ?
-        <div >
-          <Typography component={'span'} style={{ width: 150 }}>
-            <Box textAlign="left" >
-              Adicione uma URL:
-            </Box>
-          </Typography>
-          <div style={{ width: "100%" }}>
-            <Box boxShadow={1} textAlign="left" >
-              <InputBase placeholder={inputPlaceholder} style={{ width: "calc((100% / 1) )", backgroundColor: 'white' }} value={url} inputProps={{ 'aria-label': 'search' }}
-                onChange={onChangeInput}
-              />
-            </Box>
-          </div>
-          <div style={{ width: "100%",marginTop:5 }}>
-            <Box textAlign="left" >   
-              <Button variant="contained" color="primary" size="small" startIcon={<SaveIcon />} onClick={updateURL} > Salvar</Button>
-            </Box>
-          </div>
-        </div> : undefined}
-
-        {(urlHomePage !== ""||urlDoi !== ""||urlExternal)&&<Typography style={{marginRight:20}}>Comprovado</Typography>}
-    </div>
+  </div>
   );
 }
 
