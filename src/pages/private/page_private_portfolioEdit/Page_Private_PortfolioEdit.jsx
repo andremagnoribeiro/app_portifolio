@@ -18,7 +18,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { PortfolioBusca } from './components/PortfolioBusca'
 import { SizeItem } from "./components/sizeItem/SizeItem"
 import Navegacao from "./components/Navegacao"
-
+import {ExportPDF} from '../page_private_barraMenu/components/exportPDF'
 //API
 import { api_getAllTable ,api_getUserId,api_getMaxMinAno} from "../../../api/serverAPI";
 import { TimelapseOutlined } from '@material-ui/icons';
@@ -212,7 +212,7 @@ export const Page_Private_PortfolioEdit = (props) => {
     if(inicial===2){
       setAcabou(true);
     }
-  console.log(">>>>>3",stateItens);
+ 
   
   },[stateItens]);
 
@@ -329,6 +329,7 @@ export const Page_Private_PortfolioEdit = (props) => {
 
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //RETURN PAGE////////////////////////////////////////////////////////////////////////////////////////
@@ -359,12 +360,14 @@ export const Page_Private_PortfolioEdit = (props) => {
           avatar={<Avatar className={classes.purple}></Avatar>}
           title={user.name}
           subheader={user.email}
+          action={<ExportPDF />}
         />
         <Box display="flex" justifyContent="center" p={0.5} bgcolor="background.paper">
 
           <Card style={{ width: '95%' }}>
             <CardHeader
               title={"Portfólio Siga "}
+            
               subheader={(stateItens.sizeSigaDisciplina === '' ||
                 stateItens.sizeSigaProjeto === '') && <LinearProgress />}
             />

@@ -211,14 +211,12 @@ export const Page_Public_Portfolio = (props) => {
 
   },[]);
 
-
   // State dos Itens  stateItens
   useEffect(()=>{
     
     if(inicial===2){
       setAcabou(true);
     }
-  console.log(">>>>>3",stateItens);
   
   },[stateItens]);
 

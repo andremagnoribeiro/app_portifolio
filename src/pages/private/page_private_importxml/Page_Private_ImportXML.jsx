@@ -92,7 +92,7 @@ export const Page_Private_ImportXML = (props) => {
             title="Importação do Currículo Lattes"
           />
           <Box textAlign="center">
-            <Typography>Você pode exportar o arquivo no site <a href="lattes.cnpq.br" rel="noopener noreferrer" target="_blank"  >lattes.cnpq.br</a> conforme a imagem abaixo</Typography>
+            <Typography  >Você pode exportar o arquivo no site <a href="lattes.cnpq.br" rel="noopener noreferrer" target="_blank"  >lattes.cnpq.br</a> conforme a imagem abaixo</Typography>
             <img alt="exportXML" style={{ width: "50%" }} src={img_exportXML} />
           </Box>
 
@@ -104,18 +104,18 @@ export const Page_Private_ImportXML = (props) => {
             <input type="file" name="myfile" onChange={(e) => runGetInfoXML(e)} />
           </div>
 
-          <Typography id="textInput">O arquivo importado deve estar no formato .xml</Typography>
-          <Typography id="textInput">Obs: Se tiver URL salvas para um determinado trabalho o sistema não irá deletar mas sim atualizar as informações.</Typography>
+          <Typography   id="textInput">O arquivo importado deve estar no formato .xml</Typography>
+          <Typography   id="textInput">Obs: Se tiver URL salvas para um determinado trabalho o sistema não irá deletar mas sim atualizar as informações.</Typography>
 
         </Box>
 
         <Box id="posLoadFile" style={{ display: 'none', margin: 20 }} textAlign="center">
-          <Typography >Arquivo "{info.nomeArquivoXML}" carregado. </Typography>
-          <Typography >Nome Completo: {info.nomeCompleto}  </Typography>
-          <Typography >Númeroidentificador: {info.numeroidendificador} </Typography>
-          <Typography >Sistema de Origem: {info.sistemaOrigem} </Typography>
-          <Typography >Última atualização: {info.dataAtualizacao} </Typography>
-          <Typography >Última atualização: {info.horaAtualizacao} </Typography>
+          <Typography   >Arquivo "{info.nomeArquivoXML}" carregado. </Typography>
+          <Typography   >Nome Completo: {info.nomeCompleto}  </Typography>
+          <Typography   >Númeroidentificador: {info.numeroidendificador} </Typography>
+          <Typography   >Sistema de Origem: {info.sistemaOrigem} </Typography>
+          <Typography   >Última atualização: {info.dataAtualizacao} </Typography>
+          <Typography   >Última atualização: {info.horaAtualizacao} </Typography>
           <Button id="importarDados" style={{ margin: 20 }} variant="contained" color="primary" onClick={() => runImportXML()}>Importar Dados</Button>
 
           <div id="scroll" style={{ width: '70%', height: 200, marginLeft: '15%', overflow: 'auto' }}>
@@ -123,7 +123,7 @@ export const Page_Private_ImportXML = (props) => {
             <div style={{ marginLeft: '50%', marginTop: 30, marginBottom: 30 }}>
               <CircularProgress style={{ display: 'none' }} id="progresso" color="inherit" />
             </div>
-          <Button id="abrir_portfolio" style={{ margin: 20, display: 'none' }} variant="contained" color="primary" onClick={() => props.history.push("/portfolioEdit/")}>Ir para Meu Portfólio</Button>
+          <Button id="abrir_portfolio" style={{ margin: 20, display: 'none' }} variant="contained" color="primary" onClick={() => props.history.push("/edit/")}>Ir para Meu Portfólio</Button>
           </div>
 
 

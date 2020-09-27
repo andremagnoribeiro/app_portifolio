@@ -9,10 +9,6 @@ import Button from '@material-ui/core/Button';
 import { server } from '../../var';
 
 
-
-
-
-
 export const Page_Admin_ImportDataSiga = () => {
 
 return(

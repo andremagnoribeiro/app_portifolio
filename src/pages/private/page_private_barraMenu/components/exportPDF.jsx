@@ -31,44 +31,44 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 
 
-import { api_exportPDF} from '../../../../api/serverAPI';
-export const ExportPDF = ({ fechar }) => {
+import { api_exportPDF } from '../../../../api/serverAPI';
+export const ExportPDF = ({  }) => {
 
 
   //export PDF
-  const runExportPDF=()=>{
+  const runExportPDF = () => {
     api_exportPDF(CallBackExportPdf);
   }
 
-  const CallBackExportPdf=(xhr_response)=>{
+  const CallBackExportPdf = (xhr_response) => {
     const file = new Blob([xhr_response], { type: 'application/pdf' });
     const fileURL = URL.createObjectURL(file);
-      window.open(fileURL, "_blank");
-      fechar();
+    window.open(fileURL, "_blank");
+    //fechar();
+    handleClose();
   }
-
 
   //open closer snackbar
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const [open, setOpen] = useState(false);
 
+  
   return (
     <div>
-    <div id="exportButton" onClick={()=>{runExportPDF();setOpen(true);} } >Exportar Portfolio em PDF</div>
-    <Snackbar
+      <Button id="exportButton" onClick={() => { runExportPDF(); setOpen(true); }} >Exportar Portfolio em PDF</Button>
+      <Snackbar
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'center',
         }}
         open={open}
         onClose={handleClose}
-        message={<div> <div>Processando PDF </div> <LinearProgress/></div>}
+        message={<div> <div>Processando PDF </div> <LinearProgress /></div>}
         key={"xxxx"}
       />
-  
     </div>
   );
 

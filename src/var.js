@@ -1,1 +1,1 @@
-export const server="http://localhost/ufjfportfolioprofissional";
+export const server="http://localhost/portfolio";

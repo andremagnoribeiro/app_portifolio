@@ -32,6 +32,7 @@ import { TitleItem } from './components/TitleItem';
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 export const PBTrabalhosEvento = (item) => {
+  
   const table = "pb_trabalho_evento";
 
   const [expanded, setExpanded] = useState(false);
@@ -525,7 +526,7 @@ export const ATProjetoPesquisa = (item) => {
                 <Card key={item.id} style={{ margin: 10 }}>
                   <CardContent>
 
-                    <Typography fontWeight="fontWeightBold" >
+                    <Typography component={'span'}  fontWeight="fontWeightBold" >
                       <Box fontSize={16} m={1}>
                         {item[`equipe_nome_completo${i}`]}
                       </Box>
@@ -564,7 +565,7 @@ export const ATProjetoPesquisa = (item) => {
                 <Card key={item.id} style={{ margin: 10 }}>
                   <CardContent>
 
-                    <Typography fontWeight="fontWeightBold" >
+                    <Typography component={'span'}  fontWeight="fontWeightBold" >
                       <Box fontSize={16} m={1}>
                         {item[`financiador_nome_instituicao${i}`]}
                       </Box>
@@ -1775,7 +1776,7 @@ export const OAPosDoutorado = (item) => {
                 <Card key={item.id} style={{ margin: 10 }}>
                   <CardContent>
 
-                    <Typography fontWeight="fontWeightBold" >
+                    <Typography component={'span'}  fontWeight="fontWeightBold" >
                       <Box fontSize={16} m={1}>
                         {item[`nome_completo_do_participante_da_banca_${i}`]}
                       </Box>
@@ -1891,7 +1892,7 @@ export const PartBancaAperfeicoamentoEspecializacao = (item) => {
                 <Card key={item.id} style={{ margin: 10 }}>
                   <CardContent>
 
-                    <Typography fontWeight="fontWeightBold" >
+                    <Typography  component={'span'} fontWeight="fontWeightBold" >
                       <Box fontSize={16} m={1}>
                         {item[`nome_completo_do_participante_da_banca_${i}`]}
                       </Box>

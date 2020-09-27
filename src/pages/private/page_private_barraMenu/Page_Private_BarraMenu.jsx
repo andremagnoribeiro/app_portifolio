@@ -45,13 +45,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 //class
 export const Page_Private_BarraMenu = props => {
 
-  const [menuPDF,setMenuPDF] = useState(false);
+  const [menuPDF,setMenuPDF] = useState(true);
 
-  useEffect(()=>{
-    if(localStorage.getItem("listExportPDF")){
-      setMenuPDF(true);
-    }
-  },[]);
+  //useEffect(()=>{
+  //  if(localStorage.getItem("listExportPDF")){
+  //    setMenuPDF(true);
+  //  }
+  //},[]);
 
   const classes = useStyles();
   const [anchorEla, setAnchorEla] = React.useState(null);
@@ -134,7 +134,7 @@ export const Page_Private_BarraMenu = props => {
     />);
   
     props.history.push( '/' ,null);
-    props.history.push("/portfolioedit",null);
+    props.history.push("/edit",null);
   }else{
       setDeleteDialog(<Snackbar
     anchorOrigin={{
@@ -235,13 +235,11 @@ export const Page_Private_BarraMenu = props => {
           <Toolbar>
           {/* IMAGEM UFJF */}
           <img  onClick={() => props.history.push("/")} alt="logo ufjf" style={{ height: 40, margin: 10 }} src="https://doity.com.br/media/doity/eventos/evento-19789-logo_organizador.png" />
-
             <Grid
               justify="space-between"
               container
               spacing={1}
             >
-              
               <Grid item>
                 {/* BUTTON HOME */}
                 {/* <Button variant="outlined" style={{ marginLeft: 20 }} >Home</Button> */}
@@ -256,10 +254,8 @@ export const Page_Private_BarraMenu = props => {
                   onClick={handleToggle}
                   style={{ height: 40 }}>
                   <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
-                  <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
+                  <Typography component={'span'} style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
                 </Button>
-
-
 
                 {/* EXPANDIR /////////////////////////////////////////////////////*/}
                 <Popper style={{zIndex:5}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
@@ -275,7 +271,7 @@ export const Page_Private_BarraMenu = props => {
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {
                                 setOpen(false)
-                                props.history.push("/portfolioEdit/");
+                                props.history.push("/edit/");
                               }
                             } >Editar Portfólio</MenuItem>
 
@@ -285,10 +281,10 @@ export const Page_Private_BarraMenu = props => {
                                 props.history.push("/import/");
                               }
                             } >Importar Currículo Lattes</MenuItem>
-                            {menuPDF&&<MenuItem variant="outlined" style={{ marginLeft: 10 }}  >
+                            {/*menuPDF&&<MenuItem variant="outlined" style={{ marginLeft: 10 }}  >
                               <ExportPDF fechar={
                               fecharr
-                            } /></MenuItem>}
+                            } /></MenuItem>*/}
 
                             <MenuItem variant="outlined" style={{ marginLeft: 10 }} onClick={
                               () => {

@@ -54,7 +54,7 @@ component = { Page_Public_Portfolio }
 
 { /* Rotas Privadas*/ }
 
-    <PrivateRoute exact path = '/portfolioEdit/'
+    <PrivateRoute exact path = '/edit/'
       componentPrivate = { Page_Private_PortfolioEdit }
       componentPublic = { Page_Public_FormLogin }
     /> 

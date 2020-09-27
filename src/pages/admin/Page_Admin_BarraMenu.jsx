@@ -179,7 +179,7 @@ export const Page_Admin_BarraMenu=(props)=>{
               style={{ zIndex: 3 }}>
               <Avatar className={classes.purple}>{JSON.parse(localStorage.getItem("user")).name.substring(0, 1)}</Avatar>
 
-              <Typography style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
+              <Typography component={'span'} style={{ marginLeft: 10 }}>   {JSON.parse(localStorage.getItem("user")).user_name}</Typography><ExpandMoreIcon />
             </Button>
 
             {/* MOBILE Logout, Deletar Usuario,Editar Informações do Usuario/////////////////////////////////////////////// */}
@@ -193,9 +193,9 @@ export const Page_Admin_BarraMenu=(props)=>{
                     <ClickAwayListener onClickAway={handleClose}>
                       <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout(props)} >Logout</Typography></MenuItem>
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={() => props.history.push('/editUser')}>Edit</Typography></MenuItem>
-                        <MenuItem onClick={() => setOpen(false)}><Typography onClick={delUser}>Delete User</Typography></MenuItem>
+                        <MenuItem onClick={() => setOpen(false)}><Typography component={'span'} onClick={logout(props)} >Logout</Typography></MenuItem>
+                        <MenuItem onClick={() => setOpen(false)}><Typography component={'span'} onClick={() => props.history.push('/editUser')}>Edit</Typography></MenuItem>
+                        <MenuItem onClick={() => setOpen(false)}><Typography component={'span'} onClick={delUser}>Delete User</Typography></MenuItem>
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
@@ -251,7 +251,7 @@ export const Page_Admin_BarraMenu=(props)=>{
                         <ClickAwayListener onClickAway={handleClose}>
                           <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
-                            <MenuItem onClick={() => setOpen(false)}><Typography onClick={logout(props)} >Logout</Typography></MenuItem>
+                            <MenuItem onClick={() => setOpen(false)}><Typography component={'span'} onClick={logout(props)} >Logout</Typography></MenuItem>
                          </MenuList>
                         </ClickAwayListener>
                       </Paper>
@@ -325,8 +325,8 @@ export const Page_Admin_BarraMenu=(props)=>{
               <ClickAwayListener onClickAway={handleCloseP}>
                 <MenuList autoFocusItem={openP} id="menu-list-growp" onKeyDown={handleListKeyDownP}>
 
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
-                  <MenuItem onClick={() => setOpenP(false)}><Typography onClick={() => props.history.push(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography component={'span'} onClick={() => props.history.push(`/portfoliolattes/login/${JSON.parse(localStorage.getItem("user")).user_name}`)}>EDITAR</Typography></MenuItem>
+                  <MenuItem onClick={() => setOpenP(false)}><Typography component={'span'} onClick={() => props.history.push(`/portfoliolattes/${JSON.parse(localStorage.getItem("user")).user_name}`)}>VISUALIZAR</Typography></MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
