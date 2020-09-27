@@ -203,11 +203,12 @@ export const Page_Public_Portfolio = (props) => {
   }, []);
 
   useEffect(()=>{
-    console.log(userName,">>>>");
+    //console.log(userName,">>>>");
     api_getMaxMinAno(userName).then((ano)=>{
       setAnoMin(parseInt(ano.anoMin));
       setAnoMax(parseInt(ano.anoMax));
-      console.log(">>>>ano",ano);});
+      //console.log(">>>>ano",ano);
+    });
 
   },[]);
 

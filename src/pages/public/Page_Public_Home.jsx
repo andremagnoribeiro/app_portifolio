@@ -11,8 +11,7 @@ import { api_getUsers } from "../../api/serverAPI";
 export const Page_Public_Home = (props) => {
 
   const [users, setUsers] = useState([]);
-  const [users_, setUsers_] = useState({"aaa":"aaaa"});
-
+ 
   useEffect(() => {
     api_getUsers().then(data => setUsers(data));
   }, []);
@@ -21,7 +20,7 @@ export const Page_Public_Home = (props) => {
     <div>
       <h1 style={{ marginLeft: 25 }}>Usuários</h1>
       {users.map(user =>
-        <Card key={user.name + "aaaa"} style={{ margin: 20, cursor:'pointer' }} onClick={() => props.history.push("/portfolio/"+user.user_name)}  >
+        <Card key={user.name + "aaaa"} style={{ margin: 20, cursor:'pointer' }} onClick={() => props.history.push("/view/"+user.user_name)}  >
           <CardHeader
             avatar={<Avatar >{user.name.substring(0, 1)}</Avatar>}
             title={user.name}

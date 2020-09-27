@@ -48,7 +48,7 @@ componentPrivate = { Page_Public_Home }
 componentAdmin = { Page_Admin_Home }
 />  <Route exact path = "/createuser"
 component = { Page_Public_CreateUser }
-/>  <Route exact path = '/portfolio/:user'
+/>  <Route exact path = '/view/:user'
 component = { Page_Public_Portfolio }
 />
 

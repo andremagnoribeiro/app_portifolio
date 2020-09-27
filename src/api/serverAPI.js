@@ -48,7 +48,7 @@ export const api_getAllTable = (userName) => axios
 
 export const api_getMaxMinAno = (userName) => axios
 .get(`${server}/api/request/get/maxminano.php?user=${userName}`).then(({ data }) => {
- console.log(">>>>",data);
+ 
   return data;
 })
 

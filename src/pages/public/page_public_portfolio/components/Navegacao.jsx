@@ -11,7 +11,7 @@ export default function Navegacao(props) {
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {props.anteriores.map((item) =>{
-        console.log(">>>>6", item.url);
+        //console.log(">>>>6", item.url);
         return <div onClick={() => props.history.push(item.url)} >
           {item.name}
         </div>

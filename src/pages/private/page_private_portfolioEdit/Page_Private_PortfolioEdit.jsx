@@ -201,9 +201,10 @@ export const Page_Private_PortfolioEdit = (props) => {
     api_getMaxMinAno(userName).then((ano)=>{
       setAnoMin(parseInt(ano.anoMin));
       setAnoMax(parseInt(ano.anoMax));
-      console.log(">>>>ano",ano);});
+      //console.log(">>>>ano",ano);
+    });
 
-  },[]);
+  },[]);  
 
 
   // State dos Itens  stateItens
@@ -432,7 +433,7 @@ export const Page_Private_PortfolioEdit = (props) => {
             )
               &&
               <Card style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
-                <CardHeader title="Formação Acadêmica Titulação" />
+                <CardHeader title="Formação Acadêmica/Titulação" />
 
 
 

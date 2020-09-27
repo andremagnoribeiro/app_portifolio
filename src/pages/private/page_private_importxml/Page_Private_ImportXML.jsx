@@ -50,7 +50,7 @@ export const Page_Private_ImportXML = (props) => {
   };
 
   const calbackGetInforXML=(xhr_responseText)=>{
-    console.log(">>>>>9",xhr_responseText);
+   
     setInfo(JSON.parse(xhr_responseText));
     document.getElementById("btnImportar").style.display = "none";
     document.getElementById("textInput").style.display = "none";
