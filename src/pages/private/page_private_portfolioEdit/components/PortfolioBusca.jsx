@@ -27,14 +27,11 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
   const [filterText, setFilterText] = useState('');
   const [filterText2, setFilterText2] = useState('');
 
-
   const [expandedFiltro, setExpandedFiltro] = useState(false);
-
 
   const handleExpandFiltro = () => {
     setExpandedFiltro(!expandedFiltro);
   };
-
 
   const onChangeInput = (event) => {
     setFilterText(event.target.value);
@@ -47,48 +44,29 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
   };
 
   const restaurar = (filterT, filterA) => {
-   
     getSearch(filterT, filterA);
   }
-
 
   const btnFiltrarClick = () => {
     setFilterText2(filterText);
     setFilterAno2(filterAno);
-
-
     getSearch(filterText, filterAno);
-
-
   }
 
-
-
   //Slide
-
-
-
-
-
-
   const [filterAno, setFilterAno] = React.useState([sliderMin, sliderMax]);
   const [filterAno2, setFilterAno2] = React.useState([sliderMin, sliderMax]);
-  
-  
   const [sliderMin_, setSliderMin_] = React.useState(sliderMin);
   const [sliderMax_, setSliderMax_] = React.useState(sliderMax);
 
-
-
   const handleChangeSlider = (event, newValue) => {
     setFilterAno(newValue);
-    
+
     setSliderMax_(newValue['1']);
     setSliderMin_(newValue['0']);
 
   };
   const valueText = (filterAno) => filterAno
-
 
   return (
     <div>
@@ -104,7 +82,6 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
               <div style={{
                 width: "calc((100% / 1.5) )"
               }}>
-
 
 
                 <CardContent>
@@ -135,7 +112,7 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
 
             </div >
           </Box>
-          <div style={{marginLeft:10}}>
+          <div style={{ marginLeft: 10 }}>
             <IconButton
               onClick={handleExpandFiltro}
               aria-expanded={expandedFiltro}
@@ -147,7 +124,7 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
             <Collapse in={expandedFiltro} timeout="auto" unmountOnExit>
               <div style={{
 
-                display: 'flex',  height: 80, width: 300
+                display: 'flex', height: 80, width: 300
               }}>
                 <div style={{ marginTop: 25, marginLeft: 10, width: 45 }}>
                   <span>Ano:</span>
@@ -162,7 +139,7 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
                     //aria-label="custom thumb label"
                     aria-labelledby="continuous-slider"
                     getAriaValueText={valueText}
-                    
+
                     marks={[
                       {
                         value: sliderMin,
@@ -176,10 +153,15 @@ export const PortfolioBusca = ({ getSearch, sliderMin, sliderMax }) => {
                   />
                 </div>
               </div>
+
+              <Button onClick={()=>{btnFiltrarClick();setExpandedFiltro(false);}} variant="contained" style={{ marginRight: 1, height: 35 }} color={"primary"} disableElevation>
+                Filtrar por Ano
+                </Button>
+
             </Collapse>
           </div>
 
-         
+
         </div>
 
 

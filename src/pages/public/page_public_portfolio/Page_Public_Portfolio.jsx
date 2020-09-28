@@ -22,7 +22,7 @@ import { SizeItem } from "./components/sizeItem/SizeItem"
 import Navegacao from "./components/Navegacao"
 
 //API
-import { api_getAllTable ,api_getUserId,api_getMaxMinAno} from "../../../api/serverAPI";
+import { api_getAllTable, api_getUserId, api_getMaxMinAno } from "../../../api/serverAPI";
 import { TimelapseOutlined } from '@material-ui/icons';
 
 const useStylesback = makeStyles((theme) => ({
@@ -42,13 +42,11 @@ export const Page_Public_Portfolio = (props) => {
 
   const classesbackdrop = useStylesback();
 
- const userName = props.match.params.user;
-
-
+  const userName = props.match.params.user;
   const classes = useStyles();
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //STATE
 
 
@@ -59,56 +57,56 @@ export const Page_Public_Portfolio = (props) => {
 
   const [acabou, setAcabou] = useState(false);
   const [inicial, setInicial] = useState(1);
-  
-  const [anoMin, setAnoMin]=useState(0);
-  const [anoMax,setAnoMax]=useState(0);
+
+  const [anoMin, setAnoMin] = useState(0);
+  const [anoMax, setAnoMax] = useState(0);
 
   const [user, setUser] = useState([]);
-  
-  const [ComponenteBusca, setComponenteBusca] = useState(<div></div>);
-  
 
-  const [stateItens,setStateItens]=useState({ 
-    "sizePBArtigoPublicado":[],
-    "sizePBCapituloLivroPublicado":[],
-    "sizePBLivroPublicadoOrganizado":[],
-    "sizePBTextoJornalRevista":[],
-    "sizePBTrabalhosEvento":[],
-    "sizeAPConselhoComissaoConsultoria":[],
-    "sizeAPDirecaoAdministracao":[],
-    "sizeAPPesquisaDesenvolvimento":[],
-    "sizeAPVinculo":[],
-    "sizeATProjetoPesquisa":[],
-    "sizeFATDoutorado":[],
-    "sizeFATEspecializacao":[],
-    "sizeFATGraduacao":[],
-    "sizeFATMestrado":[],
-    "sizeOAAperfeicoamentoEspecializacao":[],
-    "sizeOADoutorado":[],
-    "sizeOAGraduacao":[],
-    "sizeOAIniciacaoCientifica":[],
-    "sizeOAMestrado":[],
-    "sizeOAPosDoutorado":[],
-    "sizePartBancaAperfeicoamentoEspecializacao":[],
-    "sizePartBancaDoutorado":[],
-    "sizePartBancaExameQualificacao":[],
-    "sizePartBancaGraduacao":[],
-    "sizePartBancaJulgadoraConcursoPublico":[],
-    "sizePartBancaJulgadoraOutra":[],
-    "sizePartBancaJulgadoraProfessorTitular":[],
-    "sizePartBancaMestrado":[],
-    "sizePartCongresso":[],
-    "sizePartEncontro":[],
-    "sizePartOficina":[],
-    "sizePartOutras":[],
-    "sizePartSeminario":[],
-    "sizePartSimposio":[],
-    "sizePTPremioTitulo":[],
-    "sizeFCCursoCurtaDuracao":[],
-    "sizeSigaDisciplina":[],
-    "sizeSigaProjeto":[]
+  const [ComponenteBusca, setComponenteBusca] = useState(<div></div>);
+
+
+  const [stateItens, setStateItens] = useState({
+    "sizePBArtigoPublicado": [],
+    "sizePBCapituloLivroPublicado": [],
+    "sizePBLivroPublicadoOrganizado": [],
+    "sizePBTextoJornalRevista": [],
+    "sizePBTrabalhosEvento": [],
+    "sizeAPConselhoComissaoConsultoria": [],
+    "sizeAPDirecaoAdministracao": [],
+    "sizeAPPesquisaDesenvolvimento": [],
+    "sizeAPVinculo": [],
+    "sizeATProjetoPesquisa": [],
+    "sizeFATDoutorado": [],
+    "sizeFATEspecializacao": [],
+    "sizeFATGraduacao": [],
+    "sizeFATMestrado": [],
+    "sizeOAAperfeicoamentoEspecializacao": [],
+    "sizeOADoutorado": [],
+    "sizeOAGraduacao": [],
+    "sizeOAIniciacaoCientifica": [],
+    "sizeOAMestrado": [],
+    "sizeOAPosDoutorado": [],
+    "sizePartBancaAperfeicoamentoEspecializacao": [],
+    "sizePartBancaDoutorado": [],
+    "sizePartBancaExameQualificacao": [],
+    "sizePartBancaGraduacao": [],
+    "sizePartBancaJulgadoraConcursoPublico": [],
+    "sizePartBancaJulgadoraOutra": [],
+    "sizePartBancaJulgadoraProfessorTitular": [],
+    "sizePartBancaMestrado": [],
+    "sizePartCongresso": [],
+    "sizePartEncontro": [],
+    "sizePartOficina": [],
+    "sizePartOutras": [],
+    "sizePartSeminario": [],
+    "sizePartSimposio": [],
+    "sizePTPremioTitulo": [],
+    "sizeFCCursoCurtaDuracao": [],
+    "sizeSigaDisciplina": [],
+    "sizeSigaProjeto": []
   });
-  
+
 
   const [dataPBArtigoPublicado, setDataPBArtigoPublicado] = useState([]);
   const [dataPBCapituloLivroPublicado, setDataPBCapituloLivroPublicado] = useState([]);
@@ -150,164 +148,162 @@ export const Page_Public_Portfolio = (props) => {
   const [dataSigaProjeto, setDataSigaProjeto] = useState([]);
 
 
-  
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //USE EFFECT////////////////////////////////////////////////////////////////////////////
 
   //GET API
   useEffect(() => {
-   
+
     api_getUserId(userName).then(data => setUser(data));
-    api_getAllTable(userName).then((data)=>{
-    setDataPBArtigoPublicado(data.pb_artigo_publicado);  setStateItens(prevState => {return {...prevState,"sizePBArtigoPublicado":data.pb_artigo_publicado}});
-    setDataPBCapituloLivroPublicado(data.pb_capitulo_livro_publicado_organizado); setStateItens(prevState => {return {...prevState,"sizePBCapituloLivroPublicado":data.pb_capitulo_livro_publicado_organizado}});
-    setDataPBLivroPublicadoOrganizado(data.pb_livro_publicado_organizado); setStateItens(prevState => {return {...prevState,"sizePBLivroPublicadoOrganizado":data.pb_livro_publicado_organizado}});
-    setDataPBTextoJornalRevista(data.pb_texto_jornal_revista); setStateItens(prevState => {return {...prevState,"sizePBTextoJornalRevista":data.pb_texto_jornal_revista}});
-    setDataPBTrabalhosEvento(data.pb_trabalho_evento); setStateItens(prevState => {return {...prevState,"sizePBTrabalhosEvento":data.pb_trabalho_evento}});
-    setDataAPConselhoComissaoConsultoria(data.ap_conselho_comissao_consultoria); setStateItens(prevState => {return {...prevState,"sizeAPConselhoComissaoConsultoria":data.ap_conselho_comissao_consultoria}});
-    setDataAPDirecaoAdministracao(data.ap_direcao_administracao); setStateItens(prevState => {return {...prevState,"sizeAPDirecaoAdministracao":data.ap_direcao_administracao}});
-    setDataAPPesquisaDesenvolvimento(data.ap_pesquisa_desenvolvimento); setStateItens(prevState => {return {...prevState,"sizeAPPesquisaDesenvolvimento":data.ap_pesquisa_desenvolvimento}});
-    setDataAPVinculo(data.ap_vinculo); setStateItens(prevState => {return {...prevState,"sizeAPVinculo":data.ap_vinculo}});
-    setDataATProjetoPesquisa(data.at_projeto_pesquisa); setStateItens(prevState => {return {...prevState,"sizeATProjetoPesquisa":data.at_projeto_pesquisa}});
-    setDataFATDoutorado(data.fat_doutorado); setStateItens(prevState => {return {...prevState,"sizeFATDoutorado":data.fat_doutorado}});
-    setDataFATEspecializacao(data.fat_especializacao); setStateItens(prevState => {return {...prevState,"sizeFATEspecializacao":data.fat_especializacao}});
-    setDataFATGraduacao(data.fat_graduacao); setStateItens(prevState => {return {...prevState,"sizeFATGraduacao":data.fat_graduacao}});
-    setDataFATMestrado(data.fat_mestrado); setStateItens(prevState => {return {...prevState,"sizeFATMestrado":data.fat_mestrado}});
-    setDataOAAperfeicoamentoEspecializacao(data.oa_aperfeicoamento_especializacao); setStateItens(prevState => {return {...prevState,"sizeOAAperfeicoamentoEspecializacao":data.oa_aperfeicoamento_especializacao}});
-    setDataOADoutorado(data.oa_doutorado); setStateItens(prevState => {return {...prevState,"sizeOADoutorado":data.oa_doutorado}});
-    setDataOAGraduacao(data.oa_graduacao); setStateItens(prevState => {return {...prevState,"sizeOAGraduacao":data.oa_graduacao}});
-    setDataOAIniciacaoCientifica(data.oa_iniciacao_cientifica); setStateItens(prevState => {return {...prevState,"sizeOAIniciacaoCientifica":data.oa_iniciacao_cientifica}});
-    setDataOAMestrado(data.oa_mestrado); setStateItens(prevState => {return {...prevState,"sizeOAMestrado":data.oa_mestrado}});
-    setDataOAPosDoutorado(data.oa_posdoutorado); setStateItens(prevState => {return {...prevState,"sizeOAPosDoutorado":data.oa_posdoutorado}});
-    setDataPartBancaAperfeicoamentoEspecializacao(data.part_banca_aperfeicoamento_especializacao); setStateItens(prevState => {return {...prevState,"sizePartBancaAperfeicoamentoEspecializacao":data.part_banca_aperfeicoamento_especializacao}});
-    setDataPartBancaDoutorado(data.part_banca_doutorado); setStateItens(prevState => {return {...prevState,"sizePartBancaDoutorado":data.part_banca_doutorado}});
-    setDataPartBancaExameQualificacao(data.part_banca_exame_qualificacao); setStateItens(prevState => {return {...prevState,"sizePartBancaExameQualificacao":data.part_banca_exame_qualificacao}});
-    setDataPartBancaGraduacao(data.part_banca_graduacao); setStateItens(prevState => {return {...prevState,"sizePartBancaGraduacao":data.part_banca_graduacao}});
-    setDataPartBancaJulgadoraConcursoPublico(data.part_banca_julgadora_concurso_publico); setStateItens(prevState => {return {...prevState,"sizePartBancaJulgadoraConcursoPublico":data.part_banca_julgadora_concurso_publico}});
-    setDataPartBancaJulgadoraOutra(data.part_banca_julgadora_outra); setStateItens(prevState => {return {...prevState,"sizePartBancaJulgadoraOutra":data.part_banca_julgadora_outra}});
-    setDataPartBancaJulgadoraProfessorTitular(data.part_banca_julgadora_professor_titular); setStateItens(prevState => {return {...prevState,"sizePartBancaJulgadoraProfessorTitular":data.part_banca_julgadora_professor_titular}});
-    setDataPartBancaMestrado(data.part_banca_mestrado); setStateItens(prevState => {return {...prevState,"sizePartBancaMestrado":data.part_banca_mestrado}});
-    setDataPartCongresso(data.part_congresso); setStateItens(prevState => {return {...prevState,"sizePartCongresso":data.part_congresso}});
-    setDataPartEncontro(data.part_encontro); setStateItens(prevState => {return {...prevState,"sizePartEncontro":data.part_encontro}});
-    setDataPartOficina(data.part_oficina); setStateItens(prevState => {return {...prevState,"sizePartOficina":data.part_oficina}});
-    setDataPartOutras(data.part_evento_congresso_outra); setStateItens(prevState => {return {...prevState,"sizePartOutras":data.part_evento_congresso_outra}});
-    setDataPartSeminario(data.part_seminario); setStateItens(prevState => {return {...prevState,"sizePartSeminario":data.part_seminario}});
-    setDataPartSimposio(data.part_simposio); setStateItens(prevState => {return {...prevState,"sizePartSimposio":data.part_simposio}});
-    setDataPTPremioTitulo(data.pt_premio_titulo); setStateItens(prevState => {return {...prevState,"sizePTPremioTitulo":data.pt_premio_titulo}});
-    setDataFCCursoCurtaDuracao(data.fc_curso_curta_duracao); setStateItens(prevState => {return {...prevState,"sizeFCCursoCurtaDuracao":data.fc_curso_curta_duracao}});
-    setDataSigaDisciplina(data.siga_disciplina); setStateItens(prevState => {return {...prevState,"sizeSigaDisciplina":data.siga_disciplina}});
-    setDataSigaProjeto(data.siga_projeto); setStateItens(prevState => {return {...prevState,"sizeSigaProjeto":data.siga_projeto}});
+    api_getAllTable(userName).then((data) => {
+      setDataPBArtigoPublicado(data.pb_artigo_publicado); setStateItens(prevState => { return { ...prevState, "sizePBArtigoPublicado": data.pb_artigo_publicado } });
+      setDataPBCapituloLivroPublicado(data.pb_capitulo_livro_publicado_organizado); setStateItens(prevState => { return { ...prevState, "sizePBCapituloLivroPublicado": data.pb_capitulo_livro_publicado_organizado } });
+      setDataPBLivroPublicadoOrganizado(data.pb_livro_publicado_organizado); setStateItens(prevState => { return { ...prevState, "sizePBLivroPublicadoOrganizado": data.pb_livro_publicado_organizado } });
+      setDataPBTextoJornalRevista(data.pb_texto_jornal_revista); setStateItens(prevState => { return { ...prevState, "sizePBTextoJornalRevista": data.pb_texto_jornal_revista } });
+      setDataPBTrabalhosEvento(data.pb_trabalho_evento); setStateItens(prevState => { return { ...prevState, "sizePBTrabalhosEvento": data.pb_trabalho_evento } });
+      setDataAPConselhoComissaoConsultoria(data.ap_conselho_comissao_consultoria); setStateItens(prevState => { return { ...prevState, "sizeAPConselhoComissaoConsultoria": data.ap_conselho_comissao_consultoria } });
+      setDataAPDirecaoAdministracao(data.ap_direcao_administracao); setStateItens(prevState => { return { ...prevState, "sizeAPDirecaoAdministracao": data.ap_direcao_administracao } });
+      setDataAPPesquisaDesenvolvimento(data.ap_pesquisa_desenvolvimento); setStateItens(prevState => { return { ...prevState, "sizeAPPesquisaDesenvolvimento": data.ap_pesquisa_desenvolvimento } });
+      setDataAPVinculo(data.ap_vinculo); setStateItens(prevState => { return { ...prevState, "sizeAPVinculo": data.ap_vinculo } });
+      setDataATProjetoPesquisa(data.at_projeto_pesquisa); setStateItens(prevState => { return { ...prevState, "sizeATProjetoPesquisa": data.at_projeto_pesquisa } });
+      setDataFATDoutorado(data.fat_doutorado); setStateItens(prevState => { return { ...prevState, "sizeFATDoutorado": data.fat_doutorado } });
+      setDataFATEspecializacao(data.fat_especializacao); setStateItens(prevState => { return { ...prevState, "sizeFATEspecializacao": data.fat_especializacao } });
+      setDataFATGraduacao(data.fat_graduacao); setStateItens(prevState => { return { ...prevState, "sizeFATGraduacao": data.fat_graduacao } });
+      setDataFATMestrado(data.fat_mestrado); setStateItens(prevState => { return { ...prevState, "sizeFATMestrado": data.fat_mestrado } });
+      setDataOAAperfeicoamentoEspecializacao(data.oa_aperfeicoamento_especializacao); setStateItens(prevState => { return { ...prevState, "sizeOAAperfeicoamentoEspecializacao": data.oa_aperfeicoamento_especializacao } });
+      setDataOADoutorado(data.oa_doutorado); setStateItens(prevState => { return { ...prevState, "sizeOADoutorado": data.oa_doutorado } });
+      setDataOAGraduacao(data.oa_graduacao); setStateItens(prevState => { return { ...prevState, "sizeOAGraduacao": data.oa_graduacao } });
+      setDataOAIniciacaoCientifica(data.oa_iniciacao_cientifica); setStateItens(prevState => { return { ...prevState, "sizeOAIniciacaoCientifica": data.oa_iniciacao_cientifica } });
+      setDataOAMestrado(data.oa_mestrado); setStateItens(prevState => { return { ...prevState, "sizeOAMestrado": data.oa_mestrado } });
+      setDataOAPosDoutorado(data.oa_posdoutorado); setStateItens(prevState => { return { ...prevState, "sizeOAPosDoutorado": data.oa_posdoutorado } });
+      setDataPartBancaAperfeicoamentoEspecializacao(data.part_banca_aperfeicoamento_especializacao); setStateItens(prevState => { return { ...prevState, "sizePartBancaAperfeicoamentoEspecializacao": data.part_banca_aperfeicoamento_especializacao } });
+      setDataPartBancaDoutorado(data.part_banca_doutorado); setStateItens(prevState => { return { ...prevState, "sizePartBancaDoutorado": data.part_banca_doutorado } });
+      setDataPartBancaExameQualificacao(data.part_banca_exame_qualificacao); setStateItens(prevState => { return { ...prevState, "sizePartBancaExameQualificacao": data.part_banca_exame_qualificacao } });
+      setDataPartBancaGraduacao(data.part_banca_graduacao); setStateItens(prevState => { return { ...prevState, "sizePartBancaGraduacao": data.part_banca_graduacao } });
+      setDataPartBancaJulgadoraConcursoPublico(data.part_banca_julgadora_concurso_publico); setStateItens(prevState => { return { ...prevState, "sizePartBancaJulgadoraConcursoPublico": data.part_banca_julgadora_concurso_publico } });
+      setDataPartBancaJulgadoraOutra(data.part_banca_julgadora_outra); setStateItens(prevState => { return { ...prevState, "sizePartBancaJulgadoraOutra": data.part_banca_julgadora_outra } });
+      setDataPartBancaJulgadoraProfessorTitular(data.part_banca_julgadora_professor_titular); setStateItens(prevState => { return { ...prevState, "sizePartBancaJulgadoraProfessorTitular": data.part_banca_julgadora_professor_titular } });
+      setDataPartBancaMestrado(data.part_banca_mestrado); setStateItens(prevState => { return { ...prevState, "sizePartBancaMestrado": data.part_banca_mestrado } });
+      setDataPartCongresso(data.part_congresso); setStateItens(prevState => { return { ...prevState, "sizePartCongresso": data.part_congresso } });
+      setDataPartEncontro(data.part_encontro); setStateItens(prevState => { return { ...prevState, "sizePartEncontro": data.part_encontro } });
+      setDataPartOficina(data.part_oficina); setStateItens(prevState => { return { ...prevState, "sizePartOficina": data.part_oficina } });
+      setDataPartOutras(data.part_evento_congresso_outra); setStateItens(prevState => { return { ...prevState, "sizePartOutras": data.part_evento_congresso_outra } });
+      setDataPartSeminario(data.part_seminario); setStateItens(prevState => { return { ...prevState, "sizePartSeminario": data.part_seminario } });
+      setDataPartSimposio(data.part_simposio); setStateItens(prevState => { return { ...prevState, "sizePartSimposio": data.part_simposio } });
+      setDataPTPremioTitulo(data.pt_premio_titulo); setStateItens(prevState => { return { ...prevState, "sizePTPremioTitulo": data.pt_premio_titulo } });
+      setDataFCCursoCurtaDuracao(data.fc_curso_curta_duracao); setStateItens(prevState => { return { ...prevState, "sizeFCCursoCurtaDuracao": data.fc_curso_curta_duracao } });
+      setDataSigaDisciplina(data.siga_disciplina); setStateItens(prevState => { return { ...prevState, "sizeSigaDisciplina": data.siga_disciplina } });
+      setDataSigaProjeto(data.siga_projeto); setStateItens(prevState => { return { ...prevState, "sizeSigaProjeto": data.siga_projeto } });
     }).then(() => { setAcabou(true); setInicial(2) });
-      
+
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     //console.log(userName,">>>>");
-    api_getMaxMinAno(userName).then((ano)=>{
+    api_getMaxMinAno(userName).then((ano) => {
       setAnoMin(parseInt(ano.anoMin));
       setAnoMax(parseInt(ano.anoMax));
       //console.log(">>>>ano",ano);
     });
 
-  },[]);
+  }, []);
 
   // State dos Itens  stateItens
-  useEffect(()=>{
-    
-    if(inicial===2){
+  useEffect(() => {
+
+    if (inicial === 2) {
       setAcabou(true);
     }
-  
-  },[stateItens]);
 
- 
+  }, [stateItens]);
+
+
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //FUNCTIONS  
-
   //array de dadar para o filter
 
-
   //Filtro
-  const Filtros=(TextBusca, anoSelect)=>{//formato= (palavra, [2012,2020])
+  const Filtros = (TextBusca, anoSelect) => {//formato= (palavra, [2012,2020])
     setAcabou(false);
     //setItens([]);
     setFilterText(TextBusca);
-    dates(anoSelect).then((date)=>{setFilterAno(date);filtroItens(TextBusca,date);});
+    dates(anoSelect).then((date) => { setFilterAno(date); filtroItens(TextBusca, date); });
   }
 
   //Filtro Ano e Texto
-  const filtroItens = (filterText_,filterAno_) => {
-    setStateItens({ 
-    "sizePBArtigoPublicado":dataPBArtigoPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_artigo) !== -1),
-    "sizePBCapituloLivroPublicado":dataPBCapituloLivroPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePBLivroPublicadoOrganizado":dataPBLivroPublicadoOrganizado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePBTextoJornalRevista":dataPBTextoJornalRevista.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_texto) !== -1),
-    "sizePBTrabalhosEvento":dataPBTrabalhosEvento.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_trabalho) !== -1),
-    "sizeAPConselhoComissaoConsultoria":dataAPConselhoComissaoConsultoria.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeAPDirecaoAdministracao":dataAPDirecaoAdministracao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeAPPesquisaDesenvolvimento":dataAPPesquisaDesenvolvimento.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeAPVinculo":dataAPVinculo.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeATProjetoPesquisa":dataATProjetoPesquisa.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeFATDoutorado":dataFATDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeFATEspecializacao":dataFATEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeFATGraduacao":dataFATGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeFATMestrado":dataFATMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
-    "sizeOAAperfeicoamentoEspecializacao":dataOAAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizeOADoutorado":dataOADoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizeOAGraduacao":dataOAGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizeOAIniciacaoCientifica":dataOAIniciacaoCientifica.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizeOAMestrado":dataOAMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizeOAPosDoutorado":dataOAPosDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaAperfeicoamentoEspecializacao":dataPartBancaAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaDoutorado":dataPartBancaDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaExameQualificacao":dataPartBancaExameQualificacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaGraduacao":dataPartBancaGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaJulgadoraConcursoPublico":dataPartBancaJulgadoraConcursoPublico.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaJulgadoraOutra":dataPartBancaJulgadoraOutra.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaJulgadoraProfessorTitular":dataPartBancaJulgadoraProfessorTitular.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartBancaMestrado":dataPartBancaMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartCongresso":dataPartCongresso.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartEncontro":dataPartEncontro.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartOficina":dataPartOficina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartOutras":dataPartOutras.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartSeminario":dataPartSeminario.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePartSimposio":dataPartSimposio.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
-    "sizePTPremioTitulo":dataPTPremioTitulo.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_da_premiacao) !== -1),
-    "sizeFCCursoCurtaDuracao":dataFCCursoCurtaDuracao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_de_inicio) !== -1),
-    "sizeSigaDisciplina":dataSigaDisciplina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1),
-    "sizeSigaProjeto":dataSigaProjeto.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1)
-  }); 
+  const filtroItens = (filterText_, filterAno_) => {
+    setStateItens({
+      "sizePBArtigoPublicado": dataPBArtigoPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_artigo) !== -1),
+      "sizePBCapituloLivroPublicado": dataPBCapituloLivroPublicado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePBLivroPublicadoOrganizado": dataPBLivroPublicadoOrganizado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePBTextoJornalRevista": dataPBTextoJornalRevista.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_texto) !== -1),
+      "sizePBTrabalhosEvento": dataPBTrabalhosEvento.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_do_trabalho) !== -1),
+      "sizeAPConselhoComissaoConsultoria": dataAPConselhoComissaoConsultoria.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeAPDirecaoAdministracao": dataAPDirecaoAdministracao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeAPPesquisaDesenvolvimento": dataAPPesquisaDesenvolvimento.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeAPVinculo": dataAPVinculo.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeATProjetoPesquisa": dataATProjetoPesquisa.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeFATDoutorado": dataFATDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeFATEspecializacao": dataFATEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeFATGraduacao": dataFATGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeFATMestrado": dataFATMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_inicio) !== -1),
+      "sizeOAAperfeicoamentoEspecializacao": dataOAAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizeOADoutorado": dataOADoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizeOAGraduacao": dataOAGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizeOAIniciacaoCientifica": dataOAIniciacaoCientifica.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizeOAMestrado": dataOAMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizeOAPosDoutorado": dataOAPosDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaAperfeicoamentoEspecializacao": dataPartBancaAperfeicoamentoEspecializacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaDoutorado": dataPartBancaDoutorado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaExameQualificacao": dataPartBancaExameQualificacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaGraduacao": dataPartBancaGraduacao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaJulgadoraConcursoPublico": dataPartBancaJulgadoraConcursoPublico.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaJulgadoraOutra": dataPartBancaJulgadoraOutra.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaJulgadoraProfessorTitular": dataPartBancaJulgadoraProfessorTitular.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartBancaMestrado": dataPartBancaMestrado.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartCongresso": dataPartCongresso.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartEncontro": dataPartEncontro.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartOficina": dataPartOficina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartOutras": dataPartOutras.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartSeminario": dataPartSeminario.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePartSimposio": dataPartSimposio.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano) !== -1),
+      "sizePTPremioTitulo": dataPTPremioTitulo.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_da_premiacao) !== -1),
+      "sizeFCCursoCurtaDuracao": dataFCCursoCurtaDuracao.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ano_de_inicio) !== -1),
+      "sizeSigaDisciplina": dataSigaDisciplina.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1),
+      "sizeSigaProjeto": dataSigaProjeto.filter((item) => (new RegExp(filterText_, 'i')).test(JSON.stringify(item))).filter((item) => filterAno_.indexOf(item.ANO) !== -1)
+    });
   }
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //RETURN PAGE////////////////////////////////////////////////////////////////////////////////////////
   return (
     <Box >
       <Backdrop className={classesbackdrop.backdrop} open={!acabou} >
         <CircularProgress color="inherit" />
       </Backdrop>
-      
+
       <Breadcrumbs style={{ marginLeft: 20, marginTop: 15 }} aria-label="breadcrumb">
-        <div style={{curso:'pointer'}} onClick={() => props.history.push("/")} >
+        <div style={{ curso: 'pointer' }} onClick={() => props.history.push("/")} >
           Home
         </div>
-     
+
         <Typography color="textPrimary">Portfólio</Typography>
       </Breadcrumbs>
-     
-     { (anoMin!==0&&anoMax!==0)&&<PortfolioBusca 
-    getSearch={Filtros} 
-    filterAno={filterAno} 
-    sliderMin={anoMin} 
-    sliderMax={anoMax} />}
-     
-      
+
+      { (anoMin !== 0 && anoMax !== 0) && <PortfolioBusca
+        getSearch={Filtros}
+        filterAno={filterAno}
+        sliderMin={anoMin}
+        sliderMax={anoMax} />}
+
+
 
       <Card key={user.name + "aaaa"} style={{ margin: 20 }}>
         <CardHeader
@@ -324,16 +320,16 @@ export const Page_Public_Portfolio = (props) => {
                 stateItens.sizeSigaProjeto === '') && <LinearProgress />}
             />
             {(
-                (stateItens.sizeSigaDisciplina.length !== 0 && stateItens.sizeSigaDisciplina !== '') ||
-                (stateItens.sizeSigaProjeto.length !== 0 && stateItens.sizeSigaProjeto !== '')
-              ) && <div style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
+              (stateItens.sizeSigaDisciplina.length !== 0 && stateItens.sizeSigaDisciplina !== '') ||
+              (stateItens.sizeSigaProjeto.length !== 0 && stateItens.sizeSigaProjeto !== '')
+            ) && <div style={{ width: '90%', marginLeft: '5%', marginBottom: 20 }}>
                 <SizeItem user={user} heade={'Disciplinas'} url={'disciplina'} num={stateItens.sizeSigaDisciplina} />
                 <SizeItem user={user} heade={'Projetos'} url={'projeto'} num={stateItens.sizeSigaProjeto} />
               </div>}
           </Card>
         </Box>
         <Box display="flex" justifyContent="center" p={0.5} bgcolor="background.paper">
-          <Card style={{ width: '95%'}}>
+          <Card style={{ width: '95%' }}>
             <CardHeader
               title={"Portfólio Lattes"/*<Button style={{ margin: 15, width: 200 }} color="primary" disableElevation onClick={() => href(`/portfolio/lattes/${user.user_name}`)} >Abrir Todos</Button>*/}
               subheader={(
@@ -544,12 +540,12 @@ const useStylesBackdrop = makeStyles((theme) => ({
 }));
 
 
-const dates=(anoSelect)=>new Promise((resolve, reject) => {
+const dates = (anoSelect) => new Promise((resolve, reject) => {
   var date = anoSelect[1];
   const dates = [];
-  while(date >= anoSelect[0]) {
+  while (date >= anoSelect[0]) {
     dates.push(String(date));
     date = date - 1;
   }
-  resolve(dates) ;
+  resolve(dates);
 });
